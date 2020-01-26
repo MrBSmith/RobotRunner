@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Camera/Camera.gd" type="Script" id=1]
 
@@ -12,6 +12,9 @@ extents = Vector2( 20, 20 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 30.02, 274.616 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 320, 272 )
 
 [node name="Camera" type="Camera2D"]
 position = Vector2( 480, 272 )
@@ -61,7 +64,24 @@ __meta__ = {
 }
 
 [node name="FastForwardArea" type="Area2D" parent="."]
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FastForwardArea"]
 position = Vector2( 452.938, -1.63983 )
 shape = SubResource( 4 )
+
+[node name="SafeArea" type="Area2D" parent="."]
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeArea"]
+position = Vector2( 160, 0 )
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}

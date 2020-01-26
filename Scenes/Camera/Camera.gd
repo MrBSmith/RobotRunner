@@ -9,6 +9,7 @@ onready var checkpoints_nodes_array = get_tree().get_nodes_in_group("CameraCheck
 onready var start_area_node = get_node("StartMovingArea")
 onready var play_zone_node = get_node("PlayZone")
 onready var fast_forward_zone_node = get_node("FastForwardArea")
+onready var safe_area_node = get_node("SafeArea")
 
 #var player_forwarding : bool = false
 
@@ -64,28 +65,30 @@ func on_play_area_zone_entered(body):
 # Toggle the acceleration of the camera if one of the players is in the fast forward zone
 func on_fast_forward_body_entered(body):
 	if body in players_nodes_array:
-		#player_forwarding = true
-		current_acceleration = acceleration
+		if players_in_area(safe_area_node, false, true):
+			current_acceleration = acceleration
 
 
 # When a body exits the fast forward zone, check if they are all outside it
 func on_fast_forward_body_exited(body):
 	if body in players_nodes_array:
-		if all_players_in_area(fast_forward_zone_node, true):
-			#player_forwarding = false
+		# Check if all the players are out of the foward zone
+		if players_in_area(fast_forward_zone_node, true, true):
 			current_acceleration = 1
 
 
-# Check if all the players are inside/outise an area, depending on the value of the argument ouside (set to false by default)
-# Return true is they are all inside/ouside, flase if not
-func all_players_in_area(area : Area2D, outside : bool = false):
+# Check if the players are inside/outise an area, depending on the value of the argument ouside (set to false by default)
+# Return true is they are inside/ouside, false if not
+# If the argument all is true, they all have to be inside/ouside for the method to return true
+# If the argument all is false, check if a least one player is inside/outside
+func players_in_area(area : Area2D, outside : bool = false, all : bool = true):
 	var bodies_in_area = area.get_overlapping_bodies()
 	var verif := true
 	
 	for player in players_nodes_array:
 		if (player in bodies_in_area) == outside:
 			verif = false
-		else:
+		elif all:
 			verif = true
 	
 	return verif
