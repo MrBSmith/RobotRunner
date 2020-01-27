@@ -1,171 +1,320 @@
-[gd_scene load_steps=8 format=2]
+
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Levels/LevelBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/S (BASE)/IceBlockBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/M/MIceBlock.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/S (base)/EarthBlockBase.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/M/MEarthBlock.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/InteractiveObjects/Water/WaterTile.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/InteractiveObjects/Teleports/TeleportArea.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Camera/CameraSystem_Level1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/S (BASE)/IceBlockBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/M/MIceBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/S (base)/EarthBlockBase.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/M/MEarthBlock.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/InteractiveObjects/Water/WaterTile.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/InteractiveObjects/Teleports/TeleportArea.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/RedLever.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/RedDoor.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/BlueLever.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/BlueDoor.tscn" type="PackedScene" id=13]
 
-[node name="Level1" instance=ExtResource( 1 )]
+[node name="Level1" index="0" instance=ExtResource( 1 )]
 
-[node name="Walls" parent="Map" index="1"]
-tile_data = PoolIntArray( -917455, 6, 0, -1, 6, 3, -65536, 6, 65537, -65535, 6, 4, -65534, 6, 3, -65533, 6, 4, -65532, 6, 65537, -65531, 6, 3, -65530, 6, 4, -65529, 6, 65537, -65528, 6, 3, -65527, 6, 3, -65526, 6, 65537, -65525, 6, 4, -65524, 6, 3, -65523, 6, 3, -65522, 6, 4, -65521, 6, 65537, -65520, 6, 3, -65519, 6, 4, -65518, 6, 65537, -65517, 6, 65537, -65516, 6, 3, -65515, 6, 3, -65514, 6, 3, -65513, 6, 3, -65512, 6, 4, -65511, 6, 4, -65510, 6, 3, -65509, 6, 65537, -65508, 6, 4, -65507, 6, 3, -65506, 6, 4, -65505, 6, 3, -65504, 6, 65537, -65503, 6, 65537, -65502, 6, 4, -65501, 6, 65537, -65500, 6, 3, -65499, 6, 4, -65498, 6, 65537, -65497, 6, 65537, -65496, 6, 4, -65495, 6, 3, -65494, 6, 65537, -65493, 6, 3, -65492, 6, 4, -65491, 6, 65537, -65490, 6, 4, -65489, 6, 65537, -65488, 6, 3, -65487, 6, 3, -65486, 6, 65537, -65485, 6, 4, -65484, 6, 4, -65483, 6, 65537, -65482, 6, 65537, -65481, 6, 3, -65480, 6, 4, -65479, 6, 3, -65478, 6, 65537, -65477, 6, 4, -65476, 6, 3, -65475, 6, 65537, -65474, 6, 4, -65473, 6, 4, -65472, 6, 3, -65471, 6, 65537, -65470, 6, 3, -65469, 6, 4, -65468, 6, 65537, -65467, 6, 3, -65466, 6, 3, -65465, 6, 3, -65464, 6, 65537, -65463, 6, 65537, -65462, 6, 4, -65461, 6, 3, -65460, 6, 65537, -65459, 6, 3, -65458, 6, 4, -65457, 6, 4, -65456, 6, 65537, -65455, 6, 65537, -65454, 6, 4, -65453, 6, 65537, -65452, 6, 65537, -65451, 6, 3, -65450, 6, 3, -65449, 6, 3, -65448, 6, 4, -65447, 6, 4, -65446, 6, 65537, -65445, 6, 3, -65444, 6, 4, -65443, 6, 4, -65442, 6, 3, -65441, 6, 4, -65440, 6, 65537, -65439, 6, 3, -65438, 6, 3, -65437, 6, 4, -65436, 6, 3, -65435, 6, 65537, -65434, 6, 4, -65433, 6, 65537, -65432, 6, 3, -65431, 6, 3, -65430, 6, 65537, -65429, 6, 4, 65535, 6, 65537, 0, 6, 131076, 1, 6, 131073, 2, 6, 131073, 3, 6, 131073, 4, 6, 131073, 5, 6, 131073, 6, 6, 131073, 7, 6, 131075, 8, 6, 65537, 9, 6, 3, 10, 6, 4, 11, 6, 3, 12, 6, 131076, 13, 6, 131073, 14, 6, 131073, 15, 6, 131075, 16, 6, 131076, 17, 6, 131073, 18, 6, 131073, 19, 6, 131073, 20, 6, 131073, 21, 6, 131073, 22, 6, 131073, 23, 6, 131073, 24, 6, 131073, 25, 6, 131073, 26, 6, 131073, 27, 6, 131073, 28, 6, 131073, 29, 6, 131073, 30, 6, 131073, 31, 6, 131073, 32, 6, 131073, 33, 6, 131073, 34, 6, 131073, 35, 6, 131073, 36, 6, 131073, 37, 6, 131073, 38, 6, 131073, 39, 6, 131075, 40, 6, 65537, 41, 6, 3, 42, 6, 65537, 43, 6, 65537, 44, 6, 131076, 45, 6, 131073, 46, 6, 131073, 47, 6, 131073, 48, 6, 131073, 49, 6, 131073, 50, 6, 131073, 51, 6, 131073, 52, 6, 131073, 53, 6, 131073, 54, 6, 131073, 55, 6, 131073, 56, 6, 131073, 57, 6, 131073, 58, 6, 131073, 59, 6, 131073, 60, 6, 131073, 61, 6, 131073, 62, 6, 131073, 63, 6, 131073, 64, 6, 131073, 65, 6, 131073, 66, 6, 131073, 67, 6, 131073, 68, 6, 131073, 69, 6, 131073, 70, 6, 131073, 71, 6, 131073, 72, 6, 131073, 73, 6, 131073, 74, 6, 131073, 75, 6, 131073, 76, 6, 131073, 77, 6, 131073, 78, 6, 131073, 79, 6, 131073, 80, 6, 131073, 81, 6, 131073, 82, 6, 131073, 83, 6, 131073, 84, 6, 131073, 85, 6, 131073, 86, 6, 131073, 87, 6, 131073, 88, 6, 131073, 89, 6, 131073, 90, 6, 131073, 91, 6, 131073, 92, 6, 131073, 93, 6, 131073, 94, 6, 131073, 95, 6, 131073, 96, 6, 131073, 97, 6, 131073, 98, 6, 131075, 99, 6, 65537, 100, 6, 131076, 101, 6, 131073, 102, 6, 131073, 103, 6, 131073, 104, 6, 131073, 105, 6, 131073, 106, 6, 131073, 107, 6, 131073, 131071, 6, 65537, 65536, 6, 65538, 65543, 6, 131072, 65544, 6, 131075, 65545, 6, 3, 65546, 6, 65537, 65547, 6, 131076, 65548, 6, 131074, 65551, 6, 65536, 65552, 6, 65538, 65575, 6, 65536, 65576, 6, 3, 65577, 6, 4, 65578, 6, 4, 65579, 6, 131076, 65580, 6, 131074, 65634, 6, 65536, 65635, 6, 3, 65636, 6, 65538, 196607, 6, 65537, 131072, 6, 65538, 131080, 6, 131072, 131081, 6, 131075, 131082, 6, 131076, 131083, 6, 131074, 131087, 6, 65536, 131088, 6, 65538, 131111, 6, 65536, 131112, 6, 65537, 131113, 6, 65537, 131114, 6, 131076, 131115, 6, 131074, 131170, 6, 65536, 131171, 6, 3, 131172, 6, 65538, 262143, 6, 65537, 196608, 6, 65538, 196617, 6, 131072, 196618, 6, 131074, 196623, 6, 131072, 196624, 6, 131074, 196647, 6, 131072, 196648, 6, 131073, 196649, 6, 131073, 196650, 6, 131074, 196706, 6, 65536, 196707, 6, 65537, 196708, 6, 65538, 327679, 6, 4, 262144, 6, 65538, 262165, 6, 0, 262166, 6, 2, 262169, 6, 0, 262170, 6, 2, 262242, 6, 65536, 262243, 6, 3, 262244, 6, 65538, 393215, 6, 65537, 327680, 6, 65538, 327701, 6, 65536, 327702, 6, 65540, 327703, 6, 1, 327704, 6, 1, 327705, 6, 65539, 327706, 6, 65538, 327778, 6, 65536, 327779, 6, 3, 327780, 6, 65538, 458751, 6, 3, 393216, 6, 65538, 393230, 6, 0, 393231, 6, 1, 393232, 6, 1, 393233, 6, 2, 393237, 6, 65536, 393238, 6, 131076, 393239, 6, 131073, 393240, 6, 131073, 393241, 6, 131075, 393242, 6, 65538, 393256, 6, 0, 393257, 6, 1, 393258, 6, 1, 393259, 6, 1, 393260, 6, 1, 393261, 6, 1, 393262, 6, 1, 393263, 6, 1, 393264, 6, 1, 393265, 6, 1, 393266, 6, 1, 393267, 6, 1, 393268, 6, 1, 393269, 6, 1, 393270, 6, 1, 393271, 6, 1, 393272, 6, 1, 393273, 6, 1, 393274, 6, 1, 393275, 6, 1, 393276, 6, 1, 393277, 6, 1, 393278, 6, 1, 393279, 6, 1, 393280, 6, 1, 393281, 6, 1, 393282, 6, 1, 393283, 6, 1, 393284, 6, 1, 393285, 6, 1, 393286, 6, 1, 393287, 6, 1, 393288, 6, 1, 393289, 6, 1, 393290, 6, 1, 393291, 6, 1, 393292, 6, 1, 393293, 6, 1, 393294, 6, 1, 393295, 6, 1, 393296, 6, 1, 393297, 6, 1, 393298, 6, 1, 393299, 6, 1, 393300, 6, 1, 393301, 6, 1, 393302, 6, 1, 393303, 6, 1, 393304, 6, 1, 393305, 6, 2, 393314, 6, 65536, 393315, 6, 65537, 393316, 6, 65538, 524287, 6, 3, 458752, 6, 65538, 458761, 6, 0, 458762, 6, 2, 458766, 6, 65536, 458767, 6, 3, 458768, 6, 65537, 458769, 6, 65538, 458773, 6, 131072, 458774, 6, 131074, 458777, 6, 131072, 458778, 6, 131074, 458791, 6, 0, 458792, 6, 65539, 458793, 6, 131076, 458794, 6, 131073, 458795, 6, 131073, 458796, 6, 131073, 458797, 6, 131073, 458798, 6, 131073, 458799, 6, 131073, 458800, 6, 131073, 458801, 6, 131073, 458802, 6, 131073, 458803, 6, 131073, 458804, 6, 131073, 458805, 6, 131073, 458806, 6, 131073, 458807, 6, 131073, 458808, 6, 131073, 458809, 6, 131073, 458810, 6, 131073, 458811, 6, 131073, 458812, 6, 131073, 458813, 6, 131073, 458814, 6, 131073, 458815, 6, 131073, 458816, 6, 131073, 458817, 6, 131073, 458818, 6, 131073, 458819, 6, 131073, 458820, 6, 131073, 458821, 6, 131073, 458822, 6, 131073, 458823, 6, 131073, 458824, 6, 131073, 458825, 6, 131073, 458826, 6, 131073, 458827, 6, 131073, 458828, 6, 131073, 458829, 6, 131073, 458830, 6, 131073, 458831, 6, 131073, 458832, 6, 131073, 458833, 6, 131073, 458834, 6, 131073, 458835, 6, 131073, 458836, 6, 131073, 458837, 6, 131073, 458838, 6, 131073, 458839, 6, 131073, 458840, 6, 131075, 458841, 6, 65540, 458842, 6, 2, 458850, 6, 65536, 458851, 6, 3, 458852, 6, 65538, 458859, 6, 0, 589823, 6, 65537, 524288, 6, 65538, 524296, 6, 0, 524297, 6, 65539, 524298, 6, 65540, 524299, 6, 2, 524302, 6, 65536, 524303, 6, 65537, 524304, 6, 4, 524305, 6, 65538, 524326, 6, 0, 524327, 6, 65539, 524328, 6, 131076, 524329, 6, 131074, 524376, 6, 131072, 524377, 6, 131075, 524378, 6, 65540, 524379, 6, 2, 524386, 6, 65536, 524387, 6, 4, 524388, 6, 65538, 524395, 6, 65536, 655359, 6, 3, 589824, 6, 65538, 589831, 6, 0, 589832, 6, 65539, 589833, 6, 65537, 589834, 6, 3, 589835, 6, 65540, 589836, 6, 2, 589838, 6, 65536, 589839, 6, 65537, 589840, 6, 3, 589841, 6, 65538, 589861, 6, 0, 589862, 6, 65539, 589863, 6, 131076, 589864, 6, 131074, 589913, 6, 131072, 589914, 6, 131075, 589915, 6, 65538, 589922, 6, 65536, 589923, 6, 65537, 589924, 6, 65538, 589931, 6, 65536, 720895, 6, 4, 655360, 6, 65540, 655361, 6, 1, 655362, 6, 1, 655363, 6, 1, 655364, 6, 1, 655365, 6, 1, 655366, 6, 1, 655367, 6, 65539, 655368, 6, 65537, 655369, 6, 3, 655370, 6, 65537, 655371, 6, 4, 655372, 6, 65540, 655373, 6, 1, 655374, 6, 65539, 655375, 6, 4, 655376, 6, 3, 655377, 6, 65540, 655378, 6, 1, 655379, 6, 1, 655380, 6, 1, 655381, 6, 1, 655382, 6, 1, 655383, 6, 1, 655384, 6, 1, 655385, 6, 1, 655386, 6, 1, 655387, 6, 1, 655388, 6, 1, 655389, 6, 1, 655390, 6, 1, 655391, 6, 1, 655392, 6, 1, 655393, 6, 1, 655394, 6, 1, 655395, 6, 1, 655396, 6, 1, 655397, 6, 65539, 655398, 6, 131076, 655399, 6, 131074, 655450, 6, 131072, 655451, 6, 131074, 655458, 6, 65536, 655459, 6, 3, 655460, 6, 65538, 655467, 6, 65536, 786431, 6, 65537, 720896, 6, 131076, 720897, 6, 131073, 720898, 6, 131073, 720899, 6, 131073, 720900, 6, 131073, 720901, 6, 131073, 720902, 6, 131075, 720903, 6, 65537, 720904, 6, 131076, 720905, 6, 131073, 720906, 6, 131073, 720907, 6, 131073, 720908, 6, 131073, 720909, 6, 131073, 720910, 6, 131073, 720911, 6, 131073, 720912, 6, 131073, 720913, 6, 131073, 720914, 6, 131073, 720915, 6, 131073, 720916, 6, 131073, 720917, 6, 131073, 720918, 6, 131073, 720919, 6, 131073, 720920, 6, 131073, 720921, 6, 131073, 720922, 6, 131073, 720923, 6, 131073, 720924, 6, 131073, 720925, 6, 131073, 720926, 6, 131073, 720927, 6, 131073, 720928, 6, 131073, 720929, 6, 131073, 720930, 6, 131073, 720931, 6, 131073, 720932, 6, 131073, 720933, 6, 131075, 720934, 6, 65540, 720935, 6, 2, 720994, 6, 65536, 720995, 6, 3, 720996, 6, 65538, 721003, 6, 65536, 851967, 6, 65537, 786432, 6, 65538, 786438, 6, 65536, 786439, 6, 4, 786440, 6, 65538, 786469, 6, 131072, 786470, 6, 131075, 786471, 6, 65540, 786472, 6, 2, 786530, 6, 65536, 786531, 6, 65537, 786532, 6, 65538, 786539, 6, 65536, 917503, 6, 65537, 851968, 6, 65538, 851974, 6, 65536, 851975, 6, 65537, 851976, 6, 65538, 852006, 6, 131072, 852007, 6, 131075, 852008, 6, 65540, 852009, 6, 2, 852066, 6, 65536, 852067, 6, 3, 852068, 6, 65538, 852075, 6, 65536, 983039, 6, 3, 917504, 6, 65540, 917505, 6, 1, 917506, 6, 1, 917507, 6, 2, 917510, 6, 65536, 917511, 6, 3, 917512, 6, 65538, 917515, 6, 0, 917516, 6, 1, 917517, 6, 1, 917518, 6, 1, 917519, 6, 2, 917543, 6, 131072, 917544, 6, 131075, 917545, 6, 65540, 917546, 6, 1, 917547, 6, 1, 917548, 6, 1, 917549, 6, 1, 917550, 6, 1, 917551, 6, 1, 917552, 6, 1, 917553, 6, 1, 917554, 6, 1, 917555, 6, 1, 917556, 6, 1, 917557, 6, 1, 917558, 6, 1, 917559, 6, 1, 917560, 6, 1, 917561, 6, 1, 917562, 6, 1, 917563, 6, 1, 917564, 6, 1, 917565, 6, 1, 917566, 6, 1, 917567, 6, 1, 917568, 6, 1, 917569, 6, 1, 917570, 6, 1, 917571, 6, 1, 917572, 6, 1, 917573, 6, 1, 917574, 6, 1, 917575, 6, 1, 917576, 6, 1, 917577, 6, 1, 917578, 6, 1, 917579, 6, 1, 917580, 6, 1, 917581, 6, 1, 917582, 6, 1, 917583, 6, 1, 917584, 6, 1, 917585, 6, 1, 917586, 6, 1, 917587, 6, 1, 917588, 6, 1, 917589, 6, 1, 917590, 6, 1, 917591, 6, 1, 917592, 6, 1, 917593, 6, 2, 917602, 6, 65536, 917603, 6, 3, 917604, 6, 65538, 917611, 6, 65536, 1048575, 6, 3, 983040, 6, 65537, 983041, 6, 4, 983042, 6, 65537, 983043, 6, 65538, 983046, 6, 65536, 983047, 6, 4, 983048, 6, 65538, 983051, 6, 65536, 983052, 6, 65537, 983053, 6, 3, 983054, 6, 3, 983055, 6, 65538, 983067, 6, 0, 983068, 6, 2, 983073, 6, 0, 983074, 6, 2, 983080, 6, 131072, 983081, 6, 131073, 983082, 6, 131073, 983083, 6, 131073, 983084, 6, 131073, 983085, 6, 131073, 983086, 6, 131073, 983087, 6, 131073, 983088, 6, 131073, 983089, 6, 131073, 983090, 6, 131073, 983091, 6, 131073, 983092, 6, 131073, 983093, 6, 131073, 983094, 6, 131073, 983095, 6, 131073, 983096, 6, 131073, 983097, 6, 131073, 983098, 6, 131073, 983099, 6, 131073, 983100, 6, 131073, 983101, 6, 131073, 983102, 6, 131073, 983103, 6, 131073, 983104, 6, 131073, 983105, 6, 131073, 983106, 6, 131073, 983107, 6, 131073, 983108, 6, 131073, 983109, 6, 131073, 983110, 6, 131073, 983111, 6, 131073, 983112, 6, 131073, 983113, 6, 131073, 983114, 6, 131073, 983115, 6, 131073, 983116, 6, 131073, 983117, 6, 131073, 983118, 6, 131073, 983119, 6, 131073, 983120, 6, 131073, 983121, 6, 131073, 983122, 6, 131073, 983123, 6, 131073, 983124, 6, 131073, 983125, 6, 131073, 983126, 6, 131073, 983127, 6, 131073, 983128, 6, 131075, 983129, 6, 65540, 983130, 6, 2, 983138, 6, 65536, 983139, 6, 4, 983140, 6, 65538, 983147, 6, 65536, 1114111, 6, 65537, 1048576, 6, 131076, 1048577, 6, 131073, 1048578, 6, 131073, 1048579, 6, 131074, 1048582, 6, 65536, 1048583, 6, 65537, 1048584, 6, 65540, 1048585, 6, 1, 1048586, 6, 1, 1048587, 6, 65539, 1048588, 6, 3, 1048589, 6, 4, 1048590, 6, 65537, 1048591, 6, 65540, 1048592, 6, 1, 1048593, 6, 1, 1048594, 6, 1, 1048595, 6, 1, 1048596, 6, 2, 1048602, 6, 0, 1048603, 6, 65539, 1048604, 6, 65538, 1048609, 6, 65536, 1048610, 6, 65540, 1048611, 6, 2, 1048664, 6, 131072, 1048665, 6, 131075, 1048666, 6, 65540, 1048667, 6, 2, 1048674, 6, 65536, 1048675, 6, 3, 1048676, 6, 65538, 1048683, 6, 65536, 1179647, 6, 4, 1114112, 6, 65538, 1114118, 6, 131072, 1114119, 6, 131073, 1114120, 6, 131073, 1114121, 6, 131073, 1114122, 6, 131073, 1114123, 6, 131075, 1114124, 6, 3, 1114125, 6, 65537, 1114126, 6, 3, 1114127, 6, 131076, 1114128, 6, 131073, 1114129, 6, 131073, 1114130, 6, 131073, 1114131, 6, 131073, 1114132, 6, 131074, 1114137, 6, 0, 1114138, 6, 65539, 1114139, 6, 3, 1114140, 6, 65538, 1114145, 6, 65536, 1114146, 6, 3, 1114147, 6, 65540, 1114148, 6, 2, 1114201, 6, 131072, 1114202, 6, 131075, 1114203, 6, 65538, 1114210, 6, 65536, 1114211, 6, 3, 1114212, 6, 65538, 1114219, 6, 65536, 1245183, 6, 65537, 1179648, 6, 65538, 1179659, 6, 131072, 1179660, 6, 131073, 1179661, 6, 131073, 1179662, 6, 131073, 1179663, 6, 131074, 1179672, 6, 0, 1179673, 6, 65539, 1179674, 6, 4, 1179675, 6, 4, 1179676, 6, 65538, 1179681, 6, 65536, 1179682, 6, 65537, 1179683, 6, 4, 1179684, 6, 65538, 1179688, 6, 0, 1179689, 6, 2, 1179738, 6, 131072, 1179739, 6, 131074, 1179746, 6, 65536, 1179747, 6, 3, 1179748, 6, 65538, 1179755, 6, 65536, 1310719, 6, 65537, 1245184, 6, 65538, 1245207, 6, 0, 1245208, 6, 65539, 1245209, 6, 3, 1245210, 6, 4, 1245211, 6, 4, 1245212, 6, 65540, 1245213, 6, 1, 1245214, 6, 1, 1245215, 6, 1, 1245216, 6, 1, 1245217, 6, 65539, 1245218, 6, 4, 1245219, 6, 65537, 1245220, 6, 65540, 1245221, 6, 1, 1245222, 6, 1, 1245223, 6, 1, 1245224, 6, 65539, 1245225, 6, 65538, 1245282, 6, 65536, 1245283, 6, 65537, 1245284, 6, 65538, 1245291, 6, 65536, 1376255, 6, 4, 1310720, 6, 65538, 1310742, 6, 0, 1310743, 6, 65539, 1310744, 6, 4, 1310745, 6, 3, 1310746, 6, 4, 1310747, 6, 4, 1310748, 6, 4, 1310749, 6, 65537, 1310750, 6, 3, 1310751, 6, 4, 1310752, 6, 4, 1310753, 6, 4, 1310754, 6, 4, 1310755, 6, 65537, 1310756, 6, 4, 1310757, 6, 3, 1310758, 6, 65537, 1310759, 6, 4, 1310760, 6, 65537, 1310761, 6, 65538, 1310818, 6, 65536, 1310819, 6, 3, 1310820, 6, 65538, 1310827, 6, 65536, 1441791, 6, 4, 1376256, 6, 65540, 1376257, 6, 1, 1376258, 6, 1, 1376259, 6, 1, 1376260, 6, 1, 1376261, 6, 1, 1376262, 6, 1, 1376263, 6, 1, 1376264, 6, 1, 1376265, 6, 1, 1376266, 6, 1, 1376267, 6, 1, 1376268, 6, 1, 1376269, 6, 1, 1376270, 6, 1, 1376271, 6, 1, 1376272, 6, 1, 1376273, 6, 1, 1376274, 6, 1, 1376275, 6, 1, 1376276, 6, 1, 1376277, 6, 1, 1376278, 6, 65539, 1376279, 6, 65537, 1376280, 6, 4, 1376281, 6, 65537, 1376282, 6, 4, 1376283, 6, 65537, 1376284, 6, 4, 1376285, 6, 4, 1376286, 6, 4, 1376287, 6, 4, 1376288, 6, 3, 1376289, 6, 65537, 1376290, 6, 3, 1376291, 6, 4, 1376292, 6, 4, 1376293, 6, 4, 1376294, 6, 3, 1376295, 6, 65537, 1376296, 6, 65537, 1376297, 6, 65540, 1376298, 6, 1, 1376299, 6, 1, 1376300, 6, 1, 1376301, 6, 1, 1376302, 6, 1, 1376303, 6, 1, 1376304, 6, 1, 1376305, 6, 1, 1376306, 6, 1, 1376307, 6, 1, 1376308, 6, 1, 1376309, 6, 1, 1376310, 6, 1, 1376311, 6, 1, 1376312, 6, 1, 1376313, 6, 1, 1376314, 6, 1, 1376315, 6, 1, 1376316, 6, 1, 1376317, 6, 1, 1376318, 6, 1, 1376319, 6, 1, 1376320, 6, 1, 1376321, 6, 1, 1376322, 6, 1, 1376323, 6, 1, 1376324, 6, 1, 1376325, 6, 1, 1376326, 6, 1, 1376327, 6, 1, 1376328, 6, 1, 1376329, 6, 1, 1376330, 6, 1, 1376331, 6, 1, 1376332, 6, 1, 1376333, 6, 1, 1376334, 6, 1, 1376335, 6, 1, 1376336, 6, 1, 1376337, 6, 1, 1376338, 6, 1, 1376339, 6, 1, 1376340, 6, 1, 1376341, 6, 1, 1376342, 6, 1, 1376343, 6, 1, 1376344, 6, 1, 1376345, 6, 2, 1376354, 6, 65536, 1376355, 6, 3, 1376356, 6, 65538, 1376363, 6, 65536, 1507327, 6, 3, 1441792, 6, 65537, 1441793, 6, 4, 1441794, 6, 65537, 1441795, 6, 3, 1441796, 6, 4, 1441797, 6, 65537, 1441798, 6, 4, 1441799, 6, 65537, 1441800, 6, 65537, 1441801, 6, 3, 1441802, 6, 4, 1441803, 6, 3, 1441804, 6, 3, 1441805, 6, 65537, 1441806, 6, 3, 1441807, 6, 3, 1441808, 6, 4, 1441809, 6, 65537, 1441810, 6, 65537, 1441811, 6, 3, 1441812, 6, 65537, 1441813, 6, 4, 1441814, 6, 65537, 1441815, 6, 65537, 1441816, 6, 4, 1441817, 6, 3, 1441818, 6, 65537, 1441819, 6, 3, 1441820, 6, 4, 1441821, 6, 3, 1441822, 6, 3, 1441823, 6, 65537, 1441824, 6, 65537, 1441825, 6, 4, 1441826, 6, 65537, 1441827, 6, 3, 1441828, 6, 3, 1441829, 6, 65537, 1441830, 6, 65537, 1441831, 6, 65537, 1441832, 6, 3, 1441833, 6, 4, 1441834, 6, 65537, 1441835, 6, 3, 1441836, 6, 3, 1441837, 6, 65537, 1441838, 6, 3, 1441839, 6, 4, 1441840, 6, 3, 1441841, 6, 3, 1441842, 6, 4, 1441843, 6, 3, 1441844, 6, 65537, 1441845, 6, 3, 1441846, 6, 3, 1441847, 6, 3, 1441848, 6, 4, 1441849, 6, 3, 1441850, 6, 4, 1441851, 6, 65537, 1441852, 6, 3, 1441853, 6, 3, 1441854, 6, 3, 1441855, 6, 4, 1441856, 6, 65537, 1441857, 6, 4, 1441858, 6, 3, 1441859, 6, 65537, 1441860, 6, 4, 1441861, 6, 4, 1441862, 6, 3, 1441863, 6, 65537, 1441864, 6, 4, 1441865, 6, 3, 1441866, 6, 65537, 1441867, 6, 4, 1441868, 6, 4, 1441869, 6, 3, 1441870, 6, 4, 1441871, 6, 4, 1441872, 6, 3, 1441873, 6, 65537, 1441874, 6, 65537, 1441875, 6, 4, 1441876, 6, 4, 1441877, 6, 65537, 1441878, 6, 3, 1441879, 6, 65537, 1441880, 6, 3, 1441881, 6, 65540, 1441882, 6, 2, 1441890, 6, 65536, 1441891, 6, 65537, 1441892, 6, 65538, 1441899, 6, 65536, 1507414, 6, 65537, 1507415, 6, 3, 1507416, 6, 4, 1507417, 6, 65537, 1507418, 6, 65540, 1507419, 6, 2, 1507426, 6, 65536, 1507427, 6, 4, 1507428, 6, 65538, 1507435, 6, 65536, 1572950, 6, 3, 1572951, 6, 4, 1572952, 6, 3, 1572953, 6, 4, 1572954, 6, 65537, 1572955, 6, 65538, 1572962, 6, 65536, 1572963, 6, 3, 1572964, 6, 65538, 1572971, 6, 65536, 1638486, 6, 4, 1638487, 6, 3, 1638488, 6, 3, 1638489, 6, 4, 1638490, 6, 65537, 1638491, 6, 65538, 1638498, 6, 65536, 1638499, 6, 3, 1638500, 6, 65538, 1638507, 6, 65536, 1704022, 6, 3, 1704023, 6, 4, 1704024, 6, 3, 1704025, 6, 65537, 1704026, 6, 4, 1704027, 6, 65538, 1704034, 6, 65536, 1704035, 6, 3, 1704036, 6, 65538, 1704043, 6, 65536, 1769558, 6, 3, 1769559, 6, 4, 1769560, 6, 65537, 1769561, 6, 4, 1769562, 6, 3, 1769563, 6, 65538, 1769570, 6, 65536, 1769571, 6, 3, 1769572, 6, 65538, 1769579, 6, 65536, 1835094, 6, 4, 1835095, 6, 3, 1835096, 6, 4, 1835097, 6, 3, 1835098, 6, 4, 1835099, 6, 65538, 1835106, 6, 65536, 1835107, 6, 65537, 1835108, 6, 65538, 1835115, 6, 65536, 1900630, 6, 65537, 1900631, 6, 3, 1900632, 6, 65537, 1900633, 6, 4, 1900634, 6, 4, 1900635, 6, 65538, 1900642, 6, 65536, 1900643, 6, 3, 1900644, 6, 65538, 1900651, 6, 65536, 1966166, 6, 65537, 1966167, 6, 3, 1966168, 6, 4, 1966169, 6, 65537, 1966170, 6, 65537, 1966171, 6, 65538, 1966178, 6, 65536, 1966179, 6, 3, 1966180, 6, 65538, 1966187, 6, 65536, 2031702, 6, 3, 2031703, 6, 4, 2031704, 6, 65537, 2031705, 6, 3, 2031706, 6, 3, 2031707, 6, 65538, 2031714, 6, 65536, 2031715, 6, 4, 2031716, 6, 65538, 2031723, 6, 65536 )
 
-[node name="IceBlocks" parent="InteractivesObjects" index="0"]
-editor/display_folded = true
+[node name="CameraSystem" parent="." index="0" instance=ExtResource( 2 )]
+z_index = 999
 
-[node name="S" parent="InteractivesObjects/IceBlocks" index="0"]
-editor/display_folded = true
 
-[node name="IceBlockBase" parent="InteractivesObjects/IceBlocks/S" index="0" instance=ExtResource( 2 )]
-position = Vector2( 664, 348 )
-mass = 1.0
-linear_damp = -1.0
 
-[node name="IceBlockBase2" parent="InteractivesObjects/IceBlocks/S" index="1" instance=ExtResource( 2 )]
-position = Vector2( 664, 324 )
-mass = 1.0
-linear_damp = -1.0
+[node name="IceBlockBase" parent="InteractivesObjects/IceBlocks/S" index="0" instance=ExtResource( 3 )]
+position = Vector2( 253, 115 )
 
-[node name="IceBlockBase3" parent="InteractivesObjects/IceBlocks/S" index="2" instance=ExtResource( 2 )]
-position = Vector2( 664, 300.5 )
-mass = 1.0
-linear_damp = -1.0
+[node name="IceBlockBase2" parent="InteractivesObjects/IceBlocks/S" index="1" instance=ExtResource( 3 )]
+position = Vector2( 229, 115 )
 
-[node name="M" parent="InteractivesObjects/IceBlocks" index="1"]
-editor/display_folded = true
+[node name="IceBlockBase3" parent="InteractivesObjects/IceBlocks/S" index="2" instance=ExtResource( 3 )]
+position = Vector2( 553, 132 )
 
-[node name="M_IceBlock" parent="InteractivesObjects/IceBlocks/M" index="0" instance=ExtResource( 3 )]
-position = Vector2( 240, 146 )
-mass = 1.0
-linear_damp = -1.0
 
-[node name="S" parent="InteractivesObjects/EarthBlocks" index="0"]
-editor/display_folded = true
+[node name="IceBlockBase4" parent="InteractivesObjects/IceBlocks/S" index="3" instance=ExtResource( 3 )]
+position = Vector2( 553, 108 )
 
-[node name="BreakableBlockBase" parent="InteractivesObjects/EarthBlocks/S" index="0" instance=ExtResource( 4 )]
-position = Vector2( 370, 324 )
-mass = 1.0
-linear_damp = -1.0
+[node name="IceBlockBase5" parent="InteractivesObjects/IceBlocks/S" index="4" instance=ExtResource( 3 )]
+position = Vector2( 553, 84 )
 
-[node name="BreakableBlockBase2" parent="InteractivesObjects/EarthBlocks/S" index="1" instance=ExtResource( 4 )]
-position = Vector2( 370, 300 )
-mass = 1.0
-linear_damp = -1.0
+[node name="IceBlockBase6" parent="InteractivesObjects/IceBlocks/S" index="5" instance=ExtResource( 3 )]
+position = Vector2( 553, 60 )
 
-[node name="BreakableBlockBase3" parent="InteractivesObjects/EarthBlocks/S" index="2" instance=ExtResource( 4 )]
-position = Vector2( 277, 324 )
-mass = 1.0
-linear_damp = -1.0
+[node name="IceBlockBase13" parent="InteractivesObjects/IceBlocks/S" index="6" instance=ExtResource( 3 )]
+position = Vector2( 553, 36 )
 
-[node name="BreakableBlockBase4" parent="InteractivesObjects/EarthBlocks/S" index="3" instance=ExtResource( 4 )]
-position = Vector2( 277, 300 )
-mass = 1.0
-linear_damp = -1.0
 
-[node name="BreakableBlockBase5" parent="InteractivesObjects/EarthBlocks/S" index="4" instance=ExtResource( 4 )]
-position = Vector2( 323, 324 )
-mass = 1.0
-linear_damp = -1.0
+[node name="M_IceBlock" parent="InteractivesObjects/IceBlocks/M" index="0" instance=ExtResource( 4 )]
+position = Vector2( 240, 148 )
 
-[node name="BreakableBlockBase6" parent="InteractivesObjects/EarthBlocks/S" index="5" instance=ExtResource( 4 )]
-position = Vector2( 323, 300 )
-mass = 1.0
-linear_damp = -1.0
 
-[node name="M" parent="InteractivesObjects/EarthBlocks" index="1"]
-editor/display_folded = true
+[node name="M_IceBlock2" parent="InteractivesObjects/IceBlocks/M" index="1" instance=ExtResource( 4 )]
+position = Vector2( 360, 124 )
 
-[node name="M_EarthBlock" parent="InteractivesObjects/EarthBlocks/M" index="0" instance=ExtResource( 5 )]
-position = Vector2( 361, 123 )
-physics_material_override = null
-can_sleep = false
 
-[node name="M_EarthBlock2" parent="InteractivesObjects/EarthBlocks/M" index="1" instance=ExtResource( 5 )]
-position = Vector2( 409, 122 )
-physics_material_override = null
-can_sleep = false
+[node name="M_IceBlock3" parent="InteractivesObjects/IceBlocks/M" index="2" instance=ExtResource( 4 )]
+position = Vector2( 792, 194 )
 
-[node name="M_EarthBlock3" parent="InteractivesObjects/EarthBlocks/M" index="2" instance=ExtResource( 5 )]
-position = Vector2( 277, 483 )
-physics_material_override = null
-can_sleep = false
+[node name="M_IceBlock4" parent="InteractivesObjects/IceBlocks/M" index="3" instance=ExtResource( 4 )]
+position = Vector2( 792, 147 )
 
-[node name="M_EarthBlock4" parent="InteractivesObjects/EarthBlocks/M" index="3" instance=ExtResource( 5 )]
-position = Vector2( 326, 483 )
-physics_material_override = null
-can_sleep = false
+[node name="M_IceBlock5" parent="InteractivesObjects/IceBlocks/M" index="4" instance=ExtResource( 4 )]
+position = Vector2( 792, 100 )
 
-[node name="M_EarthBlock5" parent="InteractivesObjects/EarthBlocks/M" index="4" instance=ExtResource( 5 )]
-position = Vector2( 374, 483 )
-physics_material_override = null
-can_sleep = false
+[node name="M_IceBlock6" parent="InteractivesObjects/IceBlocks/M" index="5" instance=ExtResource( 4 )]
+position = Vector2( 792, 53 )
 
-[node name="M_EarthBlock6" parent="InteractivesObjects/EarthBlocks/M" index="5" instance=ExtResource( 5 )]
-position = Vector2( 529, 459 )
-physics_material_override = null
-can_sleep = false
+[node name="M_IceBlock7" parent="InteractivesObjects/IceBlocks/M" index="6" instance=ExtResource( 4 )]
+position = Vector2( 1199, 123 )
 
-[node name="M_EarthBlock7" parent="InteractivesObjects/EarthBlocks/M" index="6" instance=ExtResource( 5 )]
-position = Vector2( 529, 413 )
-physics_material_override = null
-can_sleep = false
+[node name="M_IceBlock9" parent="InteractivesObjects/IceBlocks/M" index="7" instance=ExtResource( 4 )]
+position = Vector2( 2098, 435 )
+
+[node name="EarthBlockBase5" parent="InteractivesObjects/EarthBlocks/S" index="0" instance=ExtResource( 5 )]
+position = Vector2( 754, 350 )
+
+[node name="EarthBlockBase6" parent="InteractivesObjects/EarthBlocks/S" index="1" instance=ExtResource( 5 )]
+position = Vector2( 754, 325 )
+
+[node name="EarthBlockBase9" parent="InteractivesObjects/EarthBlocks/S" index="2" instance=ExtResource( 5 )]
+position = Vector2( 754, 300 )
+
+[node name="EarthBlockBase8" parent="InteractivesObjects/EarthBlocks/S" index="3" instance=ExtResource( 5 )]
+position = Vector2( 730, 350 )
+
+[node name="EarthBlockBase7" parent="InteractivesObjects/EarthBlocks/S" index="4" instance=ExtResource( 5 )]
+position = Vector2( 730, 325 )
+
+[node name="EarthBlockBase10" parent="InteractivesObjects/EarthBlocks/S" index="5" instance=ExtResource( 5 )]
+position = Vector2( 730, 300 )
+
+[node name="M_EarthBlock" parent="InteractivesObjects/EarthBlocks/M" index="0" instance=ExtResource( 6 )]
+position = Vector2( 480, 436 )
+
+[node name="M_EarthBlock10" parent="InteractivesObjects/EarthBlocks/M" index="1" instance=ExtResource( 6 )]
+position = Vector2( 480, 385.5 )
+
+[node name="M_EarthBlock2" parent="InteractivesObjects/EarthBlocks/M" index="2" instance=ExtResource( 6 )]
+position = Vector2( 130, 483 )
+
+[node name="M_EarthBlock3" parent="InteractivesObjects/EarthBlocks/M" index="3" instance=ExtResource( 6 )]
+position = Vector2( 180, 483 )
+
+[node name="M_EarthBlock4" parent="InteractivesObjects/EarthBlocks/M" index="4" instance=ExtResource( 6 )]
+position = Vector2( 230, 483 )
+
+[node name="M_EarthBlock5" parent="InteractivesObjects/EarthBlocks/M" index="5" instance=ExtResource( 6 )]
+position = Vector2( 674, 340 )
+
+[node name="M_EarthBlock6" parent="InteractivesObjects/EarthBlocks/M" index="6" instance=ExtResource( 6 )]
+position = Vector2( 815, 340 )
+
+[node name="M_EarthBlock7" parent="InteractivesObjects/EarthBlocks/M" index="7" instance=ExtResource( 6 )]
+position = Vector2( 1247, 123 )
+
+[node name="M_EarthBlock9" parent="InteractivesObjects/EarthBlocks/M" index="8" instance=ExtResource( 6 )]
+position = Vector2( 1203, 411 )
+
+[node name="M_EarthBlock12" parent="InteractivesObjects/EarthBlocks/M" index="9" instance=ExtResource( 6 )]
+position = Vector2( 2098, 483 )
+
 
 [node name="WaterTiles" parent="InteractivesObjects" index="2"]
 editor/display_folded = true
 
-[node name="WaterTile" parent="InteractivesObjects/WaterTiles" index="0" instance=ExtResource( 6 )]
-position = Vector2( 732, 380 )
 
-[node name="WaterTile4" parent="InteractivesObjects/WaterTiles" index="1" instance=ExtResource( 6 )]
-position = Vector2( 708, 380 )
+[node name="WaterTile" parent="InteractivesObjects/WaterTiles" index="0" instance=ExtResource( 7 )]
+position = Vector2( 1932, 108 )
 
-[node name="WaterTile3" parent="InteractivesObjects/WaterTiles" index="2" instance=ExtResource( 6 )]
-position = Vector2( 708, 420 )
+[node name="WaterTile2" parent="InteractivesObjects/WaterTiles" index="1" instance=ExtResource( 7 )]
+position = Vector2( 1740, 108 )
 
-[node name="WaterTile2" parent="InteractivesObjects/WaterTiles" index="3" instance=ExtResource( 6 )]
-position = Vector2( 756, 380 )
+[node name="WaterTile3" parent="InteractivesObjects/WaterTiles" index="2" instance=ExtResource( 7 )]
+position = Vector2( 1764, 108 )
 
-[node name="WaterTile8" parent="InteractivesObjects/WaterTiles" index="4" instance=ExtResource( 6 )]
-position = Vector2( 780, 380 )
+[node name="WaterTile4" parent="InteractivesObjects/WaterTiles" index="3" instance=ExtResource( 7 )]
+position = Vector2( 1788, 108 )
 
-[node name="WaterTile7" parent="InteractivesObjects/WaterTiles" index="5" instance=ExtResource( 6 )]
-position = Vector2( 780, 420 )
+[node name="WaterTile5" parent="InteractivesObjects/WaterTiles" index="4" instance=ExtResource( 7 )]
+position = Vector2( 1812, 108 )
 
-[node name="WaterTile6" parent="InteractivesObjects/WaterTiles" index="6" instance=ExtResource( 6 )]
-position = Vector2( 756, 420 )
+[node name="WaterTile6" parent="InteractivesObjects/WaterTiles" index="5" instance=ExtResource( 7 )]
+position = Vector2( 1836, 108 )
 
-[node name="WaterTile5" parent="InteractivesObjects/WaterTiles" index="7" instance=ExtResource( 6 )]
-position = Vector2( 732, 420 )
+[node name="WaterTile7" parent="InteractivesObjects/WaterTiles" index="6" instance=ExtResource( 7 )]
+position = Vector2( 1860, 108 )
 
-[node name="TeleportGroups" parent="InteractivesObjects" index="3"]
-editor/display_folded = true
+[node name="WaterTile8" parent="InteractivesObjects/WaterTiles" index="7" instance=ExtResource( 7 )]
+position = Vector2( 1884, 108 )
 
-[node name="Teleport_G1" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="0"]
-editor/display_folded = true
+
+[node name="WaterTile9" parent="InteractivesObjects/WaterTiles" index="8" instance=ExtResource( 7 )]
+position = Vector2( 1908, 108 )
+
+[node name="WaterTile10" parent="InteractivesObjects/WaterTiles" index="9" instance=ExtResource( 7 )]
+position = Vector2( 2292, 1404 )
+
+[node name="WaterTile12" parent="InteractivesObjects/WaterTiles" index="10" instance=ExtResource( 7 )]
+position = Vector2( 2244, 1404 )
+
+[node name="WaterTile11" parent="InteractivesObjects/WaterTiles" index="11" instance=ExtResource( 7 )]
+position = Vector2( 2340, 1404 )
+
+[node name="WaterTile14" parent="InteractivesObjects/WaterTiles" index="12" instance=ExtResource( 7 )]
+position = Vector2( 2316, 1404 )
+
+[node name="WaterTile13" parent="InteractivesObjects/WaterTiles" index="13" instance=ExtResource( 7 )]
+position = Vector2( 2268, 1404 )
+
+[node name="G1" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="0"]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/Teleport_G1" index="0" instance=ExtResource( 7 )]
-position = Vector2( 576, 108 )
+[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G1" index="0" instance=ExtResource( 8 )]
+position = Vector2( 1106, 132 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/Teleport_G1" index="1" instance=ExtResource( 7 )]
-position = Vector2( 240, 373 )
+[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G1" index="1" instance=ExtResource( 8 )]
+position = Vector2( 1106, 324 )
 
-[node name="Teleport_G2" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="1"]
-editor/display_folded = true
+[node name="TeleportArea3" parent="InteractivesObjects/TeleportGroups/G1" index="2" instance=ExtResource( 8 )]
+position = Vector2( 1106, 492 )
+
+[node name="G2" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="1"]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/Teleport_G2" index="0" instance=ExtResource( 7 )]
-position = Vector2( 1090, 132 )
+[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G2" index="0" instance=ExtResource( 8 )]
+position = Vector2( 1416, 300 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/Teleport_G2" index="1" instance=ExtResource( 7 )]
-position = Vector2( 1090, 324 )
+[node name="TeleportArea3" parent="InteractivesObjects/TeleportGroups/G2" index="1" instance=ExtResource( 8 )]
+position = Vector2( 1517, 132 )
 
-[node name="TeleportArea3" parent="InteractivesObjects/TeleportGroups/Teleport_G2" index="2" instance=ExtResource( 7 )]
-position = Vector2( 1090, 492 )
+[node name="G3" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="2"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G3" index="0" instance=ExtResource( 8 )]
+position = Vector2( 2020, 324 )
+
+[node name="TeleportArea3" parent="InteractivesObjects/TeleportGroups/G3" index="1" instance=ExtResource( 8 )]
+position = Vector2( 1895, 492 )
+
+[node name="G4" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="3"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G4" index="0" instance=ExtResource( 8 )]
+position = Vector2( 2232, 636 )
+
+[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G4" index="1" instance=ExtResource( 8 )]
+position = Vector2( 2307, 540 )
+
+[node name="G1" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="0"]
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RedLever" parent="InteractivesObjects/Buttons&Doors/G1" index="0" instance=ExtResource( 10 )]
+position = Vector2( 910, 185 )
+
+[node name="Door" parent="InteractivesObjects/Buttons&Doors/G1" index="1" instance=ExtResource( 11 )]
+position = Vector2( 981, 119 )
+
+[node name="G2" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="1"]
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RedLever" parent="InteractivesObjects/Buttons&Doors/G2" index="0" instance=ExtResource( 10 )]
+position = Vector2( 910, 449.5 )
+
+[node name="Door" parent="InteractivesObjects/Buttons&Doors/G2" index="1" instance=ExtResource( 11 )]
+position = Vector2( 984, 409.5 )
+
+[node name="G3" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="2"]
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BlueButton" parent="InteractivesObjects/Buttons&Doors/G3" index="0" instance=ExtResource( 12 )]
+position = Vector2( 1419, 112 )
+
+[node name="RDoor" parent="InteractivesObjects/Buttons&Doors/G3" index="1" instance=ExtResource( 11 )]
+position = Vector2( 1728, 265 )
+
+[node name="G4" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="3"]
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RedLever" parent="InteractivesObjects/Buttons&Doors/G4" index="0" instance=ExtResource( 10 )]
+position = Vector2( 1607, 520 )
+
+[node name="RedDoor" parent="InteractivesObjects/Buttons&Doors/G4" index="1" instance=ExtResource( 11 )]
+position = Vector2( 2136, 265 )
+
+[node name="G5" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="4"]
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+
+[node name="BlueLever" parent="InteractivesObjects/Buttons&Doors/G5" index="0" instance=ExtResource( 12 )]
+position = Vector2( 2136, 111 )
+
+[node name="BlueDoor1" parent="InteractivesObjects/Buttons&Doors/G5" index="1" instance=ExtResource( 13 )]
+position = Vector2( 1679, 265 )
+
+
+[node name="BlueDoor2" parent="InteractivesObjects/Buttons&Doors/G5" index="2" instance=ExtResource( 13 )]
+position = Vector2( 2220, 72 )
+
+[node name="G6" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="5"]
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RedLever" parent="InteractivesObjects/Buttons&Doors/G6" index="0" instance=ExtResource( 10 )]
+position = Vector2( 2048, 496 )
+
+[node name="Door" parent="InteractivesObjects/Buttons&Doors/G6" index="1" instance=ExtResource( 11 )]
+position = Vector2( 2280, 625 )
+
+[node name="G7" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="6"]
+editor/display_folded = true
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+
+[node name="RedLever" parent="InteractivesObjects/Buttons&Doors/G7" index="0" instance=ExtResource( 10 )]
+position = Vector2( 2329, 952 )
+
+[node name="Door" parent="InteractivesObjects/Buttons&Doors/G7" index="1" instance=ExtResource( 11 )]
+position = Vector2( 2277, 913 )
+
+[node name="G8" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="7"]
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RedLever" parent="InteractivesObjects/Buttons&Doors/G8" index="0" instance=ExtResource( 10 )]
+position = Vector2( 2291, 1431 )
+
+[node name="Door" parent="InteractivesObjects/Buttons&Doors/G8" index="1" instance=ExtResource( 11 )]
+position = Vector2( 2389, 1321 )
+

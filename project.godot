@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BaseClasses/ButtonBase.gd"
 }, {
+"base": "Node2D",
+"class": "GroupBase",
+"language": "GDScript",
+"path": "res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd"
+}, {
 "base": "Node",
 "class": "InputsBase",
 "language": "GDScript",
@@ -89,6 +94,7 @@ _global_script_class_icons={
 "AttributesBase": "",
 "BlockBase": "",
 "ButtonBase": "",
+"GroupBase": "",
 "InputsBase": "",
 "InteractBase": "",
 "LevelBase": "",

@@ -46,6 +46,10 @@ func check_clickable_options():
 	if(count_not_clickable_options == len(options_array)):
 		print("There are no clickable options. Exiting...")
 		get_tree().quit()
+	
+	for n in range(len(options_array)):
+		if(!options_array[n]._clickable):
+			options_array[n].set_self_modulate(Color(0.25,0.25,0.25,1))
 
 
 func options_up():
