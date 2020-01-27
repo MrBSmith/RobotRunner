@@ -1,13 +1,11 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/Levels/LevelBase.gd" type="Script" id=1]
-[ext_resource path="res://Global/Background/Background.png" type="Texture" id=2]
-[ext_resource path="res://Global/Tileset/TileSet1.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/InteractiveObjects/InteractivesObjects.gd" type="Script" id=4]
-[ext_resource path="res://Scenes/InteractiveObjects/Water/Scripts/WaterTilesContainer.gd" type="Script" id=5]
-
-
-
+[ext_resource path="res://Scenes/Camera/CameraSystem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Global/Background/Background.png" type="Texture" id=3]
+[ext_resource path="res://Global/Tileset/TileSet1.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/InteractiveObjects/InteractivesObjects.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/InteractiveObjects/Water/Scripts/WaterTilesContainer.gd" type="Script" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
@@ -59,7 +57,7 @@ points = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
 
 [sub_resource type="TileSet" id=17]
 6/name = "TileSet1.png 6"
-6/texture = ExtResource( 3 )
+6/texture = ExtResource( 4 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 0, 120, 72 )
@@ -177,7 +175,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="CameraSystem" parent="." instance=ExtResource( 2 )]
+
 [node name="Map" type="Node2D" parent="."]
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -194,7 +195,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Map/Parallax/BackgroundLayer"]
 position = Vector2( -2330, -3040 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 10240, 5760 )
@@ -213,7 +214,8 @@ __meta__ = {
 }
 
 [node name="InteractivesObjects" type="Node2D" parent="."]
-script = ExtResource( 4 )
+editor/display_folded = true
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -249,7 +251,7 @@ __meta__ = {
 }
 
 [node name="WaterTiles" type="Node2D" parent="InteractivesObjects"]
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }
