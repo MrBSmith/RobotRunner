@@ -11,7 +11,6 @@ __meta__ = {
 [node name="Camera" parent="." instance=ExtResource( 1 )]
 position = Vector2( 480, 270 )
 smoothing_enabled = true
-speed = 0.75
 
 [node name="GUI" type="Control" parent="Camera"]
 margin_left = -480.0
