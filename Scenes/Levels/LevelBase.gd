@@ -5,7 +5,7 @@ class_name LevelBase
 var outside_screen_popup_scene = preload("res://Scenes/GUI/OutsideScreenPopup/OutsideScreenPopup.tscn")
 var outside_screen_popup_node : Node
 
-#onready var camera = get_node("CameraSystem")
+
 onready var camera_node = get_node("CameraSystem/Camera")
 onready var GUI_node = get_node("CameraSystem/Camera/GUI")
 
