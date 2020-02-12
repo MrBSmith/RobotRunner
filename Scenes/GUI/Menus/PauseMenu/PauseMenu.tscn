@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/GUI/Menus/MenuBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/GUI/Menus/PauseMenu/PauseMenu.gd" type="Script" id=2]
 [ext_resource path="res://Global/Fonts/BoldCapsPixel.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Scenes/GUI/Menus/PauseMenu/Resume.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/GUI/Menus/PauseMenu/New Game.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/GUI/Menus/PauseMenu/Options.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/GUI/Menus/PauseMenu/GotoMenu.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/GUI/Menus/PauseMenu/Leave.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/GUI/Menus/ScreenTitle/Options.gd" type="Script" id=8]
 
 [node name="PauseMenu" instance=ExtResource( 1 )]
 grow_horizontal = 2
@@ -18,10 +19,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -480.0
-margin_top = -270.0
-margin_right = 480.0
-margin_bottom = 270.0
+margin_left = -479.05
+margin_top = -269.05
+margin_right = 480.95
+margin_bottom = 270.95
 color = Color( 0, 0, 0, 0.647059 )
 
 [node name="Frame" type="ColorRect" parent="." index="1"]
@@ -30,9 +31,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -257.0
+margin_left = -256.05
 margin_top = -164.0
-margin_right = 304.0
+margin_right = 304.95
 margin_bottom = 165.0
 rect_scale = Vector2( 0.919925, 1 )
 __meta__ = {
@@ -80,7 +81,8 @@ margin_bottom = 161.0
 custom_fonts/font = ExtResource( 3 )
 text = "Options"
 align = 1
-script = ExtResource( 6 )
+script = ExtResource( 8 )
+_clickable = true
 
 [node name="Menu" type="Label" parent="HBoxContainer/V_OptContainer" index="3"]
 margin_top = 165.0

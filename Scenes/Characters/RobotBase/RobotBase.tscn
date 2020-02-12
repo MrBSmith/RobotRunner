@@ -48,6 +48,11 @@ extents = Vector2( 15.53, 20 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "Action",
+"speed": 20.0
+}, {
 "frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
 "loop": true,
 "name": "Move",
@@ -58,19 +63,14 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
-"loop": false,
-"name": "Action",
-"speed": 20.0
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "Fall",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "Jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "Fall",
 "speed": 5.0
 } ]
 
@@ -120,7 +120,7 @@ frame_5/texture = ExtResource( 36 )
 frame_5/delay_sec = 0.0
 
 [sub_resource type="CapsuleShape2D" id=8]
-radius = 7.725
+radius = 10.3682
 height = 1.0
 
 [node name="Robot" type="KinematicBody2D"]
@@ -205,7 +205,7 @@ __meta__ = {
 [node name="Animation" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "Move"
-frame = 1
+frame = 2
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -283,10 +283,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadHitBox"]
-position = Vector2( 0, -20 )
+position = Vector2( 0, -17 )
 scale = Vector2( 1.65, 0.5 )
 shape = SubResource( 8 )
 one_way_collision = true
-__meta__ = {
-"_edit_lock_": true
-}
