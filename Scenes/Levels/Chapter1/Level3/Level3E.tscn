@@ -1103,9 +1103,6 @@ position = Vector2( 1200, -520 )
 [node name="2TilesBreakablePlateform" parent="InteractivesObjects/Platform/2 Tiles" index="0" instance=ExtResource( 27 )]
 position = Vector2( 1344, -544 )
 
-[node name="Events" parent="." index="6"]
-visible = true
-
 [node name="Checkpoints" parent="Events" index="0"]
 visible = false
 
