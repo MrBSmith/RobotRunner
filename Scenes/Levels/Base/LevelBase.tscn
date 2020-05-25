@@ -280,6 +280,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="XionCrates" type="Node2D" parent="InteractivesObjects/Collactables"]
+
+[node name="Gears" type="Node2D" parent="InteractivesObjects/Collactables"]
+
 [node name="Platform" type="Node2D" parent="InteractivesObjects"]
 __meta__ = {
 "_edit_group_": true,

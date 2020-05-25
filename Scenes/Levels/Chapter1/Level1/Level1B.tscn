@@ -191,19 +191,16 @@ position = Vector2( 3240, 300 )
 [node name="RedButton2" parent="InteractivesObjects/GreatDoorGroup" index="2" instance=ExtResource( 9 )]
 position = Vector2( 3240, 396 )
 
-[node name="XionCrate" parent="InteractivesObjects/Collactables" index="0" instance=ExtResource( 7 )]
+[node name="XionCrate" parent="InteractivesObjects/Collactables/XionCrates" index="0" instance=ExtResource( 7 )]
 position = Vector2( 120, 72 )
 
-[node name="Light2D" parent="InteractivesObjects/Collactables/XionCrate" index="8"]
-visible = false
-
-[node name="XionCrate2" parent="InteractivesObjects/Collactables" index="1" instance=ExtResource( 7 )]
+[node name="XionCrate2" parent="InteractivesObjects/Collactables/XionCrates" index="1" instance=ExtResource( 7 )]
 position = Vector2( 1128, 216 )
 
-[node name="Gear" parent="InteractivesObjects/Collactables" index="2" instance=ExtResource( 16 )]
+[node name="Gear" parent="InteractivesObjects/Collactables/Gears" index="0" instance=ExtResource( 16 )]
 position = Vector2( 2258.06, 31.8742 )
 
-[node name="Gear2" parent="InteractivesObjects/Collactables" index="3" instance=ExtResource( 16 )]
+[node name="Gear2" parent="InteractivesObjects/Collactables/Gears" index="1" instance=ExtResource( 16 )]
 position = Vector2( 4120.42, 79.4874 )
 
 [node name="BreakablePlateform" parent="InteractivesObjects/Platform" index="0" instance=ExtResource( 8 )]
@@ -326,8 +323,6 @@ speed = 45.0
 
 [node name="CloudPath" parent="XionCloud" index="4" instance=ExtResource( 11 )]
 visible = false
-
-[editable path="InteractivesObjects/Collactables/XionCrate"]
 
 [editable path="Events/Checkpoints/Checkpoint"]
 

@@ -136,7 +136,7 @@ position = Vector2( 600, -540 )
 [node name="RedButton2" parent="InteractivesObjects/GreatDoorGroup" index="2" instance=ExtResource( 12 )]
 position = Vector2( 432, -540 )
 
-[node name="XionCrate" parent="InteractivesObjects/Collactables" index="0" instance=ExtResource( 9 )]
+[node name="XionCrate" parent="InteractivesObjects/Collactables/XionCrates" index="0" instance=ExtResource( 9 )]
 position = Vector2( 48, 120 )
 
 [node name="BreakablePlateform" parent="InteractivesObjects/Platform/5 Tiles" index="0" instance=ExtResource( 5 )]

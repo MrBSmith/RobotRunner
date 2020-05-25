@@ -77,24 +77,6 @@ tile_data = PoolIntArray( -65525, 26, 196611, 11, 26, 65538, 13, 26, 196611, 50,
 [node name="Decoration2" parent="Map" index="4"]
 tile_data = PoolIntArray( 5, 22, 4, 28, 22, 3, 30, 22, 4, 65548, 28, 131073, 65549, 30, 0, 65616, 30, 0, 65618, 28, 131073, 196656, 29, 65536, 196658, 29, 65538, 196736, 20, 0, 327730, 30, 0, 327796, 30, 0, 393248, 22, 3, 393266, 29, 65536, 524320, 22, 4, 524425, 20, 0, 589825, 22, 4, 589857, 22, 3, 720902, 22, 4, 720911, 28, 131073, 720919, 22, 3, 786448, 22, 4, 851969, 22, 3, 917566, 536870922, 0, 1310721, 30, 0, 1310866, 30, 0, 1376271, 22, 3 )
 
-[node name="XionCrates" type="Node2D" parent="InteractivesObjects" index="0"]
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
-
-[node name="XionCrate" parent="InteractivesObjects/XionCrates" index="0" instance=ExtResource( 6 )]
-position = Vector2( 828, 96 )
-
-[node name="XionCrate3" parent="InteractivesObjects/XionCrates" index="1" instance=ExtResource( 6 )]
-position = Vector2( 2820, 504 )
-
-[node name="XionCrate4" parent="InteractivesObjects/XionCrates" index="2" instance=ExtResource( 6 )]
-position = Vector2( 2316, 120 )
-
-[node name="XionCrate2" parent="InteractivesObjects/XionCrates" index="3" instance=ExtResource( 6 )]
-position = Vector2( 960, 360 )
-
 [node name="IceBlockBase" parent="InteractivesObjects/IceBlocks/S" index="0" instance=ExtResource( 15 )]
 position = Vector2( 900, 420 )
 
@@ -188,6 +170,18 @@ position = Vector2( 2952, 516 )
 
 [node name="RedButton3" parent="InteractivesObjects/GreatDoorGroup" index="3" instance=ExtResource( 8 )]
 position = Vector2( 2952, 516 )
+
+[node name="XionCrate" parent="InteractivesObjects/Collactables/XionCrates" index="0" instance=ExtResource( 6 )]
+position = Vector2( 828, 96 )
+
+[node name="XionCrate2" parent="InteractivesObjects/Collactables/XionCrates" index="1" instance=ExtResource( 6 )]
+position = Vector2( 960, 360 )
+
+[node name="XionCrate3" parent="InteractivesObjects/Collactables/XionCrates" index="2" instance=ExtResource( 6 )]
+position = Vector2( 2820, 504 )
+
+[node name="XionCrate4" parent="InteractivesObjects/Collactables/XionCrates" index="3" instance=ExtResource( 6 )]
+position = Vector2( 2316, 120 )
 
 [node name="Checkpoint" parent="Events/Checkpoints" index="0" instance=ExtResource( 16 )]
 position = Vector2( 1416, 280 )
