@@ -10,7 +10,6 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/RedButton.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.tscn" type="PackedScene" id=19]
 
-
 [node name="Level3B" instance=ExtResource( 4 )]
 
 [node name="StartingPointP1" parent="." index="0" instance=ExtResource( 2 )]

@@ -143,20 +143,20 @@ tile_data = PoolIntArray( 5, 22, 4, 28, 22, 3, 30, 22, 4, 130892, 30, 0, 131042,
 [node name="IceBlockBase" parent="InteractivesObjects/IceBlocks/S" index="0" instance=ExtResource( 15 )]
 position = Vector2( 900, 420 )
 
-[node name="IceBlockBase5" parent="InteractivesObjects/IceBlocks/S" index="1" instance=ExtResource( 15 )]
-position = Vector2( -2100, 132 )
+[node name="IceBlockBase2" parent="InteractivesObjects/IceBlocks/S" index="1" instance=ExtResource( 15 )]
+position = Vector2( 900, 396 )
 
-[node name="IceBlockBase6" parent="InteractivesObjects/IceBlocks/S" index="2" instance=ExtResource( 15 )]
-position = Vector2( -2076, 132 )
-
-[node name="IceBlockBase3" parent="InteractivesObjects/IceBlocks/S" index="3" instance=ExtResource( 15 )]
+[node name="IceBlockBase3" parent="InteractivesObjects/IceBlocks/S" index="2" instance=ExtResource( 15 )]
 position = Vector2( 3108, 228 )
 
-[node name="IceBlockBase4" parent="InteractivesObjects/IceBlocks/S" index="4" instance=ExtResource( 15 )]
+[node name="IceBlockBase4" parent="InteractivesObjects/IceBlocks/S" index="3" instance=ExtResource( 15 )]
 position = Vector2( 3132, 228 )
 
-[node name="IceBlockBase2" parent="InteractivesObjects/IceBlocks/S" index="5" instance=ExtResource( 15 )]
-position = Vector2( 900, 396 )
+[node name="IceBlockBase5" parent="InteractivesObjects/IceBlocks/S" index="4" instance=ExtResource( 15 )]
+position = Vector2( -2100, 132 )
+
+[node name="IceBlockBase6" parent="InteractivesObjects/IceBlocks/S" index="5" instance=ExtResource( 15 )]
+position = Vector2( -2076, 132 )
 
 [node name="M_IceBlock" parent="InteractivesObjects/IceBlocks/M" index="0" instance=ExtResource( 14 )]
 position = Vector2( 816, 289 )

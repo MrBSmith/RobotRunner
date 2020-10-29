@@ -1,9 +1,8 @@
 extends Node2D
-class_name GroupBase
+class_name BtnDoorsGroup
 
 onready var children_array : Array = get_children()
 var buttons_to_trigger : Array
-var doors_to_open : Array
 
 var nb_buttons : int
 var nb_button_triggered : int

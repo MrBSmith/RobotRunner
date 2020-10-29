@@ -16,7 +16,6 @@
 [ext_resource path="res://Scenes/Events/Checkpoint/Checkpoint.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/Water/Water.tscn" type="PackedScene" id=19]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "LightUp"
 tracks/0/type = "value"

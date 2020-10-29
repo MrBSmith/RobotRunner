@@ -17,13 +17,22 @@ var player2 = preload("res://Scenes/Actor/Players/RobotHammer/RobotHammer.tscn")
 var level_array : Array
 var last_level_path : String
 
+var stored_objects_array : Array
+
+var objects_datatype_storage = {
+	'BreakableObjectBase': [],
+	'Checkpoint': ['active'],
+	'Event': [],
+	'DoorButton':['is_push'],
+	'Door':['is_open']
+}
 
 #### BUILT-IN ####
-
 
 func _ready():
 	var _err = gameover_timer_node.connect("timeout",self, "on_gameover_timer_timeout")
 	_err = transition_timer_node.connect("timeout",self, "on_transition_timer_timeout")
+
 
 #### LOGIC ####
 
@@ -54,7 +63,7 @@ func goto_last_level():
 	#Handling players' progression => Xion ; Materials
 	update_collectable_progression()
 	get_tree().current_scene.queue_free()
-	
+
 	if(level_to_load == null):
 		var last_level = load(last_level_path)
 		var _err = get_tree().change_scene_to(last_level)
@@ -84,7 +93,7 @@ func save_level(level : Node2D):
 	saved_level.pack(get_tree().get_current_scene())
 	ResourceSaver.save("res://Scenes/Levels/SavedLevel/saved_level.tscn", saved_level)
 	progression.saved_level = saved_level
-	
+
 func load_level(level_path : String) -> PackedScene:
 	var level_to_load = load(level_path)
 	return level_to_load
@@ -172,20 +181,57 @@ func fade_out():
 
 	MUSIC.fade_out()
 
+#Load the current level state
+func load_current_level_state(level, array : Array):
+	array.clear()
+	get_children_of_node([level.get_node('InteractivesObjects'), level.get_node('Events')], array)
+#	if(debug):
+#		print_weakref(array)
+
 # Get every children of a node
-func get_children_of_node(parent_node, array_to_fill : Array):
-	for child in parent_node.get_children():
-		if child is PhysicsBody2D or child is Area2D:
-			#print("- "+child.get_name()) # DEBUG PURPOSE
-			array_to_fill.append(child)
-		elif child.get_child_count() != 0:
-				#print("["+child.get_name()+"]") # DEBUG PURPOSE
-				get_children_of_node(child, array_to_fill)
+func get_children_of_node(nodes_to_scan_array : Array, array_to_fill : Array):
+	var classes_to_scan_array = objects_datatype_storage.keys()
+	for node in nodes_to_scan_array:
+		for child in node.get_children():
+			#print(child.name)
+			for node_class in classes_to_scan_array:
+				if child.is_class(node_class):
+#					if(debug):
+#						print("- "+child.get_name()) # DEBUG PURPOSE
+					var object_properties = get_object_properties(child, node_class)
+					var properties_per_object = {child.name: object_properties}
+					array_to_fill.append(properties_per_object)
+					continue
+			if child.get_child_count() != 0:
+#				if(debug):
+#					print("["+child.get_name()+"]") # DEBUG PURPOSE
+				get_children_of_node([child], array_to_fill)
+
+func get_object_properties(object : Object, classname : String) -> Dictionary:
+	var property_list : Array = objects_datatype_storage[classname]
+	var property_data_dict : Dictionary = {}
+	for property in property_list:
+		if(property in object):
+			property_data_dict[property] = object.get(property)
+		else:
+			print("Property : " + property + " could not be found in " + object.name)
+
+	return property_data_dict
+
+#func print_weakref(array : Array):
+#	for weakref_ref in array:
+#		if(weakref_ref.get_ref() != null):
+#			print('Weakref object : ', weakref_ref.get_ref().name)
+
+#get_property_list() const
+func print_properties(objs : Array, prop : String):
+	for obj in objs:
+		var tmpObj = obj.get_ref()
+		if(tmpObj != null):
+			if(prop in tmpObj):
+				print(tmpObj.get(prop))
 
 #### SIGNAL RESPONSES ####
-
-func on_level_start():
-	fade_in()
 
 # Called when a level is finished: wait for the transition to be finished
 func on_level_finished():
@@ -202,9 +248,14 @@ func on_level_ready(level):
 	if progression.level == 0:
 		update_current_level_index(level)
 
+	load_current_level_state(level, stored_objects_array)
+	fade_in()
+
 # When a player reach a checkpoint
 func on_checkpoint_reached():
 	GAME.progression.checkpoint += 1
 	GAME.progression.set_main_xion(SCORE.xion)
 	GAME.progression.set_main_materials(SCORE.materials)
 	save_level(get_tree().get_current_scene())
+	load_current_level_state(level, progression.main_storedObjects)
+#	print_properties(progression.main_storedObjects, 'is_push')

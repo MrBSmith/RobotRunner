@@ -7,7 +7,6 @@
 [ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/InteractiveObjects/Teleports/BaseTeleporter.tscn" type="PackedScene" id=6]
 
-
 [node name="Level3A" instance=ExtResource( 3 )]
 
 [node name="StartingPointP1" parent="." index="0" instance=ExtResource( 1 )]

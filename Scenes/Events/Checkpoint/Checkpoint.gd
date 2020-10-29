@@ -1,10 +1,18 @@
 extends Event
 
+class_name Checkpoint
+
 export var active : bool = false
 
 onready var animated_sprite_node = $AnimatedSprite
 
 signal checkpoint_reached
+
+func is_class(value: String):
+	return value == "Checkpoint" or .is_class(value)
+
+func get_class() -> String:
+	return "Checkpoint"
 
 func _ready():
 	var _err
@@ -12,7 +20,7 @@ func _ready():
 	_err = connect("checkpoint_reached",GAME,"on_checkpoint_reached")
 
 func event():
-	emit_signal("checkpoint_reached")
+	emit_signal("checkpoint_reached",get_tree().get_current_scene())
 	trigger_animation()
 
 

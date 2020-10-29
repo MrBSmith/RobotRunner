@@ -14,6 +14,7 @@ main_materials = 0
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
+debug = true
 progression = SubResource( 1 )
 
 [node name="GameoverTimer" type="Timer" parent="."]

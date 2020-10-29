@@ -15,8 +15,6 @@ var players_array : Array
 var player_in_danger : bool = false
 var players_exited : int = 0
 
-var InteractivesObjects_Array : Array
-
 signal level_finished
 signal level_ready
 
@@ -30,30 +28,35 @@ func get_class() -> String:
 func _ready():
 	var _err = connect("level_finished", GAME, "on_level_finished")
 	_err = connect("level_ready", GAME, "on_level_ready")
-	emit_signal("level_ready", self)
-	
+
 	GAME.last_level_path = filename
 #	update_current_level_index()
-	
+
+	if(GAME.progression.main_storedObjects.empty()):
+		print("Main stored objects array is empty")
+	else:
+		print(GAME.progression.main_storedoObjects)
+
 	set_starting_points()
 	instanciate_players()
 	set_camera_position_on_start()
 	propagate_weakref_players_array()
-	
+
 	GAME.on_level_start()
 	GAME.update_hud_collectable_progression()
 	MUSIC.play()
-	
+
 	GAME.get_children_of_node(interactive_object_node, InteractivesObjects_Array)
-	
+
 	for i in InteractivesObjects_Array:
 		print(i.get_name())
+
+	emit_signal("level_ready", self)
 
 
 func _physics_process(_delta):
 	if !AudioServer.is_bus_mute(music_bus_id) && !AudioServer.is_bus_mute(master_bus_id):
 		MUSIC.adapt_music(xion_cloud_node, players_array, player_in_danger)
-
 
 # Called by GAME when a player exited the level
 # Update the players array, and the player_exited counter
