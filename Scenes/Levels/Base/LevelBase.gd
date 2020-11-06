@@ -7,6 +7,7 @@ const CLASS : String = "Level"
 onready var xion_cloud_node = get_node_or_null("XionCloud")
 onready var hud_node = "GUI/HUD"
 onready var interactive_object_node = get_node("InteractivesObjects")
+var interactive_objects_dict : Dictionary
 
 onready var music_bus_id = AudioServer.get_bus_index("Music")
 onready var master_bus_id = AudioServer.get_bus_index("Master")
@@ -32,24 +33,18 @@ func _ready():
 	GAME.last_level_path = filename
 #	update_current_level_index()
 
-	if(GAME.progression.main_storedObjects.empty()):
-		print("Main stored objects array is empty")
-	else:
-		print(GAME.progression.main_storedoObjects)
+	if(!GAME.progression.main_stored_objects.empty()):
+		print(GAME.progression.main_stored_objects)
 
 	set_starting_points()
 	instanciate_players()
 	set_camera_position_on_start()
 	propagate_weakref_players_array()
-
-	GAME.on_level_start()
+	
 	GAME.update_hud_collectable_progression()
 	MUSIC.play()
 
-	GAME.get_children_of_node(interactive_object_node, InteractivesObjects_Array)
-
-	for i in InteractivesObjects_Array:
-		print(i.get_name())
+	GAME.get_children_of_node([interactive_object_node], interactive_objects_dict)
 
 	emit_signal("level_ready", self)
 

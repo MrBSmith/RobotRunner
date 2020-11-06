@@ -27,23 +27,28 @@ func get_class() -> String:
 func _ready():
 	var _err = area_node.connect("body_entered", self, "on_area_body_entered")
 	_err = connect("player_exit_level", owner, "on_player_exited")
-
+	if is_open:
+		open_door(true)
 
 #### LOGIC ####
 
 # Triggers the opening of the door
-func open_door():
+func open_door(instant : bool = false):
 	if animation_node != null:
-		animation_node.play("Open")
+		if !instant:
+			animation_node.play("Open")
+			if audio_node != null:
+				audio_node.play()
+				
+			# Triggers the camera movement
+			GAME.move_camera_to(position, !focus_on_door, -1.0, 3.0)
+		else:
+			animation_node.play("Open", -1, 10, false)
 	
 	if collision_node != null:
-			collision_node.set_disabled(true)
+		collision_node.set_disabled(true)
 	
-	if audio_node != null:
-		audio_node.play()
-	
-	# Triggers the camera movement
-	GAME.move_camera_to(position, !focus_on_door, -1.0, 3.0)
+	is_open = true
 
 
 #### SIGNAL RESPONSES ####

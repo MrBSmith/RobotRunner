@@ -17,8 +17,6 @@ var player2 = preload("res://Scenes/Actor/Players/RobotHammer/RobotHammer.tscn")
 var level_array : Array
 var last_level_path : String
 
-var stored_objects_array : Array
-
 var objects_datatype_storage = {
 	'BreakableObjectBase': [],
 	'Checkpoint': ['active'],
@@ -182,14 +180,14 @@ func fade_out():
 	MUSIC.fade_out()
 
 #Load the current level state
-func load_current_level_state(level, array : Array):
-	array.clear()
-	get_children_of_node([level.get_node('InteractivesObjects'), level.get_node('Events')], array)
+func save_current_level_state(level, dict : Dictionary):
+	dict.clear()
+	get_children_of_node([level.get_node('InteractivesObjects'), level.get_node('Events')], dict)
 #	if(debug):
 #		print_weakref(array)
 
 # Get every children of a node
-func get_children_of_node(nodes_to_scan_array : Array, array_to_fill : Array):
+func get_children_of_node(nodes_to_scan_array : Array, dict_to_fill : Dictionary):
 	var classes_to_scan_array = objects_datatype_storage.keys()
 	for node in nodes_to_scan_array:
 		for child in node.get_children():
@@ -199,17 +197,18 @@ func get_children_of_node(nodes_to_scan_array : Array, array_to_fill : Array):
 #					if(debug):
 #						print("- "+child.get_name()) # DEBUG PURPOSE
 					var object_properties = get_object_properties(child, node_class)
-					var properties_per_object = {child.name: object_properties}
-					array_to_fill.append(properties_per_object)
+					
+					dict_to_fill[child.get_path()] = object_properties
 					continue
 			if child.get_child_count() != 0:
 #				if(debug):
 #					print("["+child.get_name()+"]") # DEBUG PURPOSE
-				get_children_of_node([child], array_to_fill)
+				get_children_of_node([child], dict_to_fill)
 
 func get_object_properties(object : Object, classname : String) -> Dictionary:
 	var property_list : Array = objects_datatype_storage[classname]
 	var property_data_dict : Dictionary = {}
+	property_data_dict['name'] = object.get_name()
 	for property in property_list:
 		if(property in object):
 			property_data_dict[property] = object.get(property)
@@ -248,14 +247,14 @@ func on_level_ready(level):
 	if progression.level == 0:
 		update_current_level_index(level)
 
-	load_current_level_state(level, stored_objects_array)
+	save_current_level_state(level, progression.main_stored_objects)
 	fade_in()
 
 # When a player reach a checkpoint
-func on_checkpoint_reached():
+func on_checkpoint_reached(level):
 	GAME.progression.checkpoint += 1
 	GAME.progression.set_main_xion(SCORE.xion)
 	GAME.progression.set_main_materials(SCORE.materials)
 	save_level(get_tree().get_current_scene())
-	load_current_level_state(level, progression.main_storedObjects)
-#	print_properties(progression.main_storedObjects, 'is_push')
+	save_current_level_state(level, progression.main_stored_objects)
+#	print_properties(progression.main_stored_objects, 'is_push')

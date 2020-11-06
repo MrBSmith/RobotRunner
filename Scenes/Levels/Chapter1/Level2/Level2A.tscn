@@ -812,23 +812,11 @@ position = Vector2( 2192, 352 )
 [node name="Checkpoint2" parent="Events/Checkpoints" index="1" instance=ExtResource( 18 )]
 position = Vector2( 2024, 1216 )
 
-[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint2" index="1"]
-position = Vector2( 152, -16 )
-
-[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint2" index="2"]
-position = Vector2( 56, -16 )
-
 [node name="Checkpoint3" parent="Events/Checkpoints" index="2" instance=ExtResource( 18 )]
 position = Vector2( 2384, 1504 )
 
 [node name="Checkpoint4" parent="Events/Checkpoints" index="3" instance=ExtResource( 18 )]
 position = Vector2( 2832, 712 )
-
-[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint4" index="1"]
-position = Vector2( 0, -16 )
-
-[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint4" index="2"]
-position = Vector2( -48, -64 )
 
 [node name="CameraEvent" parent="Events/CameraEvents" index="0" instance=ExtResource( 23 )]
 position = Vector2( 728, 352 )

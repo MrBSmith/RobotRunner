@@ -573,7 +573,7 @@ color = Color( 0.941176, 0.247059, 0.976471, 1 )
 energy = 1.5
 
 [node name="Light3" type="Light2D" parent="Sprites/RightDoor/Lights"]
-position = Vector2( 103.22, -29.9578 )
+position = Vector2( 20, 10.249 )
 texture = ExtResource( 6 )
 texture_scale = 0.03
 color = Color( 0.941176, 0.247059, 0.976471, 1 )

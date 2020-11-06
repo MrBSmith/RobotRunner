@@ -29,22 +29,25 @@ func _ready():
 		add_child(timer_door)
 		timer_door.connect("timeout", self, "_on_doortimer_timeout")
 		timer_door.set_wait_time(open_delay)
+	if is_open:
+		open_door(true)
 
 
 #### LOGIC ####
 
-func open_door():
+func open_door(instant : bool = false):
 	if animation_node != null:
-		animation_node.play("default")
+		if !instant:
+			animation_node.play("default")
+		else:
+			animation_node.set_frame(animation_node.get_sprite_frames().get_frame_count("default")-1)
 	
 	if collision_node != null:
 		collision_node.set_disabled(true)
 	
-	if audio_node != null:
+	if audio_node != null and !instant:
 		audio_node.play()
 	
-	is_open = true
-
 	is_open = true
 
 #### SIGNAL RESPONSES ####

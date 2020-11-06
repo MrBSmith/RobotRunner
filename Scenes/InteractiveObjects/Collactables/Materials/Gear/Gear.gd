@@ -21,6 +21,8 @@ func _ready():
 	_err = trigger_area_node.connect("body_exited", self, "on_trigger_area_body_exited")
 	_err = raycast_node.connect("target_found", self, "on_raycast_target_found")
 
+	if is_collected:
+		queue_free()
 
 func on_timer_timeout():
 	animated_sprite_node.play()
@@ -48,8 +50,6 @@ func on_raycast_target_found(target: Node):
 
 
 func collect():
-	call_deferred("set_monitoring", false)
+	.collect()
 	animated_sprite_node.set_visible(false)
-	$CollectSound.play()
-	$TravellingSound.stop()
 	SCORE.set_materials(SCORE.get_materials() + 1)

@@ -5,6 +5,7 @@ var aimed_character_weakref : WeakRef = null
 
 export var speed : int = 300
 export var initial_impulse : bool = true
+export var is_collected : bool = false
 
 var initial_velocity := Vector2.ZERO
 var velocity := Vector2.ZERO
@@ -24,6 +25,9 @@ func _ready():
 	$TravellingSound.play()
 	var _err = $CollectSound.connect("finished", self, "on_collect_audio_finished")
 	_err = connect("body_entered", self, "on_body_entered")
+	
+	if is_collected:
+		queue_free()
 
 
 func _physics_process(delta):
@@ -50,6 +54,7 @@ func _physics_process(delta):
 #### LOGIC ####
 
 func collect():
+	is_collected = true
 	call_deferred("set_monitoring", false)
 	$CollectSound.play()
 	$TravellingSound.stop()
