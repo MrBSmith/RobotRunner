@@ -31,10 +31,6 @@ func _ready():
 	_err = connect("level_ready", GAME, "on_level_ready")
 
 	GAME.last_level_path = filename
-#	update_current_level_index()
-
-	if(!GAME.progression.main_stored_objects.empty()):
-		print(GAME.progression.main_stored_objects)
 
 	set_starting_points()
 	instanciate_players()
@@ -44,14 +40,13 @@ func _ready():
 	GAME.update_hud_collectable_progression()
 	MUSIC.play()
 
-	GAME.get_children_of_node([interactive_object_node], interactive_objects_dict)
-
 	emit_signal("level_ready", self)
 
 
 func _physics_process(_delta):
 	if !AudioServer.is_bus_mute(music_bus_id) && !AudioServer.is_bus_mute(master_bus_id):
 		MUSIC.adapt_music(xion_cloud_node, players_array, player_in_danger)
+
 
 # Called by GAME when a player exited the level
 # Update the players array, and the player_exited counter
@@ -113,6 +108,7 @@ func instanciate_players():
 			add_child(player_node)
 
 
+# Set the camera at the right position on start of the level
 func set_camera_position_on_start():
 	if(GAME.progression.checkpoint > 0):
 		var camera_node : Node = find_node("Camera")

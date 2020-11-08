@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Global/Autoloads/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://Global/Progression/Progression.gd" type="Script" id=2]
+[ext_resource path="res://Global/Autoloads/Game/LevelSaver.gd" type="Script" id=3]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
@@ -16,6 +17,10 @@ main_materials = 0
 script = ExtResource( 1 )
 debug = true
 progression = SubResource( 1 )
+
+[node name="LevelSaver" type="Node" parent="."]
+script = ExtResource( 3 )
+debug = true
 
 [node name="GameoverTimer" type="Timer" parent="."]
 one_shot = true

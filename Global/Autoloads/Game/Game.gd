@@ -17,14 +17,6 @@ var player2 = preload("res://Scenes/Actor/Players/RobotHammer/RobotHammer.tscn")
 var level_array : Array
 var last_level_path : String
 
-var objects_datatype_storage = {
-	'BreakableObjectBase': [],
-	'Checkpoint': ['active'],
-	'Event': [],
-	'DoorButton':['is_push'],
-	'Door':['is_open']
-}
-
 #### BUILT-IN ####
 
 func _ready():
@@ -86,27 +78,18 @@ func goto_next_level():
 	else:
 		goto_level(progression.get_level())
 
-func save_level(level : Node2D):
-	var saved_level = PackedScene.new()
-	saved_level.pack(get_tree().get_current_scene())
-	ResourceSaver.save("res://Scenes/Levels/SavedLevel/saved_level.tscn", saved_level)
-	progression.saved_level = saved_level
 
+# Load the given level then returns it
 func load_level(level_path : String) -> PackedScene:
 	var level_to_load = load(level_path)
 	return level_to_load
+
 
 # Triggers the timer before the gameover is triggered
 # Called when a player die
 func gameover():
 	gameover_timer_node.start()
 	get_tree().get_current_scene().set_process(false)
-
-
-#  Change scene to go to the gameover scene after the timer has finished
-func on_gameover_timer_timeout():
-	gameover_timer_node.stop()
-	var _err = get_tree().change_scene_to(MENUS.game_over_scene)
 
 
 # Move the camera to the given position
@@ -140,7 +123,7 @@ func find_string(string_array: PoolStringArray, target_string : String):
 			index += 1
 	return -1
 
-	# XION AND MATERIALS METODS HANDLERS
+# XION AND MATERIALS COLLECTABLE METODS HANDLERS
 # Save the players' <level>progression into the main game progression
 func update_collectable_progression():
 	progression.set_main_xion(SCORE.get_xion())
@@ -179,67 +162,25 @@ func fade_out():
 
 	MUSIC.fade_out()
 
-#Load the current level state
-func save_current_level_state(level, dict : Dictionary):
-	dict.clear()
-	get_children_of_node([level.get_node('InteractivesObjects'), level.get_node('Events')], dict)
-#	if(debug):
-#		print_weakref(array)
-
-# Get every children of a node
-func get_children_of_node(nodes_to_scan_array : Array, dict_to_fill : Dictionary):
-	var classes_to_scan_array = objects_datatype_storage.keys()
-	for node in nodes_to_scan_array:
-		for child in node.get_children():
-			#print(child.name)
-			for node_class in classes_to_scan_array:
-				if child.is_class(node_class):
-#					if(debug):
-#						print("- "+child.get_name()) # DEBUG PURPOSE
-					var object_properties = get_object_properties(child, node_class)
-					
-					dict_to_fill[child.get_path()] = object_properties
-					continue
-			if child.get_child_count() != 0:
-#				if(debug):
-#					print("["+child.get_name()+"]") # DEBUG PURPOSE
-				get_children_of_node([child], dict_to_fill)
-
-func get_object_properties(object : Object, classname : String) -> Dictionary:
-	var property_list : Array = objects_datatype_storage[classname]
-	var property_data_dict : Dictionary = {}
-	property_data_dict['name'] = object.get_name()
-	for property in property_list:
-		if(property in object):
-			property_data_dict[property] = object.get(property)
-		else:
-			print("Property : " + property + " could not be found in " + object.name)
-
-	return property_data_dict
-
-#func print_weakref(array : Array):
-#	for weakref_ref in array:
-#		if(weakref_ref.get_ref() != null):
-#			print('Weakref object : ', weakref_ref.get_ref().name)
-
-#get_property_list() const
-func print_properties(objs : Array, prop : String):
-	for obj in objs:
-		var tmpObj = obj.get_ref()
-		if(tmpObj != null):
-			if(prop in tmpObj):
-				print(tmpObj.get(prop))
 
 #### SIGNAL RESPONSES ####
+
+#  Change scene to go to the gameover scene after the timer has finished
+func on_gameover_timer_timeout():
+	gameover_timer_node.stop()
+	var _err = get_tree().change_scene_to(MENUS.game_over_scene)
+
 
 # Called when a level is finished: wait for the transition to be finished
 func on_level_finished():
 	fade_out()
 	transition_timer_node.start()
 
+
 # When the transition is finished, go to the next level
 func on_transition_timer_timeout():
 	goto_next_level()
+
 
 # Called when the level is ready, correct
 func on_level_ready(level):
@@ -247,14 +188,13 @@ func on_level_ready(level):
 	if progression.level == 0:
 		update_current_level_index(level)
 
-	save_current_level_state(level, progression.main_stored_objects)
+	$LevelSaver.save_level(level, progression.main_stored_objects)
 	fade_in()
+
 
 # When a player reach a checkpoint
 func on_checkpoint_reached(level):
 	GAME.progression.checkpoint += 1
 	GAME.progression.set_main_xion(SCORE.xion)
 	GAME.progression.set_main_materials(SCORE.materials)
-	save_level(get_tree().get_current_scene())
-	save_current_level_state(level, progression.main_stored_objects)
-#	print_properties(progression.main_stored_objects, 'is_push')
+	$LevelSaver.save_level(level, progression.main_stored_objects)
