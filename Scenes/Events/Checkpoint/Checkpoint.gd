@@ -18,10 +18,13 @@ func _ready():
 	var _err
 	_err = animated_sprite_node.connect("animation_finished", self, "on_animation_finished")
 	_err = connect("checkpoint_reached",GAME,"on_checkpoint_reached")
+	
+	if active:
+		activate_checkpoint()
 
 func event():
-	emit_signal("checkpoint_reached",get_tree().get_current_scene())
-	trigger_animation()
+	set_active(true)
+	emit_signal("checkpoint_reached", get_tree().get_current_scene(), get_index())
 
 
 func trigger_animation():
@@ -29,12 +32,16 @@ func trigger_animation():
 	$AnimationPlayer.play("LightUp")
 
 
+func activate_checkpoint():
+	trigger_animation()
+	for area in triggers_area_array:
+		area.get_node("CollisionShape2D").call_deferred("set_disabled", true)
+
+
 func set_active(value : bool):
 	active = value
 	if active:
-		trigger_animation()
-		for area in triggers_area_array:
-			area.get_node("CollisionShape2D").call_deferred("set_disabled", true)
+		activate_checkpoint()
 
 
 func on_animation_finished():

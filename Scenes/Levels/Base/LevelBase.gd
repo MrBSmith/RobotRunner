@@ -29,9 +29,7 @@ func get_class() -> String:
 func _ready():
 	var _err = connect("level_finished", GAME, "on_level_finished")
 	_err = connect("level_ready", GAME, "on_level_ready")
-
-	GAME.last_level_path = filename
-
+	
 	set_starting_points()
 	instanciate_players()
 	set_camera_position_on_start()
@@ -39,7 +37,7 @@ func _ready():
 	
 	GAME.update_hud_collectable_progression()
 	MUSIC.play()
-
+	
 	emit_signal("level_ready", self)
 
 
@@ -81,15 +79,11 @@ func set_starting_points():
 	var starting_point_array = get_tree().get_nodes_in_group("StartingPoint")
 
 	# Place the starting position based on the last checkpoint visited
-	var new_starting_point1 = checkpoint_array[current_checkpoint - 1].get_node("NewStartingPoint1")
-	var new_starting_point2 = checkpoint_array[current_checkpoint - 1].get_node("NewStartingPoint2")
+	var new_starting_point1 = checkpoint_array[current_checkpoint].get_node("NewStartingPoint1")
+	var new_starting_point2 = checkpoint_array[current_checkpoint].get_node("NewStartingPoint2")
 
 	starting_point_array[0].set_global_position(new_starting_point1.global_position)
 	starting_point_array[1].set_global_position(new_starting_point2.global_position)
-
-	# Set active every checkpoint before the current one (And also the current one)
-	for i in range(current_checkpoint):
-		checkpoint_array[i].set_active(true)
 
 
 # Intanciate the players inside the level
