@@ -31,58 +31,49 @@ func new_chapter():
 	current_chapter = chapters_array[progression.get_chapter()]
 
 
-func goto_level(index : int = 0):
-
-	### IMPORTANT : TO BE MODIFIED AND CLEANED
-
-	#Handling players' progression => Xion ; Materials
-	update_collectable_progression()
-
-	if index == -1:
-		goto_last_level()
+func goto_last_level(previous_level: Level, from_start: bool = false):
+	var level_to_load_path : String = ""
+	var level_scene : PackedScene
+	
+	if previous_level == null:
+		print("GAME.goto_last_level needs a previous_level. previous level is currently null")
+		return
+	
+	var previous_level_name : String = previous_level.get_name()
+	
+	level_to_load_path = find_saved_level_path("res://Scenes/Levels/SavedLevel/", previous_level_name)
+	
+	if level_to_load_path != "" or from_start:
+		level_scene = load(level_to_load_path)
 	else:
-		var level = current_chapter.load_level(index)
-		var _err = get_tree().change_scene_to(level)
-
-
-func goto_last_level():
-	### IMPORTANT : TO BE MODIFIED AND CLEANED
-
-	var level_to_load = load_level('res://Scenes/Levels/SavedLevel/saved_level.tscn')
-
-	#Handling players' progression => Xion ; Materials
+		level_scene = current_chapter.load_level(0)
+	
 	update_collectable_progression()
-	get_tree().current_scene.queue_free()
-
-	if(level_to_load == null):
-		var last_level = load(last_level_path)
-		var _err = get_tree().change_scene_to(last_level)
-	else:
-		var _err = get_tree().change_scene_to(level_to_load)
+	
+	var _err = get_tree().change_scene_to(level_scene)
 
 
 # Change scene to the next level scene
 # If the last level was not in the list, set the progression to -1
 # Which means the last level will be launched again
-func goto_next_level():
-	var last_level_index = find_string(current_chapter.levels_scenes_array, last_level_path)
-	#Handling players' progression => Levels
+func goto_next_level(last_level : Level = null):
+	var level_scene : PackedScene = null
+	
+	#### THE CASE WHERE THE LEVEL IS THE LAST OF THE CHAPTER ISN'T TAKEN CARE OF #### 
 	progression.add_to_level(1)
-
+	progression.set_checkpoint(0)
+	update_collectable_progression()
+	
 	if debug:
 		print("progression.level: " + String(progression.get_level()))
-	progression.set_checkpoint(0)
-
-	if last_level_index == -1:
-		goto_last_level()
+	
+	if last_level == null:
+		level_scene = current_chapter.load_level(0)
 	else:
-		goto_level(progression.get_level())
+		level_scene = current_chapter.load_level(progression.get_level())
+	
+	var _err = get_tree().change_scene_to(level_scene)
 
-
-# Load the given level then returns it
-func load_level(level_path : String) -> PackedScene:
-	var level_to_load = load(level_path)
-	return level_to_load
 
 
 # Triggers the timer before the gameover is triggered
@@ -107,6 +98,7 @@ func zoom_camera_to(dest_zoom: Vector2, zoom_speed : float = 1.0):
 		camera_node.start_zooming(dest_zoom, zoom_speed)
 
 
+# Set the camera in the follow state
 func set_camera_on_follow():
 	var camera_node = get_tree().get_current_scene().find_node("Camera")
 	camera_node.set_state("Follow")
@@ -123,16 +115,36 @@ func find_string(string_array: PoolStringArray, target_string : String):
 			index += 1
 	return -1
 
-# XION AND MATERIALS COLLECTABLE METODS HANDLERS
-# Save the players' <level>progression into the main game progression
+
+# Find the saved level with the corresponding name, and returns its path
+# Returns "" if nothing was found
+func find_saved_level_path(dir_path: String, level_name: String) -> String:
+	var dir = Directory.new()
+	if dir.open(dir_path) == OK:
+		dir.list_dir_begin(true)
+		var current_file_name : String = dir.get_next()
+		
+		while current_file_name != "":
+			if dir.current_is_dir():
+				continue
+			else:
+				if level_name.is_subsequence_of(current_file_name):
+					print(current_file_name)
+					return current_file_name
+	return ""
+
+
+# Save the players' level progression into the main game progression
 func update_collectable_progression():
 	progression.set_main_xion(SCORE.get_xion())
 	progression.set_main_materials(SCORE.get_materials())
+
 
 # Update the HUD when a player retry or go to the next level
 func update_hud_collectable_progression():
 	SCORE.set_xion(progression.get_main_xion())
 	SCORE.set_materials(progression.get_main_materials())
+
 
 # Discard progression and get the lastest data
 func discard_collectable_progression():

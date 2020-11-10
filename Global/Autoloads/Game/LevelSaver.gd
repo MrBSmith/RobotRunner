@@ -3,11 +3,7 @@ extends Node
 export var debug : bool = false
 
 var objects_datatype_storage = {
-	'BreakableObjectBase': [],
-	'Checkpoint': ['active'],
-	'Event': [],
-	'DoorButton':['is_push'],
-	'Door':['is_open']
+	'ParalaxLayer': ['position']
 }
 
 #### ACCESSORS ####
@@ -20,6 +16,7 @@ var objects_datatype_storage = {
 
 #### LOGIC ####
 
+# Save the current state of the level: Call both the .tscn save and the serialized save in the given dict
 func save_level(level: Node, dict_to_fill: Dictionary):
 	dict_to_fill.clear()
 	save_level_as_tscn(level)
@@ -32,12 +29,13 @@ func save_level(level: Node, dict_to_fill: Dictionary):
 # Save the level in a .tscn file
 func save_level_as_tscn(level: Node2D):
 	var saved_level = PackedScene.new()
+	var level_name = level.get_name()
 	saved_level.pack(level)
-	var _err = ResourceSaver.save("res://Scenes/Levels/SavedLevel/saved_level.tscn", saved_level)
+	var _err = ResourceSaver.save("res://Scenes/Levels/SavedLevel/saved_" + level_name + ".tscn", saved_level)
 	GAME.progression.saved_level = saved_level
 
 
-# Find recursivly every wanted nodes
+# Find recursivly every wanted nodes, and extract their wanted properties
 func save_level_state(current_node : Node, dict_to_fill : Dictionary):
 	var classes_to_scan_array = objects_datatype_storage.keys()
 	for child in current_node.get_children():
@@ -67,6 +65,7 @@ func get_object_properties(object : Object, classname : String) -> Dictionary:
 	return property_data_dict
 
 
+# Print the current state of the level data
 func print_level_data(dict: Dictionary):
 	for obj_path in dict.keys():
 		for property in dict[obj_path].keys():
