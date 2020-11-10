@@ -30,10 +30,10 @@
 [node name="Level1A" instance=ExtResource( 5 )]
 
 [node name="StartingPointP1" parent="." index="0" instance=ExtResource( 3 )]
-position = Vector2( 2952, 256 )
+position = Vector2( -4296, 220 )
 
 [node name="StartingPointP2" parent="." index="1" instance=ExtResource( 4 )]
-position = Vector2( 3096, 388 )
+position = Vector2( -4284, 460 )
 
 [node name="Popups" parent="GUI" index="0"]
 grow_horizontal = 2
