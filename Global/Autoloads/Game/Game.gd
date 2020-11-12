@@ -36,21 +36,27 @@ func new_chapter():
 func goto_last_level(from_start: bool = false):
 	var level_to_load_path : String = ""
 	var level_scene : PackedScene
+	var level_node
 	
 	if last_level_name == "":
 		print("GAME.goto_last_level needs a previous_level. previous level is currently null")
 		return
 	
-	level_to_load_path = find_saved_level_path("res://Scenes/Levels/SavedLevel/", last_level_name)
+	level_to_load_path = find_saved_level_path("res://Scenes/Levels/SavedLevel/tscn/", last_level_name)
 	
 	if level_to_load_path != "" or from_start:
 		level_scene = load(level_to_load_path)
+		level_node = level_scene.instance()
+		level_node.is_loaded_from_save = true
 	else:
 		level_scene = current_chapter.load_level(0)
+		level_node = level_scene.instance()
 	
 	update_collectable_progression()
 	
-	var _err = get_tree().change_scene_to(level_scene)
+	var _err = get_tree().get_current_scene().queue_free()
+	_err = get_tree().get_root().add_child(level_node)
+	get_tree().set_current_scene(level_node)
 
 
 # Change scene to the next level scene
@@ -74,7 +80,12 @@ func goto_next_level():
 # Called when a player die
 func gameover():
 	gameover_timer_node.start()
-	get_tree().get_current_scene().set_process(false)
+	
+	var current_scene = get_tree().get_current_scene()
+	if !current_scene is Level:
+		return
+	
+	current_scene.set_process(false)
 
 
 # Move the camera to the given position
@@ -182,8 +193,9 @@ func on_level_ready(level):
 	last_level_name = level.get_name()
 	if progression.level == 0:
 		update_current_level_index(level)
-
-	$LevelSaver.save_level(level, progression.main_stored_objects)
+	
+	if(level.is_loaded_from_save == false):
+		$LevelSaver.save_level_properties_as_json(level.get_name(), level)
 	fade_in()
 
 

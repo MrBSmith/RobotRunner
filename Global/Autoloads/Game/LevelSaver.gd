@@ -3,7 +3,7 @@ extends Node
 export var debug : bool = false
 
 var objects_datatype_storage = {
-	'ParalaxLayer': ['position']
+	'ParallaxLayer': ['position']
 }
 
 #### ACCESSORS ####
@@ -20,7 +20,6 @@ var objects_datatype_storage = {
 func save_level(level: Node, dict_to_fill: Dictionary):
 	dict_to_fill.clear()
 	save_level_as_tscn(level)
-	save_level_state(level, dict_to_fill)
 	
 	if debug:
 		print_level_data(dict_to_fill)
@@ -31,12 +30,12 @@ func save_level_as_tscn(level: Node2D):
 	var saved_level = PackedScene.new()
 	var level_name = level.get_name()
 	saved_level.pack(level)
-	var _err = ResourceSaver.save("res://Scenes/Levels/SavedLevel/saved_" + level_name + ".tscn", saved_level)
+	var _err = ResourceSaver.save("res://Scenes/Levels/SavedLevel/tscn/saved_" + level_name + ".tscn", saved_level)
 	GAME.progression.saved_level = saved_level
 
 
 # Find recursivly every wanted nodes, and extract their wanted properties
-func save_level_state(current_node : Node, dict_to_fill : Dictionary):
+func serialize_level_properties(current_node : Node, dict_to_fill : Dictionary):
 	var classes_to_scan_array = objects_datatype_storage.keys()
 	for child in current_node.get_children():
 		for node_class in classes_to_scan_array:
@@ -47,10 +46,11 @@ func save_level_state(current_node : Node, dict_to_fill : Dictionary):
 				continue
 		
 		if child.get_child_count() != 0:
-			save_level_state(child, dict_to_fill)
+			serialize_level_properties(child, dict_to_fill)
 
 
 # Take an object, find every properties needed in it and retrun the data as a dict
+# => NEVER CALLED, Except by serialize_level_properties method
 func get_object_properties(object : Object, classname : String) -> Dictionary:
 	var property_list : Array = objects_datatype_storage[classname]
 	var property_data_dict : Dictionary = {}
@@ -63,6 +63,17 @@ func get_object_properties(object : Object, classname : String) -> Dictionary:
 			print("Property : " + property + " could not be found in " + object.name)
 
 	return property_data_dict
+
+# Convert the data to a JSON file
+# => Called by game.gd
+func save_level_properties_as_json(file_name : String, level : Level):
+	var dict_to_json : Dictionary
+	serialize_level_properties(level, dict_to_json)
+	
+	var json_file = File.new()
+	json_file.open("res://Scenes/Levels/SavedLevel/json/" + file_name + ".json", File.WRITE)
+	json_file.store_line(to_json(dict_to_json))
+	json_file.close()
 
 
 # Print the current state of the level data

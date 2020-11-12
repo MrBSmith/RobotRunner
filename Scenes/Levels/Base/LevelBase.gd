@@ -16,6 +16,8 @@ var players_array : Array
 var player_in_danger : bool = false
 var players_exited : int = 0
 
+var is_loaded_from_save : bool = false
+
 signal level_finished
 signal level_ready
 
@@ -72,7 +74,7 @@ func on_player_out_of_danger():
 func set_starting_points():
 	var current_checkpoint = GAME.progression.checkpoint
 
-	if current_checkpoint <= 0:
+	if current_checkpoint <= -1:
 		return
 
 	var checkpoint_array = get_node("Events/Checkpoints").get_children()
