@@ -2,7 +2,7 @@ extends Resource
 
 export (int, -1, 99) var chapter = -1 setget set_chapter, get_chapter
 export (int, -1, 99) var level = 0 setget set_level, get_level
-export (int, 0, 99) var checkpoint = 0 setget set_checkpoint, get_checkpoint
+export (int, -1, 99) var checkpoint = -1 setget set_checkpoint, get_checkpoint
 export (int, 0, 999) var dialogue = 0
 export (int, 0, 999999999) var main_xion = 0 setget set_main_xion, get_main_xion
 export (int, 0, 9999) var main_materials = 0 setget set_main_materials, get_main_materials

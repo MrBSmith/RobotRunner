@@ -74,15 +74,15 @@ func on_player_out_of_danger():
 func set_starting_points():
 	var current_checkpoint = GAME.progression.checkpoint
 
-	if current_checkpoint <= -1:
+	if current_checkpoint <= 0:
 		return
 
 	var checkpoint_array = get_node("Events/Checkpoints").get_children()
 	var starting_point_array = get_tree().get_nodes_in_group("StartingPoint")
 
 	# Place the starting position based on the last checkpoint visited
-	var new_starting_point1 = checkpoint_array[current_checkpoint].get_node("NewStartingPoint1")
-	var new_starting_point2 = checkpoint_array[current_checkpoint].get_node("NewStartingPoint2")
+	var new_starting_point1 = checkpoint_array[current_checkpoint-1].get_node("NewStartingPoint1")
+	var new_starting_point2 = checkpoint_array[current_checkpoint-1].get_node("NewStartingPoint2")
 
 	starting_point_array[0].set_global_position(new_starting_point1.global_position)
 	starting_point_array[1].set_global_position(new_starting_point2.global_position)
@@ -120,3 +120,14 @@ func propagate_weakref_players_array():
 
 	propagate_call("set_players_weakref_array", [players_weakref_array])
 	MUSIC.set_players_weakref_array(players_weakref_array)
+
+func load_level_properties_from_json(load_file_path : String):
+	if is_loaded_from_save:
+		var loaded_objects : Dictionary = GAME.deserialize_level_properties("res://Scenes/Levels/SavedLevel/json/"+load_file_path+".json")
+		var objects_position_array : Array = []
+		
+		for object_dict in loaded_objects.keys():
+			for keys in loaded_objects[object_dict].keys():
+				if keys == "name":
+					continue
+				var object_split_comma = loaded_objects[object_dict][keys].split(",")
