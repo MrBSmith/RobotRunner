@@ -85,12 +85,10 @@ func print_level_data(dict: Dictionary):
 				to_print = "	" + to_print
 			print(to_print)
 
-
-func load_level_properties_from_json(level_loaded_from_scene : bool, level_name : String):
+func load_level_properties_from_json(level_loaded_from_scene : bool, level_name : String) -> Dictionary:
+	var loaded_level_properties : Dictionary
 	if level_loaded_from_scene:
 		var loaded_objects : Dictionary = GAME.deserialize_level_properties("res://Scenes/Levels/SavedLevel/json/"+level_name+".json")
-		var loaded_level_properties : Dictionary
-		
 		for object_dict in loaded_objects.keys():
 			var property_dict : Dictionary
 			for keys in loaded_objects[object_dict].keys():
@@ -105,6 +103,19 @@ func load_level_properties_from_json(level_loaded_from_scene : bool, level_name 
 				property_dict[keys] = property_value
 			loaded_level_properties[object_dict] = property_dict
 		#print(loaded_level_properties)
+	return loaded_level_properties
+
+func apply_properties_to_level(level : Level, dict_properties : Dictionary):
+	for object_path in dict_properties.keys():
+		object_path = object_path.trim_prefix('root/')
+		var object = get_tree().get_root().get_node(object_path)
+		for property in dict_properties[object_path].keys():
+			object.set(property, dict_properties[object_path][property])
+			print(object)
+
+func build_level_from_loaded_properties(level : Level):
+	var level_properties : Dictionary = load_level_properties_from_json(level.is_loaded_from_save, level.get_name())
+	apply_properties_to_level(level, level_properties)
 
 # Get the type of a value string (vector2 bool float or int) by checking its content
 func get_string_value_type(value : String) -> String:
@@ -123,7 +134,7 @@ func get_vector_from_string(string_vector : String) -> Vector2:
 	string_vector = string_vector.trim_prefix('(')
 	string_vector = string_vector.trim_suffix(')')
 	var split_string_array = string_vector.split(',')
-	split_string_array[1] = string_vector.trim_prefix(' ')
+	split_string_array[1] = split_string_array[1].trim_prefix(' ')
 	return Vector2(float(split_string_array[0]),float(split_string_array[1]))
 
 # Convert String variable to Boolean

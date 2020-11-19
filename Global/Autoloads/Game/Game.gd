@@ -211,7 +211,8 @@ func on_level_ready(level : Level):
 	if(level.is_loaded_from_save == false):
 		$LevelSaver.save_level_properties_as_json(level.get_name(), level)
 	else:
-		GAME.get_node("LevelSaver").load_level_properties_from_json(level.is_loaded_from_save, level.get_name())
+		yield(get_tree(),"idle_frame")
+		$LevelSaver.build_level_from_loaded_properties(level)
 		
 	fade_in()
 
