@@ -92,18 +92,19 @@ func load_level_properties_from_json(level_loaded_from_scene : bool, level_name 
 		var loaded_level_properties : Dictionary
 		
 		for object_dict in loaded_objects.keys():
+			var property_dict : Dictionary
 			for keys in loaded_objects[object_dict].keys():
 				if keys == "name":
 					continue
-				var value
+				var property_value
 				match get_string_value_type(loaded_objects[object_dict][keys]):
-					"Vector2" : value = get_vector_from_string(loaded_objects[object_dict][keys])
-					"int"  : value = int(loaded_objects[object_dict][keys])
-					"float" : value = float(loaded_objects[object_dict][keys])
-					"bool" : value = get_bool_from_string(loaded_objects[object_dict][keys])
-				loaded_level_properties[keys] = value
-		
-		print(loaded_level_properties)
+					"Vector2" : property_value = get_vector_from_string(loaded_objects[object_dict][keys])
+					"int"  : property_value = int(loaded_objects[object_dict][keys])
+					"float" : property_value = float(loaded_objects[object_dict][keys])
+					"bool" : property_value = get_bool_from_string(loaded_objects[object_dict][keys])
+				property_dict[keys] = property_value
+			loaded_level_properties[object_dict] = property_dict
+		#print(loaded_level_properties)
 
 # Get the type of a value string (vector2 bool float or int) by checking its content
 func get_string_value_type(value : String) -> String:
@@ -119,10 +120,10 @@ func get_string_value_type(value : String) -> String:
 # Convert String variable to Vector2 by removing some characters and splitting commas
 # return Vector2
 func get_vector_from_string(string_vector : String) -> Vector2:
-	string_vector.trim_prefix('(')
-	string_vector.trim_suffix(')')
+	string_vector = string_vector.trim_prefix('(')
+	string_vector = string_vector.trim_suffix(')')
 	var split_string_array = string_vector.split(',')
-	split_string_array[1].trim_prefix(' ')
+	split_string_array[1] = string_vector.trim_prefix(' ')
 	return Vector2(float(split_string_array[0]),float(split_string_array[1]))
 
 # Convert String variable to Boolean
