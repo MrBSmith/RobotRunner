@@ -86,6 +86,50 @@ func print_level_data(dict: Dictionary):
 			print(to_print)
 
 
+func load_level_properties_from_json(level_loaded_from_scene : bool, level_name : String):
+	if level_loaded_from_scene:
+		var loaded_objects : Dictionary = GAME.deserialize_level_properties("res://Scenes/Levels/SavedLevel/json/"+level_name+".json")
+		var loaded_level_properties : Dictionary
+		
+		for object_dict in loaded_objects.keys():
+			for keys in loaded_objects[object_dict].keys():
+				if keys == "name":
+					continue
+				var value
+				match get_string_value_type(loaded_objects[object_dict][keys]):
+					"Vector2" : value = get_vector_from_string(loaded_objects[object_dict][keys])
+					"int"  : value = int(loaded_objects[object_dict][keys])
+					"float" : value = float(loaded_objects[object_dict][keys])
+					"bool" : value = get_bool_from_string(loaded_objects[object_dict][keys])
+				loaded_level_properties[keys] = value
+		
+		print(loaded_level_properties)
+
+# Get the type of a value string (vector2 bool float or int) by checking its content
+func get_string_value_type(value : String) -> String:
+	if '(' in value:
+		return "Vector2"
+	if value.countn('true') == 1 or value.countn('false') == 1:
+		return "bool"
+	if '.' in value:
+		return "float"
+		
+	return "int"
+
+# Convert String variable to Vector2 by removing some characters and splitting commas
+# return Vector2
+func get_vector_from_string(string_vector : String) -> Vector2:
+	string_vector.trim_prefix('(')
+	string_vector.trim_suffix(')')
+	var split_string_array = string_vector.split(',')
+	split_string_array[1].trim_prefix(' ')
+	return Vector2(float(split_string_array[0]),float(split_string_array[1]))
+
+# Convert String variable to Boolean
+# return bool
+func get_bool_from_string(string_bool : String) -> bool:
+	return string_bool.countn('true') == 1
+	
 #### VIRTUALS ####
 
 

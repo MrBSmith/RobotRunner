@@ -203,7 +203,7 @@ func on_transition_timer_timeout():
 
 
 # Called when the level is ready, correct
-func on_level_ready(level):
+func on_level_ready(level : Level):
 	last_level_name = level.get_name()
 	if progression.level == 0:
 		update_current_level_index(level)
@@ -211,7 +211,7 @@ func on_level_ready(level):
 	if(level.is_loaded_from_save == false):
 		$LevelSaver.save_level_properties_as_json(level.get_name(), level)
 	else:
-		level.load_level_properties_from_json(level.get_name())
+		GAME.get_node("LevelSaver").load_level_properties_from_json(level.is_loaded_from_save, level.get_name())
 		
 	fade_in()
 

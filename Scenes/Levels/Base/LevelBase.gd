@@ -120,14 +120,3 @@ func propagate_weakref_players_array():
 
 	propagate_call("set_players_weakref_array", [players_weakref_array])
 	MUSIC.set_players_weakref_array(players_weakref_array)
-
-func load_level_properties_from_json(load_file_path : String):
-	if is_loaded_from_save:
-		var loaded_objects : Dictionary = GAME.deserialize_level_properties("res://Scenes/Levels/SavedLevel/json/"+load_file_path+".json")
-		var objects_position_array : Array = []
-		
-		for object_dict in loaded_objects.keys():
-			for keys in loaded_objects[object_dict].keys():
-				if keys == "name":
-					continue
-				var object_split_comma = loaded_objects[object_dict][keys].split(",")
