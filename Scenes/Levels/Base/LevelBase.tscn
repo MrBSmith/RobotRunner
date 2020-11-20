@@ -76,7 +76,6 @@ __meta__ = {
 
 [node name="Paralaxe" type="ParallaxBackground" parent="Map/Background"]
 layer = -1
-scroll_ignore_camera_zoom = true
 script = ExtResource( 10 )
 
 [node name="Back" type="ParallaxLayer" parent="Map/Background/Paralaxe"]

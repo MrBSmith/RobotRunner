@@ -3,7 +3,7 @@ extends Node
 export var debug : bool = false
 
 var objects_datatype_storage = {
-	'ParallaxLayer': ['position']
+	'Camera': ['zoom']
 }
 
 #### ACCESSORS ####
@@ -64,6 +64,7 @@ func get_object_properties(object : Object, classname : String) -> Dictionary:
 
 	return property_data_dict
 
+
 # Convert the data to a JSON file
 # => Called by game.gd
 func save_level_properties_as_json(file_name : String, level : Level):
@@ -85,6 +86,7 @@ func print_level_data(dict: Dictionary):
 				to_print = "	" + to_print
 			print(to_print)
 
+
 func load_level_properties_from_json(level_loaded_from_scene : bool, level_name : String) -> Dictionary:
 	var loaded_level_properties : Dictionary = {}
 	if level_loaded_from_scene:
@@ -102,8 +104,9 @@ func load_level_properties_from_json(level_loaded_from_scene : bool, level_name 
 					"bool" : property_value = get_bool_from_string(loaded_objects[object_dict][keys])
 				property_dict[keys] = property_value
 			loaded_level_properties[object_dict] = property_dict
-		#print(loaded_level_properties)
+	
 	return loaded_level_properties
+
 
 func apply_properties_to_level(_level : Level, dict_properties : Dictionary):
 	for object_path in dict_properties.keys():
@@ -111,11 +114,15 @@ func apply_properties_to_level(_level : Level, dict_properties : Dictionary):
 		var object = get_tree().get_root().get_node(object_path)
 		for property in dict_properties[object_path].keys():
 			object.set(property, dict_properties[object_path][property])
-			print(object)
+
 
 func build_level_from_loaded_properties(level : Level):
-	var level_properties : Dictionary = load_level_properties_from_json(level.is_loaded_from_save, level.get_name())
+	if !level.is_inside_tree():
+		yield(level, "tree_entered")
+	
+	var level_properties : Dictionary = load_level_properties_from_json(level.is_loaded_from_save, level.get_meta("meta_name"))
 	apply_properties_to_level(level, level_properties)
+
 
 # Get the type of a value string (vector2 bool float or int) by checking its content
 func get_string_value_type(value : String) -> String:
@@ -128,6 +135,7 @@ func get_string_value_type(value : String) -> String:
 		
 	return "int"
 
+
 # Convert String variable to Vector2 by removing some characters and splitting commas
 # return Vector2
 func get_vector_from_string(string_vector : String) -> Vector2:
@@ -137,11 +145,13 @@ func get_vector_from_string(string_vector : String) -> Vector2:
 	split_string_array[1] = split_string_array[1].trim_prefix(' ')
 	return Vector2(float(split_string_array[0]),float(split_string_array[1]))
 
+
 # Convert String variable to Boolean
 # return bool
 func get_bool_from_string(string_bool : String) -> bool:
 	return string_bool.countn('true') == 1
-	
+
+
 #### VIRTUALS ####
 
 
