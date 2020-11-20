@@ -62,7 +62,7 @@ func execute_next_instruction():
 
 # Give the camera the order to move at the given position, and set it's state to move_to
 func move_to(dest: Vector2, average_w_players : bool = false, move_speed : float = -1.0, duration : float = 0.0):
-	moveto_state_node.destination = dest	
+	moveto_state_node.destination = dest
 	moveto_state_node.average_w_players = average_w_players
 		
 	if move_speed != -1.0:

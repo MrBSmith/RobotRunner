@@ -4,6 +4,7 @@
 
 [node name="ProdLine" type="ParallaxLayer"]
 motion_scale = Vector2( 1.1, 1 )
+motion_mirroring = Vector2( 2048, 640 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -12,10 +13,10 @@ __meta__ = {
 [node name="Line" type="Sprite" parent="."]
 modulate = Color( 1, 0.83, 0.83, 1 )
 light_mask = 2
-position = Vector2( 535.948, -250 )
 texture = ExtResource( 1 )
+centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 15000, 79 )
+region_rect = Rect2( 0, 0, 2048, 79 )
 __meta__ = {
 "_edit_lock_": true
 }

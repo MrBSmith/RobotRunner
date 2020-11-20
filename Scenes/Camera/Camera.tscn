@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/Camera/States/Shake.gd" type="Script" id=6]
 
 [node name="Camera" type="Camera2D"]
-position = Vector2( 480, 272 )
+anchor_mode = 0
 rotating = true
 current = true
 script = ExtResource( 1 )

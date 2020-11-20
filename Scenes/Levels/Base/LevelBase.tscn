@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Camera/Camera.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Global/Background/Gears.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/GameConsole/GameConsole.tscn" type="PackedScene" id=8]
 [ext_resource path="res://icon.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Levels/Base/Paralaxe.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/GUI/HUD/HUD.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/Fog/CosmeticFog/magenta_FG_fog_shadermaterial.tres" type="Material" id=20]
 [ext_resource path="res://Scenes/Fog/CosmeticFog/green_bg_fog_shadermaterial.tres" type="Material" id=21]
@@ -67,7 +68,7 @@ __meta__ = {
 }
 
 [node name="Background" type="Node2D" parent="Map"]
-z_index = -10
+z_index = -1
 z_as_relative = false
 __meta__ = {
 "_edit_lock_": true
@@ -75,12 +76,11 @@ __meta__ = {
 
 [node name="Paralaxe" type="ParallaxBackground" parent="Map/Background"]
 layer = -1
-follow_viewport_enable = true
 scroll_ignore_camera_zoom = true
+script = ExtResource( 10 )
 
 [node name="Back" type="ParallaxLayer" parent="Map/Background/Paralaxe"]
-position = Vector2( 800, 0 )
-motion_scale = Vector2( 0.05, 0 )
+motion_mirroring = Vector2( 2048, 1152 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -89,11 +89,11 @@ __meta__ = {
 [node name="BGBase" type="Sprite" parent="Map/Background/Paralaxe/Back"]
 modulate = Color( 1, 0.96, 0.96, 1 )
 light_mask = 2
-position = Vector2( -2330, -3040 )
 texture = ExtResource( 4 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 15000, 15000 )
+region_rect = Rect2( 0, 0, 2048, 1152 )
+region_filter_clip = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -105,8 +105,7 @@ __meta__ = {
 }
 
 [node name="Gears" type="ParallaxLayer" parent="Map/Background/Paralaxe"]
-position = Vector2( 800, 0 )
-motion_scale = Vector2( 0.12, 0 )
+motion_mirroring = Vector2( 2048, 1152 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -116,22 +115,23 @@ __meta__ = {
 modulate = Color( 1, 0.903333, 0.9, 1 )
 light_mask = 2
 texture = ExtResource( 7 )
+centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 15000, 15000 )
+region_rect = Rect2( 0, 0, 2048, 1152 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="ProdLine1" parent="Map/Background/Paralaxe" instance=ExtResource( 6 )]
 position = Vector2( 0, 370 )
-motion_scale = Vector2( 0.15, 0 )
+motion_scale = Vector2( 1, 1 )
 
 [node name="ProdLine2" parent="Map/Background/Paralaxe" instance=ExtResource( 6 )]
 position = Vector2( 0, 650 )
-motion_scale = Vector2( 0.17, 0 )
+motion_scale = Vector2( 1, 1 )
 
 [node name="Fog" type="ParallaxLayer" parent="Map/Background/Paralaxe"]
-motion_scale = Vector2( 0.2, 0 )
+motion_mirroring = Vector2( 2048, 2048 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -139,12 +139,10 @@ __meta__ = {
 
 [node name="Fog" type="Sprite" parent="Map/Background/Paralaxe/Fog"]
 material = ExtResource( 21 )
-position = Vector2( 470.01, 277.517 )
-scale = Vector2( 2.09202, 1.27633 )
 texture = ExtResource( 9 )
-offset = Vector2( 10.943, 0 )
+centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 8000, 8000 )
+region_rect = Rect2( 0, 0, 2048, 2048 )
 __meta__ = {
 "_edit_lock_": true
 }

@@ -67,7 +67,7 @@ func get_object_properties(object : Object, classname : String) -> Dictionary:
 # Convert the data to a JSON file
 # => Called by game.gd
 func save_level_properties_as_json(file_name : String, level : Level):
-	var dict_to_json : Dictionary
+	var dict_to_json : Dictionary = {}
 	serialize_level_properties(level, dict_to_json)
 	
 	var json_file = File.new()
@@ -86,11 +86,11 @@ func print_level_data(dict: Dictionary):
 			print(to_print)
 
 func load_level_properties_from_json(level_loaded_from_scene : bool, level_name : String) -> Dictionary:
-	var loaded_level_properties : Dictionary
+	var loaded_level_properties : Dictionary = {}
 	if level_loaded_from_scene:
 		var loaded_objects : Dictionary = GAME.deserialize_level_properties("res://Scenes/Levels/SavedLevel/json/"+level_name+".json")
 		for object_dict in loaded_objects.keys():
-			var property_dict : Dictionary
+			var property_dict : Dictionary = {}
 			for keys in loaded_objects[object_dict].keys():
 				if keys == "name":
 					continue
@@ -105,7 +105,7 @@ func load_level_properties_from_json(level_loaded_from_scene : bool, level_name 
 		#print(loaded_level_properties)
 	return loaded_level_properties
 
-func apply_properties_to_level(level : Level, dict_properties : Dictionary):
+func apply_properties_to_level(_level : Level, dict_properties : Dictionary):
 	for object_path in dict_properties.keys():
 		object_path = object_path.trim_prefix('root/')
 		var object = get_tree().get_root().get_node(object_path)

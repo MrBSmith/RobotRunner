@@ -54,8 +54,8 @@ func goto_last_level(from_start: bool = false):
 	
 	update_collectable_progression()
 	
-	var _err = get_tree().get_current_scene().queue_free()
-	_err = get_tree().get_root().add_child(level_node)
+	get_tree().get_current_scene().queue_free()
+	get_tree().get_root().add_child(level_node)
 	get_tree().set_current_scene(level_node)
 
 
