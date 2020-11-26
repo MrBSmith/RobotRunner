@@ -19,9 +19,6 @@
 
 [node name="LevelDebug" instance=ExtResource( 4 )]
 
-[node name="Paralaxe" parent="Map/Background" index="0"]
-scroll_ignore_camera_zoom = false
-
 [node name="Back" parent="Map/Background/Paralaxe" index="0"]
 motion_scale = Vector2( 0.5, 0.5 )
 

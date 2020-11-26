@@ -1,113 +1,53 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=50 format=2]
 
-[ext_resource path="res://Global/Lights/Light500.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Levels/Base/LevelBase.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/M/MEarthBlock.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Global/Lights/Light300.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/S (base)/EarthBlockBase.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/S (BASE)/IceBlockBase.gd" type="Script" id=6]
-[ext_resource path="res://Scenes/Events/BaseScene/TriggerAreaBase.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/Events/CameraEvents/CameraEvent.gd" type="Script" id=8]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/RedDoor.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/M/MIceBlock.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/XionCrate/XionCrate.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/RedButton.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/InteractiveObjects/Collactables/Materials/Gear/Gear.tscn" type="PackedScene" id=15]
-[ext_resource path="res://icon.png" type="Texture" id=16]
-[ext_resource path="res://Global/Background/Background.png" type="Texture" id=17]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/Scripts/DoorBase.gd" type="Script" id=18]
-[ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.gd" type="Script" id=19]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/XionCrate/XionCrate.gd" type="Script" id=20]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd" type="Script" id=21]
-[ext_resource path="res://Scenes/InteractiveObjects/Collactables/Materials/Gear/Gear.gd" type="Script" id=22]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/Scripts/ButtonBase.gd" type="Script" id=23]
-[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.gd" type="Script" id=24]
-[ext_resource path="res://Scenes/InteractiveObjects/Platform/BreakablePlatform/5 Tiles (Base)/BreakablePlateform.gd" type="Script" id=25]
-[ext_resource path="res://Scenes/XionCloud/XionCloud.tscn" type="PackedScene" id=26]
-[ext_resource path="res://Scenes/InteractiveObjects/Platform/BreakablePlatform/5 Tiles (Base)/BreakablePlateform.tscn" type="PackedScene" id=27]
-[ext_resource path="res://Scenes/XionCloud/CloudPath.tscn" type="PackedScene" id=28]
-[ext_resource path="res://Scenes/Events/CameraEvents/CameraEvent.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Scenes/Levels/Base/LevelBase.gd" type="Script" id=1]
+[ext_resource path="res://Global/Lights/Light500.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Events/CameraEvents/CameraEvent.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/Scripts/ButtonBase.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/Scripts/DoorBase.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/S (BASE)/IceBlockBase.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/S (base)/EarthBlockBase.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/InteractiveObjects/Collactables/Materials/Gear/Gear.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/M/MIceBlock.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/RedButton.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/RedDoor.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/M/MEarthBlock.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/InteractiveObjects/Collactables/Materials/Gear/Gear.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/XionCloud/CloudPath.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/InteractiveObjects/Platform/BreakablePlatform/5 Tiles (Base)/BreakablePlateform.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/XionCloud/XionCloud.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/GUI/GUI.gd" type="Script" id=22]
+[ext_resource path="res://Scenes/StartingPoints/StartingPoint.gd" type="Script" id=23]
+[ext_resource path="res://Scenes/InteractiveObjects/Platform/BreakablePlatform/5 Tiles (Base)/BreakablePlateform.gd" type="Script" id=24]
+[ext_resource path="res://Scenes/Camera/Camera.gd" type="Script" id=25]
+[ext_resource path="res://Scenes/XionCloud/XionCloud.gd" type="Script" id=26]
+[ext_resource path="res://Global/Background/Gears.png" type="Texture" id=27]
+[ext_resource path="res://Global/Background/Background.png" type="Texture" id=28]
+[ext_resource path="res://icon.png" type="Texture" id=29]
 [ext_resource path="res://Global/Tileset/LevelBase.tres" type="TileSet" id=30]
-[ext_resource path="res://Scenes/XionCloud/XionCloud.gd" type="Script" id=31]
-[ext_resource path="res://Scenes/Camera/Camera.gd" type="Script" id=32]
-[ext_resource path="res://Scenes/GUI/GUI.gd" type="Script" id=33]
-[ext_resource path="res://Scenes/GameConsole/GameConsole.gd" type="Script" id=34]
-[ext_resource path="res://Scenes/GUI/HUD/HUD.gd" type="Script" id=35]
-[ext_resource path="res://Scenes/Events/Checkpoint/Checkpoint.gd" type="Script" id=36]
-[ext_resource path="res://Scenes/StartingPoints/StartingPoint.gd" type="Script" id=37]
+[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Scenes/GUI/HUD/HUD.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Global/Background/ProdLine.tscn" type="PackedScene" id=33]
+[ext_resource path="res://Scenes/StartingPoints/StartingPointP2.tscn" type="PackedScene" id=34]
+[ext_resource path="res://Scenes/GameConsole/GameConsole.tscn" type="PackedScene" id=35]
+[ext_resource path="res://Scenes/StartingPoints/StartingPointP1.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Global/Background/BackgroundLight.tscn" type="PackedScene" id=37]
 [ext_resource path="res://Scenes/Events/Checkpoint/Checkpoint.tscn" type="PackedScene" id=38]
-[ext_resource path="res://Scenes/StartingPoints/StartingPointP1.tscn" type="PackedScene" id=39]
-[ext_resource path="res://Global/Background/BackgroundLight.tscn" type="PackedScene" id=40]
-[ext_resource path="res://Scenes/Camera/Camera.tscn" type="PackedScene" id=41]
-[ext_resource path="res://Scenes/StartingPoints/StartingPointP2.tscn" type="PackedScene" id=42]
-[ext_resource path="res://Scenes/GUI/HUD/HUD.tscn" type="PackedScene" id=43]
-[ext_resource path="res://Global/Background/ProdLine.tscn" type="PackedScene" id=44]
-[ext_resource path="res://Scenes/GameConsole/GameConsole.tscn" type="PackedScene" id=45]
-[ext_resource path="res://Global/Background/Gears.png" type="Texture" id=46]
-[ext_resource path="res://Scenes/Fog/CosmeticFog/green_bg_fog_shadermaterial.tres" type="Material" id=47]
-[ext_resource path="res://Scenes/Fog/CosmeticFog/magenta_FG_fog_shadermaterial.tres" type="Material" id=48]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Idle/Checkpoint1.png" type="Texture" id=49]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Trigger/CheckpointTrigger9.png" type="Texture" id=50]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Trigger/CheckpointTrigger6.png" type="Texture" id=51]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Trigger/CheckpointTrigger10.png" type="Texture" id=52]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Active/CheckpointActive2.png" type="Texture" id=53]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Active/CheckpointActive1.png" type="Texture" id=54]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Trigger/CheckpointTrigger3.png" type="Texture" id=55]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Trigger/CheckpointTrigger7.png" type="Texture" id=56]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Trigger/CheckpointTrigger5.png" type="Texture" id=57]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Trigger/CheckpointTrigger2.png" type="Texture" id=58]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Trigger/CheckpointTrigger4.png" type="Texture" id=59]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Trigger/CheckpointTrigger1.png" type="Texture" id=60]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Trigger/CheckpointTrigger8.png" type="Texture" id=61]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Active/CheckpointActive3.png" type="Texture" id=62]
-[ext_resource path="res://Scenes/Events/Checkpoint/Sprites/Active/CheckpointActive4.png" type="Texture" id=63]
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 49 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 13.0
-}, {
-"frames": [ ExtResource( 60 ), ExtResource( 58 ), ExtResource( 55 ), ExtResource( 59 ), ExtResource( 57 ), ExtResource( 51 ), ExtResource( 56 ), ExtResource( 61 ), ExtResource( 50 ), ExtResource( 52 ) ],
-"loop": false,
-"name": "Trigger",
-"speed": 17.0
-}, {
-"frames": [ ExtResource( 54 ), ExtResource( 53 ), ExtResource( 62 ), ExtResource( 63 ) ],
-"loop": true,
-"name": "Active",
-"speed": 13.0
-} ]
-
-[sub_resource type="Animation" id=3]
-resource_name = "LightUp"
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite/Light2D:enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite/Light2D:energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.4, 0.7 ),
-"transitions": PoolRealArray( 1, 2.14355 ),
-"update": 0,
-"values": [ 0.0, 1.0 ]
-}
+[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=39]
+[ext_resource path="res://Scenes/Fog/CosmeticFog/magenta_FG_fog_shadermaterial.tres" type="Material" id=40]
+[ext_resource path="res://Scenes/Fog/CosmeticFog/green_bg_fog_shadermaterial.tres" type="Material" id=41]
+[ext_resource path="res://Scenes/Levels/Base/Paralaxe.gd" type="Script" id=42]
+[ext_resource path="res://Scenes/GameConsole/GameConsole.gd" type="Script" id=43]
+[ext_resource path="res://Scenes/Events/Checkpoint/Checkpoint.gd" type="Script" id=44]
+[ext_resource path="res://Scenes/GUI/HUD/HUD.gd" type="Script" id=45]
+[ext_resource path="res://Scenes/Events/CameraEvents/CameraEvent.gd" type="Script" id=46]
+[ext_resource path="res://Scenes/Events/BaseScene/TriggerAreaBase.gd" type="Script" id=47]
+[ext_resource path="res://Scenes/Camera/Camera.tscn" type="PackedScene" id=48]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -115,22 +55,22 @@ _data = {
 }
 
 [node name="Level1B" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="StartingPointP1" type="Node2D" parent="." groups=[
 "StartingPoint",
-] instance=ExtResource( 39 )]
-position = Vector2( 48, 264 )
-script = ExtResource( 37 )
+] instance=ExtResource( 36 )]
+position = Vector2( 1944, 336 )
+script = ExtResource( 23 )
 
 [node name="StartingPointP2" type="Node2D" parent="." groups=[
 "StartingPoint",
-] instance=ExtResource( 42 )]
-position = Vector2( 48, 360 )
-script = ExtResource( 37 )
+] instance=ExtResource( 34 )]
+position = Vector2( 1992, 312 )
+script = ExtResource( 23 )
 
 [node name="Foreground" type="CanvasLayer" parent="."]
 layer = 2
@@ -141,10 +81,10 @@ __meta__ = {
 }
 
 [node name="Fog" type="Sprite" parent="Foreground/Fog"]
-material = ExtResource( 48 )
+material = ExtResource( 40 )
 position = Vector2( 470.01, 277.517 )
 scale = Vector2( 2.09202, 1.27633 )
-texture = ExtResource( 16 )
+texture = ExtResource( 29 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 480, 540 )
 __meta__ = {
@@ -153,7 +93,7 @@ __meta__ = {
 
 [node name="GUI" type="CanvasLayer" parent="."]
 layer = 2
-script = ExtResource( 33 )
+script = ExtResource( 22 )
 
 [node name="Popups" type="Control" parent="GUI"]
 anchor_right = 1.0
@@ -165,23 +105,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HUD" type="Control" parent="GUI" instance=ExtResource( 43 )]
+[node name="HUD" type="Control" parent="GUI" instance=ExtResource( 32 )]
 anchor_right = 1.0
 anchor_bottom = 0.143
 margin_top = -64.0
 margin_bottom = -64.22
-script = ExtResource( 35 )
+script = ExtResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 hidden = true
 speed = 400
 
-[node name="GameConsole" type="Control" parent="GUI" instance=ExtResource( 45 )]
+[node name="GameConsole" type="Control" parent="GUI" instance=ExtResource( 35 )]
 pause_mode = 2
 visible = false
 margin_top = -1.0
-script = ExtResource( 34 )
+script = ExtResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -194,7 +134,7 @@ __meta__ = {
 }
 
 [node name="Background" type="Node2D" parent="Map"]
-z_index = -10
+z_index = -1
 z_as_relative = false
 __meta__ = {
 "_edit_lock_": true
@@ -202,13 +142,12 @@ __meta__ = {
 
 [node name="Paralaxe" type="ParallaxBackground" parent="Map/Background"]
 layer = -1
-follow_viewport_enable = true
-scroll_offset = Vector2( -1154.97, -35.0874 )
-scroll_ignore_camera_zoom = true
+scroll_offset = Vector2( -2804.07, 30.0544 )
+script = ExtResource( 42 )
 
 [node name="Back" type="ParallaxLayer" parent="Map/Background/Paralaxe"]
-position = Vector2( 1198.25, 270 )
-motion_scale = Vector2( 0.05, 0 )
+position = Vector2( -122.487, -1129.19 )
+motion_mirroring = Vector2( 2048, 1152 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -217,11 +156,11 @@ __meta__ = {
 [node name="BGBase" type="Sprite" parent="Map/Background/Paralaxe/Back"]
 modulate = Color( 1, 0.96, 0.96, 1 )
 light_mask = 2
-position = Vector2( -2330, -3040 )
-texture = ExtResource( 17 )
+texture = ExtResource( 28 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 15000, 15000 )
+region_rect = Rect2( 0, 0, 2048, 1152 )
+region_filter_clip = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -232,50 +171,50 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Light" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 40 )]
+[node name="Light" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 37 )]
 light_mask = 2
 position = Vector2( 240, 36 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 color = Color( 0.14902, 1, 0, 1 )
 energy = 1.2
 range_z_min = -1261
 range_layer_min = -2
 range_item_cull_mask = 983938
 
-[node name="Light2" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 40 )]
+[node name="Light2" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 37 )]
 light_mask = 2
 position = Vector2( 480, 384 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 color = Color( 0.14902, 1, 0, 1 )
 energy = 1.52
 range_z_min = -1261
 range_layer_min = -2
 range_item_cull_mask = 983938
 
-[node name="Light5" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 40 )]
+[node name="Light5" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 37 )]
 light_mask = 2
 position = Vector2( 1656, 60 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 color = Color( 0.14902, 1, 0, 1 )
 energy = 1.33
 range_z_min = -1261
 range_layer_min = -2
 range_item_cull_mask = 983938
 
-[node name="Light6" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 40 )]
+[node name="Light6" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 37 )]
 light_mask = 2
 position = Vector2( 2004, 468 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 color = Color( 0.14902, 1, 0, 1 )
 energy = 1.33
 range_z_min = -1261
 range_layer_min = -2
 range_item_cull_mask = 983938
 
-[node name="Light7" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 40 )]
+[node name="Light7" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 37 )]
 light_mask = 2
 position = Vector2( 2676, 204 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 texture_scale = 1.48
 color = Color( 0.14902, 1, 0, 1 )
 energy = 1.33
@@ -283,10 +222,10 @@ range_z_min = -1261
 range_layer_min = -2
 range_item_cull_mask = 983938
 
-[node name="Light8" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 40 )]
+[node name="Light8" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 37 )]
 light_mask = 2
 position = Vector2( 3396, 468 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 texture_scale = 1.48
 color = Color( 0.14902, 1, 0, 1 )
 energy = 1.33
@@ -294,10 +233,10 @@ range_z_min = -1261
 range_layer_min = -2
 range_item_cull_mask = 983938
 
-[node name="Light9" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 40 )]
+[node name="Light9" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 37 )]
 light_mask = 2
 position = Vector2( 3936, 240 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 texture_scale = 1.17
 color = Color( 0.14902, 1, 0, 1 )
 energy = 1.33
@@ -305,10 +244,10 @@ range_z_min = -1261
 range_layer_min = -2
 range_item_cull_mask = 983938
 
-[node name="Light10" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 40 )]
+[node name="Light10" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 37 )]
 light_mask = 2
 position = Vector2( 4104, 672 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 texture_scale = 1.17
 color = Color( 0.14902, 1, 0, 1 )
 energy = 1.33
@@ -316,10 +255,10 @@ range_z_min = -1261
 range_layer_min = -2
 range_item_cull_mask = 983938
 
-[node name="Light4" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 40 )]
+[node name="Light4" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 37 )]
 light_mask = 2
 position = Vector2( 1188, 504 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 texture_scale = 1.29
 color = Color( 0.14902, 1, 0, 1 )
 energy = 0.93
@@ -327,10 +266,10 @@ range_z_min = -1261
 range_layer_min = -2
 range_item_cull_mask = 983938
 
-[node name="Light3" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 40 )]
+[node name="Light3" type="Light2D" parent="Map/Background/Paralaxe/Lights" instance=ExtResource( 37 )]
 light_mask = 2
 position = Vector2( 912, 132 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 texture_scale = 1.51
 color = Color( 0.14902, 1, 0, 1 )
 energy = 0.93
@@ -339,8 +278,8 @@ range_layer_min = -2
 range_item_cull_mask = 983938
 
 [node name="Gears" type="ParallaxLayer" parent="Map/Background/Paralaxe"]
-position = Vector2( 1083.8, 270 )
-motion_scale = Vector2( 0.12, 0 )
+position = Vector2( -122.487, -1129.19 )
+motion_mirroring = Vector2( 2048, 1152 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -349,45 +288,46 @@ __meta__ = {
 [node name="Gears" type="Sprite" parent="Map/Background/Paralaxe/Gears"]
 modulate = Color( 1, 0.903333, 0.9, 1 )
 light_mask = 2
-texture = ExtResource( 46 )
+texture = ExtResource( 27 )
+centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 15000, 15000 )
+region_rect = Rect2( 0, 0, 2048, 1152 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ProdLine1" type="ParallaxLayer" parent="Map/Background/Paralaxe" instance=ExtResource( 44 )]
-position = Vector2( 234.754, 640 )
-motion_scale = Vector2( 0.15, 0 )
+[node name="ProdLine1" type="ParallaxLayer" parent="Map/Background/Paralaxe" instance=ExtResource( 33 )]
+position = Vector2( -450.894, -247.191 )
+motion_scale = Vector2( 1.1, 1 )
+motion_mirroring = Vector2( 2048, 640 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="ProdLine2" type="ParallaxLayer" parent="Map/Background/Paralaxe" instance=ExtResource( 44 )]
-position = Vector2( 202.055, 920 )
-motion_scale = Vector2( 0.17, 0 )
+[node name="ProdLine2" type="ParallaxLayer" parent="Map/Background/Paralaxe" instance=ExtResource( 33 )]
+position = Vector2( -450.894, -607.191 )
+motion_scale = Vector2( 1.1, 1 )
+motion_mirroring = Vector2( 2048, 640 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="Fog" type="ParallaxLayer" parent="Map/Background/Paralaxe"]
-position = Vector2( 153.006, 270 )
-motion_scale = Vector2( 0.2, 0 )
+position = Vector2( -122.487, -2025.19 )
+motion_mirroring = Vector2( 2048, 2048 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="Fog" type="Sprite" parent="Map/Background/Paralaxe/Fog"]
-material = ExtResource( 47 )
-position = Vector2( 470.01, 277.517 )
-scale = Vector2( 2.09202, 1.27633 )
-texture = ExtResource( 16 )
-offset = Vector2( 10.943, 0 )
+material = ExtResource( 41 )
+texture = ExtResource( 29 )
+centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 8000, 8000 )
+region_rect = Rect2( 0, 0, 2048, 2048 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -460,26 +400,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="M_IceBlock5" type="RigidBody2D" parent="InteractivesObjects/IceBlocks/M" instance=ExtResource( 10 )]
-light_mask = 1024
-position = Vector2( 2064, 288 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-can_sleep = false
-linear_damp = 1.0
-angular_damp = 1.0
-script = ExtResource( 6 )
-nb_debris = 30
-explosion_impulse = 150.0
-explosion_impulse_modifier = 0.7
-maxvelocity_y = 0
-
-[node name="M_IceBlock6" type="RigidBody2D" parent="InteractivesObjects/IceBlocks/M" instance=ExtResource( 10 )]
+[node name="M_IceBlock6" type="RigidBody2D" parent="InteractivesObjects/IceBlocks/M" instance=ExtResource( 13 )]
 light_mask = 1024
 position = Vector2( 4056, 288 )
 z_as_relative = false
@@ -492,13 +413,13 @@ sleeping = true
 can_sleep = false
 linear_damp = 1.0
 angular_damp = 1.0
-script = ExtResource( 6 )
+script = ExtResource( 8 )
 nb_debris = 30
 explosion_impulse = 150.0
 explosion_impulse_modifier = 0.7
 maxvelocity_y = 0
 
-[node name="M_IceBlock7" type="RigidBody2D" parent="InteractivesObjects/IceBlocks/M" instance=ExtResource( 10 )]
+[node name="M_IceBlock7" type="RigidBody2D" parent="InteractivesObjects/IceBlocks/M" instance=ExtResource( 13 )]
 light_mask = 1024
 position = Vector2( 3960, 504 )
 z_as_relative = false
@@ -511,7 +432,7 @@ sleeping = true
 can_sleep = false
 linear_damp = 1.0
 angular_damp = 1.0
-script = ExtResource( 6 )
+script = ExtResource( 8 )
 nb_debris = 30
 explosion_impulse = 150.0
 explosion_impulse_modifier = 0.7
@@ -533,7 +454,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="M_EarthBlock7" type="RigidBody2D" parent="InteractivesObjects/EarthBlocks/M" instance=ExtResource( 3 )]
+[node name="M_EarthBlock7" type="RigidBody2D" parent="InteractivesObjects/EarthBlocks/M" instance=ExtResource( 16 )]
 position = Vector2( 3852, 108 )
 z_as_relative = false
 mode = 1
@@ -544,13 +465,13 @@ contact_monitor = true
 sleeping = true
 can_sleep = false
 angular_damp = 0.0
-script = ExtResource( 5 )
+script = ExtResource( 10 )
 nb_debris = 20
 explosion_impulse = 150.0
 explosion_impulse_modifier = 0.7
 maxvelocity_y = 0
 
-[node name="M_EarthBlock8" type="RigidBody2D" parent="InteractivesObjects/EarthBlocks/M" instance=ExtResource( 3 )]
+[node name="M_EarthBlock8" type="RigidBody2D" parent="InteractivesObjects/EarthBlocks/M" instance=ExtResource( 16 )]
 position = Vector2( 3900, 108 )
 z_as_relative = false
 mode = 1
@@ -561,58 +482,7 @@ contact_monitor = true
 sleeping = true
 can_sleep = false
 angular_damp = 0.0
-script = ExtResource( 5 )
-nb_debris = 20
-explosion_impulse = 150.0
-explosion_impulse_modifier = 0.7
-maxvelocity_y = 0
-
-[node name="M_EarthBlock4" type="RigidBody2D" parent="InteractivesObjects/EarthBlocks/M" instance=ExtResource( 3 )]
-position = Vector2( 1656, 504 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-can_sleep = false
-angular_damp = 0.0
-script = ExtResource( 5 )
-nb_debris = 20
-explosion_impulse = 150.0
-explosion_impulse_modifier = 0.7
-maxvelocity_y = 0
-
-[node name="M_EarthBlock5" type="RigidBody2D" parent="InteractivesObjects/EarthBlocks/M" instance=ExtResource( 3 )]
-position = Vector2( 1656, 456 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-can_sleep = false
-angular_damp = 0.0
-script = ExtResource( 5 )
-nb_debris = 20
-explosion_impulse = 150.0
-explosion_impulse_modifier = 0.7
-maxvelocity_y = 0
-
-[node name="M_EarthBlock6" type="RigidBody2D" parent="InteractivesObjects/EarthBlocks/M" instance=ExtResource( 3 )]
-position = Vector2( 2112, 288 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-can_sleep = false
-angular_damp = 0.0
-script = ExtResource( 5 )
+script = ExtResource( 10 )
 nb_debris = 20
 explosion_impulse = 150.0
 explosion_impulse_modifier = 0.7
@@ -630,35 +500,35 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Lava" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 14 )]
+[node name="Lava" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 18 )]
 position = Vector2( 275.12, 269.282 )
 scale = Vector2( 0.34, 0.355 )
-script = ExtResource( 24 )
+script = ExtResource( 9 )
 
-[node name="Lava2" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 14 )]
+[node name="Lava2" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 18 )]
 position = Vector2( 230, 501.457 )
 scale = Vector2( 0.276, 0.302 )
-script = ExtResource( 24 )
+script = ExtResource( 9 )
 
-[node name="Lava3" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 14 )]
+[node name="Lava3" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 18 )]
 position = Vector2( 1452, 564 )
 scale = Vector2( 0.621, 0.409 )
-script = ExtResource( 24 )
+script = ExtResource( 9 )
 
-[node name="Lava4" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 14 )]
+[node name="Lava4" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 18 )]
 position = Vector2( 1848, 180 )
 scale = Vector2( 0.316, 0.423 )
-script = ExtResource( 24 )
+script = ExtResource( 9 )
 
-[node name="Lava5" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 14 )]
+[node name="Lava5" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 18 )]
 position = Vector2( 2616, 648 )
 scale = Vector2( 1.905, 1.295 )
-script = ExtResource( 24 )
+script = ExtResource( 9 )
 
-[node name="Lava6" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 14 )]
+[node name="Lava6" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 18 )]
 position = Vector2( 3900, 744 )
 scale = Vector2( 0.342, 0.405 )
-script = ExtResource( 24 )
+script = ExtResource( 9 )
 
 [node name="XionLiquid" type="Node2D" parent="InteractivesObjects"]
 __meta__ = {
@@ -679,34 +549,34 @@ __meta__ = {
 }
 
 [node name="GreatDoorGroup" type="Node2D" parent="InteractivesObjects"]
-script = ExtResource( 21 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="GreatDoor" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 13 )]
+[node name="GreatDoor" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 12 )]
 position = Vector2( 4320, 312 )
 z_index = -1
-script = ExtResource( 19 )
+script = ExtResource( 4 )
 is_open = false
 need_delay = false
 open_delay = 0.0
 focus_on_door = true
 
-[node name="RedButton" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 12 )]
+[node name="RedButton" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 14 )]
 position = Vector2( 3240, 304.965 )
-script = ExtResource( 23 )
+script = ExtResource( 6 )
 is_push = false
 
-[node name="RedButton2" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 12 )]
+[node name="RedButton2" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 14 )]
 position = Vector2( 3240, 400 )
-script = ExtResource( 23 )
+script = ExtResource( 6 )
 is_push = false
 
-[node name="RedDoor" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 9 )]
+[node name="RedDoor" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 15 )]
 position = Vector2( 3664, 384 )
-script = ExtResource( 18 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -725,33 +595,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="XionCrate" type="RigidBody2D" parent="InteractivesObjects/Collactables/XionCrates" instance=ExtResource( 11 )]
-position = Vector2( 120, 72 )
-mode = 1
-gravity_scale = 5.0
-sleeping = true
-script = ExtResource( 20 )
-nb_debris = 30
-explosion_impulse = 150.0
-explosion_impulse_modifier = 0.7
-maxvelocity_y = 0
-hitpoint = 3
-
 [node name="Gears" type="Node2D" parent="InteractivesObjects/Collactables"]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Gear" type="Area2D" parent="InteractivesObjects/Collactables/Gears" instance=ExtResource( 15 )]
-position = Vector2( 2258.06, 31.8742 )
-script = ExtResource( 22 )
-speed = 300
-initial_impulse = false
-is_collected = false
-
-[node name="Gear2" type="Area2D" parent="InteractivesObjects/Collactables/Gears" instance=ExtResource( 15 )]
+[node name="Gear2" type="Area2D" parent="InteractivesObjects/Collactables/Gears" instance=ExtResource( 17 )]
 position = Vector2( 4120.42, 79.4874 )
-script = ExtResource( 22 )
+script = ExtResource( 11 )
 speed = 300
 initial_impulse = false
 is_collected = false
@@ -767,23 +618,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BreakablePlateform2" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 27 )]
-position = Vector2( 2196, 324 )
-mode = 1
-gravity_scale = 0.0
-custom_integrator = true
-contacts_reported = 10
-contact_monitor = true
-can_sleep = false
-script = ExtResource( 25 )
-nb_debris = 10
-explosion_impulse = 80.0
-explosion_impulse_modifier = 0.7
-maxvelocity_y = 0
-instant_break = false
-nb_shake = 3
-
-[node name="BreakablePlateform3" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 27 )]
+[node name="BreakablePlateform3" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 20 )]
 position = Vector2( 2832, 480 )
 mode = 1
 gravity_scale = 0.0
@@ -791,7 +626,7 @@ custom_integrator = true
 contacts_reported = 10
 contact_monitor = true
 can_sleep = false
-script = ExtResource( 25 )
+script = ExtResource( 24 )
 nb_debris = 10
 explosion_impulse = 80.0
 explosion_impulse_modifier = 0.7
@@ -799,7 +634,7 @@ maxvelocity_y = 0
 instant_break = false
 nb_shake = 3
 
-[node name="BreakablePlateform4" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 27 )]
+[node name="BreakablePlateform4" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 20 )]
 position = Vector2( 2292, 432 )
 mode = 1
 gravity_scale = 0.0
@@ -807,7 +642,7 @@ custom_integrator = true
 contacts_reported = 10
 contact_monitor = true
 can_sleep = false
-script = ExtResource( 25 )
+script = ExtResource( 24 )
 nb_debris = 10
 explosion_impulse = 80.0
 explosion_impulse_modifier = 0.7
@@ -815,23 +650,7 @@ maxvelocity_y = 0
 instant_break = false
 nb_shake = 3
 
-[node name="BreakablePlateform5" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 27 )]
-position = Vector2( 2448, 300 )
-mode = 1
-gravity_scale = 0.0
-custom_integrator = true
-contacts_reported = 10
-contact_monitor = true
-can_sleep = false
-script = ExtResource( 25 )
-nb_debris = 10
-explosion_impulse = 80.0
-explosion_impulse_modifier = 0.7
-maxvelocity_y = 0
-instant_break = false
-nb_shake = 3
-
-[node name="BreakablePlateform6" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 27 )]
+[node name="BreakablePlateform6" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 20 )]
 position = Vector2( 2568, 504 )
 mode = 1
 gravity_scale = 0.0
@@ -839,7 +658,7 @@ custom_integrator = true
 contacts_reported = 10
 contact_monitor = true
 can_sleep = false
-script = ExtResource( 25 )
+script = ExtResource( 24 )
 nb_debris = 10
 explosion_impulse = 80.0
 explosion_impulse_modifier = 0.7
@@ -847,39 +666,7 @@ maxvelocity_y = 0
 instant_break = false
 nb_shake = 3
 
-[node name="BreakablePlateform7" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 27 )]
-position = Vector2( 2724, 276 )
-mode = 1
-gravity_scale = 0.0
-custom_integrator = true
-contacts_reported = 10
-contact_monitor = true
-can_sleep = false
-script = ExtResource( 25 )
-nb_debris = 10
-explosion_impulse = 80.0
-explosion_impulse_modifier = 0.7
-maxvelocity_y = 0
-instant_break = false
-nb_shake = 3
-
-[node name="BreakablePlateform9" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 27 )]
-position = Vector2( 2904, 240 )
-mode = 1
-gravity_scale = 0.0
-custom_integrator = true
-contacts_reported = 10
-contact_monitor = true
-can_sleep = false
-script = ExtResource( 25 )
-nb_debris = 10
-explosion_impulse = 80.0
-explosion_impulse_modifier = 0.7
-maxvelocity_y = 0
-instant_break = false
-nb_shake = 3
-
-[node name="BreakablePlateform10" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 27 )]
+[node name="BreakablePlateform10" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 20 )]
 position = Vector2( 3876, 144 )
 mode = 1
 gravity_scale = 0.0
@@ -887,23 +674,7 @@ custom_integrator = true
 contacts_reported = 10
 contact_monitor = true
 can_sleep = false
-script = ExtResource( 25 )
-nb_debris = 10
-explosion_impulse = 80.0
-explosion_impulse_modifier = 0.7
-maxvelocity_y = 0
-instant_break = false
-nb_shake = 3
-
-[node name="BreakablePlateform8" type="RigidBody2D" parent="InteractivesObjects/Platform" instance=ExtResource( 27 )]
-position = Vector2( 2640, 180 )
-mode = 1
-gravity_scale = 0.0
-custom_integrator = true
-contacts_reported = 10
-contact_monitor = true
-can_sleep = false
-script = ExtResource( 25 )
+script = ExtResource( 24 )
 nb_debris = 10
 explosion_impulse = 80.0
 explosion_impulse_modifier = 0.7
@@ -944,81 +715,33 @@ __meta__ = {
 
 [node name="Checkpoint" type="Node2D" parent="Events/Checkpoints" instance=ExtResource( 38 )]
 position = Vector2( 1960, 352 )
-script = ExtResource( 36 )
+script = ExtResource( 44 )
 triggers_on_level_start = false
 event_disabled = false
-active = false
+active = true
 
-[node name="TriggerArea" type="Area2D" parent="Events/Checkpoints/Checkpoint" index="0"]
-position = Vector2( 0, -26 )
-scale = Vector2( 2.6, 3.43537 )
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_lock_": true
-}
-all_players = false
+[node name="NewStartingPoint1" type="Node2D" parent="Events/Checkpoints/Checkpoint" instance=ExtResource( 39 )]
+position = Vector2( -16, -16 )
+script = ExtResource( 23 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Events/Checkpoints/Checkpoint" index="1"]
-position = Vector2( 0, -16 )
-z_index = -1
-z_as_relative = false
-frames = SubResource( 2 )
-animation = "Idle"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Light2D" type="Light2D" parent="Events/Checkpoints/Checkpoint/AnimatedSprite" index="0"]
-position = Vector2( 0, -8 )
-texture = ExtResource( 4 )
-texture_scale = 1.5
-color = Color( 0, 0.788235, 1, 1 )
-energy = 0.0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Events/Checkpoints/Checkpoint" index="2"]
-anims/LightUp = SubResource( 3 )
+[node name="NewStartingPoint2" type="Node2D" parent="Events/Checkpoints/Checkpoint" instance=ExtResource( 31 )]
+position = Vector2( 32, -40 )
+script = ExtResource( 23 )
 
 [node name="Checkpoint2" type="Node2D" parent="Events/Checkpoints" instance=ExtResource( 38 )]
 position = Vector2( 3416, 424 )
-script = ExtResource( 36 )
+script = ExtResource( 44 )
 triggers_on_level_start = false
 event_disabled = false
-active = false
+active = true
 
-[node name="TriggerArea" type="Area2D" parent="Events/Checkpoints/Checkpoint2" index="0"]
-position = Vector2( 0, -26 )
-scale = Vector2( 2.6, 3.43537 )
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_lock_": true
-}
-all_players = false
+[node name="NewStartingPoint1" type="Node2D" parent="Events/Checkpoints/Checkpoint2" instance=ExtResource( 39 )]
+position = Vector2( -8, -16 )
+script = ExtResource( 23 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Events/Checkpoints/Checkpoint2" index="1"]
-position = Vector2( 0, -16 )
-z_index = -1
-z_as_relative = false
-frames = SubResource( 2 )
-animation = "Idle"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Light2D" type="Light2D" parent="Events/Checkpoints/Checkpoint2/AnimatedSprite" index="0"]
-position = Vector2( 0, -8 )
-texture = ExtResource( 4 )
-texture_scale = 1.5
-color = Color( 0, 0.788235, 1, 1 )
-energy = 0.0
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Events/Checkpoints/Checkpoint2" index="2"]
-anims/LightUp = SubResource( 3 )
+[node name="NewStartingPoint2" type="Node2D" parent="Events/Checkpoints/Checkpoint2" instance=ExtResource( 31 )]
+position = Vector2( 40, -16 )
+script = ExtResource( 23 )
 
 [node name="CameraEvents" type="Node2D" parent="Events"]
 __meta__ = {
@@ -1026,10 +749,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CameraEvent" type="Node2D" parent="Events/CameraEvents" instance=ExtResource( 29 )]
+[node name="CameraEvent" type="Node2D" parent="Events/CameraEvents" instance=ExtResource( 3 )]
 position = Vector2( 2100, 288 )
 scale = Vector2( 2.888, 3.606 )
-script = ExtResource( 8 )
+script = ExtResource( 46 )
 triggers_on_level_start = false
 event_disabled = false
 camera_new_zoom = Vector2( 2, 2 )
@@ -1037,34 +760,35 @@ camera_new_speed = -1.0
 zoom_duration = 3.0
 follow_state = false
 
-[node name="TriggerArea" type="Area2D" parent="Events/CameraEvents/CameraEvent" index="0"]
-script = ExtResource( 7 )
+[node name="TriggerArea" type="Area2D" parent="Events/CameraEvents/CameraEvent"]
+script = ExtResource( 47 )
 __meta__ = {
 "_edit_lock_": true
 }
 all_players = false
 
-[node name="Position2D" type="Position2D" parent="Events/CameraEvents/CameraEvent" index="1"]
+[node name="Position2D" type="Position2D" parent="Events/CameraEvents/CameraEvent"]
 position = Vector2( 225.762, 9.98335 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CameraEvent2" type="Node2D" parent="Events/CameraEvents" instance=ExtResource( 29 )]
-position = Vector2( 3240, 328 )
-scale = Vector2( 2.78722, 18.5043 )
-script = ExtResource( 8 )
-triggers_on_level_start = false
-event_disabled = false
-camera_new_zoom = Vector2( 1, 1 )
-camera_new_speed = -1.0
-zoom_duration = 3.0
-follow_state = true
+[node name="TriggerArea" type="Area2D" parent="Events/CameraEvents/CameraEvent" index="2"]
+script = ExtResource( 47 )
+__meta__ = {
+"_edit_lock_": true
+}
+all_players = false
 
-[node name="CameraEvent3" type="Node2D" parent="Events/CameraEvents" instance=ExtResource( 29 )]
+[node name="Position2D" type="Position2D" parent="Events/CameraEvents/CameraEvent" index="3"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CameraEvent3" type="Node2D" parent="Events/CameraEvents" instance=ExtResource( 3 )]
 position = Vector2( 3664, 384 )
 scale = Vector2( 0.359961, 0.96 )
-script = ExtResource( 8 )
+script = ExtResource( 46 )
 triggers_on_level_start = false
 event_disabled = false
 camera_new_zoom = Vector2( 2, 2 )
@@ -1072,17 +796,29 @@ camera_new_speed = -1.0
 zoom_duration = 3.0
 follow_state = false
 
-[node name="TriggerArea" type="Area2D" parent="Events/CameraEvents/CameraEvent3" index="0"]
+[node name="TriggerArea" type="Area2D" parent="Events/CameraEvents/CameraEvent3"]
 position = Vector2( -0.000488281, 0 )
 scale = Vector2( 2.83, 3.222 )
-script = ExtResource( 7 )
+script = ExtResource( 47 )
 __meta__ = {
 "_edit_lock_": true
 }
 all_players = false
 
-[node name="Position2D" type="Position2D" parent="Events/CameraEvents/CameraEvent3" index="1"]
+[node name="Position2D" type="Position2D" parent="Events/CameraEvents/CameraEvent3"]
 position = Vector2( 601.819, -16 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TriggerArea" type="Area2D" parent="Events/CameraEvents/CameraEvent3" index="2"]
+script = ExtResource( 47 )
+__meta__ = {
+"_edit_lock_": true
+}
+all_players = false
+
+[node name="Position2D" type="Position2D" parent="Events/CameraEvents/CameraEvent3" index="3"]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1099,8 +835,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera" type="Camera2D" parent="." instance=ExtResource( 41 )]
-position = Vector2( 1649.46, 312.539 )
+[node name="Camera" type="Camera2D" parent="." instance=ExtResource( 48 )]
+position = Vector2( 3301.25, 258.167 )
 z_index = 999
 rotating = true
 current = true
@@ -1111,18 +847,18 @@ limit_bottom = 750
 limit_smoothed = true
 smoothing_enabled = true
 editor_draw_limits = true
-script = ExtResource( 32 )
+script = ExtResource( 25 )
 __meta__ = {
 "_edit_lock_": true
 }
 camera_speed = 3.0
 debug = false
 
-[node name="XionCloud" type="Area2D" parent="." instance=ExtResource( 26 )]
-position = Vector2( 487.5, 288 )
+[node name="XionCloud" type="Area2D" parent="." instance=ExtResource( 21 )]
+position = Vector2( 526.5, 288 )
 collision_layer = 49
 collision_mask = 16
-script = ExtResource( 31 )
+script = ExtResource( 26 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -1131,13 +867,9 @@ speed = 45.0
 cloud_active = true
 time_before_moving = 0.0
 
-[node name="CloudPath" type="Path2D" parent="XionCloud" instance=ExtResource( 28 )]
+[node name="CloudPath" type="Path2D" parent="XionCloud" instance=ExtResource( 19 )]
 visible = false
 curve = SubResource( 1 )
-
-[editable path="Events/Checkpoints/Checkpoint"]
-
-[editable path="Events/Checkpoints/Checkpoint2"]
 
 [editable path="Events/CameraEvents/CameraEvent"]
 

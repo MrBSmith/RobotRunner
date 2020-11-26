@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/Levels/Base/LevelBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://Scenes/Events/CameraEvents/CameraEvent.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/InteractiveObjects/Collactables/Materials/Gear/Gear.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/RedDoor.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=19]
 
 [node name="Level1B" instance=ExtResource( 1 )]
 
@@ -272,20 +274,20 @@ can_sleep = false
 [node name="Checkpoint" parent="Events/Checkpoints" index="0" instance=ExtResource( 14 )]
 position = Vector2( 1960, 352 )
 
-[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint" index="1"]
-position = Vector2( 0, -16 )
+[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint" index="3" instance=ExtResource( 19 )]
+position = Vector2( -16, -16 )
 
-[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint" index="2"]
-position = Vector2( 48, -56 )
+[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint" index="4" instance=ExtResource( 18 )]
+position = Vector2( 32, -40 )
 
 [node name="Checkpoint2" parent="Events/Checkpoints" index="1" instance=ExtResource( 14 )]
 position = Vector2( 3416, 424 )
 
-[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint2" index="1"]
-position = Vector2( -176, -154.718 )
+[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint2" index="3" instance=ExtResource( 19 )]
+position = Vector2( -8, -16 )
 
-[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint2" index="2"]
-position = Vector2( -176, -58 )
+[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint2" index="4" instance=ExtResource( 18 )]
+position = Vector2( 40, -16 )
 
 [node name="CameraEvent" parent="Events/CameraEvents" index="0" instance=ExtResource( 15 )]
 position = Vector2( 2100, 288 )
@@ -325,10 +327,6 @@ speed = 45.0
 
 [node name="CloudPath" parent="XionCloud" index="4" instance=ExtResource( 11 )]
 visible = false
-
-[editable path="Events/Checkpoints/Checkpoint"]
-
-[editable path="Events/Checkpoints/Checkpoint2"]
 
 [editable path="Events/CameraEvents/CameraEvent"]
 

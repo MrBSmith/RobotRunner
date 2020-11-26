@@ -39,9 +39,6 @@ position = Vector2( -4284, 460 )
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BGBase" parent="Map/Background/Paralaxe/Back" index="0"]
-offset = Vector2( -4000, -2000 )
-
 [node name="Light" parent="Map/Background/Paralaxe/Lights" index="0" instance=ExtResource( 9 )]
 position = Vector2( -3360, 922 )
 

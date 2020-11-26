@@ -120,7 +120,7 @@ func build_level_from_loaded_properties(level : Level):
 	if !level.is_inside_tree():
 		yield(level, "tree_entered")
 	
-	var level_properties : Dictionary = load_level_properties_from_json(level.is_loaded_from_save, level.get_meta("meta_name"))
+	var level_properties : Dictionary = load_level_properties_from_json(level.is_loaded_from_save, level.get_name())
 	apply_properties_to_level(level, level_properties)
 
 

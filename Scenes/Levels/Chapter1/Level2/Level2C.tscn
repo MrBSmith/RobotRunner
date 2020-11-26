@@ -27,62 +27,10 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Scenes/Events/Checkpoint/Checkpoint.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Scenes/Events/CameraEvents/CameraEvent.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=29]
 
-[sub_resource type="Animation" id=1]
-resource_name = "LightUp"
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite/Light2D:enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite/Light2D:energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.4, 0.7 ),
-"transitions": PoolRealArray( 1, 2.14355 ),
-"update": 0,
-"values": [ 0.0, 1.0 ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "LightUp"
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite/Light2D:enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimatedSprite/Light2D:energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.4, 0.7 ),
-"transitions": PoolRealArray( 1, 2.14355 ),
-"update": 0,
-"values": [ 0.0, 1.0 ]
-}
-
-[sub_resource type="Curve2D" id=3]
+[sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 124.587, 289.079, 0, 0, 0, 0, 4047.73, 277.073 )
 }
@@ -546,29 +494,29 @@ position = Vector2( 4080, 660 )
 [node name="Checkpoint" parent="Events/Checkpoints" index="0" instance=ExtResource( 26 )]
 position = Vector2( 1272, 496 )
 
-[node name="Checkpoint3" parent="Events/Checkpoints" index="1" instance=ExtResource( 26 )]
+[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint" index="3" instance=ExtResource( 28 )]
+position = Vector2( -32, -16 )
+
+[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint" index="4" instance=ExtResource( 29 )]
+position = Vector2( 32, -16 )
+
+[node name="Checkpoint2" parent="Events/Checkpoints" index="1" instance=ExtResource( 26 )]
 position = Vector2( 2352, 88 )
 
-[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint3" index="1"]
-position = Vector2( -64, -16 )
+[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint2" index="3" instance=ExtResource( 28 )]
+position = Vector2( -32, -16 )
 
-[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint3" index="2"]
-position = Vector2( 64, -16 )
+[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint2" index="4" instance=ExtResource( 29 )]
+position = Vector2( 32, -16 )
 
-[node name="AnimationPlayer" parent="Events/Checkpoints/Checkpoint3" index="4"]
-anims/LightUp = SubResource( 1 )
-
-[node name="Checkpoint4" parent="Events/Checkpoints" index="2" instance=ExtResource( 26 )]
+[node name="Checkpoint3" parent="Events/Checkpoints" index="2" instance=ExtResource( 26 )]
 position = Vector2( 3888, 664 )
 
-[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint4" index="1"]
+[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint3" index="3" instance=ExtResource( 28 )]
+position = Vector2( -24, -16 )
+
+[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint3" index="4" instance=ExtResource( 29 )]
 position = Vector2( -176, -544 )
-
-[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint4" index="2"]
-position = Vector2( -176, 32 )
-
-[node name="AnimationPlayer" parent="Events/Checkpoints/Checkpoint4" index="4"]
-anims/LightUp = SubResource( 2 )
 
 [node name="CameraEvent" parent="Events/CameraEvents" index="0" instance=ExtResource( 27 )]
 position = Vector2( 4224, 336 )
@@ -583,8 +531,4 @@ time_before_moving = 30.0
 [node name="CloudPath" parent="XionCloud" index="4" instance=ExtResource( 19 )]
 position = Vector2( 242.118, 7.31703 )
 scale = Vector2( 0.629866, 0.168739 )
-curve = SubResource( 3 )
-
-[editable path="Events/Checkpoints/Checkpoint3"]
-
-[editable path="Events/Checkpoints/Checkpoint4"]
+curve = SubResource( 1 )

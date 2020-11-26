@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/StartingPoints/StartingPointP2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/StartingPoints/StartingPointP1.tscn" type="PackedScene" id=2]
@@ -20,12 +20,14 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Platform/BreakablePlatform/5 Tiles (Base)/BreakablePlateform.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/Tank/BabyTank.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/InteractiveObjects/Teleports/BaseTeleporter.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/BD_Group.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/InteractiveObjects/Platform/BreakablePlatform/3 Tiles/3TilesBreakablePlateform.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/InteractiveObjects/Collactables/Materials/Gear/Gear.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Scenes/Events/Checkpoint/Checkpoint.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Scenes/Events/CameraEvents/CameraEvent.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=28]
 
 [node name="Level3B" instance=ExtResource( 3 )]
 
@@ -82,6 +84,10 @@ scale = Vector2( 0.811055, 0.899533 )
 [node name="Liquid" parent="InteractivesObjects/XionLiquid" index="0" instance=ExtResource( 17 )]
 position = Vector2( 4104, 48 )
 scale = Vector2( 0.506999, 0.461851 )
+
+[node name="Liquid2" parent="InteractivesObjects/XionLiquid" index="1" instance=ExtResource( 17 )]
+position = Vector2( 3824, 136 )
+scale = Vector2( 0.241306, 0.779957 )
 
 [node name="TeleportArea" parent="InteractivesObjects/TeleportGroups" index="0" instance=ExtResource( 20 )]
 position = Vector2( 1416, 540 )
@@ -216,6 +222,12 @@ argument_array = [ "Idle" ]
 
 [node name="Checkpoint" parent="Events/Checkpoints" index="0" instance=ExtResource( 26 )]
 position = Vector2( 1560, 472 )
+
+[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint" index="3" instance=ExtResource( 21 )]
+position = Vector2( -32, -16 )
+
+[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint" index="4" instance=ExtResource( 28 )]
+position = Vector2( 32, -16 )
 
 [node name="CameraEvent" parent="Events/CameraEvents" index="0" instance=ExtResource( 27 )]
 position = Vector2( 1416, 472 )
