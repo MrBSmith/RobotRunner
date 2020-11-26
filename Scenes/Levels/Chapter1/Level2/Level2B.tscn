@@ -19,7 +19,7 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/XionLiquid/XionLiquid.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/InteractiveObjects/Platform/BreakablePlatform/5 Tiles (Base)/BreakablePlateform.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/Tank/BabyTank.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scenes/InteractiveObjects/Teleports/BaseTeleporter.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/GreenTeleporter.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/BD_Group.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/InteractiveObjects/Platform/BreakablePlatform/3 Tiles/3TilesBreakablePlateform.tscn" type="PackedScene" id=23]
@@ -89,11 +89,17 @@ scale = Vector2( 0.506999, 0.461851 )
 position = Vector2( 3824, 136 )
 scale = Vector2( 0.241306, 0.779957 )
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups" index="0" instance=ExtResource( 20 )]
+[node name="TP_Group1" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="0"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="GreenTeleporter" parent="InteractivesObjects/TeleportGroups/TP_Group1" index="0" instance=ExtResource( 20 )]
 position = Vector2( 1416, 540 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups" index="1" instance=ExtResource( 20 )]
-position = Vector2( 1788, -48 )
+[node name="GreenTeleporter2" parent="InteractivesObjects/TeleportGroups/TP_Group1" index="1" instance=ExtResource( 20 )]
+position = Vector2( 1788, -56 )
 rotation = 1.5708
 
 [node name="BD_Group1" parent="InteractivesObjects/Buttons&Doors" index="0" instance=ExtResource( 22 )]

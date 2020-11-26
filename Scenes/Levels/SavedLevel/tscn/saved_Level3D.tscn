@@ -1,271 +1,1019 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=55 format=2]
 
-[ext_resource path="res://Scenes/StartingPoints/StartingPointP2.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Levels/Base/LevelBase.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/StartingPoints/StartingPointP1.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/M/MIceBlock.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/RedButton.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/M/MEarthBlock.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/PinkTP.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/BlueButton.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/GreenButton.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/GreenDoor.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/Events/Checkpoint/Checkpoint.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/BlueTeleporter.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/GreenTeleporter.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Water/Water.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/RedTeleporter.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Levels/Base/LevelBase.gd" type="Script" id=1]
+[ext_resource path="res://Global/Tileset/LevelBase.tres" type="TileSet" id=2]
+[ext_resource path="res://Global/Lights/Light500.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/GameConsole/GameConsole.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Camera/Camera.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/StartingPoints/StartingPoint.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/GUI/GUI.gd" type="Script" id=8]
+[ext_resource path="res://Global/Background/Background.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Fog/CosmeticFog/magenta_FG_fog_shadermaterial.tres" type="Material" id=10]
+[ext_resource path="res://Scenes/Fog/CosmeticFog/green_bg_fog_shadermaterial.tres" type="Material" id=11]
+[ext_resource path="res://Global/Background/Gears.png" type="Texture" id=12]
+[ext_resource path="res://icon.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/S (BASE)/IceBlockBase.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/Scripts/ButtonBase.gd" type="Script" id=15]
+[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Scripts/TeleportArea.gd" type="Script" id=16]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/S (base)/EarthBlockBase.gd" type="Script" id=17]
+[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/LiquidShaderTool.gd" type="Script" id=19]
+[ext_resource path="res://Scenes/GUI/HUD/HUD.gd" type="Script" id=20]
+[ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.gd" type="Script" id=21]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/Scripts/DoorBase.gd" type="Script" id=22]
+[ext_resource path="res://Scenes/Levels/Base/Paralaxe.gd" type="Script" id=23]
+[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Water/WaterNoise1.tres" type="OpenSimplexNoise" id=24]
+[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Water/Scripts/WaterTile.gd" type="Script" id=25]
+[ext_resource path="res://Scenes/Events/Checkpoint/Checkpoint.gd" type="Script" id=26]
+[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scenes/Camera/Camera.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/M/MIceBlock.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/RedButton.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/GreenButton.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Shader/Lava_shader_material.tres" type="Material" id=32]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/M/MEarthBlock.tscn" type="PackedScene" id=33]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/BlueButton.tscn" type="PackedScene" id=34]
+[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Water/Water.tscn" type="PackedScene" id=35]
+[ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.tscn" type="PackedScene" id=37]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/GreenDoor.tscn" type="PackedScene" id=38]
+[ext_resource path="res://Global/Background/ProdLine.tscn" type="PackedScene" id=39]
+[ext_resource path="res://Scenes/Events/Checkpoint/Checkpoint.tscn" type="PackedScene" id=40]
+[ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=41]
+[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/GreenTeleporter.tscn" type="PackedScene" id=42]
+[ext_resource path="res://Scenes/StartingPoints/StartingPointP1.tscn" type="PackedScene" id=43]
+[ext_resource path="res://Scenes/GameConsole/GameConsole.tscn" type="PackedScene" id=44]
+[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/BlueTeleporter.tscn" type="PackedScene" id=45]
+[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/PinkTP.tscn" type="PackedScene" id=46]
+[ext_resource path="res://Scenes/StartingPoints/StartingPointP2.tscn" type="PackedScene" id=47]
+[ext_resource path="res://Scenes/GUI/HUD/HUD.tscn" type="PackedScene" id=48]
+[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/RedTeleporter.tscn" type="PackedScene" id=49]
 
-[node name="Level3D" instance=ExtResource( 2 )]
+[sub_resource type="NoiseTexture" id=1]
+seamless = true
+noise = ExtResource( 24 )
 
-[node name="StartingPointP1" parent="." index="0" instance=ExtResource( 4 )]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 255.161, 74 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Area2D
+
+onready var layer_change_teleport_node : Node
+
+onready var teleport_master_node = get_parent()
+
+var teleporters_array : Array
+var player_already_on_teleportarea : bool
+
+func _ready():
+	var _err
+	_err = connect(\"body_entered\", self, \"on_body_entered\")
+	_err = connect(\"body_exited\", self, \"on_body_exited\")
+	
+	# Get all the teleporters in the group
+	teleporters_array = teleport_master_node.get_children()
+	var teleport_index = get_index()
+	
+	# Get the next teleportarea node in the teleporters_array array
+	var suiv = teleport_index + 1
+	# If the next teleporter's index is superior than the last index of the array, we set the index to 0 (first teleportarea in the array)
+	if suiv > len(teleporters_array) - 1:
+		suiv = 0
+	
+	layer_change_teleport_node = teleporters_array[suiv]
+
+
+# Whenever a character enters the area of this teleport, this method gives him the referecence to this node
+func on_body_entered(body):
+	if body.is_class(\"Player\") and body.teleport_node != self:
+		body.teleport_node = self
+		player_already_on_teleportarea = true
+
+
+# Whenever a character exits the area of this teleport, set his teleport_node reference to null
+func on_body_exited(body):
+	if body.is_class(\"Player\"):
+		var is_colliding = false
+		
+		# When the character get out of the area, check if it's because he left, or because he did teleport
+		for teleporter in teleporters_array:
+			if teleporter.overlaps_body(body) == true and teleporter != self:
+				is_colliding = true
+				player_already_on_teleportarea = false
+		
+		# If he left, set his teleport_node value to null
+		if is_colliding == false:
+			body.teleport_node = null
+			player_already_on_teleportarea = false
+
+
+# Teleport the player the the right destination teleporter
+func teleport_layer(character : Node):
+	
+	# Get the size of the character's collision shape
+	var y_offset = character.find_node(\"CollisionShape2D\").get_shape().get_extents().y
+	var teleport_pos : Vector2 = character.global_position
+	
+	# Check if one player is already on the teleport or not
+	if(!layer_change_teleport_node.player_already_on_teleportarea):
+		teleport_pos = layer_change_teleport_node.global_position
+	
+	teleport_pos.y -= y_offset/10
+	character.set_position(teleport_pos)
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Area2D
+
+onready var layer_change_teleport_node : Node
+
+onready var teleport_master_node = get_parent()
+
+var teleporters_array : Array
+var player_already_on_teleportarea : bool
+
+func _ready():
+	var _err
+	_err = connect(\"body_entered\", self, \"on_body_entered\")
+	_err = connect(\"body_exited\", self, \"on_body_exited\")
+	
+	# Get all the teleporters in the group
+	teleporters_array = teleport_master_node.get_children()
+	var teleport_index = get_index()
+	
+	# Get the next teleportarea node in the teleporters_array array
+	var suiv = teleport_index + 1
+	# If the next teleporter's index is superior than the last index of the array, we set the index to 0 (first teleportarea in the array)
+	if suiv > len(teleporters_array) - 1:
+		suiv = 0
+	
+	layer_change_teleport_node = teleporters_array[suiv]
+
+
+# Whenever a character enters the area of this teleport, this method gives him the referecence to this node
+func on_body_entered(body):
+	if body.is_class(\"Player\") and body.teleport_node != self:
+		body.teleport_node = self
+		player_already_on_teleportarea = true
+
+
+# Whenever a character exits the area of this teleport, set his teleport_node reference to null
+func on_body_exited(body):
+	if body.is_class(\"Player\"):
+		var is_colliding = false
+		
+		# When the character get out of the area, check if it's because he left, or because he did teleport
+		for teleporter in teleporters_array:
+			if teleporter.overlaps_body(body) == true and teleporter != self:
+				is_colliding = true
+				player_already_on_teleportarea = false
+		
+		# If he left, set his teleport_node value to null
+		if is_colliding == false:
+			body.teleport_node = null
+			player_already_on_teleportarea = false
+
+
+# Teleport the player the the right destination teleporter
+func teleport_layer(character : Node):
+	
+	# Get the size of the character's collision shape
+	var y_offset = character.find_node(\"CollisionShape2D\").get_shape().get_extents().y
+	var teleport_pos : Vector2 = character.global_position
+	
+	# Check if one player is already on the teleport or not
+	if(!layer_change_teleport_node.player_already_on_teleportarea):
+		teleport_pos = layer_change_teleport_node.global_position
+	
+	teleport_pos.y -= y_offset/10
+	character.set_position(teleport_pos)
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Area2D
+
+onready var layer_change_teleport_node : Node
+
+onready var teleport_master_node = get_parent()
+
+var teleporters_array : Array
+var player_already_on_teleportarea : bool
+
+func _ready():
+	var _err
+	_err = connect(\"body_entered\", self, \"on_body_entered\")
+	_err = connect(\"body_exited\", self, \"on_body_exited\")
+	
+	# Get all the teleporters in the group
+	teleporters_array = teleport_master_node.get_children()
+	var teleport_index = get_index()
+	
+	# Get the next teleportarea node in the teleporters_array array
+	var suiv = teleport_index + 1
+	# If the next teleporter's index is superior than the last index of the array, we set the index to 0 (first teleportarea in the array)
+	if suiv > len(teleporters_array) - 1:
+		suiv = 0
+	
+	layer_change_teleport_node = teleporters_array[suiv]
+
+
+# Whenever a character enters the area of this teleport, this method gives him the referecence to this node
+func on_body_entered(body):
+	if body.is_class(\"Player\") and body.teleport_node != self:
+		body.teleport_node = self
+		player_already_on_teleportarea = true
+
+
+# Whenever a character exits the area of this teleport, set his teleport_node reference to null
+func on_body_exited(body):
+	if body.is_class(\"Player\"):
+		var is_colliding = false
+		
+		# When the character get out of the area, check if it's because he left, or because he did teleport
+		for teleporter in teleporters_array:
+			if teleporter.overlaps_body(body) == true and teleporter != self:
+				is_colliding = true
+				player_already_on_teleportarea = false
+		
+		# If he left, set his teleport_node value to null
+		if is_colliding == false:
+			body.teleport_node = null
+			player_already_on_teleportarea = false
+
+
+# Teleport the player the the right destination teleporter
+func teleport_layer(character : Node):
+	
+	# Get the size of the character's collision shape
+	var y_offset = character.find_node(\"CollisionShape2D\").get_shape().get_extents().y
+	var teleport_pos : Vector2 = character.global_position
+	
+	# Check if one player is already on the teleport or not
+	if(!layer_change_teleport_node.player_already_on_teleportarea):
+		teleport_pos = layer_change_teleport_node.global_position
+	
+	teleport_pos.y -= y_offset/10
+	character.set_position(teleport_pos)
+"
+
+[node name="Level3D" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StartingPointP1" type="Node2D" parent="." groups=[
+"StartingPoint",
+] instance=ExtResource( 43 )]
 position = Vector2( 88, 240 )
+script = ExtResource( 7 )
 
-[node name="StartingPointP2" parent="." index="1" instance=ExtResource( 1 )]
+[node name="StartingPointP2" type="Node2D" parent="." groups=[
+"StartingPoint",
+] instance=ExtResource( 47 )]
 position = Vector2( 512, 240 )
+script = ExtResource( 7 )
 
-[node name="Popups" parent="GUI" index="0"]
+[node name="Foreground" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Fog" type="Node2D" parent="Foreground"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Fog" type="Sprite" parent="Foreground/Fog"]
+material = ExtResource( 10 )
+position = Vector2( 470.01, 277.517 )
+scale = Vector2( 2.09202, 1.27633 )
+texture = ExtResource( 13 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 480, 540 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GUI" type="CanvasLayer" parent="."]
+layer = 2
+script = ExtResource( 8 )
+
+[node name="Popups" type="Control" parent="GUI"]
 visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 
-[node name="Walls" parent="Map" index="1"]
+[node name="HUD" type="Control" parent="GUI" instance=ExtResource( 48 )]
+anchor_right = 1.0
+anchor_bottom = 0.143
+margin_top = -64.0
+margin_bottom = -64.22
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+hidden = true
+speed = 400
+
+[node name="GameConsole" type="Control" parent="GUI" instance=ExtResource( 44 )]
+pause_mode = 2
+visible = false
+margin_top = -1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Map" type="Node2D" parent="."]
+z_index = 2
+z_as_relative = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background" type="Node2D" parent="Map"]
+z_index = -1
+z_as_relative = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Paralaxe" type="ParallaxBackground" parent="Map/Background"]
+layer = -1
+scroll_offset = Vector2( -1081.03, 3.68991 )
+script = ExtResource( 23 )
+
+[node name="Back" type="ParallaxLayer" parent="Map/Background/Paralaxe"]
+position = Vector2( -1081.03, -1148.31 )
+motion_mirroring = Vector2( 2048, 1152 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="BGBase" type="Sprite" parent="Map/Background/Paralaxe/Back"]
+modulate = Color( 1, 0.96, 0.96, 1 )
+light_mask = 2
+texture = ExtResource( 9 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 2048, 1152 )
+region_filter_clip = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Lights" type="Node2D" parent="Map/Background/Paralaxe"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Gears" type="ParallaxLayer" parent="Map/Background/Paralaxe"]
+position = Vector2( -1081.03, -1148.31 )
+motion_mirroring = Vector2( 2048, 1152 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Gears" type="Sprite" parent="Map/Background/Paralaxe/Gears"]
+modulate = Color( 1, 0.903333, 0.9, 1 )
+light_mask = 2
+texture = ExtResource( 12 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 2048, 1152 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ProdLine1" type="ParallaxLayer" parent="Map/Background/Paralaxe" instance=ExtResource( 39 )]
+position = Vector2( -1081.03, -266.31 )
+motion_mirroring = Vector2( 2048, 640 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="ProdLine2" type="ParallaxLayer" parent="Map/Background/Paralaxe" instance=ExtResource( 39 )]
+position = Vector2( -1081.03, -626.31 )
+motion_mirroring = Vector2( 2048, 640 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Fog" type="ParallaxLayer" parent="Map/Background/Paralaxe"]
+position = Vector2( -1081.03, -2044.31 )
+motion_mirroring = Vector2( 2048, 2048 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Fog" type="Sprite" parent="Map/Background/Paralaxe/Fog"]
+material = ExtResource( 11 )
+texture = ExtResource( 13 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 2048, 2048 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Walls" type="TileMap" parent="Map"]
+z_index = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 24, 24 )
+collision_layer = 5
+collision_mask = 5
+format = 1
 tile_data = PoolIntArray( -262037, 6, 0, -262036, 6, 1, -262035, 6, 1, -262034, 6, 1, -262033, 6, 1, -262032, 6, 1, -262031, 6, 1, -262030, 6, 1, -262029, 6, 1, -262028, 6, 1, -262027, 6, 1, -262026, 6, 1, -262025, 6, 1, -262024, 6, 1, -262023, 6, 1, -262022, 6, 1, -262021, 6, 1, -262020, 6, 1, -262019, 6, 1, -262018, 6, 1, -262017, 6, 1, -262016, 6, 1, -262015, 6, 2, -196503, 6, 0, -196502, 6, 1, -196501, 6, 65539, -196500, 31, 65536, -196499, 6, 131073, -196498, 6, 131073, -196497, 6, 131073, -196496, 6, 131073, -196495, 6, 131073, -196494, 6, 131073, -196493, 6, 131073, -196492, 6, 131073, -196491, 6, 131073, -196490, 6, 131073, -196489, 6, 131073, -196488, 6, 131073, -196487, 6, 131073, -196486, 6, 131073, -196485, 6, 131073, -196484, 6, 131073, -196483, 6, 131073, -196482, 6, 131073, -196481, 6, 131073, -196480, 6, 131075, -196479, 6, 65538, -130968, 6, 0, -130967, 6, 65539, -130966, 31, 65536, -130965, 6, 131073, -130964, 31, 65537, -130944, 6, 65536, -130943, 6, 65538, -65432, 6, 65536, -65431, 31, 65536, -65430, 31, 65537, -65408, 6, 65536, -65407, 6, 65538, 0, 6, 0, 1, 6, 1, 2, 6, 1, 3, 6, 1, 4, 6, 1, 5, 6, 1, 6, 6, 1, 7, 6, 1, 8, 6, 1, 9, 6, 1, 10, 6, 1, 11, 6, 1, 12, 6, 1, 13, 6, 1, 14, 6, 1, 15, 6, 1, 16, 6, 1, 17, 6, 1, 18, 6, 1, 19, 6, 1, 20, 6, 1, 21, 6, 1, 22, 6, 1, 23, 6, 1, 24, 6, 1, 25, 6, 1, 26, 6, 1, 27, 6, 1, 28, 6, 1, 29, 6, 1, 30, 6, 1, 31, 6, 1, 32, 6, 1, 33, 6, 1, 34, 6, 1, 35, 6, 1, 36, 6, 1, 37, 6, 1, 38, 6, 1, 39, 6, 1, 40, 6, 1, 41, 6, 1, 42, 6, 1, 43, 6, 1, 44, 6, 1, 45, 6, 1, 46, 6, 1, 47, 6, 1, 48, 6, 1, 49, 6, 1, 50, 6, 1, 51, 6, 1, 52, 6, 1, 53, 6, 1, 54, 6, 1, 55, 6, 1, 56, 6, 1, 57, 6, 1, 58, 6, 1, 59, 6, 1, 60, 6, 1, 61, 6, 1, 62, 6, 1, 63, 6, 1, 64, 6, 1, 65, 6, 1, 66, 6, 1, 67, 6, 1, 68, 6, 1, 69, 6, 1, 70, 6, 1, 71, 6, 1, 72, 6, 1, 73, 6, 1, 74, 6, 1, 75, 6, 1, 76, 6, 1, 77, 6, 1, 78, 6, 1, 79, 6, 1, 80, 6, 1, 81, 6, 1, 82, 6, 1, 83, 6, 1, 84, 6, 1, 85, 6, 1, 86, 6, 1, 87, 6, 1, 88, 6, 1, 89, 6, 1, 90, 6, 1, 91, 6, 1, 92, 6, 1, 93, 6, 1, 94, 6, 1, 95, 6, 1, 96, 6, 1, 97, 6, 1, 98, 6, 1, 99, 6, 1, 100, 6, 1, 101, 6, 1, 102, 6, 1, 103, 6, 1, 104, 6, 65539, 105, 6, 65538, 128, 6, 65536, 129, 6, 65538, 65536, 6, 65536, 65537, 6, 65537, 65538, 6, 65537, 65539, 6, 65537, 65540, 6, 65537, 65541, 6, 65537, 65542, 6, 65537, 65543, 6, 65537, 65544, 6, 65537, 65545, 6, 65537, 65546, 6, 65537, 65547, 6, 65537, 65548, 6, 65537, 65549, 6, 65537, 65550, 6, 65537, 65551, 6, 65537, 65552, 6, 65537, 65553, 6, 65537, 65554, 6, 65537, 65555, 6, 65537, 65556, 6, 65537, 65557, 6, 65537, 65558, 6, 65537, 65559, 6, 65537, 65560, 6, 65537, 65561, 6, 65537, 65562, 6, 65537, 65563, 6, 65537, 65564, 6, 65537, 65565, 6, 65537, 65566, 6, 65537, 65567, 6, 65537, 65568, 6, 65537, 65569, 6, 65537, 65570, 6, 65537, 65571, 6, 65537, 65572, 6, 65537, 65573, 6, 65537, 65574, 31, 65536, 65575, 6, 131073, 65576, 6, 131073, 65577, 31, 131072, 65578, 6, 65537, 65579, 6, 65537, 65580, 6, 65537, 65581, 6, 65537, 65582, 6, 65537, 65583, 6, 65537, 65584, 6, 65537, 65585, 6, 65537, 65586, 6, 65537, 65587, 6, 65537, 65588, 6, 65537, 65589, 6, 131076, 65590, 6, 131073, 65591, 6, 131075, 65592, 6, 65537, 65593, 6, 65537, 65594, 6, 65537, 65595, 6, 65537, 65596, 6, 65537, 65597, 6, 65537, 65598, 6, 65537, 65599, 6, 65537, 65600, 6, 65537, 65601, 6, 131076, 65602, 6, 131073, 65603, 6, 131075, 65604, 6, 65537, 65605, 6, 65537, 65606, 6, 65537, 65607, 6, 65537, 65608, 6, 65537, 65609, 6, 65537, 65610, 6, 65537, 65611, 6, 65537, 65612, 6, 65537, 65613, 6, 65537, 65614, 6, 65537, 65615, 6, 65537, 65616, 6, 65537, 65617, 6, 65537, 65618, 6, 65537, 65619, 6, 65537, 65620, 6, 65537, 65621, 6, 65537, 65622, 6, 65537, 65623, 6, 65537, 65624, 6, 65537, 65625, 6, 65537, 65626, 6, 65537, 65627, 6, 65537, 65628, 6, 65537, 65629, 6, 65537, 65630, 6, 65537, 65631, 6, 65537, 65632, 6, 131076, 65633, 6, 131073, 65634, 6, 131073, 65635, 6, 131075, 65636, 6, 65537, 65637, 6, 65537, 65638, 6, 65537, 65639, 6, 65537, 65640, 31, 65536, 65641, 31, 65537, 65664, 6, 65536, 65665, 6, 65538, 131072, 6, 65536, 131073, 6, 65537, 131074, 6, 65537, 131075, 6, 65537, 131076, 6, 65537, 131077, 6, 65537, 131078, 6, 65537, 131079, 6, 65537, 131080, 6, 65537, 131081, 6, 65537, 131082, 6, 65537, 131083, 6, 65537, 131084, 6, 65537, 131085, 6, 65537, 131086, 6, 65537, 131087, 6, 65537, 131088, 6, 65537, 131089, 6, 65537, 131090, 6, 65537, 131091, 6, 65537, 131092, 6, 65537, 131093, 6, 65537, 131094, 6, 65537, 131095, 6, 65537, 131096, 6, 65537, 131097, 6, 65537, 131098, 6, 65537, 131099, 6, 65537, 131100, 6, 65537, 131101, 6, 65537, 131102, 6, 65537, 131103, 6, 65537, 131104, 6, 65537, 131105, 6, 65537, 131106, 6, 65537, 131107, 6, 65537, 131108, 6, 65537, 131109, 31, 65536, 131110, 31, 65537, 131113, 31, 196608, 131114, 31, 131072, 131115, 6, 65537, 131116, 6, 65537, 131117, 6, 65537, 131118, 6, 65537, 131119, 6, 65537, 131120, 6, 65537, 131121, 6, 65537, 131122, 6, 65537, 131123, 6, 65537, 131124, 6, 65537, 131125, 6, 65538, 131127, 6, 65536, 131128, 6, 65537, 131129, 6, 65537, 131130, 6, 65537, 131131, 6, 65537, 131132, 6, 65537, 131133, 6, 65537, 131134, 6, 65537, 131135, 6, 65537, 131136, 6, 65537, 131137, 6, 65538, 131139, 6, 65536, 131140, 6, 65537, 131141, 6, 65537, 131142, 6, 65537, 131143, 6, 65537, 131144, 6, 65537, 131145, 6, 131076, 131146, 6, 131073, 131147, 31, 131072, 131148, 6, 65537, 131149, 6, 65537, 131150, 6, 65537, 131151, 6, 65537, 131152, 6, 65537, 131153, 6, 65537, 131154, 6, 65537, 131155, 6, 65537, 131156, 6, 65537, 131157, 6, 65537, 131158, 6, 65537, 131159, 6, 65537, 131160, 6, 65537, 131161, 6, 65537, 131162, 6, 65537, 131163, 6, 65537, 131164, 6, 65537, 131165, 31, 65536, 131166, 6, 131073, 131167, 6, 131075, 131168, 6, 65538, 131171, 6, 65536, 131172, 6, 65537, 131173, 6, 65537, 131174, 6, 65537, 131175, 6, 65537, 131176, 6, 65538, 131200, 6, 65536, 131201, 6, 65538, 196608, 6, 65536, 196609, 6, 65537, 196610, 6, 131076, 196611, 6, 131073, 196612, 6, 131073, 196613, 31, 131072, 196614, 6, 65537, 196615, 6, 65537, 196616, 6, 65537, 196617, 6, 65537, 196618, 6, 65537, 196619, 31, 65536, 196620, 6, 131073, 196621, 31, 131072, 196622, 6, 65537, 196623, 6, 65537, 196624, 6, 65537, 196625, 6, 65537, 196626, 6, 65537, 196627, 31, 65536, 196628, 6, 131073, 196629, 6, 131073, 196630, 6, 131075, 196631, 6, 65537, 196632, 6, 65537, 196633, 6, 65537, 196634, 6, 65537, 196635, 6, 65537, 196636, 6, 65537, 196637, 6, 65537, 196638, 6, 65537, 196639, 6, 65537, 196640, 6, 65537, 196641, 6, 65537, 196642, 6, 65537, 196643, 6, 65537, 196644, 31, 65536, 196645, 31, 65537, 196650, 31, 196608, 196651, 31, 131072, 196652, 6, 65537, 196653, 6, 65537, 196654, 6, 65537, 196655, 6, 65537, 196656, 6, 65537, 196657, 6, 65537, 196658, 6, 65537, 196659, 6, 65537, 196660, 6, 131076, 196661, 6, 131074, 196663, 6, 131072, 196664, 6, 131075, 196665, 6, 65537, 196666, 6, 65537, 196667, 6, 65537, 196668, 6, 65537, 196669, 6, 65537, 196670, 6, 65537, 196671, 6, 65537, 196672, 6, 131076, 196673, 6, 131074, 196675, 6, 131072, 196676, 6, 131075, 196677, 6, 65537, 196678, 6, 65537, 196679, 6, 65537, 196680, 6, 65537, 196681, 6, 65538, 196683, 31, 196608, 196684, 31, 131072, 196685, 6, 65537, 196686, 6, 65537, 196687, 6, 65537, 196688, 6, 65537, 196689, 6, 65537, 196690, 6, 65537, 196691, 6, 65537, 196692, 6, 65537, 196693, 6, 65537, 196694, 6, 65537, 196695, 6, 65537, 196696, 6, 65537, 196697, 6, 65537, 196698, 6, 65537, 196699, 6, 65537, 196700, 31, 65536, 196701, 31, 65537, 196703, 6, 65536, 196704, 6, 65538, 196707, 6, 131072, 196708, 6, 131075, 196709, 6, 65537, 196710, 6, 65537, 196711, 6, 65537, 196712, 6, 65538, 196736, 6, 65536, 196737, 6, 65538, 262144, 6, 65536, 262145, 6, 131076, 262146, 6, 131074, 262149, 31, 196608, 262150, 31, 131072, 262151, 6, 65537, 262152, 6, 65537, 262153, 6, 65537, 262154, 31, 65536, 262155, 31, 65537, 262157, 31, 196608, 262158, 31, 131072, 262159, 6, 65537, 262160, 6, 65537, 262161, 6, 65537, 262162, 31, 65536, 262163, 31, 65537, 262166, 6, 131072, 262167, 6, 131075, 262168, 6, 65537, 262169, 6, 65537, 262170, 6, 65537, 262171, 6, 65537, 262172, 6, 65537, 262173, 6, 65537, 262174, 6, 65537, 262175, 6, 65537, 262176, 6, 65537, 262177, 6, 65537, 262178, 6, 65537, 262179, 31, 65536, 262180, 31, 65537, 262184, 6, 196609, 262187, 31, 196608, 262188, 31, 131072, 262189, 6, 65537, 262190, 6, 65537, 262191, 6, 65537, 262192, 6, 65537, 262193, 6, 65537, 262194, 6, 65537, 262195, 6, 131076, 262196, 6, 131074, 262200, 6, 131072, 262201, 6, 131075, 262202, 6, 65537, 262203, 6, 65537, 262204, 6, 65537, 262205, 6, 65537, 262206, 6, 65537, 262207, 6, 131076, 262208, 6, 131074, 262212, 6, 131072, 262213, 6, 131075, 262214, 6, 65537, 262215, 6, 65537, 262216, 6, 65537, 262217, 6, 65538, 262220, 31, 196608, 262221, 31, 131072, 262222, 6, 65537, 262223, 6, 65537, 262224, 6, 65537, 262225, 6, 65537, 262226, 6, 65537, 262227, 6, 65537, 262228, 6, 65537, 262229, 6, 65537, 262230, 6, 65537, 262231, 6, 65537, 262232, 6, 65537, 262233, 6, 65537, 262234, 6, 65537, 262235, 31, 65536, 262236, 31, 65537, 262239, 6, 65536, 262240, 6, 65538, 262244, 6, 65536, 262245, 6, 65537, 262246, 6, 65537, 262247, 6, 65537, 262248, 6, 65538, 262272, 6, 65536, 262273, 6, 65538, 327680, 6, 65536, 327681, 6, 65538, 327686, 31, 196608, 327687, 31, 131072, 327688, 6, 65537, 327689, 31, 65536, 327690, 31, 65537, 327694, 31, 196608, 327695, 31, 131072, 327696, 6, 65537, 327697, 31, 65536, 327698, 31, 65537, 327703, 6, 65536, 327704, 6, 65537, 327705, 6, 65537, 327706, 6, 65537, 327707, 6, 65537, 327708, 6, 65537, 327709, 6, 65537, 327710, 6, 65537, 327711, 6, 65537, 327712, 6, 65537, 327713, 6, 65537, 327714, 31, 65536, 327715, 31, 65537, 327719, 31, 0, 327720, 6, 65543, 327724, 31, 196608, 327725, 31, 131072, 327726, 6, 65537, 327727, 6, 65537, 327728, 6, 65537, 327729, 6, 65537, 327730, 6, 131076, 327731, 6, 131074, 327737, 6, 131072, 327738, 6, 131075, 327739, 6, 65537, 327740, 6, 65537, 327741, 6, 65537, 327742, 6, 131076, 327743, 6, 131074, 327749, 6, 131072, 327750, 6, 131073, 327751, 6, 131075, 327752, 6, 65537, 327753, 6, 65538, 327757, 31, 196608, 327758, 31, 131072, 327759, 6, 65537, 327760, 6, 65537, 327761, 6, 65537, 327762, 6, 65537, 327763, 6, 65537, 327764, 6, 65537, 327765, 6, 65537, 327766, 6, 65537, 327767, 6, 65537, 327768, 6, 65537, 327769, 6, 65537, 327770, 31, 65536, 327771, 31, 65537, 327775, 6, 65536, 327776, 6, 65538, 327780, 6, 65536, 327781, 6, 65537, 327782, 6, 65537, 327783, 6, 65537, 327784, 6, 65540, 327785, 6, 1, 327786, 31, 131073, 327808, 6, 65536, 327809, 6, 65538, 393216, 6, 65536, 393217, 6, 65538, 393223, 31, 196608, 393224, 6, 196615, 393225, 31, 65537, 393228, 6, 196609, 393231, 31, 196608, 393232, 6, 196615, 393233, 31, 65537, 393239, 6, 65536, 393240, 6, 65537, 393241, 6, 65537, 393242, 6, 65537, 393243, 6, 65537, 393244, 6, 65537, 393245, 6, 65537, 393246, 6, 65537, 393247, 6, 65537, 393248, 6, 65537, 393249, 31, 65536, 393250, 31, 65537, 393255, 6, 65536, 393256, 6, 65540, 393257, 31, 131073, 393261, 31, 196608, 393262, 31, 131072, 393263, 6, 65537, 393264, 6, 65537, 393265, 6, 131076, 393266, 6, 131074, 393268, 6, 0, 393269, 6, 1, 393270, 6, 1, 393271, 6, 1, 393272, 6, 2, 393274, 6, 131072, 393275, 6, 131073, 393276, 6, 131073, 393277, 6, 131073, 393278, 6, 131074, 393280, 6, 0, 393281, 6, 1, 393282, 6, 1, 393283, 6, 1, 393284, 6, 2, 393287, 6, 65536, 393288, 6, 65537, 393289, 6, 65538, 393294, 31, 196608, 393295, 31, 131072, 393296, 6, 65537, 393297, 6, 65537, 393298, 6, 65537, 393299, 6, 65537, 393300, 6, 65537, 393301, 6, 65537, 393302, 6, 65537, 393303, 6, 65537, 393304, 6, 65537, 393305, 31, 65536, 393306, 31, 65537, 393311, 6, 65536, 393312, 6, 65538, 393315, 31, 0, 393316, 6, 65539, 393317, 6, 65537, 393318, 6, 65537, 393319, 31, 65536, 393320, 6, 131073, 393321, 6, 131073, 393322, 6, 131074, 393344, 6, 65536, 393345, 6, 65538, 458752, 6, 65536, 458753, 6, 65538, 458755, 6, 196609, 458760, 6, 262144, 458763, 6, 262146, 458764, 6, 196613, 458765, 6, 196610, 458768, 6, 262144, 458773, 6, 196609, 458775, 6, 65536, 458776, 6, 65537, 458777, 6, 131076, 458778, 6, 131073, 458779, 6, 131073, 458780, 6, 131073, 458781, 6, 131073, 458782, 6, 131073, 458783, 6, 131073, 458784, 6, 131073, 458785, 31, 65537, 458790, 6, 262146, 458791, 6, 9, 458792, 6, 131075, 458793, 6, 262151, 458794, 6, 196610, 458798, 31, 196608, 458799, 31, 131072, 458800, 6, 65537, 458801, 6, 65538, 458804, 6, 131072, 458805, 6, 131073, 458806, 6, 131073, 458807, 6, 131073, 458808, 6, 131074, 458816, 6, 131072, 458817, 6, 131073, 458818, 6, 131073, 458819, 6, 131073, 458820, 6, 131074, 458823, 6, 65536, 458824, 6, 65537, 458825, 6, 65538, 458827, 6, 196609, 458831, 31, 196608, 458832, 31, 131072, 458833, 6, 65537, 458834, 6, 65537, 458835, 6, 65537, 458836, 6, 65537, 458837, 6, 65537, 458838, 6, 65537, 458839, 6, 65537, 458840, 31, 65536, 458841, 31, 65537, 458845, 6, 196609, 458847, 6, 65536, 458848, 6, 65538, 458851, 6, 65536, 458852, 6, 65537, 458853, 6, 65537, 458854, 6, 65537, 458855, 6, 65538, 458880, 6, 65536, 458881, 6, 65538, 524288, 6, 65536, 524289, 6, 65538, 524291, 6, 65541, 524292, 6, 196610, 524296, 6, 262145, 524300, 6, 262145, 524304, 6, 262145, 524308, 6, 262146, 524309, 6, 65542, 524311, 6, 65536, 524312, 6, 65537, 524313, 6, 65538, 524328, 6, 65536, 524329, 6, 65538, 524335, 6, 65536, 524336, 6, 65537, 524337, 6, 65538, 524359, 6, 65536, 524360, 6, 65537, 524361, 6, 65538, 524363, 6, 262144, 524368, 31, 196608, 524369, 6, 131073, 524370, 6, 131073, 524371, 6, 131073, 524372, 6, 131073, 524373, 6, 131073, 524374, 6, 131073, 524375, 6, 131073, 524376, 31, 65537, 524381, 6, 262144, 524383, 6, 65536, 524384, 6, 65538, 524387, 6, 131072, 524388, 6, 131075, 524389, 6, 65537, 524390, 31, 65536, 524391, 6, 131074, 524399, 31, 0, 524400, 6, 1, 524401, 6, 1, 524402, 6, 1, 524403, 6, 1, 524404, 6, 1, 524405, 6, 1, 524406, 6, 1, 524407, 6, 1, 524408, 6, 1, 524409, 6, 1, 524410, 6, 1, 524411, 6, 1, 524412, 6, 1, 524413, 6, 1, 524414, 6, 1, 524415, 6, 1, 524416, 6, 65539, 524417, 6, 65538, 589824, 6, 65536, 589825, 6, 65538, 589847, 6, 65536, 589848, 6, 65537, 589849, 6, 65538, 589864, 6, 65536, 589865, 6, 65538, 589871, 6, 65536, 589872, 6, 65537, 589873, 6, 65538, 589895, 6, 65536, 589896, 6, 65537, 589897, 6, 65538, 589899, 6, 262145, 589917, 6, 262145, 589919, 6, 65536, 589920, 6, 65538, 589924, 6, 131072, 589925, 6, 131075, 589926, 6, 65538, 589935, 6, 65536, 589936, 31, 65536, 589937, 6, 131073, 589938, 6, 131073, 589939, 6, 131073, 589940, 6, 131073, 589941, 6, 131073, 589942, 6, 131073, 589943, 6, 131073, 589944, 6, 131073, 589945, 6, 131073, 589946, 6, 131073, 589947, 6, 131073, 589948, 6, 131073, 589949, 6, 131073, 589950, 6, 131073, 589951, 6, 131073, 589952, 6, 131073, 589953, 6, 131074, 655360, 6, 65536, 655361, 6, 65538, 655383, 6, 65536, 655384, 6, 65537, 655385, 6, 65538, 655392, 6, 262149, 655400, 6, 65536, 655401, 6, 65538, 655407, 6, 65536, 655408, 6, 65537, 655409, 6, 65538, 655431, 6, 65536, 655432, 6, 65537, 655433, 6, 65538, 655455, 6, 65536, 655456, 6, 65538, 655461, 6, 131072, 655462, 31, 65537, 655469, 31, 0, 655470, 6, 1, 655471, 31, 1, 655472, 6, 65538, 720896, 6, 65536, 720897, 6, 262151, 720898, 6, 196608, 720899, 6, 196608, 720900, 6, 196608, 720901, 6, 196608, 720902, 6, 196610, 720906, 6, 262146, 720907, 6, 196608, 720908, 6, 196608, 720909, 6, 196608, 720910, 6, 196610, 720914, 6, 262146, 720915, 6, 196608, 720916, 6, 196608, 720917, 6, 196608, 720918, 6, 196608, 720919, 6, 262150, 720920, 6, 65537, 720921, 6, 262151, 720922, 6, 196608, 720923, 6, 196608, 720924, 6, 196608, 720925, 6, 196608, 720926, 6, 196610, 720930, 6, 262146, 720931, 6, 196608, 720932, 6, 196608, 720933, 6, 196610, 720936, 6, 65536, 720937, 6, 262151, 720938, 6, 196610, 720942, 6, 262146, 720943, 6, 262150, 720944, 6, 65537, 720945, 6, 262151, 720946, 6, 196608, 720947, 6, 196608, 720948, 6, 196608, 720949, 6, 196608, 720950, 6, 196610, 720954, 6, 262146, 720955, 6, 196608, 720956, 6, 196608, 720957, 6, 196608, 720958, 6, 196610, 720962, 6, 262146, 720963, 6, 196608, 720964, 6, 196608, 720965, 6, 196608, 720966, 6, 196608, 720967, 6, 262150, 720968, 6, 65537, 720969, 6, 262151, 720970, 6, 196608, 720971, 6, 196608, 720972, 6, 196608, 720973, 6, 196608, 720974, 6, 6, 720978, 6, 262146, 720979, 6, 196608, 720980, 6, 196608, 720981, 6, 196608, 720982, 6, 196610, 720986, 6, 5, 720987, 6, 196608, 720988, 6, 196608, 720989, 6, 196608, 720990, 6, 196608, 720991, 6, 262150, 720992, 6, 65538, 721005, 6, 65536, 721006, 31, 65536, 721007, 6, 131073, 721008, 31, 65537, 786432, 6, 65536, 786433, 6, 65538, 786455, 6, 65536, 786456, 6, 65537, 786457, 6, 65538, 786464, 6, 262149, 786472, 6, 65536, 786473, 6, 65538, 786479, 6, 65536, 786480, 6, 65537, 786481, 6, 65538, 786503, 6, 65536, 786504, 6, 65537, 786505, 6, 65538, 786510, 6, 262144, 786522, 6, 262144, 786527, 6, 65536, 786528, 6, 65538, 786539, 31, 0, 786540, 6, 1, 786541, 31, 1, 786542, 6, 65538, 851968, 6, 65536, 851969, 6, 65538, 851991, 6, 65536, 851992, 6, 65537, 851993, 6, 65538, 852008, 6, 65536, 852009, 6, 65538, 852015, 6, 65536, 852016, 6, 65537, 852017, 6, 65538, 852039, 6, 65536, 852040, 6, 65537, 852041, 6, 65538, 852046, 6, 65546, 852047, 31, 131073, 852057, 31, 0, 852058, 6, 65543, 852063, 6, 65536, 852064, 6, 65538, 852067, 6, 196609, 852075, 6, 65536, 852076, 31, 65536, 852077, 6, 131073, 852078, 31, 65537, 917504, 6, 65536, 917505, 6, 65538, 917507, 6, 5, 917508, 6, 196610, 917512, 6, 196609, 917516, 6, 196609, 917520, 6, 196609, 917524, 6, 262146, 917525, 6, 6, 917527, 6, 65536, 917528, 6, 65537, 917529, 6, 65538, 917544, 6, 65536, 917545, 6, 65538, 917551, 6, 65536, 917552, 6, 65537, 917553, 6, 65538, 917575, 6, 65536, 917576, 6, 65537, 917577, 6, 65538, 917582, 6, 65536, 917583, 31, 196609, 917584, 6, 1, 917585, 6, 1, 917586, 6, 1, 917587, 6, 1, 917588, 6, 1, 917589, 6, 1, 917590, 6, 1, 917591, 6, 1, 917592, 6, 1, 917593, 31, 1, 917594, 6, 65538, 917599, 6, 65536, 917600, 6, 65538, 917603, 6, 65546, 917604, 6, 1, 917605, 31, 131073, 917609, 31, 0, 917610, 6, 1, 917611, 31, 1, 917612, 6, 65538, 983040, 6, 65536, 983041, 6, 65538, 983043, 6, 262145, 983048, 6, 262144, 983051, 6, 262146, 983052, 6, 196613, 983053, 6, 196610, 983056, 6, 262144, 983061, 6, 262145, 983063, 6, 65536, 983064, 6, 65537, 983065, 6, 65540, 983066, 6, 1, 983067, 6, 1, 983068, 6, 1, 983069, 6, 1, 983070, 6, 1, 983071, 6, 1, 983072, 6, 1, 983073, 31, 131073, 983078, 6, 262146, 983079, 6, 8, 983080, 6, 65539, 983081, 6, 262151, 983082, 6, 196610, 983086, 31, 0, 983087, 31, 1, 983088, 6, 65537, 983089, 6, 65538, 983111, 6, 65536, 983112, 6, 65537, 983113, 6, 65538, 983115, 6, 196609, 983118, 6, 131072, 983119, 6, 131073, 983120, 6, 131073, 983121, 6, 131073, 983122, 6, 131075, 983123, 6, 65537, 983124, 6, 65537, 983125, 6, 65537, 983126, 6, 131076, 983127, 6, 131073, 983128, 6, 131073, 983129, 6, 131073, 983130, 6, 131074, 983133, 6, 196609, 983135, 6, 65536, 983136, 6, 65538, 983139, 6, 65536, 983140, 6, 65537, 983141, 6, 65538, 983145, 6, 65536, 983146, 31, 65536, 983147, 6, 131073, 983148, 31, 65537, 1048576, 6, 65536, 1048577, 6, 65538, 1048583, 31, 0, 1048584, 6, 196614, 1048585, 31, 131073, 1048588, 6, 262145, 1048591, 31, 0, 1048592, 6, 196614, 1048593, 31, 131073, 1048599, 6, 65536, 1048600, 6, 65537, 1048601, 6, 65537, 1048602, 6, 65537, 1048603, 6, 65537, 1048604, 6, 65537, 1048605, 6, 65537, 1048606, 6, 65537, 1048607, 6, 65537, 1048608, 6, 65537, 1048609, 31, 196609, 1048610, 31, 131073, 1048615, 6, 65536, 1048616, 6, 131076, 1048617, 6, 131074, 1048621, 31, 0, 1048622, 31, 1, 1048623, 6, 65537, 1048624, 6, 65537, 1048625, 6, 65540, 1048626, 6, 1, 1048627, 6, 2, 1048631, 6, 262146, 1048632, 6, 196608, 1048633, 6, 196610, 1048639, 6, 262146, 1048640, 6, 196608, 1048641, 6, 196610, 1048645, 6, 0, 1048646, 6, 1, 1048647, 6, 65539, 1048648, 6, 65537, 1048649, 6, 65538, 1048651, 6, 262144, 1048658, 31, 196608, 1048659, 6, 131073, 1048660, 6, 131073, 1048661, 6, 131073, 1048662, 31, 65537, 1048669, 6, 262144, 1048671, 6, 65536, 1048672, 6, 65538, 1048675, 6, 65536, 1048676, 6, 65537, 1048677, 6, 65538, 1048679, 31, 0, 1048680, 6, 1, 1048681, 31, 1, 1048682, 6, 65538, 1114112, 6, 65536, 1114113, 6, 65538, 1114118, 31, 0, 1114119, 31, 1, 1114120, 6, 65537, 1114121, 31, 196609, 1114122, 31, 131073, 1114126, 31, 0, 1114127, 31, 1, 1114128, 6, 65537, 1114129, 31, 196609, 1114130, 31, 131073, 1114135, 6, 65536, 1114136, 6, 65537, 1114137, 6, 65537, 1114138, 6, 65537, 1114139, 6, 65537, 1114140, 6, 65537, 1114141, 6, 65537, 1114142, 6, 65537, 1114143, 6, 65537, 1114144, 6, 65537, 1114145, 6, 65537, 1114146, 31, 196609, 1114147, 31, 131073, 1114151, 31, 196608, 1114152, 6, 65545, 1114156, 31, 0, 1114157, 31, 1, 1114158, 6, 65537, 1114159, 6, 65537, 1114160, 6, 65537, 1114161, 6, 65537, 1114162, 6, 65537, 1114163, 6, 65538, 1114181, 6, 65536, 1114182, 6, 65537, 1114183, 6, 65537, 1114184, 6, 65537, 1114185, 6, 65538, 1114187, 6, 262144, 1114205, 6, 262144, 1114207, 6, 65536, 1114208, 6, 65540, 1114209, 6, 1, 1114210, 6, 1, 1114211, 6, 65539, 1114212, 6, 65537, 1114213, 6, 65540, 1114214, 6, 1, 1114215, 31, 1, 1114216, 31, 65536, 1114217, 6, 131073, 1114218, 31, 65537, 1179648, 6, 65536, 1179649, 6, 65540, 1179650, 6, 2, 1179653, 31, 0, 1179654, 31, 1, 1179655, 6, 65537, 1179656, 6, 65537, 1179657, 6, 65537, 1179658, 31, 196609, 1179659, 31, 131073, 1179661, 31, 0, 1179662, 31, 1, 1179663, 6, 65537, 1179664, 6, 65537, 1179665, 6, 65537, 1179666, 31, 196609, 1179667, 31, 131073, 1179670, 6, 0, 1179671, 6, 65539, 1179672, 6, 65537, 1179673, 6, 65537, 1179674, 6, 65537, 1179675, 6, 65537, 1179676, 6, 65537, 1179677, 6, 65537, 1179678, 6, 65537, 1179679, 6, 65537, 1179680, 6, 65537, 1179681, 6, 65537, 1179682, 6, 65537, 1179683, 31, 196609, 1179684, 31, 131073, 1179688, 6, 262145, 1179691, 31, 0, 1179692, 31, 1, 1179693, 6, 65537, 1179694, 6, 65537, 1179695, 6, 65537, 1179696, 6, 65537, 1179697, 6, 65537, 1179698, 6, 65537, 1179699, 6, 65538, 1179717, 6, 65536, 1179718, 6, 65537, 1179719, 6, 65537, 1179720, 6, 65537, 1179721, 6, 65538, 1179723, 6, 262145, 1179741, 6, 262145, 1179743, 6, 65536, 1179744, 6, 65537, 1179745, 6, 65537, 1179746, 6, 65537, 1179747, 6, 65537, 1179748, 6, 65537, 1179749, 6, 65537, 1179750, 6, 65537, 1179751, 6, 65537, 1179752, 6, 65538, 1245184, 6, 65536, 1245185, 6, 65537, 1245186, 6, 65540, 1245187, 6, 1, 1245188, 6, 1, 1245189, 31, 1, 1245190, 6, 65537, 1245191, 6, 65537, 1245192, 6, 65537, 1245193, 6, 65537, 1245194, 6, 65537, 1245195, 31, 196609, 1245196, 6, 1, 1245197, 31, 1, 1245198, 6, 65537, 1245199, 6, 65537, 1245200, 6, 65537, 1245201, 6, 65537, 1245202, 6, 65537, 1245203, 31, 196609, 1245204, 6, 1, 1245205, 6, 1, 1245206, 6, 65539, 1245207, 6, 65537, 1245208, 6, 65537, 1245209, 6, 65537, 1245210, 6, 65537, 1245211, 6, 65537, 1245212, 6, 65537, 1245213, 6, 65537, 1245214, 6, 65537, 1245215, 6, 65537, 1245216, 6, 65537, 1245217, 6, 65537, 1245218, 6, 65537, 1245219, 6, 65537, 1245220, 31, 196609, 1245221, 31, 131073, 1245226, 31, 0, 1245227, 31, 1, 1245228, 6, 65537, 1245229, 6, 65537, 1245230, 6, 65537, 1245231, 6, 65537, 1245232, 6, 65537, 1245233, 6, 65537, 1245234, 6, 65537, 1245235, 6, 65540, 1245236, 6, 1, 1245237, 6, 1, 1245238, 6, 1, 1245239, 6, 1, 1245240, 6, 1, 1245241, 6, 1, 1245242, 6, 1, 1245243, 6, 1, 1245244, 6, 1, 1245245, 6, 1, 1245246, 6, 1, 1245247, 6, 1, 1245248, 6, 1, 1245249, 6, 1, 1245250, 6, 1, 1245251, 6, 1, 1245252, 6, 1, 1245253, 6, 65539, 1245254, 6, 65537, 1245255, 6, 65537, 1245256, 6, 65537, 1245257, 6, 65538, 1245263, 6, 0, 1245264, 6, 1, 1245265, 6, 1, 1245266, 6, 1, 1245267, 6, 1, 1245268, 536870918, 1, 1245269, 6, 1, 1245270, 6, 1, 1245271, 6, 1, 1245272, 6, 1, 1245273, 6, 2, 1245279, 6, 65536, 1245280, 6, 65537, 1245281, 6, 65537, 1245282, 6, 65537, 1245283, 6, 65537, 1245284, 6, 65537, 1245285, 6, 65537, 1245286, 31, 65536, 1245287, 6, 131073, 1245288, 31, 65537, 1310720, 6, 65536, 1310721, 6, 65537, 1310722, 6, 65537, 1310723, 6, 65537, 1310724, 6, 65537, 1310725, 6, 65537, 1310726, 6, 65537, 1310727, 6, 65537, 1310728, 6, 65537, 1310729, 6, 65537, 1310730, 6, 65537, 1310731, 6, 65537, 1310732, 6, 65537, 1310733, 6, 65537, 1310734, 6, 65537, 1310735, 6, 65537, 1310736, 6, 65537, 1310737, 6, 65537, 1310738, 6, 65537, 1310739, 6, 65537, 1310740, 6, 65537, 1310741, 6, 65537, 1310742, 6, 65537, 1310743, 6, 65537, 1310744, 6, 65537, 1310745, 6, 65537, 1310746, 6, 65537, 1310747, 6, 65537, 1310748, 6, 65537, 1310749, 6, 65537, 1310750, 6, 65537, 1310751, 6, 65537, 1310752, 6, 65537, 1310753, 6, 65537, 1310754, 6, 65537, 1310755, 6, 65537, 1310756, 6, 65537, 1310757, 31, 196609, 1310758, 31, 131073, 1310761, 31, 0, 1310762, 31, 1, 1310763, 6, 65537, 1310764, 6, 65537, 1310765, 6, 65537, 1310766, 6, 65537, 1310767, 6, 65537, 1310768, 6, 65537, 1310769, 6, 65537, 1310770, 6, 65537, 1310771, 6, 65537, 1310772, 6, 65537, 1310773, 6, 65537, 1310774, 6, 65537, 1310775, 6, 65537, 1310776, 6, 65537, 1310777, 6, 65537, 1310778, 6, 65537, 1310779, 6, 65537, 1310780, 6, 65537, 1310781, 6, 65537, 1310782, 6, 65537, 1310783, 6, 65537, 1310784, 6, 65537, 1310785, 6, 65537, 1310786, 6, 65537, 1310787, 6, 65537, 1310788, 6, 65537, 1310789, 6, 65537, 1310790, 6, 65537, 1310791, 6, 65537, 1310792, 6, 65537, 1310793, 6, 65538, 1310799, 6, 65536, 1310800, 6, 65537, 1310801, 6, 65537, 1310802, 6, 65537, 1310803, 6, 65537, 1310804, 536870918, 65537, 1310805, 6, 65537, 1310806, 6, 65537, 1310807, 6, 65537, 1310808, 6, 65537, 1310809, 6, 65538, 1310815, 6, 65536, 1310816, 6, 65537, 1310817, 6, 65537, 1310818, 6, 65537, 1310819, 6, 65537, 1310820, 6, 65537, 1310821, 6, 65537, 1310822, 6, 65538, 1376256, 6, 65536, 1376257, 6, 65537, 1376258, 6, 65537, 1376259, 6, 65537, 1376260, 6, 65537, 1376261, 6, 65537, 1376262, 6, 65537, 1376263, 6, 65537, 1376264, 6, 65537, 1376265, 6, 65537, 1376266, 6, 65537, 1376267, 6, 65537, 1376268, 6, 65537, 1376269, 6, 65537, 1376270, 6, 65537, 1376271, 6, 65537, 1376272, 6, 65537, 1376273, 6, 65537, 1376274, 6, 65537, 1376275, 6, 65537, 1376276, 6, 65537, 1376277, 6, 65537, 1376278, 6, 65537, 1376279, 6, 65537, 1376280, 6, 65537, 1376281, 6, 65537, 1376282, 6, 65537, 1376283, 6, 65537, 1376284, 6, 65537, 1376285, 6, 65537, 1376286, 6, 65537, 1376287, 6, 65537, 1376288, 6, 65537, 1376289, 6, 65537, 1376290, 6, 65537, 1376291, 6, 65537, 1376292, 6, 65537, 1376293, 6, 65537, 1376294, 31, 196609, 1376295, 6, 1, 1376296, 6, 1, 1376297, 31, 1, 1376298, 6, 65537, 1376299, 6, 65537, 1376300, 6, 65537, 1376301, 6, 65537, 1376302, 6, 65537, 1376303, 6, 65537, 1376304, 6, 65537, 1376305, 6, 65537, 1376306, 6, 65537, 1376307, 6, 65537, 1376308, 6, 65537, 1376309, 6, 65537, 1376310, 6, 65537, 1376311, 6, 65537, 1376312, 6, 65537, 1376313, 6, 65537, 1376314, 6, 65537, 1376315, 6, 65537, 1376316, 6, 65537, 1376317, 6, 65537, 1376318, 6, 65537, 1376319, 6, 65537, 1376320, 6, 65537, 1376321, 6, 65537, 1376322, 6, 65537, 1376323, 6, 65537, 1376324, 6, 65537, 1376325, 6, 65537, 1376326, 6, 65537, 1376327, 6, 65537, 1376328, 6, 65537, 1376329, 6, 65540, 1376330, 6, 1, 1376331, 6, 1, 1376332, 6, 1, 1376333, 6, 1, 1376334, 6, 1, 1376335, 6, 65539, 1376336, 6, 65537, 1376337, 6, 65537, 1376338, 6, 65537, 1376339, 6, 65537, 1376340, 536870918, 65537, 1376341, 6, 65537, 1376342, 6, 65537, 1376343, 6, 65537, 1376344, 6, 65537, 1376345, 6, 65540, 1376346, 6, 1, 1376347, 6, 1, 1376348, 6, 1, 1376349, 6, 1, 1376350, 6, 1, 1376351, 6, 65539, 1376352, 6, 65537, 1376353, 6, 65537, 1376354, 6, 65537, 1376355, 6, 65537, 1376356, 6, 131076, 1376357, 6, 131073, 1376358, 6, 131074, 1441792, 6, 131072, 1441793, 6, 131073, 1441794, 6, 131073, 1441795, 6, 131073, 1441796, 6, 131073, 1441797, 6, 131073, 1441798, 6, 131073, 1441799, 6, 131073, 1441800, 6, 131073, 1441801, 6, 131073, 1441802, 6, 131073, 1441803, 6, 131073, 1441804, 6, 131073, 1441805, 6, 131073, 1441806, 6, 131073, 1441807, 6, 131073, 1441808, 6, 131073, 1441809, 6, 131073, 1441810, 6, 131073, 1441811, 6, 131073, 1441812, 6, 131073, 1441813, 6, 131073, 1441814, 6, 131073, 1441815, 6, 131073, 1441816, 6, 131073, 1441817, 6, 131073, 1441818, 6, 131073, 1441819, 6, 131073, 1441820, 6, 131073, 1441821, 6, 131073, 1441822, 6, 131073, 1441823, 6, 131073, 1441824, 6, 131073, 1441825, 6, 131073, 1441826, 6, 131073, 1441827, 6, 131073, 1441828, 6, 131073, 1441829, 6, 131073, 1441830, 6, 131073, 1441831, 6, 131073, 1441832, 6, 131073, 1441833, 6, 131073, 1441834, 6, 131073, 1441835, 6, 131073, 1441836, 6, 131073, 1441837, 6, 131073, 1441838, 6, 131073, 1441839, 6, 131073, 1441840, 6, 131073, 1441841, 6, 131073, 1441842, 6, 131073, 1441843, 6, 131073, 1441844, 6, 131073, 1441845, 6, 131073, 1441846, 6, 131073, 1441847, 6, 131073, 1441848, 6, 131073, 1441849, 6, 131073, 1441850, 6, 131073, 1441851, 6, 131073, 1441852, 6, 131073, 1441853, 6, 131073, 1441854, 6, 131073, 1441855, 6, 131073, 1441856, 6, 131073, 1441857, 6, 131073, 1441858, 6, 131073, 1441859, 6, 131073, 1441860, 6, 131073, 1441861, 6, 131073, 1441862, 6, 131073, 1441863, 6, 131073, 1441864, 6, 131073, 1441865, 6, 131073, 1441866, 6, 131073, 1441867, 6, 131073, 1441868, 6, 131073, 1441869, 6, 131073, 1441870, 6, 131073, 1441871, 6, 131073, 1441872, 6, 131073, 1441873, 6, 131073, 1441874, 6, 131073, 1441875, 6, 131073, 1441876, 536870918, 131073, 1441877, 6, 131073, 1441878, 6, 131073, 1441879, 6, 131073, 1441880, 6, 131073, 1441881, 6, 131073, 1441882, 6, 131073, 1441883, 6, 131073, 1441884, 6, 131073, 1441885, 6, 131073, 1441886, 6, 131073, 1441887, 6, 131073, 1441888, 6, 131073, 1441889, 6, 131073, 1441890, 6, 131073, 1441891, 6, 131073, 1441892, 6, 131074 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Decoration" parent="Map" index="3"]
+[node name="HiddenWalls" type="TileMap" parent="Map"]
+light_mask = 48
+z_index = 10
+z_as_relative = false
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 24, 24 )
+collision_layer = 0
+collision_mask = 16
+occluder_light_mask = 48
+format = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Decoration" type="TileMap" parent="Map"]
+z_index = 2
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 24, 24 )
+format = 1
 tile_data = PoolIntArray( -130963, 20, 0, -130961, 13, 0, -130960, 14, 0, -130958, 20, 0, -130956, 13, 0, -130955, 14, 0, -130952, 20, 0, -130948, 20, 0, -130946, 19, 65536, 131126, 14, 0, 131138, 13, 0, 131169, -1073741805, 65536, 196682, 13, 0, 196702, -536870893, 65536, 262147, 19, 65536, 262148, 20, 0, 262164, 536870931, 65536, 262165, 536870932, 0, 262243, 20, 0, 327682, 14, 0, 327702, 536870932, 0, 327748, 20, 0, 393286, -536870893, 65536, 393307, 14, 0, 458759, -536870893, 65536, 458769, 13, 0, 458786, 20, 0, 458802, -1073741805, 65536, 458812, 13, 0, 458813, 20, 0, 458856, 14, 0, 458857, 20, 0, 458858, 13, 0, 524299, 14, 0, 524301, 20, 0, 524314, 536870931, 65536, 524316, 20, 0, 524317, 13, 0, 524326, 19, 65536, 524340, 14, 0, 589832, 13, 0, 589836, 20, 0, 589840, 20, 0, 589844, 20, 0, 589898, -2147483629, 65536, 589911, 14, 0, 589923, 20, 0, 589927, 20, 0, 655460, 13, 0, 720928, 20, 0, 720997, 14, 0, 786438, 13, 0, 786442, 20, 0, 786446, 13, 0, 786451, 20, 0, 786454, 20, 0, 786462, 20, 0, 786467, 13, 0, 786474, 20, 0, 786482, 536870931, 65536, 786485, 13, 0, 786491, 14, 0, 786498, 13, 0, 786502, 13, 0, 786507, 536870926, 0, 786508, 536870932, 0, 786523, 536870931, 65536, 786525, 536870932, 0, 786526, 536870925, 0, 851994, -2147483629, 65536, 917566, 536870922, 0, 983044, 14, 0, 983060, 20, 0, 1048578, -2147483629, 65536, 1048579, 20, 0, 1048587, 20, 0, 1048597, 14, 0, 1048598, -1610612717, 65536, 1048614, 20, 0, 1048656, 536870925, 0, 1048663, 536870932, 0, 1114124, 20, 0, 1179715, 1073741843, 65536, 1245224, 20, 0, 1245259, 536870925, 0, 1245262, -1610612717, 65536 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="M_IceBlock" parent="InteractivesObjects/IceBlocks/M" index="0" instance=ExtResource( 6 )]
+[node name="Decoration2" type="TileMap" parent="Map"]
+z_index = 2
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 24, 24 )
+format = 1
+tile_data = PoolIntArray( 917566, 536870922, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="InteractivesObjects" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="IceBlocks" type="Node2D" parent="InteractivesObjects"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="S" type="Node2D" parent="InteractivesObjects/IceBlocks"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="M" type="Node2D" parent="InteractivesObjects/IceBlocks"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="M_IceBlock" type="RigidBody2D" parent="InteractivesObjects/IceBlocks/M" instance=ExtResource( 29 )]
+light_mask = 1024
 position = Vector2( 1920, 432 )
+z_as_relative = false
+mode = 1
+gravity_scale = 10.0
+contacts_reported = 1
+contact_monitor = true
+sleeping = true
+linear_damp = 1.0
+angular_damp = 1.0
+script = ExtResource( 14 )
+nb_debris = 30
+explosion_impulse = 150.0
+explosion_impulse_modifier = 0.7
+maxvelocity_y = 0
 
-[node name="M_IceBlock2" parent="InteractivesObjects/IceBlocks/M" index="1" instance=ExtResource( 6 )]
-position = Vector2( 780, 216 )
+[node name="EarthBlocks" type="Node2D" parent="InteractivesObjects"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
-[node name="M_IceBlock3" parent="InteractivesObjects/IceBlocks/M" index="2" instance=ExtResource( 6 )]
-position = Vector2( 712, 336 )
+[node name="S" type="Node2D" parent="InteractivesObjects/EarthBlocks"]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="M_IceBlock4" parent="InteractivesObjects/IceBlocks/M" index="3" instance=ExtResource( 6 )]
-position = Vector2( 144, 240 )
+[node name="M" type="Node2D" parent="InteractivesObjects/EarthBlocks"]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="M_IceBlock5" parent="InteractivesObjects/IceBlocks/M" index="4" instance=ExtResource( 6 )]
-position = Vector2( 1288, 240 )
-
-[node name="M_EarthBlock" parent="InteractivesObjects/EarthBlocks/M" index="0" instance=ExtResource( 8 )]
+[node name="M_EarthBlock" type="RigidBody2D" parent="InteractivesObjects/EarthBlocks/M" instance=ExtResource( 33 )]
 position = Vector2( 2136, 432 )
+z_as_relative = false
+mode = 1
+gravity_scale = 10.0
+contacts_reported = 1
+contact_monitor = true
+sleeping = true
+angular_damp = 0.0
+script = ExtResource( 17 )
+nb_debris = 20
+explosion_impulse = 150.0
+explosion_impulse_modifier = 0.7
+maxvelocity_y = 0
 
-[node name="M_EarthBlock2" parent="InteractivesObjects/EarthBlocks/M" index="1" instance=ExtResource( 8 )]
-position = Vector2( 780, 336 )
+[node name="WaterTiles" type="Node2D" parent="InteractivesObjects"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
-[node name="M_EarthBlock6" parent="InteractivesObjects/EarthBlocks/M" index="2" instance=ExtResource( 8 )]
-position = Vector2( 1616, 240 )
-
-[node name="M_EarthBlock7" parent="InteractivesObjects/EarthBlocks/M" index="3" instance=ExtResource( 8 )]
-position = Vector2( 456, 240 )
-
-[node name="Water" parent="InteractivesObjects/WaterTiles" index="0" instance=ExtResource( 19 )]
+[node name="Water" type="Area2D" parent="InteractivesObjects/WaterTiles" instance=ExtResource( 35 )]
 position = Vector2( 299.908, 408 )
+script = ExtResource( 25 )
+group_name = ""
 
-[node name="Water2" parent="InteractivesObjects/WaterTiles" index="1" instance=ExtResource( 19 )]
+[node name="Water2" type="Area2D" parent="InteractivesObjects/WaterTiles" instance=ExtResource( 35 )]
 position = Vector2( 966.345, 456 )
+script = ExtResource( 25 )
+group_name = ""
 
-[node name="Lava" parent="InteractivesObjects/LavaTiles" index="0" instance=ExtResource( 13 )]
+[node name="LavaTiles" type="Node2D" parent="InteractivesObjects"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Lava" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 36 )]
 position = Vector2( 1453.47, 377 )
 scale = Vector2( 1.046, 0.991 )
+script = ExtResource( 18 )
 
-[node name="LavaLight" parent="InteractivesObjects/LavaTiles/Lava/LavaShader" index="0"]
+[node name="LavaShader" type="Sprite" parent="InteractivesObjects/LavaTiles/Lava" index="0"]
+material = ExtResource( 32 )
+scale = Vector2( 1, 0.338 )
+texture = SubResource( 1 )
+script = ExtResource( 19 )
+
+[node name="LavaLight" type="Light2D" parent="InteractivesObjects/LavaTiles/Lava/LavaShader" index="0"]
 position = Vector2( 2.41882, 14.6603 )
+scale = Vector2( 1.512, 3.53948 )
+texture = ExtResource( 3 )
+color = Color( 1, 0.584314, 0, 1 )
 energy = 1.2
+range_layer_max = 10
+shadow_color = Color( 0, 0, 0, 0.8 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Lava2" parent="InteractivesObjects/LavaTiles" index="1" instance=ExtResource( 13 )]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractivesObjects/LavaTiles/Lava" index="1"]
+visible = false
+position = Vector2( 0, 8.51 )
+shape = SubResource( 2 )
+
+[node name="Lava2" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 36 )]
 position = Vector2( 1831.47, 488.304 )
 scale = Vector2( 0.27, 0.344 )
+script = ExtResource( 18 )
 
-[node name="LavaLight" parent="InteractivesObjects/LavaTiles/Lava2/LavaShader" index="0"]
+[node name="LavaShader" type="Sprite" parent="InteractivesObjects/LavaTiles/Lava2" index="0"]
+material = ExtResource( 32 )
+scale = Vector2( 1, 0.338 )
+texture = SubResource( 1 )
+script = ExtResource( 19 )
+
+[node name="LavaLight" type="Light2D" parent="InteractivesObjects/LavaTiles/Lava2/LavaShader" index="0"]
+position = Vector2( 0, 77.913 )
+scale = Vector2( 1.512, 3.53948 )
+texture = ExtResource( 3 )
+color = Color( 1, 0.584314, 0, 1 )
 energy = 1.1
+range_layer_max = 10
+shadow_color = Color( 0, 0, 0, 0.8 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Lava3" parent="InteractivesObjects/LavaTiles" index="2" instance=ExtResource( 13 )]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractivesObjects/LavaTiles/Lava2" index="1"]
+visible = false
+position = Vector2( 0, 8.51 )
+shape = SubResource( 2 )
+
+[node name="Lava3" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 36 )]
 position = Vector2( 2218.25, 488.304 )
 scale = Vector2( 0.282, 0.363 )
+script = ExtResource( 18 )
 
-[node name="LavaLight" parent="InteractivesObjects/LavaTiles/Lava3/LavaShader" index="0"]
+[node name="LavaShader" type="Sprite" parent="InteractivesObjects/LavaTiles/Lava3" index="0"]
+material = ExtResource( 32 )
+scale = Vector2( 1, 0.338 )
+texture = SubResource( 1 )
+script = ExtResource( 19 )
+
+[node name="LavaLight" type="Light2D" parent="InteractivesObjects/LavaTiles/Lava3/LavaShader" index="0"]
+position = Vector2( 0, 77.913 )
+scale = Vector2( 1.512, 3.53948 )
+texture = ExtResource( 3 )
+color = Color( 1, 0.584314, 0, 1 )
 energy = 1.1
+range_layer_max = 10
+shadow_color = Color( 0, 0, 0, 0.8 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Lava4" parent="InteractivesObjects/LavaTiles" index="3" instance=ExtResource( 13 )]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractivesObjects/LavaTiles/Lava3" index="1"]
+visible = false
+position = Vector2( 0, 8.51 )
+shape = SubResource( 2 )
+
+[node name="Lava4" type="Area2D" parent="InteractivesObjects/LavaTiles" instance=ExtResource( 36 )]
 position = Vector2( 2348.02, 377 )
 scale = Vector2( 0.144, 0.853 )
+script = ExtResource( 18 )
 
-[node name="LavaLight" parent="InteractivesObjects/LavaTiles/Lava4/LavaShader" index="0"]
+[node name="LavaShader" type="Sprite" parent="InteractivesObjects/LavaTiles/Lava4" index="0"]
+material = ExtResource( 32 )
+scale = Vector2( 1, 0.338 )
+texture = SubResource( 1 )
+script = ExtResource( 19 )
+
+[node name="LavaLight" type="Light2D" parent="InteractivesObjects/LavaTiles/Lava4/LavaShader" index="0"]
+position = Vector2( 0, 77.913 )
+scale = Vector2( 1.512, 3.53948 )
+texture = ExtResource( 3 )
+color = Color( 1, 0.584314, 0, 1 )
 energy = 1.3
+range_layer_max = 10
+shadow_color = Color( 0, 0, 0, 0.8 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="G1" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractivesObjects/LavaTiles/Lava4" index="1"]
+visible = false
+position = Vector2( 0, 8.51 )
+shape = SubResource( 2 )
+
+[node name="XionLiquid" type="Node2D" parent="InteractivesObjects"]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="PinkTeleporter" parent="InteractivesObjects/TeleportGroups/G1" index="0" instance=ExtResource( 9 )]
+[node name="TeleportGroups" type="Node2D" parent="InteractivesObjects"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="G1" type="Node2D" parent="InteractivesObjects/TeleportGroups"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="PinkTeleporter" type="Area2D" parent="InteractivesObjects/TeleportGroups/G1" instance=ExtResource( 46 )]
 position = Vector2( 300, 301 )
 rotation = 3.14159
+script = SubResource( 3 )
 
-[node name="PinkTeleporter2" parent="InteractivesObjects/TeleportGroups/G1" index="1" instance=ExtResource( 9 )]
+[node name="PinkTeleporter2" type="Area2D" parent="InteractivesObjects/TeleportGroups/G1" instance=ExtResource( 46 )]
 position = Vector2( 656, 252 )
+script = SubResource( 3 )
 
-[node name="G2" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="1"]
+[node name="G2" type="Node2D" parent="InteractivesObjects/TeleportGroups"]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="BlueTeleporter" parent="InteractivesObjects/TeleportGroups/G2" index="0" instance=ExtResource( 17 )]
+[node name="BlueTeleporter" type="Area2D" parent="InteractivesObjects/TeleportGroups/G2" instance=ExtResource( 45 )]
 position = Vector2( 656, 300 )
 rotation = 3.14159
+script = SubResource( 4 )
 
-[node name="BlueTeleporter2" parent="InteractivesObjects/TeleportGroups/G2" index="1" instance=ExtResource( 17 )]
+[node name="BlueTeleporter2" type="Area2D" parent="InteractivesObjects/TeleportGroups/G2" instance=ExtResource( 45 )]
 position = Vector2( 1020, 224 )
 rotation = 1.5708
+script = SubResource( 4 )
 
-[node name="G3" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="2"]
+[node name="G3" type="Node2D" parent="InteractivesObjects/TeleportGroups"]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="GreenTeleporter" parent="InteractivesObjects/TeleportGroups/G3" index="0" instance=ExtResource( 18 )]
+[node name="GreenTeleporter" type="Area2D" parent="InteractivesObjects/TeleportGroups/G3" instance=ExtResource( 42 )]
 position = Vector2( 1020, 328 )
 rotation = 1.5708
+script = SubResource( 5 )
 
-[node name="GreenTeleporter2" parent="InteractivesObjects/TeleportGroups/G3" index="1" instance=ExtResource( 18 )]
+[node name="GreenTeleporter2" type="Area2D" parent="InteractivesObjects/TeleportGroups/G3" instance=ExtResource( 42 )]
 position = Vector2( 1341, 204 )
 rotation = 3.14159
+script = SubResource( 5 )
 
-[node name="G4" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="3"]
+[node name="G4" type="Node2D" parent="InteractivesObjects/TeleportGroups"]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="RedTeleporter" parent="InteractivesObjects/TeleportGroups/G4" index="0" instance=ExtResource( 20 )]
+[node name="RedTeleporter" type="Area2D" parent="InteractivesObjects/TeleportGroups/G4" instance=ExtResource( 49 )]
 position = Vector2( 1229, 252 )
+script = ExtResource( 16 )
 
-[node name="RedTeleporter2" parent="InteractivesObjects/TeleportGroups/G4" index="1" instance=ExtResource( 20 )]
+[node name="RedTeleporter2" type="Area2D" parent="InteractivesObjects/TeleportGroups/G4" instance=ExtResource( 49 )]
 position = Vector2( 1563, 204 )
 rotation = 3.14159
+script = ExtResource( 16 )
 
-[node name="G5" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="4"]
+[node name="G5" type="Node2D" parent="InteractivesObjects/TeleportGroups"]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="GreenTeleporter" parent="InteractivesObjects/TeleportGroups/G5" index="0" instance=ExtResource( 18 )]
+[node name="GreenTeleporter" type="Area2D" parent="InteractivesObjects/TeleportGroups/G5" instance=ExtResource( 42 )]
 position = Vector2( 1672, 252 )
+script = SubResource( 5 )
 
-[node name="GreenTeleporter2" parent="InteractivesObjects/TeleportGroups/G5" index="1" instance=ExtResource( 18 )]
+[node name="GreenTeleporter2" type="Area2D" parent="InteractivesObjects/TeleportGroups/G5" instance=ExtResource( 42 )]
 position = Vector2( 2024, 324 )
+script = SubResource( 5 )
 
-[node name="G6" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="5"]
+[node name="G6" type="Node2D" parent="InteractivesObjects/TeleportGroups"]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="BlueTeleporter" parent="InteractivesObjects/TeleportGroups/G6" index="0" instance=ExtResource( 17 )]
+[node name="BlueTeleporter" type="Area2D" parent="InteractivesObjects/TeleportGroups/G6" instance=ExtResource( 45 )]
 position = Vector2( 1836, 204 )
 rotation = 1.5708
+script = SubResource( 4 )
 
-[node name="BlueTeleporter2" parent="InteractivesObjects/TeleportGroups/G6" index="1" instance=ExtResource( 17 )]
+[node name="BlueTeleporter2" type="Area2D" parent="InteractivesObjects/TeleportGroups/G6" instance=ExtResource( 45 )]
 position = Vector2( 2220, 392 )
 rotation = 4.71239
+script = SubResource( 4 )
 
-[node name="G7" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="6"]
+[node name="G7" type="Node2D" parent="InteractivesObjects/TeleportGroups"]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="PinkTeleporter" parent="InteractivesObjects/TeleportGroups/G7" index="0" instance=ExtResource( 9 )]
+[node name="PinkTeleporter" type="Area2D" parent="InteractivesObjects/TeleportGroups/G7" instance=ExtResource( 46 )]
 position = Vector2( 2220, 204 )
 rotation = 4.71239
+script = SubResource( 3 )
 
-[node name="PinkTeleporter2" parent="InteractivesObjects/TeleportGroups/G7" index="1" instance=ExtResource( 9 )]
+[node name="PinkTeleporter2" type="Area2D" parent="InteractivesObjects/TeleportGroups/G7" instance=ExtResource( 46 )]
 position = Vector2( 1836, 392 )
 rotation = 1.5708
+script = SubResource( 3 )
 
-[node name="G8" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="7"]
+[node name="G8" type="Node2D" parent="InteractivesObjects/TeleportGroups"]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="RedTeleporter" parent="InteractivesObjects/TeleportGroups/G8" index="0" instance=ExtResource( 20 )]
+[node name="RedTeleporter" type="Area2D" parent="InteractivesObjects/TeleportGroups/G8" instance=ExtResource( 49 )]
 position = Vector2( 2028, 444 )
+script = ExtResource( 16 )
 
-[node name="RedTeleporter2" parent="InteractivesObjects/TeleportGroups/G8" index="1" instance=ExtResource( 20 )]
+[node name="RedTeleporter2" type="Area2D" parent="InteractivesObjects/TeleportGroups/G8" instance=ExtResource( 49 )]
 position = Vector2( 2352, 60 )
 rotation = 3.14159
+script = ExtResource( 16 )
 
-[node name="G_SecretLava" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="0"]
-script = ExtResource( 5 )
+[node name="Buttons&Doors" type="Node2D" parent="InteractivesObjects"]
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="BlueButton_SecretLava" parent="InteractivesObjects/Buttons&Doors/G_SecretLava" index="0" instance=ExtResource( 11 )]
+[node name="G_SecretLava" type="Node2D" parent="InteractivesObjects/Buttons&Doors"]
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="BlueButton_SecretLava" type="StaticBody2D" parent="InteractivesObjects/Buttons&Doors/G_SecretLava" instance=ExtResource( 34 )]
 position = Vector2( 1356, 377 )
+script = ExtResource( 15 )
+is_push = false
 
-[node name="BlueButton_SecretLava2" parent="InteractivesObjects/Buttons&Doors/G_SecretLava" index="1" instance=ExtResource( 11 )]
+[node name="BlueButton_SecretLava2" type="StaticBody2D" parent="InteractivesObjects/Buttons&Doors/G_SecretLava" instance=ExtResource( 34 )]
 position = Vector2( 1548, 377 )
+script = ExtResource( 15 )
+is_push = false
 
-[node name="G2" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="1"]
-script = ExtResource( 5 )
+[node name="G2" type="Node2D" parent="InteractivesObjects/Buttons&Doors"]
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="GreenButton" parent="InteractivesObjects/Buttons&Doors/G2" index="0" instance=ExtResource( 12 )]
+[node name="GreenButton" type="StaticBody2D" parent="InteractivesObjects/Buttons&Doors/G2" instance=ExtResource( 31 )]
 position = Vector2( 1968, 448 )
+script = ExtResource( 15 )
+is_push = false
 
-[node name="GreenButton2" parent="InteractivesObjects/Buttons&Doors/G2" index="1" instance=ExtResource( 12 )]
+[node name="GreenButton2" type="StaticBody2D" parent="InteractivesObjects/Buttons&Doors/G2" instance=ExtResource( 31 )]
 position = Vector2( 2088, 448 )
+script = ExtResource( 15 )
+is_push = false
 
-[node name="GreenDoor" parent="InteractivesObjects/Buttons&Doors/G2" index="2" instance=ExtResource( 14 )]
+[node name="GreenDoor" type="StaticBody2D" parent="InteractivesObjects/Buttons&Doors/G2" instance=ExtResource( 38 )]
 position = Vector2( 2028, 432 )
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_lock_": true
+}
+is_open = false
+need_delay = false
+open_delay = 0.0
 
-[node name="GreatDoor" parent="InteractivesObjects/GreatDoorGroup" index="0" instance=ExtResource( 3 )]
+[node name="GreatDoorGroup" type="Node2D" parent="InteractivesObjects"]
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="GreatDoor" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 37 )]
 position = Vector2( 2952, 72 )
+z_index = -1
+script = ExtResource( 21 )
+is_open = false
+need_delay = false
+open_delay = 0.0
+focus_on_door = true
 
-[node name="RedButton" parent="InteractivesObjects/GreatDoorGroup" index="1" instance=ExtResource( 7 )]
+[node name="RedButton" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 30 )]
 position = Vector2( 2528, 98.1648 )
 rotation = 1.5708
+script = ExtResource( 15 )
+is_push = false
 
-[node name="RedButton2" parent="InteractivesObjects/GreatDoorGroup" index="2" instance=ExtResource( 7 )]
+[node name="RedButton2" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 30 )]
 position = Vector2( 2456, 385.433 )
 rotation = 1.5708
+script = ExtResource( 15 )
+is_push = false
 
-[node name="RedButton3" parent="InteractivesObjects/GreatDoorGroup" index="3" instance=ExtResource( 7 )]
+[node name="RedButton3" type="StaticBody2D" parent="InteractivesObjects/GreatDoorGroup" instance=ExtResource( 30 )]
 position = Vector2( 2760, 184 )
+script = ExtResource( 15 )
+is_push = false
 
-[node name="Checkpoint" parent="Events/Checkpoints" index="0" instance=ExtResource( 15 )]
+[node name="Collactables" type="Node2D" parent="InteractivesObjects"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="XionCrates" type="Node2D" parent="InteractivesObjects/Collactables"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Gears" type="Node2D" parent="InteractivesObjects/Collactables"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GoldenGears" type="Node2D" parent="InteractivesObjects/Collactables"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform" type="Node2D" parent="InteractivesObjects"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="5 Tiles" type="Node2D" parent="InteractivesObjects/Platform"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="3 Tiles" type="Node2D" parent="InteractivesObjects/Platform"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="2 Tiles" type="Node2D" parent="InteractivesObjects/Platform"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Robot" type="Node2D" parent="InteractivesObjects"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Events" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Checkpoints" type="Node2D" parent="Events"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Checkpoint" type="Node2D" parent="Events/Checkpoints" instance=ExtResource( 40 )]
 position = Vector2( 1448, 256 )
+script = ExtResource( 26 )
+triggers_on_level_start = false
+event_disabled = false
+active = true
 
-[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint" index="3" instance=ExtResource( 16 )]
+[node name="NewStartingPoint1" type="Node2D" parent="Events/Checkpoints/Checkpoint" instance=ExtResource( 41 )]
 position = Vector2( -24, -16 )
+script = ExtResource( 7 )
 
-[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint" index="4" instance=ExtResource( 10 )]
+[node name="NewStartingPoint2" type="Node2D" parent="Events/Checkpoints/Checkpoint" instance=ExtResource( 27 )]
 position = Vector2( 24, -16 )
+script = ExtResource( 7 )
 
-[node name="Checkpoint2" parent="Events/Checkpoints" index="1" instance=ExtResource( 15 )]
+[node name="Checkpoint2" type="Node2D" parent="Events/Checkpoints" instance=ExtResource( 40 )]
 position = Vector2( 2024, 256 )
+script = ExtResource( 26 )
+triggers_on_level_start = false
+event_disabled = false
+active = true
 
-[node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint2" index="3" instance=ExtResource( 16 )]
+[node name="NewStartingPoint1" type="Node2D" parent="Events/Checkpoints/Checkpoint2" instance=ExtResource( 41 )]
 position = Vector2( -56, 56 )
+script = ExtResource( 7 )
 
-[node name="NewStartingPoint2" parent="Events/Checkpoints/Checkpoint2" index="4" instance=ExtResource( 10 )]
+[node name="NewStartingPoint2" type="Node2D" parent="Events/Checkpoints/Checkpoint2" instance=ExtResource( 27 )]
 position = Vector2( 64, 56 )
+script = ExtResource( 7 )
+
+[node name="CameraEvents" type="Node2D" parent="Events"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="LevelEvent" type="Node2D" parent="Events"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="DialogueEvents" type="Node2D" parent="Events"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Camera" type="Camera2D" parent="." instance=ExtResource( 28 )]
+position = Vector2( 1565.5, 263.898 )
+z_index = 999
+rotating = true
+current = true
+limit_smoothed = true
+smoothing_enabled = true
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+camera_speed = 3.0
+debug = false
 
 [editable path="InteractivesObjects/LavaTiles/Lava"]
 

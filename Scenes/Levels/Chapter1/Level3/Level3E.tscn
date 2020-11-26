@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Fog/CosmeticFog/Magenta_BG_fog.shader" type="Shader" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/IceBlock/M/MIceBlock.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/M/MEarthBlock.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/InteractiveObjects/Teleports/BaseTeleporter.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/Water/Water.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/XionLiquid/XionLiquid.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/GreenDoor.tscn" type="PackedScene" id=16]
@@ -21,10 +20,14 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/RedDoor.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/BlueButton.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/BlueTeleporter.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/PinkTP.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/Events/Checkpoint/Checkpoint.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/EarthBlock/S (base)/EarthBlockBase.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Scenes/InteractiveObjects/Platform/BreakablePlatform/3 Tiles/3TilesBreakablePlateform.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/RedTeleporter.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/BD_Group.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/GreenTeleporter.tscn" type="PackedScene" id=29]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
@@ -349,11 +352,75 @@ func on_body_entered(body):
 		body.destroy()
 "
 
-[sub_resource type="RectangleShape2D" id=16]
-extents = Vector2( 32, 48 )
+[sub_resource type="GDScript" id=16]
+script/source = "extends Area2D
+
+onready var layer_change_teleport_node : Node
+
+onready var teleport_master_node = get_parent()
+
+var teleporters_array : Array
+var player_already_on_teleportarea : bool
+
+func _ready():
+	var _err
+	_err = connect(\"body_entered\", self, \"on_body_entered\")
+	_err = connect(\"body_exited\", self, \"on_body_exited\")
+	
+	# Get all the teleporters in the group
+	teleporters_array = teleport_master_node.get_children()
+	var teleport_index = get_index()
+	
+	# Get the next teleportarea node in the teleporters_array array
+	var suiv = teleport_index + 1
+	# If the next teleporter's index is superior than the last index of the array, we set the index to 0 (first teleportarea in the array)
+	if suiv > len(teleporters_array) - 1:
+		suiv = 0
+	
+	layer_change_teleport_node = teleporters_array[suiv]
+
+
+# Whenever a character enters the area of this teleport, this method gives him the referecence to this node
+func on_body_entered(body):
+	if body.is_class(\"Player\") and body.teleport_node != self:
+		body.teleport_node = self
+		player_already_on_teleportarea = true
+
+
+# Whenever a character exits the area of this teleport, set his teleport_node reference to null
+func on_body_exited(body):
+	if body.is_class(\"Player\"):
+		var is_colliding = false
+		
+		# When the character get out of the area, check if it's because he left, or because he did teleport
+		for teleporter in teleporters_array:
+			if teleporter.overlaps_body(body) == true and teleporter != self:
+				is_colliding = true
+				player_already_on_teleportarea = false
+		
+		# If he left, set his teleport_node value to null
+		if is_colliding == false:
+			body.teleport_node = null
+			player_already_on_teleportarea = false
+
+
+# Teleport the player the the right destination teleporter
+func teleport_layer(character : Node):
+	
+	# Get the size of the character's collision shape
+	var y_offset = character.find_node(\"CollisionShape2D\").get_shape().get_extents().y
+	var teleport_pos : Vector2 = character.global_position
+	
+	# Check if one player is already on the teleport or not
+	if(!layer_change_teleport_node.player_already_on_teleportarea):
+		teleport_pos = layer_change_teleport_node.global_position
+	
+	teleport_pos.y -= y_offset/10
+	character.set_position(teleport_pos)
+"
 
 [sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 21.0893, 40 )
+extents = Vector2( 21, 48 )
 
 [node name="Level3E" instance=ExtResource( 5 )]
 
@@ -610,7 +677,7 @@ scale = Vector2( 0.582, 0.776 )
 script = SubResource( 15 )
 
 [node name="Lava16" parent="InteractivesObjects/LavaTiles" index="15" instance=ExtResource( 12 )]
-position = Vector2( 2024, 218 )
+position = Vector2( 2024, 212 )
 scale = Vector2( 0.89, 0.587934 )
 
 [node name="Lava17" parent="InteractivesObjects/LavaTiles" index="16" instance=ExtResource( 12 )]
@@ -630,248 +697,264 @@ scale = Vector2( 0.389, 0.691 )
 
 [node name="G1" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="0"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G1" index="0" instance=ExtResource( 13 )]
+[node name="BlueTeleporter" parent="InteractivesObjects/TeleportGroups/G1" index="0" instance=ExtResource( 22 )]
 position = Vector2( 564, -168 )
 rotation = 4.71239
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G1" index="1" instance=ExtResource( 13 )]
+[node name="BlueTeleporter2" parent="InteractivesObjects/TeleportGroups/G1" index="1" instance=ExtResource( 22 )]
 position = Vector2( 648, -324 )
 rotation = 3.14159
 
 [node name="G2" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="1"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G2" index="0" instance=ExtResource( 13 )]
-position = Vector2( 1250, -156 )
+[node name="PinkTeleporter" parent="InteractivesObjects/TeleportGroups/G2" index="0" instance=ExtResource( 23 )]
+position = Vector2( 1252, -156 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G2" index="1" instance=ExtResource( 13 )]
+[node name="PinkTeleporter2" parent="InteractivesObjects/TeleportGroups/G2" index="1" instance=ExtResource( 23 )]
 position = Vector2( 624, -12 )
 
 [node name="G3" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="2"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G3" index="0" instance=ExtResource( 13 )]
+[node name="RedTeleporter" parent="InteractivesObjects/TeleportGroups/G3" index="0" instance=ExtResource( 27 )]
 position = Vector2( 1332, -240 )
 rotation = 4.71239
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G3" index="1" instance=ExtResource( 13 )]
+[node name="RedTeleporter2" parent="InteractivesObjects/TeleportGroups/G3" index="1" instance=ExtResource( 27 )]
 position = Vector2( 1428, -240 )
 rotation = 1.5708
 
 [node name="G4" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="3"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G4" index="0" instance=ExtResource( 13 )]
+[node name="BlueTeleporter" parent="InteractivesObjects/TeleportGroups/G4" index="0" instance=ExtResource( 22 )]
 position = Vector2( 1572, -276 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G4" index="1" instance=ExtResource( 13 )]
+[node name="BlueTeleporter2" parent="InteractivesObjects/TeleportGroups/G4" index="1" instance=ExtResource( 22 )]
 position = Vector2( 2412, -408 )
 rotation = 4.71239
 
 [node name="G5" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="4"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G5" index="0" instance=ExtResource( 13 )]
+[node name="GreenTeleporter" parent="InteractivesObjects/TeleportGroups/G5" index="0" instance=ExtResource( 29 )]
 position = Vector2( 2748, -144 )
 rotation = 1.5708
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G5" index="1" instance=ExtResource( 13 )]
+[node name="GreenTeleporter2" parent="InteractivesObjects/TeleportGroups/G5" index="1" instance=ExtResource( 29 )]
 position = Vector2( 3104, 60 )
 rotation = 3.14159
 
 [node name="G7" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="5"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G7" index="0" instance=ExtResource( 13 )]
+[node name="PinkTeleporter" parent="InteractivesObjects/TeleportGroups/G7" index="0" instance=ExtResource( 23 )]
 position = Vector2( 2352, 324 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G7" index="1" instance=ExtResource( 13 )]
+[node name="PinkTeleporter2" parent="InteractivesObjects/TeleportGroups/G7" index="1" instance=ExtResource( 23 )]
 position = Vector2( 1794, -469 )
 rotation = 3.92699
 
 [node name="G20" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="6"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G20" index="0" instance=ExtResource( 13 )]
+[node name="RedTeleporter" parent="InteractivesObjects/TeleportGroups/G20" index="0" instance=ExtResource( 27 )]
 position = Vector2( 600, -396 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G20" index="1" instance=ExtResource( 13 )]
+[node name="RedTeleporter2" parent="InteractivesObjects/TeleportGroups/G20" index="1" instance=ExtResource( 27 )]
 position = Vector2( 60, -176 )
-rotation = -1.5708
+rotation = 4.71239
 
 [node name="G8" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="7"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G8" index="0" instance=ExtResource( 13 )]
-position = Vector2( 36, 288 )
-rotation = -1.5708
+[node name="BlueTeleporter" parent="InteractivesObjects/TeleportGroups/G8" index="0" instance=ExtResource( 22 )]
+position = Vector2( 36, 320 )
+rotation = 4.71239
+script = SubResource( 16 )
 
-[node name="CollisionShape2D" parent="InteractivesObjects/TeleportGroups/G8/TeleportArea" index="1"]
-position = Vector2( 0.00012207, -36 )
-shape = SubResource( 16 )
+[node name="CollisionShape2D" parent="InteractivesObjects/TeleportGroups/G8/BlueTeleporter" index="1"]
+position = Vector2( 0, -36 )
+shape = SubResource( 17 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G8" index="1" instance=ExtResource( 13 )]
+[node name="BlueTeleporter2" parent="InteractivesObjects/TeleportGroups/G8" index="1" instance=ExtResource( 22 )]
 position = Vector2( 156, 80 )
 rotation = 1.5708
 
 [node name="G9" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="8"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G9" index="0" instance=ExtResource( 13 )]
-position = Vector2( -132, 288 )
+[node name="GreenTeleporter" parent="InteractivesObjects/TeleportGroups/G9" index="0" instance=ExtResource( 29 )]
+position = Vector2( -131, 312 )
 rotation = 4.71239
 
-[node name="CollisionShape2D" parent="InteractivesObjects/TeleportGroups/G9/TeleportArea" index="1"]
-position = Vector2( 0, -20 )
-shape = SubResource( 17 )
-
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G9" index="1" instance=ExtResource( 13 )]
+[node name="GreenTeleporter2" parent="InteractivesObjects/TeleportGroups/G9" index="1" instance=ExtResource( 29 )]
 position = Vector2( 0, 132 )
 rotation = 3.14159
 
 [node name="G10" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="9"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G10" index="0" instance=ExtResource( 13 )]
+[node name="BlueTeleporter" parent="InteractivesObjects/TeleportGroups/G10" index="0" instance=ExtResource( 22 )]
 position = Vector2( 576, 588 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G10" index="1" instance=ExtResource( 13 )]
+[node name="BlueTeleporter2" parent="InteractivesObjects/TeleportGroups/G10" index="1" instance=ExtResource( 22 )]
 position = Vector2( 1020, 120 )
 rotation = 4.71239
 
 [node name="G11" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="10"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G11" index="0" instance=ExtResource( 13 )]
+[node name="GreenTeleporter" parent="InteractivesObjects/TeleportGroups/G11" index="0" instance=ExtResource( 29 )]
 position = Vector2( 656, 588 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G11" index="1" instance=ExtResource( 13 )]
+[node name="GreenTeleporter2" parent="InteractivesObjects/TeleportGroups/G11" index="1" instance=ExtResource( 29 )]
 position = Vector2( 1020, 432 )
 rotation = 4.71239
 
 [node name="G12" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="11"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G12" index="0" instance=ExtResource( 13 )]
+[node name="PinkTeleporter" parent="InteractivesObjects/TeleportGroups/G12" index="0" instance=ExtResource( 23 )]
 position = Vector2( 736, 588 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G12" index="1" instance=ExtResource( 13 )]
+[node name="PinkTeleporter2" parent="InteractivesObjects/TeleportGroups/G12" index="1" instance=ExtResource( 23 )]
 position = Vector2( 1068, 432 )
 rotation = 1.5708
 
 [node name="G13" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="12"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G13" index="0" instance=ExtResource( 13 )]
+[node name="RedTeleporter" parent="InteractivesObjects/TeleportGroups/G13" index="0" instance=ExtResource( 27 )]
 position = Vector2( 816, 588 )
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G13" index="1" instance=ExtResource( 13 )]
+[node name="RedTeleporter2" parent="InteractivesObjects/TeleportGroups/G13" index="1" instance=ExtResource( 27 )]
 position = Vector2( 1068, 120 )
 rotation = 1.5708
 
 [node name="G14" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="13"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G14" index="0" instance=ExtResource( 13 )]
+[node name="BlueTeleporter" parent="InteractivesObjects/TeleportGroups/G14" index="0" instance=ExtResource( 22 )]
 position = Vector2( 1980, 576 )
 rotation = 4.71239
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G14" index="1" instance=ExtResource( 13 )]
+[node name="BlueTeleporter2" parent="InteractivesObjects/TeleportGroups/G14" index="1" instance=ExtResource( 22 )]
 position = Vector2( 2004, 432 )
 rotation = 4.71239
 
 [node name="G15" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="14"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G15" index="0" instance=ExtResource( 13 )]
+[node name="GreenTeleporter" parent="InteractivesObjects/TeleportGroups/G15" index="0" instance=ExtResource( 29 )]
 position = Vector2( 2196, 576 )
 rotation = 4.71239
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G15" index="1" instance=ExtResource( 13 )]
+[node name="GreenTeleporter2" parent="InteractivesObjects/TeleportGroups/G15" index="1" instance=ExtResource( 29 )]
 position = Vector2( 2184, 300 )
 rotation = 3.14159
 
 [node name="G16" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="15"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G16" index="0" instance=ExtResource( 13 )]
+[node name="PinkTeleporter" parent="InteractivesObjects/TeleportGroups/G16" index="0" instance=ExtResource( 23 )]
 position = Vector2( 2484, 576 )
 rotation = 4.71239
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G16" index="1" instance=ExtResource( 13 )]
+[node name="PinkTeleporter2" parent="InteractivesObjects/TeleportGroups/G16" index="1" instance=ExtResource( 23 )]
 position = Vector2( 2028, 132 )
 
 [node name="G17" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="16"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G17" index="0" instance=ExtResource( 13 )]
+[node name="RedTeleporter" parent="InteractivesObjects/TeleportGroups/G17" index="0" instance=ExtResource( 27 )]
 position = Vector2( 2580, 648 )
 rotation = 4.71239
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G17" index="1" instance=ExtResource( 13 )]
+[node name="RedTeleporter2" parent="InteractivesObjects/TeleportGroups/G17" index="1" instance=ExtResource( 27 )]
 position = Vector2( 2292, 480 )
 rotation = 1.5708
 
 [node name="G18" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="17"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G18" index="0" instance=ExtResource( 13 )]
+[node name="RedTeleporter" parent="InteractivesObjects/TeleportGroups/G18" index="0" instance=ExtResource( 27 )]
 position = Vector2( 156, -24 )
 rotation = 4.71239
 
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G18" index="1" instance=ExtResource( 13 )]
+[node name="RedTeleporter2" parent="InteractivesObjects/TeleportGroups/G18" index="1" instance=ExtResource( 27 )]
 position = Vector2( -300, -48 )
 rotation = 4.71239
 
 [node name="G19" type="Node2D" parent="InteractivesObjects/TeleportGroups" index="18"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="TeleportArea" parent="InteractivesObjects/TeleportGroups/G19" index="0" instance=ExtResource( 13 )]
+[node name="GreenTeleporter" parent="InteractivesObjects/TeleportGroups/G19" index="0" instance=ExtResource( 29 )]
+position = Vector2( 635, -216 )
+rotation = 1.5708
+
+[node name="GreenTeleporter2" parent="InteractivesObjects/TeleportGroups/G19" index="1" instance=ExtResource( 29 )]
 position = Vector2( 876, -24 )
 rotation = 4.71239
-
-[node name="TeleportArea2" parent="InteractivesObjects/TeleportGroups/G19" index="1" instance=ExtResource( 13 )]
-position = Vector2( 636, -216 )
-rotation = 1.5708
 
 [node name="G1" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="0"]
 script = ExtResource( 6 )
@@ -1170,6 +1253,4 @@ position = Vector2( 56, -16 )
 
 [editable path="InteractivesObjects/XionLiquid/XionLiquid"]
 
-[editable path="InteractivesObjects/TeleportGroups/G8/TeleportArea"]
-
-[editable path="InteractivesObjects/TeleportGroups/G9/TeleportArea"]
+[editable path="InteractivesObjects/TeleportGroups/G8/BlueTeleporter"]

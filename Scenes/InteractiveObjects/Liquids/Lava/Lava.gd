@@ -6,7 +6,6 @@ class_name Lava
 ## USE: CHANGE THE SIZE OF THE POOL BY CHANGING THE SCALE OF THIS NODE ##
 ## PLEASE DO NOT USE CHANGE CHILDREN TO CHANGE THE SIZE ##
 
-
 #### ACCESSORS ####
 
 func is_class(value: String):
