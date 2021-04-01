@@ -129,6 +129,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/InteractiveObjects/BreakableObjects/Blocks/BlockBase.gd"
 }, {
+"base": "PlatformBase",
+"class": "BouncingPlatform",
+"language": "GDScript",
+"path": "res://Scenes/Actor/Platforms/Bouncing/BouncingPlatform.gd"
+}, {
 "base": "RigidBody2D",
 "class": "BreakableObjectBase",
 "language": "GDScript",
@@ -338,6 +343,11 @@ _global_script_classes=[ {
 "class": "EventsBase",
 "language": "GDScript",
 "path": "res://BabaGodotLib/Autoload/EventBase.gd"
+}, {
+"base": "PlatformBase",
+"class": "FlyingPlatform",
+"language": "GDScript",
+"path": "res://Scenes/Actor/Platforms/Flying/FlyingPlatform.gd"
 }, {
 "base": "Camera2D",
 "class": "GameCamera",
@@ -549,6 +559,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Levels/InfiniteMode/GenData/MetaChunckGenData.gd"
 }, {
+"base": "PlatformBase",
+"class": "MovingPlatform",
+"language": "GDScript",
+"path": "res://Scenes/Actor/Platforms/Moving/MovingPlatform.gd"
+}, {
 "base": "PushdownAutomata",
 "class": "NestedPushdownAutomata",
 "language": "GDScript",
@@ -588,6 +603,16 @@ _global_script_classes=[ {
 "class": "PauseMenu",
 "language": "GDScript",
 "path": "res://Scenes/Menus/PauseMenu/PauseMenu.gd"
+}, {
+"base": "ActorBase",
+"class": "PlatformBase",
+"language": "GDScript",
+"path": "res://Scenes/Actor/Platforms/PlatformBase/PlatformBase.gd"
+}, {
+"base": "ActorStateBase",
+"class": "PlatformIdleState",
+"language": "GDScript",
+"path": "res://Scenes/Actor/Platforms/PlatformBase/Scripts/PlatformIdleState.gd"
 }, {
 "base": "ActorBase",
 "class": "Player",
@@ -909,6 +934,7 @@ _global_script_class_icons={
 "BindLine": "",
 "BindVariation": "",
 "BlockBase": "",
+"BouncingPlatform": "",
 "BreakableObjectBase": "",
 "BreakablePlatfrom": "",
 "BtnDoorsGroup": "",
@@ -951,6 +977,7 @@ _global_script_class_icons={
 "EarthBlock": "",
 "Event": "",
 "EventsBase": "",
+"FlyingPlatform": "",
 "GameCamera": "",
 "GameConsoleScript": "",
 "GameSaver": "",
@@ -993,6 +1020,7 @@ _global_script_class_icons={
 "MenuOptions": "",
 "MenuOptionsBase": "",
 "MetaChunckGenData": "",
+"MovingPlatform": "",
 "NestedPushdownAutomata": "",
 "NestedStatesMachine": "",
 "NormalLineData": "",
@@ -1001,6 +1029,8 @@ _global_script_class_icons={
 "PartTween": "",
 "PathPoint": "",
 "PauseMenu": "",
+"PlatformBase": "",
+"PlatformIdleState": "",
 "Player": "",
 "PlayerActionState": "",
 "PlayerFallState": "",

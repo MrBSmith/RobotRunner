@@ -3,6 +3,8 @@
 [ext_resource path="res://Scenes/WorldMap/WorldMapMovingElement/Character/WorldMapCharacter.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Actor/Players/MrCold/Sprites/RobotIce.png" type="Texture" id=2]
 
+
+
 [node name="WorldMapCharacter" type="Sprite"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )

@@ -8,6 +8,8 @@
 [ext_resource path="res://Scenes/WorldMap/WorldMapMovingElement/Cursor/WorldMapCursor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/WorldMap/WorldMapCharacterContainer.gd" type="Script" id=10]
 
+
+
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 70.2383, 275.469, 0, 0, 0, 0, 70.2383, 103.047, 0, 0, 0, 0, 261.505, 103.047 )

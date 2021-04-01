@@ -9,6 +9,8 @@
 
 
 
+
+
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.395105, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )

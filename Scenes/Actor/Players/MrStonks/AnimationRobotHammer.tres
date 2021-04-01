@@ -16,6 +16,8 @@
 
 
 
+
+
 [resource]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ) ],

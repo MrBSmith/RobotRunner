@@ -4,68 +4,68 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 52, 100, 52 )
+region = Rect2( 0, 208, 100, 52 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
-region = Rect2( 100, 52, 100, 52 )
+region = Rect2( 100, 208, 100, 52 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
-region = Rect2( 200, 52, 100, 52 )
+region = Rect2( 200, 208, 100, 52 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
-region = Rect2( 300, 52, 100, 52 )
+region = Rect2( 0, 0, 100, 52 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 100, 52 )
+region = Rect2( 0, 52, 100, 52 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 208, 100, 52 )
+region = Rect2( 100, 52, 100, 52 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
-region = Rect2( 100, 208, 100, 52 )
+region = Rect2( 200, 52, 100, 52 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
-region = Rect2( 200, 208, 100, 52 )
+region = Rect2( 300, 52, 100, 52 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 104, 100, 52 )
+region = Rect2( 0, 156, 100, 52 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 156, 100, 52 )
+region = Rect2( 0, 104, 100, 52 )
 
 [resource]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "Move",
-"speed": 13.0
-}, {
-"frames": [ SubResource( 5 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 13.0
-}, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
 "loop": false,
 "name": "Action",
 "speed": 13.0
 }, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 13.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "Move",
+"speed": 13.0
+}, {
 "frames": [ SubResource( 9 ) ],
-"loop": false,
-"name": "Jump",
+"loop": true,
+"name": "Fall",
 "speed": 13.0
 }, {
 "frames": [ SubResource( 10 ) ],
-"loop": true,
-"name": "Fall",
+"loop": false,
+"name": "Jump",
 "speed": 13.0
 } ]

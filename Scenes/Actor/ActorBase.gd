@@ -1,6 +1,9 @@
 extends KinematicBody2D
 class_name ActorBase
 
+func is_class(value: String): return value == "ActorBase" or .is_class(value)
+func get_class() -> String: return "ActorBase"
+
 var current_speed : float = 0.0
 export var max_speed : float = 400.0
 export var acceleration : float = 15.0
