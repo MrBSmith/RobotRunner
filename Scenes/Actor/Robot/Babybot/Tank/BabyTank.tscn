@@ -18,48 +18,48 @@
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/Tank/Sprite/TankMinionFall.png" type="Texture" id=16]
 
 [sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 16 )
+atlas = ExtResource( 13 )
 region = Rect2( 0, 0, 52, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 16 )
+atlas = ExtResource( 13 )
 region = Rect2( 52, 0, 52, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 13 )
+atlas = ExtResource( 16 )
 region = Rect2( 0, 0, 52, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 13 )
+atlas = ExtResource( 16 )
 region = Rect2( 52, 0, 52, 32 )
 
 [sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 15 )
+atlas = ExtResource( 14 )
 region = Rect2( 0, 0, 52, 32 )
 
 [sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 15 )
+atlas = ExtResource( 14 )
 region = Rect2( 52, 0, 52, 32 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 15 )
+atlas = ExtResource( 14 )
 region = Rect2( 104, 0, 52, 32 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 52, 32 )
+region = Rect2( 156, 0, 52, 32 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 14 )
-region = Rect2( 52, 0, 52, 32 )
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 52, 32 )
 
 [sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 14 )
-region = Rect2( 104, 0, 52, 32 )
+atlas = ExtResource( 15 )
+region = Rect2( 52, 0, 52, 32 )
 
 [sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 14 )
-region = Rect2( 156, 0, 52, 32 )
+atlas = ExtResource( 15 )
+region = Rect2( 104, 0, 52, 32 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 12 )
@@ -119,23 +119,23 @@ animations = [ {
 "speed": 8.0
 }, {
 "frames": [ SubResource( 1 ), SubResource( 2 ) ],
-"loop": true,
-"name": "Fall",
-"speed": 13.0
-}, {
-"frames": [ SubResource( 3 ), SubResource( 4 ) ],
 "loop": false,
 "name": "Jump",
 "speed": 13.0
 }, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
-"name": "MidAir",
+"name": "Fall",
 "speed": 13.0
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": false,
 "name": "Land",
+"speed": 13.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "MidAir",
 "speed": 13.0
 }, {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],

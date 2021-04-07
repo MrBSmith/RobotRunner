@@ -9,13 +9,12 @@ _data = {
 }
 
 [node name="LevelNodeBind" type="Path2D"]
-modulate = Color( 0.545098, 0.721569, 0.258824, 1 )
+self_modulate = Color( 1, 1, 1, 0 )
 curve = SubResource( 1 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
-cap_offset = 19.0
 
 [node name="BindLine" parent="." instance=ExtResource( 2 )]
 start_cap_visible = true

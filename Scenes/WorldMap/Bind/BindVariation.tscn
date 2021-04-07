@@ -4,6 +4,7 @@
 [ext_resource path="res://Scenes/WorldMap/Bind/BindVariation.gd" type="Script" id=2]
 
 [node name="BindVariation" type="Sprite"]
+modulate = Color( 0.270588, 0.611765, 0.156863, 1 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -3 )
 script = ExtResource( 2 )

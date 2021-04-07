@@ -57,7 +57,7 @@ func set_points(points_array: PoolVector2Array):
 	points = points_array
 	
 	if dead_end == false && (depth < max_depth - 1 or corner_line):
-		_update_children_binds()
+		update_children_binds()
 
 func set_depth(value: int): depth = value
 func set_max_depth(value: int): max_depth = value
@@ -80,7 +80,7 @@ func _ready() -> void:
 
 #### LOGIC ####
 
-func _update_children_binds():
+func update_children_binds():
 	clear_children_binds()
 	
 	# Generate the dead ends of the corner line
@@ -106,8 +106,14 @@ func generate_node_sublines():
 		# If we're not in the main line, we need to treat only the end cap
 		if depth != 0 && i == 0:
 			continue
+		var level_node = null
+		if depth == 0:
+			level_node = owner.origin if i == 0 else owner.destination
 		
 		var rng = randi() % 3 if depth == 0 else 1
+		if max_depth > 5 && depth == 0:
+			 rng = 2
+		
 		var point = points[0] if i == 0 else points[-1]
 		var dir = points[0].direction_to(points[1]) if i == 0 else points[-1].direction_to(points[-2])
 		var dist = points[0].distance_to(points[1]) if i == 0 else points[-1].distance_to(points[-2])
@@ -162,7 +168,10 @@ func generate_node_sublines():
 			# Add the line & give it its points
 			line.offset_sign = current_sign
 			line.set_depth(depth + 1)
-			line.set_max_depth(max_depth)
+			if level_node != null && level_node.name == "BossLevelNode" && depth == 0:
+				line.set_max_depth(max_depth + 4)
+			else:
+				line.set_max_depth(max_depth)
 			add_child(line)
 			line.set_owner(self)
 			line.call_deferred("set_points", PoolVector2Array(line_points_array))

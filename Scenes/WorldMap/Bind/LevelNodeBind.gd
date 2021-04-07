@@ -7,8 +7,6 @@ onready var line : BindLine = $BindLine
 export var origin_node_path : String = ""
 export var destination_node_path : String = ""
 
-export var cap_offset : float = 18.0
-
 var origin : Node2D setget set_origin, get_origin
 var destination : Node2D setget set_destination, get_destination
 
@@ -21,8 +19,8 @@ var is_ready : bool = false
 
 #### ACCESSORS ####
 
-func is_class(value: String): return value == "LevelNodeBound" or .is_class(value)
-func get_class() -> String: return "LevelNodeBound"
+func is_class(value: String): return value == "LevelNodeBind" or .is_class(value)
+func get_class() -> String: return "LevelNodeBind"
 
 func set_origin(value: Node2D):
 	if origin == value: 
@@ -107,17 +105,31 @@ func _update_line():
 	for i in range(point_path.size()):
 		var point = point_path[i]
 		var dir = Vector2.ZERO
+		var cap_offset = 0.0
+		var node_texture = null
 		
 		if i == 0:
 			dir = point_path[0].direction_to(point_path[1])
+			node_texture = origin.get_texture()
 		if i == point_path.size() - 1:
 			dir = point_path[i].direction_to(point_path[i - 1])
+			node_texture = destination.get_texture()
 		
-		var point_pos = point + cap_offset * dir
+		if node_texture != null:
+			if dir.x != 0:
+				cap_offset = node_texture.get_size().x / 2
+			else:
+				cap_offset = node_texture.get_size().y / 2 
+		
+		var point_pos = point + (cap_offset + 6) * dir
 		line_points_array.append(point_pos)
 		curve.add_point(point_pos)
 	
 	line.set_points(line_points_array)
+
+
+func reroll_line_gen():
+	line.update_children_binds()
 
 
 # Return the direction the path of the bind is aiming to, based on the given level_node 

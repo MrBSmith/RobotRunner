@@ -6,11 +6,9 @@
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/States/BabyBotHiddenState.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/States/BabyBotJumpState.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/BabyBot.gd" type="Script" id=6]
-[ext_resource path="res://BabaGodotLib/Actor/States/BaseStates/ActorFallState.gd" type="Script" id=7]
+[ext_resource path="res://BabaGodotLib/Actor/States/ActorState/BaseStates/ActorFallState.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Actor/Players/Inputs.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/States/BabyBotIdleState.gd" type="Script" id=9]
-
-
 
 [node name="BabyBot" instance=ExtResource( 1 )]
 z_index = 0

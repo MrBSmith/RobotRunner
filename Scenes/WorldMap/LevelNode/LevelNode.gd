@@ -38,8 +38,8 @@ func get_editor_select_state() -> int: return editor_select_state
 
 func set_visited(value: bool):
 	visited = value
-	if visited: set_self_modulate(Color.darkgray)
-	else: set_self_modulate(Color.white)
+	if visited: set_modulate(Color.darkgray)
+	else: set_modulate(Color.white)
 
 func is_visited() -> bool: return visited
 

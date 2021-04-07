@@ -2,13 +2,10 @@ tool
 extends EditorPlugin
 class_name WorldMapEditor
 
-var last_lvl_node_selected : LevelNode = null
-var current_lvl_node_selected : LevelNode = null
+var last_node_selected : Node = null
+var current_node_selected : Node = null
 
-var bind_button : Button = null
-var confirm_bind_button : Button = null
-var abort_bind_button : Button = null
-var delete_binds_button : Button = null
+var button_dict : Dictionary = {}
 
 var bind_origin = LevelNode
 var bind_dest_array : Array = []
@@ -28,11 +25,11 @@ func set_bind_mode(value: bool):
 			_unselect_all_level_nodes()
 			bind_origin = null
 			bind_dest_array = []
-			destroy_button(confirm_bind_button)
-			destroy_button(abort_bind_button)
+			destroy_button("Confirm bind")
+			destroy_button("Abort bind")
 		else:
-			destroy_button(bind_button)
-			generate_button("abort_bind_button", "Abort bind")
+			destroy_button("Create bind")
+			generate_button("Abort bind")
 
 #### BUILT-IN ####
 
@@ -45,25 +42,34 @@ func _exit_tree() -> void:
 	destroy_every_buttons()
 
 func handles(obj: Object) -> bool:
+	destroy_every_buttons()
+	
+	yield(get_tree(), "idle_frame")
+	
 	if obj is LevelNode:
 		if bind_mode == false:
-			generate_button("bind_button", "Create Bind")
+			generate_button("Create Bind")
+		
 		if obj.get_binds_count() > 0:
-			generate_button("delete_binds_button", "Delete Binds")
-		else:
-			destroy_button(delete_binds_button)
-	else:
-		destroy_every_buttons()
+			generate_button("Delete Binds")
+		
+	elif obj is WorldMapBackgroundElement:
+		generate_button("Previous Texture")
+		generate_button("Next Texture")
+		generate_button("Random Texture")
+		
+	elif obj is LevelNodeBind:
+		generate_button("Reroll Bind Gen")
 	
-	return obj is LevelNode
+	return obj.get_class() in ["LevelNode", "WorldMapBackgroundElement"]
 
 
 func edit(object: Object) -> void:
-	last_lvl_node_selected = current_lvl_node_selected
-	current_lvl_node_selected = object
+	last_node_selected = current_node_selected
+	current_node_selected = object
 	
-	if bind_mode:
-		add_destination(current_lvl_node_selected)
+	if bind_mode && current_node_selected is LevelNode:
+		add_destination(current_node_selected)
 
 
 func add_destination(level_node: LevelNode):
@@ -71,15 +77,14 @@ func add_destination(level_node: LevelNode):
 		if level_node.owner.are_level_nodes_bounded(bind_origin, level_node):
 			return
 		bind_dest_array.append(level_node)
-		current_lvl_node_selected.set_editor_select_state(LevelNode.EDITOR_SELECTED.BIND_DESTINATION)
-		generate_button("confirm_bind_button", "Confirm bind")
+		current_node_selected.set_editor_select_state(LevelNode.EDITOR_SELECTED.BIND_DESTINATION)
+		generate_button("Confirm bind")
 
 
 func destroy_every_buttons():
-	destroy_button(bind_button)
-	destroy_button(confirm_bind_button)
-	destroy_button(abort_bind_button)
-	destroy_button(delete_binds_button)
+	for key in button_dict.keys():
+		button_dict[key].queue_free()
+		button_dict.erase(key)
 
 
 #### VIRTUALS ####
@@ -88,16 +93,18 @@ func destroy_every_buttons():
 
 #### LOGIC ####
 
-func generate_button(variable_name: String, button_text: String):
-	if get(variable_name) == null:
-		set(variable_name, Button.new())
-		var button = get(variable_name)
-		button.set_text(button_text)
-		add_control_to_container(EditorPlugin.CONTAINER_CANVAS_EDITOR_MENU, button)
-		var _err = button.connect("pressed", self, "_on_" + variable_name + "_pressed")
+func generate_button(button_name: String):
+	var snake_cased_button_name = button_name.to_lower().replace(" ", "_")
+
+	if !button_dict.has(button_name) or button_dict[button_name] == null:
+		button_dict[button_name] = Button.new()
+		button_dict[button_name].set_text(button_name)
+		add_control_to_container(EditorPlugin.CONTAINER_CANVAS_EDITOR_MENU, button_dict[button_name])
+		var _err = button_dict[button_name].connect("pressed", self, "_on_" + snake_cased_button_name + "_button_pressed")
 
 
-func destroy_button(button: Button):
+func destroy_button(button_name: String):
+	var button = button_dict[button_name] if button_dict.has(button_name) else null
 	if button != null:
 		button.queue_free()
 
@@ -115,11 +122,11 @@ func _unselect_all_level_nodes():
 
 #### SIGNAL RESPONSES ####
 
-func _on_bind_button_pressed():
+func _on_create_bind_button_pressed():
 	if !bind_mode:
 		set_bind_mode(true)
-		bind_origin = current_lvl_node_selected
-		current_lvl_node_selected.set_editor_select_state(LevelNode.EDITOR_SELECTED.BIND_ORIGIN)
+		bind_origin = current_node_selected
+		current_node_selected.set_editor_select_state(LevelNode.EDITOR_SELECTED.BIND_ORIGIN)
 
 
 func _on_confirm_bind_button_pressed():
@@ -134,4 +141,23 @@ func _on_abort_bind_button_pressed():
 
 
 func _on_delete_binds_button_pressed():
-	current_lvl_node_selected.emit_signal("remove_all_binds_query", current_lvl_node_selected)
+	current_node_selected.emit_signal("remove_all_binds_query", current_node_selected)
+
+
+func _on_previous_texture_button_pressed():
+	if current_node_selected is WorldMapBackgroundElement:
+		current_node_selected.increment_texture_index(-1)
+
+
+func _on_next_texture_button_pressed():
+	if current_node_selected is WorldMapBackgroundElement:
+		current_node_selected.increment_texture_index(1)
+
+
+func _on_random_texture_button_pressed():
+	if current_node_selected is WorldMapBackgroundElement:
+		current_node_selected.randomise_texture()
+
+func _on_reroll_bind_gen_button_pressed():
+	if current_node_selected is LevelNodeBind:
+		current_node_selected.reroll_line_gen()

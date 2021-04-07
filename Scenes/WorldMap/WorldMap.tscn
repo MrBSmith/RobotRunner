@@ -1,73 +1,133 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/WorldMap/LevelNode/LevelNode.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/WorldMap/WorldMapMovingElement/Character/WorldMapCharacter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/WorldMap/LevelNode/BossLevelNode.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/WorldMap/Bind/LevelNodeBind.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/WorldMap/WorldMap.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Actor/Players/MrStonks/Sprites/RoboHammer.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/WorldMap/Backgound/BackgroundElement.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/WorldMap/WorldMapMovingElement/Cursor/WorldMapCursor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/WorldMap/Backgound/Variation6.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/WorldMap/WorldMapCharacterContainer.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/WorldMap/Backgound/Variation3.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/WorldMap/Backgound/Variation5.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/WorldMap/Backgound/Variation2.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/WorldMap/Backgound/Variation8.png" type="Texture" id=14]
 
 
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 70.2383, 275.469, 0, 0, 0, 0, 70.2383, 103.047, 0, 0, 0, 0, 261.505, 103.047 )
+"points": PoolVector2Array( 0, 0, 0, 0, 126.591, 287.168, 0, 0, 0, 0, 126.591, 167.438, 0, 0, 0, 0, 263.668, 167.438 )
 }
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 299.505, 103.047, 0, 0, 0, 0, 416.822, 103.047, 0, 0, 0, 0, 416.822, 251 )
+"points": PoolVector2Array( 0, 0, 0, 0, 283.668, 187.438, 0, 0, 0, 0, 283.668, 282.699, 0, 0, 0, 0, 452, 282.699 )
 }
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 70.2383, 313.469, 0, 0, 0, 0, 70.2383, 454.957, 0, 0, 0, 0, 224.717, 454.957 )
+"points": PoolVector2Array( 0, 0, 0, 0, 126.591, 327.168, 0, 0, 0, 0, 126.591, 471.402, 0, 0, 0, 0, 347.494, 471.402 )
 }
 
 [sub_resource type="Curve2D" id=4]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 435.822, 270, 0, 0, 0, 0, 620.658, 270 )
+"points": PoolVector2Array( 0, 0, 0, 0, 492, 282.699, 0, 0, 0, 0, 676.011, 282.699 )
 }
 
 [sub_resource type="Curve2D" id=5]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 639.658, 251, 0, 0, 0, 0, 639.658, 201.024, 0, 0, 0, 0, 741.524, 201.024 )
+"points": PoolVector2Array( 0, 0, 0, 0, 696.011, 262.699, 0, 0, 0, 0, 696.011, 156.038, 0, 0, 0, 0, 809.612, 156.038 )
 }
 
 [sub_resource type="Curve2D" id=6]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 262.717, 454.957, 0, 0, 0, 0, 416.822, 454.957, 0, 0, 0, 0, 416.822, 289 )
+"points": PoolVector2Array( 0, 0, 0, 0, 387.494, 471.402, 0, 0, 0, 0, 472, 471.402, 0, 0, 0, 0, 472, 302.699 )
+}
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 452, 282.699, 0, 0, 0, 0, 471.333, 282.699, 0, 0, 0, 0, 471.333, 109.5 )
 }
 
 [node name="WorldMap" type="CanvasLayer"]
 script = ExtResource( 5 )
 cursor_start_level_path = "Levels/LevelNode"
 
+[node name="BackgroundColorRect" type="ColorRect" parent="."]
+anchor_left = 0.000826772
+anchor_right = 1.00083
+anchor_bottom = 1.0
+color = Color( 0.14902, 0.219608, 0.278431, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundElements" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BackgroundElement" parent="BackgroundElements" instance=ExtResource( 7 )]
+position = Vector2( 530.696, 233.654 )
+rotation = 1.5708
+texture = ExtResource( 9 )
+
+[node name="BackgroundElement5" parent="BackgroundElements" instance=ExtResource( 7 )]
+position = Vector2( 82.3432, 409.528 )
+rotation = 1.5708
+texture = ExtResource( 14 )
+
+[node name="BackgroundElement6" parent="BackgroundElements" instance=ExtResource( 7 )]
+position = Vector2( 757.772, 203.295 )
+rotation = 1.5708
+texture = ExtResource( 11 )
+
+[node name="BackgroundElement2" parent="BackgroundElements" instance=ExtResource( 7 )]
+position = Vector2( 407.798, 362.771 )
+texture = ExtResource( 12 )
+
+[node name="BackgroundElement3" parent="BackgroundElements" instance=ExtResource( 7 )]
+position = Vector2( 158.183, 203.925 )
+texture = ExtResource( 13 )
+
+[node name="BackgroundElement4" parent="BackgroundElements" instance=ExtResource( 7 )]
+position = Vector2( 169.529, 229.954 )
+texture = ExtResource( 14 )
+
 [node name="Levels" type="Node2D" parent="."]
 z_index = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="LevelNode" parent="Levels" instance=ExtResource( 1 )]
-self_modulate = Color( 0.66, 0.66, 0.66, 1 )
-position = Vector2( 70.2383, 294.469 )
+modulate = Color( 0.66, 0.66, 0.66, 1 )
+position = Vector2( 126.591, 307.168 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level1/Level1A.tscn"
 visited = true
 
 [node name="LevelNode2" parent="Levels" instance=ExtResource( 1 )]
-position = Vector2( 243.717, 454.957 )
+position = Vector2( 367.494, 471.402 )
 
 [node name="LevelNode3" parent="Levels" instance=ExtResource( 1 )]
-position = Vector2( 280.505, 103.047 )
+position = Vector2( 283.668, 167.438 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level1/Level1C.tscn"
 
 [node name="LevelNode4" parent="Levels" instance=ExtResource( 1 )]
-position = Vector2( 639.658, 270 )
+position = Vector2( 696.011, 282.699 )
 
 [node name="LevelNode5" parent="Levels" instance=ExtResource( 1 )]
-position = Vector2( 416.822, 270 )
+position = Vector2( 472, 282.699 )
 
 [node name="LevelNode6" parent="Levels" instance=ExtResource( 1 )]
-position = Vector2( 760.524, 201.024 )
+position = Vector2( 829.612, 156.038 )
+
+[node name="BossLevelNode" parent="Levels" instance=ExtResource( 3 )]
+position = Vector2( 471.333, 71 )
 
 [node name="Binds" type="Node2D" parent="."]
 __meta__ = {
@@ -104,10 +164,15 @@ curve = SubResource( 6 )
 origin_node_path = "Levels/LevelNode2"
 destination_node_path = "Levels/LevelNode5"
 
+[node name="LevelNodeBind7" parent="Binds" instance=ExtResource( 4 )]
+curve = SubResource( 7 )
+origin_node_path = "Levels/LevelNode5"
+destination_node_path = "Levels/BossLevelNode"
+
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Characters" type="Node2D" parent="."]
-position = Vector2( 70.2383, 294.469 )
+position = Vector2( 126.591, 307.168 )
 script = ExtResource( 10 )
 __meta__ = {
 "_edit_lock_": true
@@ -125,4 +190,4 @@ region_rect = Rect2( 0, 0, 64, 64 )
 [node name="Tween" type="Tween" parent="Characters"]
 
 [node name="WorldMapCursor" parent="." instance=ExtResource( 8 )]
-position = Vector2( 70.2383, 294.469 )
+position = Vector2( 126.591, 307.168 )
