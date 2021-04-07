@@ -539,6 +539,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/UI/Menu/ListMenu.gd"
 }, {
+"base": "Object",
+"class": "Math",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Statics/Math.gd"
+}, {
 "base": "Control",
 "class": "MenuBase",
 "language": "GDScript",
@@ -1016,6 +1021,7 @@ _global_script_class_icons={
 "LineData": "",
 "Liquid": "",
 "ListMenu": "",
+"Math": "",
 "MenuBase": "",
 "MenuOptions": "",
 "MenuOptionsBase": "",
