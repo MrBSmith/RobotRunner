@@ -29,7 +29,7 @@ func setup():
 func _process(_delta):
 	for SFX_node in SFX_nodes_array:
 		if SFX_node.has_method(\"set_fx_direction\"):
-			SFX_node.set_fx_direction(owner.get_direction())
+			SFX_node.set_fx_direction(owner.get_direction().x)
 
 
 # When called with a String, search for a child node with this name and call his method that play/stop the SFX
@@ -163,12 +163,6 @@ stereo = true
 
 [node name="PlayerBase" instance=ExtResource( 10 )]
 script = ExtResource( 7 )
-max_speed = 400.0
-acceleration = 15.0
-interactables = PoolStringArray( "InteractiveObject" )
-default_state = ""
-jump_force = -500
-push = 2
 
 [node name="Idle" type="Node" parent="StatesMachine" index="0"]
 script = ExtResource( 6 )

@@ -1,18 +1,14 @@
-extends PlatformBase
+extends RobotPlatformBase
 class_name FlyingPlatform
-#### ACCESSORS ####
 
 func is_class(value: String): return value == "FlyingPlatform" or .is_class(value)
 func get_class() -> String: return "FlyingPlatform"
 
+#### ACCESSORS ####
 
 #### BUILT-IN ####
 
-
-
 #### VIRTUALS ####
-
-
 
 #### LOGIC ####
 

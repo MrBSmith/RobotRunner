@@ -36,7 +36,7 @@ func set_active(value: bool):
 		set_modulate(Color.white)
 	else:
 		set_modulate(Color.gray)
-		set_direction(0)
+		set_direction(Vector2.ZERO)
 
 func get_active() -> bool: return active
 
@@ -98,7 +98,7 @@ func _input(event):
 	elif event.is_action_released(inputs_node.get_input("MoveRight")):
 		dirRight = 0
 	
-	set_direction(dirRight - dirLeft)
+	set_direction(Vector2(dirRight - dirLeft, 0))
 
 
 #### SIGNALS RESPONSES ####

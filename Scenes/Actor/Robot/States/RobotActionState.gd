@@ -31,7 +31,7 @@ func update_state(_delta):
 # When the actor enters action state: set active the hit box, and play the right animation
 func enter_state():
 	if not owner is Player:
-		owner.set_direction(0)
+		owner.set_direction(Vector2.ZERO)
 	
 	.enter_state()
 	

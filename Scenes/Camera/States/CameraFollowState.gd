@@ -110,13 +110,13 @@ func get_border_approched(ply_average_pos: Vector2) -> Array:
 		
 		### Check individual players position ###
 		if player_pos.x > pivot_pos.x + (screen_size.x / 2) - anticip_dist - right_buffer_dist && \
-							player.last_direction == 1:
+							player.last_direction == Vector2.RIGHT:
 			if !(Vector2.RIGHT in border_array):
 				border_array.append(Vector2.RIGHT)
 				continue
 		
 		elif player_pos.x < pivot_pos.x - (screen_size.x / 2) + anticip_dist + left_buffer_dist && \
-							player.last_direction == -1:
+							player.last_direction == Vector2.LEFT:
 			if !(Vector2.LEFT in border_array):
 				border_array.append(Vector2.LEFT)
 				continue
@@ -127,12 +127,12 @@ func get_border_approched(ply_average_pos: Vector2) -> Array:
 		
 		# Check average players position being in one of the border buffer
 		if ply_average_pos.x > pivot_pos.x + (cam_size.x / 2) - cam_anticip_dist - right_buffer_dist:
-			if !(Vector2.RIGHT in border_array) && player.last_direction == 1:
+			if !(Vector2.RIGHT in border_array) && player.last_direction == Vector2.RIGHT:
 				border_array.append(Vector2.RIGHT)
 				break
 		
 		if ply_average_pos.x < pivot_pos.x - (cam_size.x / 2) + cam_anticip_dist + left_buffer_dist:
-			if !(Vector2.LEFT in border_array) && player.last_direction == -1:
+			if !(Vector2.LEFT in border_array) && player.last_direction == Vector2.LEFT:
 				border_array.append(Vector2.LEFT)
 				break
 	

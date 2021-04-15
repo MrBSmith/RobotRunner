@@ -12,7 +12,7 @@ func get_class() -> String: return "BabyBotIdleState"
 func enter_state():
 	if owner.is_path_empty():
 		.enter_state()
-		owner.set_direction(0)
+		owner.set_direction(Vector2.ZERO)
 	else:
 		owner.set_state("Move")
 

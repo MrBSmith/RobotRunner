@@ -12,7 +12,7 @@ func get_class() -> String: return "BabyBotActionState"
 #### BUILT-IN ####
 
 func enter_state():
-	owner.set_direction(0)
+	owner.set_direction(Vector2.ZERO)
 	
 	.enter_state()
 	
