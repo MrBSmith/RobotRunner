@@ -15,8 +15,6 @@ func get_class() -> String:
 
 #### LOGIC ####
 
-# Handle the movement to the next point on the path, return true if the node is arrived
-
 #### VIRTUALS ####
 
 
