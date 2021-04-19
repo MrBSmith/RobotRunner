@@ -16,7 +16,7 @@ func get_class() -> String:
 func _ready():
 	var _err
 	_err = animated_sprite_node.connect("animation_finished", self, "on_animation_finished")
-	_err = connect("checkpoint_reached",GAME,"on_checkpoint_reached")
+	_err = connect("checkpoint_reached", GAME, "on_checkpoint_reached")
 	
 	if active:
 		activate_checkpoint()

@@ -88,7 +88,7 @@ func get_solo_mode() -> bool: return solo_mode
 
 #### BUILT-IN ####
 
-func _ready():	
+func _ready():
 	var _err = gameover_timer_node.connect("timeout",self, "on_gameover_timer_timeout")
 	_err = transition_timer_node.connect("timeout",self, "on_transition_timer_timeout")
 	_err = EVENTS.connect("level_ready", self, "on_level_ready")
@@ -160,9 +160,9 @@ func goto_next_level():
 
 	var _err = get_tree().change_scene_to(next_level)
 
-	yield(EVENTS, "level_ready")
-	var level = get_tree().get_current_scene()
-	GameSaver.save_level_properties_as_json(level)
+#	yield(EVENTS, "level_ready")
+#	var level = get_tree().get_current_scene()
+#	GameSaver.save_level_properties_as_json(level)
 
 
 func goto_level(level_index : int):
@@ -175,9 +175,9 @@ func goto_level(level_index : int):
 	GameSaver.delete_level_temp_saves(level_name)
 
 	var _err = get_tree().change_scene_to(level)
-	yield(EVENTS, "level_ready")
-	var current_level = get_tree().get_current_scene()
-	GameSaver.save_level_properties_as_json(current_level)
+#	yield(EVENTS, "level_ready")
+#	var current_level = get_tree().get_current_scene()
+#	GameSaver.save_level_properties_as_json(current_level)
 
 
 
@@ -318,10 +318,10 @@ func on_level_ready(level : Level):
 	update_current_level_index(level)
 	fade_in()
 
-	if level is InfiniteLevel:
+#	if level is InfiniteLevel:
 #		start_thread_savelevel([level, true])
-		GameSaver.save_level_as_tscn(level)
-		GameSaver.save_level_properties_as_json(level)
+#		GameSaver.save_level_as_tscn(level)
+#		GameSaver.save_level_properties_as_json(level)
 
 # When a player reach a checkpoint
 func on_checkpoint_reached(level: Level, checkpoint_id: int):
@@ -329,6 +329,8 @@ func on_checkpoint_reached(level: Level, checkpoint_id: int):
 		progression.checkpoint = checkpoint_id + 1
 	
 	GameSaver.save_level_as_tscn(level)
+	GameSaver.save_level_properties_as_json(level)
+
 #	start_thread_savelevel([level, false])
 
 #func start_thread_savelevel(args : Array):

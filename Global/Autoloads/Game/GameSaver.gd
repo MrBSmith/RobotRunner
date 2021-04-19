@@ -11,9 +11,10 @@ const SAVEDLEVEL_TSCN_DIR : String = "/tscn/"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
 
 const objects_datatype_storage = {
-	"GameCamera": ["zoom", "instruction_stack"],
-	"ParallaxBackground" : ["scroll_offset", "scroll_base_offset", "scroll_base_scale", "scale"],
-	"ParallaxLayer" : ["motion_scale", "motion_offset", "scale"],
+	"Collectable" : [],
+	"BreakableObjectBase": [],
+	"Door" : ["is_open"],
+	"DoorButton": ["is_push"]
 }
 
 #### ACCESSORS ####
@@ -51,10 +52,12 @@ static func create_dirs(MAIN_DIR : String, directories_to_create : Array):
 				##### IF DEBUG THIS WILL DISPLAY IN THE CONSOLE THE NEWLY CREATED FILE
 				print("Done ! Directory can in be found in : " + created_directory_path)
 
+
 static func check_if_dir_exist(dir_path : String) -> bool:
 	var dir = Directory.new()
 	var dirExist : bool = dir.dir_exists(dir_path)
 	return dirExist
+
 
 #Get audio and controls project settings and set them into a dictionary.
 # This dictionary _settings will be used later to save and load anytime a user wishes to
@@ -89,6 +92,7 @@ static func settings_update_keys(settings_dictionary : Dictionary, save_name : S
 static func settings_update_save_name(settings_dictionary  : Dictionary, save_name : String):
 	settings_dictionary["system"]["save_name"] = save_name
 
+
 # Save settings into a config file : res://saves/save1/2/3
 static func save_settings(path : String, save_name : String):
 	settings_update_keys(GAME._settings, save_name)
@@ -97,6 +101,7 @@ static func save_settings(path : String, save_name : String):
 			GAME._config_file.set_value(section, key, GAME._settings[section][key])
 			
 	GAME._config_file.save(path + "/settings.cfg")
+
 
 # Load the settings found in the ConfigFile settings.cfg at given path (default res://saves/save1/2/3
 static func load_settings(slot_id : int):
@@ -130,14 +135,10 @@ static func load_settings(slot_id : int):
 				"gameplay":
 					for keys in GAME._config_file.get_section_keys(section):
 						match(keys):
-							"level_id":
-								GAME.progression.set_level(GAME._config_file.get_value(section, keys))
-							"checkpoint_reached":
-								GAME.progression.set_checkpoint(GAME._config_file.get_value(section, keys))
-							"xion":
-								GAME.progression.set_xion(GAME._config_file.get_value(section, keys))
-							"gear":
-								GAME.progression.set_gear(GAME._config_file.get_value(section, keys))
+							"level_id": GAME.progression.set_level(GAME._config_file.get_value(section, keys))
+							"checkpoint_reached": GAME.progression.set_checkpoint(GAME._config_file.get_value(section, keys))
+							"xion": GAME.progression.set_xion(GAME._config_file.get_value(section, keys))
+							"gear": GAME.progression.set_gear(GAME._config_file.get_value(section, keys))
 				_:
 					pass
 	else:
@@ -147,12 +148,8 @@ static func load_settings(slot_id : int):
 	
 	return save_path
 
-# METHOD EXPLAINATION
-### This method will return an array of every file considered as a SAVE FILE
-#INPUT
-### No input are required
-#OUTPUT
-### Return an array of files
+
+# This method will return an array of every file considered as a SAVE FILE
 static func find_all_saves_directories() -> Array:
 	var saves_directory = Directory.new()
 	var error = saves_directory.open(SAVEGAME_DIR)
@@ -179,13 +176,8 @@ static func find_all_saves_directories() -> Array:
 			print("FAILED TO LOAD SETTINGS CFG FILE. ERROR CODE : " + str(error))
 		return []
 
-# METHOD EXPLAINATION
-### This method will return the path of the save file that has been found according to the specified save_id
-#INPUT
-### Files Array
-### Save ID  to get the save we want
-#OUTPUT
-### Return the path of the found save as a string
+
+# This method will return the path of the save file that has been found according to the specified save_id
 static func find_corresponding_save_file(files : Array, save_id : int) -> String:
 	var error
 
@@ -203,6 +195,7 @@ static func find_corresponding_save_file(files : Array, save_id : int) -> String
 			return ""
 
 	return ""
+
 
 static func get_save_cfg_property_value_by_name_and_cfgid(cfgproperty_name : String, save_id : int):
 	var file_array : Array
@@ -230,12 +223,14 @@ static func get_save_cfg_property_value_by_name_and_cfgid(cfgproperty_name : Str
 	
 	return ""
 
+
 # Save the level in a .tscn file
 static func save_level_as_tscn(level: Node2D):
 	var saved_level = PackedScene.new()
 	var level_name = level.get_name()
 	saved_level.pack(level)
 	var _err = ResourceSaver.save(SAVEDLEVEL_DIR + "/tscn/" + level_name + ".tscn", saved_level)
+
 
 # Find recursivly every wanted nodes, and extract their wanted properties
 static func serialize_level_properties(current_node : Node, dict_to_fill : Dictionary):
@@ -251,6 +246,7 @@ static func serialize_level_properties(current_node : Node, dict_to_fill : Dicti
 		if child.get_child_count() != 0:
 			serialize_level_properties(child, dict_to_fill)
 
+
 static func deserialize_level_properties(file_path : String):
 	var level_properties  : String = ""
 	var parsed_data : Dictionary = {}
@@ -263,8 +259,10 @@ static func deserialize_level_properties(file_path : String):
 	level_properties = load_file.get_as_text()
 	parsed_data = parse_json(level_properties)
 	load_file.close()
-
+	
 	return parsed_data
+
+
 
 # Take an object, find every properties needed in it and retrun the data as a dict
 # => NEVER CALLED, Except by serialize_level_properties method
@@ -276,6 +274,8 @@ static func get_object_properties(object : Object, classname : String) -> Dictio
 	for property in property_list:
 		if property in object:
 			property_data_dict[property] = object.get(property)
+		elif object.has_method("get_" + property):
+			property_data_dict[property] = object.call("get_" + property)
 		else:
 			print("Property : " + property + " could not be found in " + object.name)
 
@@ -293,6 +293,7 @@ static func save_level_properties_as_json(level : Level):
 	json_file.close()
 
 
+
 # Print the current state of the level data
 static func print_level_data(dict: Dictionary):
 	for obj_path in dict.keys():
@@ -303,6 +304,9 @@ static func print_level_data(dict: Dictionary):
 			print(to_print)
 
 
+# Load the json file corresponding to the given level_name
+# Return a dictionary containing every objects with their path as a key and a property dict as value
+# The property dict contains each property name as key and property value as value
 static func load_level_properties_from_json(level_name : String) -> Dictionary:
 	var loaded_level_properties : Dictionary = {}
 	var loaded_objects : Dictionary = deserialize_level_properties(SAVEDLEVEL_DIR + "/json/"+level_name+".json")
@@ -325,12 +329,33 @@ static func load_level_properties_from_json(level_name : String) -> Dictionary:
 
 
 static func apply_properties_to_level(level : Level, dict_properties : Dictionary):
+	var persitiant_objects : Array = []
+	var undestructed_obj : Array = []
+	get_every_persistant_object(level, persitiant_objects)
+	
 	for object_path in dict_properties.keys():
 		object_path = object_path.trim_prefix('root/')
 		var object = level.get_node(object_path)
+		
+		if not object in undestructed_obj:
+			undestructed_obj.append(object)
+		
 		for property in dict_properties[object_path].keys():
 			var value = dict_properties[object_path][property]
 			object.set(property, value)
+	
+	for obj in persitiant_objects:
+		if not obj in undestructed_obj:
+			obj.queue_free()
+
+
+static func get_every_persistant_object(node: Node, array_to_fill: Array):
+	for child in node.get_children():
+		if child.is_class("Collectable") or child.is_class("BreakableObjectBase"):
+			if not child in array_to_fill:
+				array_to_fill.append(child)
+		elif child.get_child_count() > 0:
+			get_every_persistant_object(child, array_to_fill)
 
 
 static func build_level_from_loaded_properties(level : Level):
@@ -385,6 +410,7 @@ static func delete_all_level_temp_saves(display_warning : bool = false):
 			dir.list_dir_end()
 		else:
 			print("An error occured when trying to access the path : " + folder)
+
 
 # Delete the .tscn and .json temporary saves
 static func delete_level_temp_saves(level_name: String):
