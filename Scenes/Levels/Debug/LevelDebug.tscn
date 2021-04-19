@@ -161,13 +161,17 @@ __meta__ = {
 }
 
 [node name="MovingPlatform" parent="InteractivesObjects/Platform/Moving" index="0" instance=ExtResource( 17 )]
-position = Vector2( 64, 1203 )
+position = Vector2( 384, 964 )
+z_index = -1
 max_speed = 300.0
 ignore_gravity = true
 movement_type = 1
 
 [node name="Path" type="Node2D" parent="InteractivesObjects/Platform/Moving/MovingPlatform" index="4"]
 script = ExtResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="PathPoint" type="Position2D" parent="InteractivesObjects/Platform/Moving/MovingPlatform/Path" index="0"]
 position = Vector2( 128, 0 )
@@ -198,6 +202,7 @@ __meta__ = {
 
 [node name="FlyingPlatform" parent="InteractivesObjects/Platform/Flying" index="0" instance=ExtResource( 20 )]
 position = Vector2( 65, 912 )
+z_index = -1
 ignore_gravity = true
 movement_type = 1
 

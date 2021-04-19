@@ -27,12 +27,17 @@ func _ready():
 
 # When the tiggers is set to true, send the signal to the event node 
 # (Should be a parent of this node)
-func set_triggered(value: bool):
+func set_triggered(value: bool, trigger_body : PhysicsBody2D = null):
 	triggered = value
 	$CollisionShape2D.call_deferred("set_disabled", value)
-	if triggered:
-		emit_signal("area_triggered")
 	
+	if "rebounce" in owner:
+		owner.rebounce = !value
+		$RebounceCollisionShape.call_deferred("set_disabled", !value)
+	
+	if triggered:
+		emit_signal("area_triggered", trigger_body) #emit the signal to the parent
+		
 	if is_triggered():
 		var trigger_cd_timer = Timer.new()
 		trigger_cd_timer.set_one_shot(true)
@@ -41,6 +46,9 @@ func set_triggered(value: bool):
 		yield(trigger_cd_timer, "timeout")
 		set_triggered(false)
 		trigger_cd_timer.queue_free()
+		if "rebounce" in owner:
+			owner.rebounce = false
+			$RebounceCollisionShape.call_deferred("set_disabled", false)
 		
 
 func is_triggered() -> bool:
@@ -51,14 +59,21 @@ func is_triggered() -> bool:
 # If only one player is needed, send the triggered signal
 # If all the players are needed, wait until all the player are in the area to send the signal
 func on_body_entered(body : PhysicsBody2D):
-	if body == null:
+	if body == null or body == owner:
 		return
-	
+
 	if body.is_class("Player"):
-		if all_players == false:
-			set_triggered(true)
+			if all_players == false:
+				set_triggered(true, body)
+			else:
+				if !(body in passed_players):
+					passed_players.append(body)
+				if len(passed_players) >= 2:
+					set_triggered(true, body)
+	elif "bodies_trigger_array" in owner:
+		if body.get_class() in owner.bodies_trigger_array:
+			set_triggered(true, body)
 		else:
-			if !(body in passed_players):
-				passed_players.append(body)
-			if len(passed_players) >= 2:
-				set_triggered(true)
+			return
+	else:
+		return

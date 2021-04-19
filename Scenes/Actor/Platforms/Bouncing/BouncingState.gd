@@ -7,12 +7,15 @@ func get_class() -> String: return "BouncingState"
 
 #### BUILT-IN ####
 
-#### LOGIC ####
-
+#### LOGIC ###
+	
 #### VIRTUALS ####
 
 func enter_state():
 	.enter_state()
+	
+	owner.platform_collisionshape_node.call_deferred("set_disabled", true)
+	
 	var state_timer = Timer.new()
 	state_timer.set_one_shot(true)
 	add_child(state_timer)

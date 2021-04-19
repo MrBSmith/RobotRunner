@@ -12,6 +12,7 @@ func get_class() -> String:
 
 func enter_state():
 	.enter_state()
+	owner.platform_collisionshape_node.call_deferred("set_disabled", false)
 
 #### LOGIC ####
 
