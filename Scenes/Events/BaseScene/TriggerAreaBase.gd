@@ -3,10 +3,13 @@ class_name TriggerArea
 
 const CLASS = "TriggerArea"
 
+export var triggering_bodies : PoolStringArray = ["Player"]
 export var all_players : bool = false
 export var trigger_cooldown : float = 0 setget set_trigger_cooldown, get_trigger_cooldown
 
+
 var passed_players : Array = []
+var body_triggerring_area : PhysicsBody2D = null
 
 var triggered : bool = false setget set_triggered, is_triggered
 
@@ -27,33 +30,33 @@ func _ready():
 
 # When the tiggers is set to true, send the signal to the event node 
 # (Should be a parent of this node)
-func set_triggered(value: bool, trigger_body : PhysicsBody2D = null):
+func set_triggered(value: bool, triggering_body : PhysicsBody2D = null):
 	triggered = value
 	$CollisionShape2D.call_deferred("set_disabled", value)
-	
-	if "rebounce" in owner:
-		owner.rebounce = !value
-		$RebounceCollisionShape.call_deferred("set_disabled", !value)
-	
-	if triggered:
-		emit_signal("area_triggered", trigger_body) #emit the signal to the parent
 		
 	if is_triggered():
-		var trigger_cd_timer = Timer.new()
-		trigger_cd_timer.set_one_shot(true)
-		add_child(trigger_cd_timer)
-		trigger_cd_timer.start(trigger_cooldown)
-		yield(trigger_cd_timer, "timeout")
-		set_triggered(false)
-		trigger_cd_timer.queue_free()
-		if "rebounce" in owner:
-			owner.rebounce = false
-			$RebounceCollisionShape.call_deferred("set_disabled", false)
+		body_triggerring_area = triggering_body
+		emit_signal("area_triggered") #emit the signal to the parent
+		
+		if trigger_cooldown > 0:
+			var trigger_cd_timer = Timer.new() #create timer
+			trigger_cd_timer.set_one_shot(true) #set one shot
+			add_child(trigger_cd_timer) #add timer to scene
+			trigger_cd_timer.start(trigger_cooldown) #start the timer
+			yield(trigger_cd_timer, "timeout") #wait for timeout
+			set_triggered(false) #recursive function to set triggered to false
+			trigger_cd_timer.queue_free() #remove timer
 		
 
 func is_triggered() -> bool:
 	return triggered
 
+
+func is_body_triggering_type(body) -> bool:
+	for type in triggering_bodies:
+		if body.is_class(type):
+			return true
+	return false
 
 # Detect a player entering the area
 # If only one player is needed, send the triggered signal
@@ -61,19 +64,13 @@ func is_triggered() -> bool:
 func on_body_entered(body : PhysicsBody2D):
 	if body == null or body == owner:
 		return
-
-	if body.is_class("Player"):
-			if all_players == false:
-				set_triggered(true, body)
-			else:
+		
+	if is_body_triggering_type(body):
+		if all_players == false:
+			set_triggered(true, body)
+		else:
+			if body.is_class("Player"):
 				if !(body in passed_players):
 					passed_players.append(body)
 				if len(passed_players) >= 2:
 					set_triggered(true, body)
-	elif "bodies_trigger_array" in owner:
-		if body.get_class() in owner.bodies_trigger_array:
-			set_triggered(true, body)
-		else:
-			return
-	else:
-		return

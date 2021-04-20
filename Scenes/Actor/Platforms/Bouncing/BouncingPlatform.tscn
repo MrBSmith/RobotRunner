@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Actor/Platforms/RobotPlatformBase/RobotPlatformBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actor/Platforms/Bouncing/BouncingPlatform.gd" type="Script" id=2]
@@ -11,18 +11,13 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22.6744, 3.63623 )
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 24.5312
-
 [node name="BouncingPlatform" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-debug = true
 bodies_trigger_array = PoolStringArray( "Player", "NPCRobotBase" )
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 3 )
-animation = "Bouncing"
-frame = 4
+animation = "Idle"
 playing = true
 
 [node name="CollisionShape2D" parent="." index="1"]
@@ -33,13 +28,6 @@ shape = SubResource( 1 )
 
 [node name="CollisionShape2D" parent="TriggerArea" index="0"]
 position = Vector2( 0, 23.5033 )
-
-[node name="RebounceCollisionShape" type="CollisionShape2D" parent="TriggerArea" index="1"]
-shape = SubResource( 2 )
-disabled = true
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Idle" parent="StatesMachine" index="0"]
 script = ExtResource( 5 )

@@ -162,7 +162,6 @@ __meta__ = {
 
 [node name="MovingPlatform" parent="InteractivesObjects/Platform/Moving" index="0" instance=ExtResource( 17 )]
 position = Vector2( 384, 964 )
-z_index = -1
 max_speed = 300.0
 ignore_gravity = true
 movement_type = 1
@@ -202,7 +201,6 @@ __meta__ = {
 
 [node name="FlyingPlatform" parent="InteractivesObjects/Platform/Flying" index="0" instance=ExtResource( 20 )]
 position = Vector2( 65, 912 )
-z_index = -1
 ignore_gravity = true
 movement_type = 1
 
