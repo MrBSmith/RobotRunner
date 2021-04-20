@@ -119,32 +119,54 @@ material = SubResource( 1 )
 position = Vector2( 130.105, 306.404 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level1/Level1A.tscn"
 level_name = "A"
+hidden = false
+accessible = true
+visited = false
 
 [node name="XL_LevelNode2" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 364.043, 206.553 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level1/Level1B.tscn"
 level_name = "B1"
+hidden = false
+accessible = true
+visited = false
 
 [node name="XL_LevelNode3" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 287.186, 430 )
+level_scene_path = ""
 level_name = "B2"
+hidden = false
+accessible = true
+visited = false
 
 [node name="XL_LevelNode4" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 510.433, 430 )
+level_scene_path = ""
 level_name = "C"
+hidden = false
+accessible = true
+visited = false
 
 [node name="XL_LevelNode5" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 634.275, 282.528 )
+level_scene_path = ""
 level_name = "D1"
+hidden = false
+accessible = true
+visited = false
 
 [node name="XL_LevelNode6" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 475.105, 105.404 )
+level_scene_path = ""
 level_name = "E"
+hidden = false
+accessible = true
+visited = false
 
 [node name="Binds" type="Node2D" parent="."]
 __meta__ = {
@@ -155,31 +177,43 @@ __meta__ = {
 curve = SubResource( 2 )
 origin_node_path = "Levels/XL_LevelNode"
 destination_node_path = "Levels/XL_LevelNode2"
+hidden = false
+angled_bind = true
 
 [node name="XL_LevelNodeBind2" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 3 )
 origin_node_path = "Levels/XL_LevelNode"
 destination_node_path = "Levels/XL_LevelNode3"
+hidden = false
+angled_bind = true
 
 [node name="XL_LevelNodeBind3" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 4 )
 origin_node_path = "Levels/XL_LevelNode3"
 destination_node_path = "Levels/XL_LevelNode4"
+hidden = false
+angled_bind = true
 
 [node name="XL_LevelNodeBind4" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 5 )
 origin_node_path = "Levels/XL_LevelNode2"
 destination_node_path = "Levels/XL_LevelNode6"
+hidden = false
+angled_bind = true
 
 [node name="XL_LevelNodeBind5" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 6 )
 origin_node_path = "Levels/XL_LevelNode2"
 destination_node_path = "Levels/XL_LevelNode5"
+hidden = false
+angled_bind = true
 
 [node name="XL_LevelNodeBind6" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 7 )
 origin_node_path = "Levels/XL_LevelNode4"
 destination_node_path = "Levels/XL_LevelNode5"
+hidden = false
+angled_bind = true
 
 [node name="Tween" type="Tween" parent="."]
 

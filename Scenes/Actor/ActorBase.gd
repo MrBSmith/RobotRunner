@@ -30,9 +30,13 @@ var last_direction := Vector2.ZERO
 var direction := Vector2.ZERO setget set_direction, get_direction
 var velocity := Vector2.ZERO setget set_velocity, get_velocity
 
+var impulse := Vector2.ZERO setget set_impulse, get_impulse
+var forces : PoolVector2Array = [] #first value must be IMPULSE
+
 var is_waiting : bool = false
 
 signal velocity_changed
+signal impulse_changed
 
 #### ACCESSORS ####
 
@@ -55,6 +59,13 @@ func set_velocity(value: Vector2):
 
 func get_velocity() -> Vector2:
 	return velocity
+	
+func set_impulse(new_impulse_vector : Vector2):
+	impulse = new_impulse_vector
+	emit_signal("impulse_changed", new_impulse_vector)
+
+func get_impulse() -> Vector2:
+	return impulse
 
 func set_state(value): $StatesMachine.set_state(value)
 func get_state() -> String: return $StatesMachine.get_state_name()
@@ -72,7 +83,8 @@ func get_face_direction() -> int:
 
 func _ready():
 	is_ready = true
-
+	var _err = connect("impulse_changed", self, "on_impulse_changed")
+	
 #### PHYSIC BEHAVIOUR ####
 
 func _physics_process(delta):
@@ -81,7 +93,7 @@ func _physics_process(delta):
 	correct_jump_corner(delta)
 	apply_movement(delta)
 	apply_force_to_colliding_bodies()
-
+	reduce_impulse_force_by_friction(acceleration * 3.3)
 
 #### LOGIC ####	
 
@@ -117,15 +129,34 @@ func actor_speed_handler():
 		else:
 			current_speed += acceleration
 	else:
-		current_speed -= acceleration * 3.3
+		current_speed -= (acceleration * 3.3)
 	
 	current_speed = clamp(current_speed, 0.0, max_speed)
 
 func compute_velocity():
 	# Compute velocity
 	velocity.x = last_direction.x * current_speed
+	if forces.size() > 0 and impulse != Vector2.ZERO:
+		velocity.x += forces[0].x #index of impulse
+		velocity.y = forces[0].y #index of impulse
 	if !ignore_gravity:
 		velocity.y += GRAVITY
+
+func reduce_impulse_force_by_friction(friction_value : float):
+	if forces.size() > 0:
+		if forces[0].x > 0:
+			forces[0].x -= friction_value
+		if forces[0].y < 0:
+			forces[0].y += friction_value
+		else:
+			forces.remove(0)
+			impulse = Vector2.ZERO
+	else:
+		return
+
+func apply_movement(_delta):
+	# Apply movement
+	velocity = move_and_slide_with_snap(velocity, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
 
 func correct_jump_corner(delta):
 	var state = get_state()
@@ -143,10 +174,6 @@ func correct_jump_corner(delta):
 	elif velocity.x != 0 && (state == "Idle" or state == "Move"):
 		if ground_frontal_collision(delta):
 			return
-
-func apply_movement(_delta):
-	# Apply movement
-	velocity = move_and_slide_with_snap(velocity, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
 
 func apply_force_to_colliding_bodies():
 	# Apply force to bodies it hit
@@ -217,3 +244,11 @@ func ground_frontal_collision(delta : float) -> bool:
 		if normal == Vector2.LEFT or normal == Vector2.RIGHT:
 			return corner_correct(16, delta, collision2D, false)
 	return false
+
+
+##### SIGNALS #####
+func on_impulse_changed(value : Vector2):
+	if forces.size() == 0:
+		forces.append(impulse)
+	else:
+		forces.set(0, impulse)

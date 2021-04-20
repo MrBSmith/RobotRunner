@@ -7,7 +7,7 @@ func get_class() -> String: return "BouncingPlatform"
 export var bodies_trigger_array : PoolStringArray = []
 
 export var bouncing_duration : float = 0
-export var bouncing_impulse_force : float = 750.0
+export var bouncing_impulse_force := Vector2.ZERO
 
 onready var triggerarea_node = $TriggerArea
 onready var platform_collisionshape_node = $CollisionShape2D
@@ -30,8 +30,8 @@ func _ready():
 #### LOGIC ####
 
 func impulse_object(): # HIT THE TARGETTED OBJECT WITH AN IMPULSION
-	#method code after physic refacto
-	pass
+	if triggerarea_body_trigger.has_method("set_impulse"):
+		triggerarea_body_trigger.set_impulse(bouncing_impulse_force)
 
 #### INPUTS ####
 
