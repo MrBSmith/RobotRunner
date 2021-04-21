@@ -163,7 +163,6 @@ stereo = true
 
 [node name="PlayerBase" instance=ExtResource( 10 )]
 script = ExtResource( 7 )
-impulse = Vector2( 100, -50 )
 
 [node name="Idle" type="Node" parent="StatesMachine" index="0"]
 script = ExtResource( 6 )

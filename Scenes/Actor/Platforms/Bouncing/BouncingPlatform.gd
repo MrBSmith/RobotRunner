@@ -30,8 +30,8 @@ func _ready():
 #### LOGIC ####
 
 func impulse_object(): # HIT THE TARGETTED OBJECT WITH AN IMPULSION
-	if triggerarea_body_trigger.has_method("set_impulse"):
-		triggerarea_body_trigger.set_impulse(bouncing_impulse_force)
+	if triggerarea_body_trigger.has_method("add_impulse"):
+		triggerarea_body_trigger.add_impulse("bounce",bouncing_impulse_force)
 
 #### INPUTS ####
 

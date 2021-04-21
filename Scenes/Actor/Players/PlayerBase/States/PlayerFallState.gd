@@ -43,6 +43,7 @@ func enter_state():
 func _exit_state():
 	jump_tolerance = false
 	jump_buffered = false
+	owner.remove_impulse("bounce")
 
 
 func update_state(_delta):

@@ -18,7 +18,7 @@ func enter_state():
 		owner.current_snap = Vector2.ZERO
 	
 	# Apply the jump force
-	owner.velocity.y = owner.jump_force
+	owner.velocity.y += owner.jump_force
 
 
 

@@ -8,7 +8,8 @@ var is_ready : bool = false
 
 var current_speed : float = 0.0
 export var max_speed : float = 400.0
-export var acceleration : float = 15.0
+export var acceleration : float = 30
+export var friction : float = 20
 
 onready var animated_sprite_node = $AnimatedSprite
 onready var path_node = get_node_or_null("Path")
@@ -17,10 +18,10 @@ onready var action_hitbox_node = get_node_or_null("ActionHitBox")
 export var default_state : String = ""
 export var interactables := PoolStringArray(["InteractiveObject"])
 
-export var jump_force : int = -500 
+export var jump_force : int = -490
 export (int, 0, 1000) var push = 2
 
-const GRAVITY : int = 30
+const GRAVITY : Vector2 = Vector2(0,30)
 export var ignore_gravity : bool = false
 
 var snap_vector = Vector2(0, 10)
@@ -29,9 +30,10 @@ var current_snap = snap_vector
 var last_direction := Vector2.ZERO
 var direction := Vector2.ZERO setget set_direction, get_direction
 var velocity := Vector2.ZERO setget set_velocity, get_velocity
+var applied_force := Vector2.ZERO
 
-var impulse := Vector2.ZERO setget set_impulse, get_impulse
-var forces : PoolVector2Array = [] #first value must be IMPULSE
+var impulse : Dictionary = {} 
+var forces : Dictionary = {}
 
 var is_waiting : bool = false
 
@@ -60,12 +62,12 @@ func set_velocity(value: Vector2):
 func get_velocity() -> Vector2:
 	return velocity
 	
-func set_impulse(new_impulse_vector : Vector2):
-	impulse = new_impulse_vector
-	emit_signal("impulse_changed", new_impulse_vector)
-
-func get_impulse() -> Vector2:
-	return impulse
+#func set_impulse(new_impulse_vector : Vector2):
+#	impulse = new_impulse_vector
+#	emit_signal("impulse_changed", new_impulse_vector)
+#
+#func get_impulse() -> Vector2:
+#	return impulse
 
 func set_state(value): $StatesMachine.set_state(value)
 func get_state() -> String: return $StatesMachine.get_state_name()
@@ -93,7 +95,8 @@ func _physics_process(delta):
 	correct_jump_corner(delta)
 	apply_movement(delta)
 	apply_force_to_colliding_bodies()
-	reduce_impulse_force_by_friction(acceleration * 3.3)
+	remove_useless_impulse()
+#	reduce_impulse_force_by_friction(acceleration * 3.3)
 
 #### LOGIC ####	
 
@@ -129,34 +132,64 @@ func actor_speed_handler():
 		else:
 			current_speed += acceleration
 	else:
-		current_speed -= (acceleration * 3.3)
+		current_speed -= acceleration * 3.3
 	
 	current_speed = clamp(current_speed, 0.0, max_speed)
 
 func compute_velocity():
 	# Compute velocity
+	
+	applied_force = Vector2.ZERO
+	
+	for key in forces.keys():
+		applied_force += forces[key]
+	for key in impulse.keys():
+		applied_force += impulse[key]
+		reduce_impulse_force_by_friction(key)
+		
 	velocity.x = last_direction.x * current_speed
-	if forces.size() > 0 and impulse != Vector2.ZERO:
-		velocity.x += forces[0].x #index of impulse
-		velocity.y = forces[0].y #index of impulse
 	if !ignore_gravity:
-		velocity.y += GRAVITY
+		velocity += GRAVITY
 
-func reduce_impulse_force_by_friction(friction_value : float):
-	if forces.size() > 0:
-		if forces[0].x > 0:
-			forces[0].x -= friction_value
-		if forces[0].y < 0:
-			forces[0].y += friction_value
-		else:
-			forces.remove(0)
-			impulse = Vector2.ZERO
+func reduce_impulse_force_by_friction(impulse_key : String):
+	if impulse.size() > 0:
+		var impulse_length = impulse[impulse_key].length()
+		var impulse_newlength = clamp(impulse_length-friction, 0, impulse_length)
+		impulse[impulse_key] = impulse[impulse_key].clamped(impulse_newlength)
 	else:
 		return
 
+func add_impulse(key: String, impulse_value : Vector2):
+	impulse[key] = impulse_value
+
+func remove_impulse(key : String):
+	if impulse.has(key):
+		impulse.erase(key)
+
+func remove_useless_impulse():
+	for key in impulse.keys():
+		if impulse[key] == Vector2.ZERO:
+			impulse.erase(key)
+
+func add_force(key: String, value : Vector2):
+	if !forces.has(key):
+		forces[key] = value
+
+func  set_force(key: String, value : Vector2):
+	if forces.has(key):
+		forces[key] = value
+		
+func remove_force(key: String):
+	if forces.has(key):
+		forces.erase(key)
+
 func apply_movement(_delta):
 	# Apply movement
+#	if get_state() == "Idle" or get_state() == "Move" and is_on_floor() and velocity.y > 0:
+#		velocity.y = 30
+	applied_force = move_and_slide_with_snap(applied_force, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
 	velocity = move_and_slide_with_snap(velocity, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
+	
 
 func correct_jump_corner(delta):
 	var state = get_state()
@@ -247,8 +280,8 @@ func ground_frontal_collision(delta : float) -> bool:
 
 
 ##### SIGNALS #####
-func on_impulse_changed(value : Vector2):
-	if forces.size() == 0:
-		forces.append(impulse)
-	else:
-		forces.set(0, impulse)
+#func on_impulse_changed(value : Vector2):
+#	if forces.size() == 0:
+#		forces.append(impulse)
+#	else:
+#		forces.set(0, impulse)
