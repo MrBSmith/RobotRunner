@@ -62,11 +62,11 @@ func get_point_world_position(point: Position2D) -> Vector2:
 
 #### VIRTUALS ####
 
-#func compute_velocity():
-#	# Compute velocity
-#	velocity = last_direction * current_speed
-#	if !ignore_gravity:
-#		velocity.y += GRAVITY
+func compute_velocity():
+	# Compute velocity
+	velocity = last_direction * current_speed
+	if !ignore_gravity:
+		velocity += GRAVITY
 
 func apply_movement(_delta):
 	var next_point_position

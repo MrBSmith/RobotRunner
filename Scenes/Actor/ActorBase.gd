@@ -9,7 +9,7 @@ var is_ready : bool = false
 var current_speed : float = 0.0
 export var max_speed : float = 400.0
 export var acceleration : float = 30
-export var friction : float = 20
+export var friction : float = 30
 
 onready var animated_sprite_node = $AnimatedSprite
 onready var path_node = get_node_or_null("Path")
@@ -96,7 +96,6 @@ func _physics_process(delta):
 	apply_movement(delta)
 	apply_force_to_colliding_bodies()
 	remove_useless_impulse()
-#	reduce_impulse_force_by_friction(acceleration * 3.3)
 
 #### LOGIC ####	
 
@@ -156,8 +155,6 @@ func reduce_impulse_force_by_friction(impulse_key : String):
 		var impulse_length = impulse[impulse_key].length()
 		var impulse_newlength = clamp(impulse_length-friction, 0, impulse_length)
 		impulse[impulse_key] = impulse[impulse_key].clamped(impulse_newlength)
-	else:
-		return
 
 func add_impulse(key: String, impulse_value : Vector2):
 	impulse[key] = impulse_value
@@ -185,8 +182,6 @@ func remove_force(key: String):
 
 func apply_movement(_delta):
 	# Apply movement
-#	if get_state() == "Idle" or get_state() == "Move" and is_on_floor() and velocity.y > 0:
-#		velocity.y = 30
 	applied_force = move_and_slide_with_snap(applied_force, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
 	velocity = move_and_slide_with_snap(velocity, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
 	

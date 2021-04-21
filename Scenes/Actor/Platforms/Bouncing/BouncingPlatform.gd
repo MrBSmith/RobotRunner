@@ -43,3 +43,4 @@ func on_bouncing_area_triggered():
 			
 		set_state("Bouncing")
 		impulse_object()
+		animated_sprite_node.set_flip_h(bouncing_impulse_force.x > 0)
