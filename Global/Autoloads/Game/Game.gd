@@ -119,18 +119,18 @@ func goto_last_level():
 
 	var loaded_from_save : bool = false
 	var level_scene : PackedScene
-	var dir = GameSaver.SAVEDLEVEL_DIR + GameSaver.SAVEDLEVEL_TSCN_DIR
-	var level_to_load_path : String = find_saved_level_path(dir, last_level_name)
-
+	var level_to_load_path : String = current_chapter.find_level_path(last_level_name)
+	
+	if level_to_load_path == "":
+		level_to_load_path = find_level_path_in_chapter_array(last_level_name)
+	
 	# If no save of the current level exists, reload the same scene
-	if level_to_load_path != "":
+	if level_to_load_path == "":
+		print_debug("No level with the name " + last_level_name + " has been found in any chapter of the game")
+	else:
 		level_scene = load(level_to_load_path)
 		loaded_from_save = true
-
-	# If a save exists, load it
-	else:
-		level_scene = load(current_chapter.find_level_path(last_level_name))
-
+	
 	var __ = get_tree().change_scene_to(level_scene)
 
 	if loaded_from_save:
@@ -160,9 +160,6 @@ func goto_next_level():
 
 	var _err = get_tree().change_scene_to(next_level)
 
-#	yield(EVENTS, "level_ready")
-#	var level = get_tree().get_current_scene()
-#	GameSaver.save_level_properties_as_json(level)
 
 
 func goto_level(level_index : int):
@@ -175,9 +172,7 @@ func goto_level(level_index : int):
 	GameSaver.delete_level_temp_saves(level_name)
 
 	var _err = get_tree().change_scene_to(level)
-#	yield(EVENTS, "level_ready")
-#	var current_level = get_tree().get_current_scene()
-#	GameSaver.save_level_properties_as_json(current_level)
+
 
 
 
@@ -198,6 +193,15 @@ func goto_level_by_path(level_scene_path: String):
 		print_debug("The given path: " + level_scene_path + " can't be found in any chapter")
 	
 	goto_level(level_id)
+
+
+func find_level_path_in_chapter_array(level_name: String) -> String:
+	for chapter in chapters_array:
+		var level_path = chapter.find_level_path(level_name) 
+		if level_path != "":
+			return level_path
+	return ""
+
 
 
 # Triggers the timer before the gameover is triggered
@@ -314,7 +318,7 @@ func on_transition_timer_timeout():
 # Called when the level is ready, correct
 func on_level_ready(level : Level):
 	last_level_name = level.get_name()
-	#if progression.level == 0: <- Why ?
+	
 	update_current_level_index(level)
 	fade_in()
 
@@ -328,7 +332,7 @@ func on_checkpoint_reached(level: Level, checkpoint_id: int):
 	if checkpoint_id + 1 > GAME.progression.checkpoint:
 		progression.checkpoint = checkpoint_id + 1
 	
-	GameSaver.save_level_as_tscn(level)
+	#GameSaver.save_level_as_tscn(level)
 	GameSaver.save_level_properties_as_json(level)
 
 #	start_thread_savelevel([level, false])

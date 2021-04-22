@@ -19,7 +19,10 @@ func get_level_id_by_path(level_path: String):
 
 func find_level_path(level_name: String) -> String:
 	var level_id = find_level_id(level_name)
-	return levels_scenes_array[level_id]
+	if level_id != -1:
+		return levels_scenes_array[level_id]
+	else:
+		return ""
 
 
 func load_next_level(level_name: String) -> Resource:

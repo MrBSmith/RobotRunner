@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Menus/GameOverScene/GameOver.gd" type="Script" id=1]
-[ext_resource path="res://BabaGodotLib/Fonts/BoldCapsPixel.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://BabaGodotLib/Fonts/BoldCapsPixel.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -15,7 +14,7 @@ font_data = ExtResource( 3 )
 [sub_resource type="DynamicFont" id=3]
 size = 60
 outline_size = 2
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 
 [node name="GameOver" type="Control"]
 anchor_right = 1.0

@@ -27,7 +27,7 @@ static func create_chapters(path : String = "", array_to_fill: Array = []):
 				# If the current folder is a chapter folder: 
 				# Create a new chapter and add it to the GAME chapters_array
 				# Then continue digging into the folder hierachy
-				if current_file_name.findn("chapter") != -1:
+				if current_file_name.findn("chapter") != -1 or current_file_name.findn("debug") != -1:
 					if debug:
 						print("Found chapter directory: " + current_file_name)
 					var new_chapter = Resource.new()
@@ -45,11 +45,12 @@ static func create_chapters(path : String = "", array_to_fill: Array = []):
 			
 			# If the file is a level scene, store it in the last chapter ressource created
 			else:
-				if debug:
-					print("       Found level file: " + current_file_name)
-				var current_scene_path = get_current_file_path(dir, current_file_name)
-				var last_chapter_index = len(array_to_fill) - 1
-				array_to_fill[last_chapter_index].levels_scenes_array.append(current_scene_path)
+				if current_file_name.findn(".tscn") != -1 && current_file_name.findn("level") != -1:
+					if debug:
+						print("       Found level file: " + current_file_name)
+					var current_scene_path = get_current_file_path(dir, current_file_name)
+					var last_chapter_index = len(array_to_fill) - 1
+					array_to_fill[last_chapter_index].levels_scenes_array.append(current_scene_path)
 			
 			# Access the next file/folder
 			current_file_name = dir.get_next()

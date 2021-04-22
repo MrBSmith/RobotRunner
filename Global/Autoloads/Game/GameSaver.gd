@@ -1,5 +1,4 @@
 extends Node
-
 class_name GameSaver
 
 const debug : bool = false
@@ -13,7 +12,7 @@ const SAVEDFILE_DEFAULT_NAME : String = "save"
 const objects_datatype_storage = {
 	"Collectable" : [],
 	"BreakableObjectBase": [],
-	"Door" : ["is_open"],
+	"Door" : ["open"],
 	"DoorButton": ["is_push"]
 }
 
@@ -23,16 +22,7 @@ const objects_datatype_storage = {
 
 #### LOGIC ####
 
-# Directory_to_check in directories_to_create :
-## Directories to crate is an array given in parameter of the method
-## Directory to check is a single variable which will take each directory of
-## the array and check if it already exists or not
-# directoryExist : variable which will either be true or false, according to if a file already exist or not
-## Behavior : check if directory_to_check exist in MAIN_DIR/directory_to_check
-## If yes : return true and ignore <if !deirectoryExist:> condition since it's TRUE.
-## If no : return false and go into the <if !deirectoryExist:> condition since it's FALSE.
-### L.48 > open the MAIN_DIR
-### L.49 > Create the given directory directory_to_check
+# Create the directories 
 static func create_dirs(MAIN_DIR : String, directories_to_create : Array):
 	var dir = Directory.new()
 	
@@ -88,6 +78,7 @@ static func settings_update_keys(settings_dictionary : Dictionary, save_name : S
 								settings_dictionary[section][keys] = GAME.progression.get_gear()
 				_:
 					pass
+
 
 static func settings_update_save_name(settings_dictionary  : Dictionary, save_name : String):
 	settings_dictionary["system"]["save_name"] = save_name
@@ -247,13 +238,13 @@ static func serialize_level_properties(current_node : Node, dict_to_fill : Dicti
 			serialize_level_properties(child, dict_to_fill)
 
 
-static func deserialize_level_properties(file_path : String):
+static func deserialize_level_properties(file_path : String) -> Dictionary:
 	var level_properties  : String = ""
 	var parsed_data : Dictionary = {}
 	var load_file = File.new()
 	
 	if !load_file.file_exists(file_path):
-		return
+		return parsed_data
 	
 	load_file.open(file_path, load_file.READ)
 	level_properties = load_file.get_as_text()
@@ -265,7 +256,6 @@ static func deserialize_level_properties(file_path : String):
 
 
 # Take an object, find every properties needed in it and retrun the data as a dict
-# => NEVER CALLED, Except by serialize_level_properties method
 static func get_object_properties(object : Object, classname : String) -> Dictionary:
 	var property_list : Array = objects_datatype_storage[classname]
 	var property_data_dict : Dictionary = {}
@@ -328,46 +318,16 @@ static func load_level_properties_from_json(level_name : String) -> Dictionary:
 	return loaded_level_properties
 
 
-static func apply_properties_to_level(level : Level, dict_properties : Dictionary):
-	var persitiant_objects : Array = []
-	var undestructed_obj : Array = []
-	get_every_persistant_object(level, persitiant_objects)
-	
-	for object_path in dict_properties.keys():
-		object_path = object_path.trim_prefix('root/')
-		var object = level.get_node(object_path)
-		
-		if not object in undestructed_obj:
-			undestructed_obj.append(object)
-		
-		for property in dict_properties[object_path].keys():
-			var value = dict_properties[object_path][property]
-			object.set(property, value)
-	
-	for obj in persitiant_objects:
-		if not obj in undestructed_obj:
-			obj.queue_free()
-
-
-static func get_every_persistant_object(node: Node, array_to_fill: Array):
-	for child in node.get_children():
-		if child.is_class("Collectable") or child.is_class("BreakableObjectBase"):
-			if not child in array_to_fill:
-				array_to_fill.append(child)
-		elif child.get_child_count() > 0:
-			get_every_persistant_object(child, array_to_fill)
-
-
 static func build_level_from_loaded_properties(level : Level):
 	if !level.is_inside_tree():
 		yield(level, "tree_entered")
 	
 	var level_properties : Dictionary = load_level_properties_from_json(level.get_name())
-	apply_properties_to_level(level, level_properties)
+	level.apply_loaded_properties(level_properties)
 
 
 # Get the type of a value string (vector2 bool float or int) by checking its content
-static func get_string_value_type(value : String) -> String:
+static func get_string_value_type(value : String) -> String: 
 	if '(' in value:
 		return "Vector2"
 	if value.countn('true') == 1 or value.countn('false') == 1:
@@ -376,6 +336,7 @@ static func get_string_value_type(value : String) -> String:
 		return "float"
 		
 	return "int"
+
 
 # Navigate through SAVE_DIR/tscn/ and /json/ then remove all files and folders there
 ### IGNORE . , .. , AND HIDDEN FILES/FOLDERS 
@@ -424,6 +385,7 @@ static func delete_level_temp_saves(level_name: String):
 	if dir.file_exists(json_path):
 		dir.remove(json_path)
 
+
 # Convert String variable to Vector2 by removing some characters and splitting commas
 # return Vector2
 static func get_vector_from_string(string_vector : String) -> Vector2:
@@ -439,13 +401,3 @@ static func get_vector_from_string(string_vector : String) -> Vector2:
 static func get_bool_from_string(string_bool : String) -> bool:
 	return string_bool.countn('true') == 1
 
-
-#### VIRTUALS ####
-
-
-
-#### INPUTS ####
-
-
-
-#### SIGNAL RESPONSES ####

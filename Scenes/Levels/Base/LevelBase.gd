@@ -47,6 +47,43 @@ func update_music_adaptation() -> void:
 			MUSIC.adapt_music(xion_cloud_node, players_array, player_in_danger)
 
 
+# Called by GameSaver
+# When the level is loaded; apply the properties fetched from the json file to it
+# The property dict must be structured this way: 
+# Keys are the path to the node, then the value is another dict where keys 
+# are the name of the property and the value the value of the named property
+func apply_loaded_properties(properties_dict : Dictionary):
+	var persitiant_objects : Array = []
+	var undestructed_obj : Array = []
+	get_every_persistant_object(self, persitiant_objects)
+	
+	for object_path in properties_dict.keys():
+		object_path = object_path.trim_prefix('root/')
+		var object = get_node(object_path)
+		
+		if not object in undestructed_obj:
+			undestructed_obj.append(object)
+		
+		for property in properties_dict[object_path].keys():
+			var value = properties_dict[object_path][property]
+			object.set(property, value)
+	
+	for obj in persitiant_objects:
+		if not obj in undestructed_obj:
+			obj.queue_free()
+
+
+# Recursivly get every persistant objects direct/indirect children of the given node
+# Store the data in the array passed as argument
+func get_every_persistant_object(node: Node, array_to_fill: Array):
+	for child in node.get_children():
+		if child.is_class("Collectable") or child.is_class("BreakableObjectBase"):
+			if not child in array_to_fill:
+				array_to_fill.append(child)
+		elif child.get_child_count() > 0:
+			get_every_persistant_object(child, array_to_fill)
+
+
 # Load the last checkpoint visited and set the position accordingly,
 # Also disable every uneeded checkpoint
 func set_starting_points():

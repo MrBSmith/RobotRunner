@@ -49,7 +49,7 @@ func open_door(instant : bool = false):
 	if collision_node != null:
 		collision_node.set_disabled(true)
 	
-	is_open = true
+	set_open(true)
 
 
 #### SIGNAL RESPONSES ####

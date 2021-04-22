@@ -21,11 +21,10 @@ func button_triggered():
 	if nb_button_triggered >= nb_buttons:
 		for doors in children_array:
 			if doors.is_class("Door"):
-				if !doors.is_open:
+				if !doors.is_open():
 					if doors.need_delay:
 						doors.timer_door.start()
 					else:
 						doors.open_door() #false argument, so it will open with animation, etc...
-					doors.is_open = true
 				else:
 					doors.open_door(true)
