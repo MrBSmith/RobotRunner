@@ -9,6 +9,8 @@ export var open : bool = false setget set_open, is_open
 export var need_delay : bool = false
 export var open_delay : float = 0.0
 
+var is_ready : bool = false
+
 var timer_door
 
 #### ACCESSORS ####
@@ -17,7 +19,10 @@ func is_class(value: String): return value == "Door" or .is_class(value)
 func get_class() -> String: return "Door"
 
 func set_open(value: bool):
-	if collision_node != null && !collision_node.is_disabled():
+	if !is_ready:
+		yield(self, "ready")
+	
+	if collision_node != null && !collision_node.is_disabled() && value == true:
 		open_door(true)
 	else:
 		open = value
@@ -36,7 +41,8 @@ func _ready():
 			timer_door.connect("timeout", self, "_on_doortimer_timeout")
 			timer_door.set_wait_time(open_delay)
 			timer_door.set_one_shot(true)
-
+	
+	is_ready = true
 
 #### LOGIC ####
 

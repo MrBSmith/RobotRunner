@@ -13,7 +13,8 @@ const objects_datatype_storage = {
 	"Collectable" : [],
 	"BreakableObjectBase": [],
 	"Door" : ["open"],
-	"DoorButton": ["is_push"]
+	"DoorButton": ["push"],
+	"Checkpoint": ["active"]
 }
 
 #### ACCESSORS ####

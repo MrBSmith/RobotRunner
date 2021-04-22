@@ -66,7 +66,11 @@ func apply_loaded_properties(properties_dict : Dictionary):
 		
 		for property in properties_dict[object_path].keys():
 			var value = properties_dict[object_path][property]
-			object.set(property, value)
+			var setter = "set_" + property
+			if object.has_method(setter):
+				object.call(setter, value)
+			else:
+				object.set(property, value)
 	
 	for obj in persitiant_objects:
 		if not obj in undestructed_obj:
