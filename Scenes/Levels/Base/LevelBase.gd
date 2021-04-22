@@ -59,7 +59,10 @@ func apply_loaded_properties(properties_dict : Dictionary):
 	
 	for object_path in properties_dict.keys():
 		object_path = object_path.trim_prefix('root/')
-		var object = get_node(object_path)
+		var object = get_node_or_null(object_path)
+		
+		if object == null:
+			print_debug("The object with path : " + object_path + " couldn't be found")
 		
 		if not object in undestructed_obj:
 			undestructed_obj.append(object)

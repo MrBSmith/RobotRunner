@@ -3,8 +3,9 @@
 [ext_resource path="res://BabaGodotLib/Fonts/BoldCapsPixel.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://BabaGodotLib/UI/Menu/OptionButtons/MenuOptionBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://BabaGodotLib/UI/Menu/MenuBase.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Menus/SaveLoadMenus/SaveConfirmMenu/SaveConfirm.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Menus/SaveLoadMenus/SaveConfirmMenu/SaveConfirmMenu.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Menus/SaveLoadMenus/SaveConfirmMenu/SaveNameField.gd" type="Script" id=5]
+
 
 
 [sub_resource type="DynamicFont" id=1]

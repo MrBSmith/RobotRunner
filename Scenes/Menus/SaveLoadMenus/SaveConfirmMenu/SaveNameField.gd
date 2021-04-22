@@ -1,4 +1,5 @@
 extends LineEdit
+class_name SaveNameField
 
 var namestaken_info_node
 var submitsave_button
@@ -6,13 +7,8 @@ var save_files : Array = []
 
 #### ACCESSORS ####
 
-func is_class(value: String):
-	return value == "" or .is_class(value)
-
-func get_class() -> String:
-	return ""
-
-
+func is_class(value: String): return value == "SaveNameField" or .is_class(value)
+func get_class() -> String: return "SaveNameField"
 
 #### BUILT-IN ####
 
@@ -20,7 +16,7 @@ func _ready():
 	var _err
 	_err = connect("text_changed", self, "_on_text_changed")
 	
-	save_files = GameSaver.find_all_saves_directories()
+	save_files = GameSaver.find_all_saves_directories(GAME.SAVEGAME_DIR)
 	
 #### LOGIC ####
 

@@ -8,6 +8,10 @@ export var debug : bool = false
 
 export var transition_time : float = 1.0
 
+const SAVEGAME_DIR : String = "res://saves"
+const SAVEDLEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
+const SAVEDFILE_DEFAULT_NAME : String = "save"
+
 const TILE_SIZE := Vector2(24, 24)
 const JUMP_MAX_DIST := Vector2(6, 2)
 
@@ -95,8 +99,7 @@ func _ready():
 	_err = EVENTS.connect("level_finished", self, "on_level_finished")
 	_err = EVENTS.connect("seed_change_query", self, "on_seed_change_query")
 
-	GameSaver.create_dirs(GameSaver.SAVEGAME_DIR, []) #Create saves directory at root
-	GameSaver.create_dirs(GameSaver.SAVEDLEVEL_DIR, ["json", "tscn"]) #Create json and tscn directory at SAVEDLEVEL_DIR : String = "res://Scenes/Levels/SavedLevel/"
+	GameSaver.create_dirs(SAVEGAME_DIR, []) #Create saves directory at root
 	GameSaver.settings_update_keys(_settings)
 
 	# Generate the chapters
@@ -137,7 +140,7 @@ func goto_last_level():
 		yield(EVENTS, "level_entered_tree")
 		var level : Level = get_tree().get_current_scene()
 		level.is_loaded_from_save = loaded_from_save
-		GameSaver.build_level_from_loaded_properties(level)
+		LevelSaver.build_level_from_loaded_properties(SAVEDLEVEL_DIR, level)
 
 
 # Change scene to the next level scene
@@ -156,7 +159,7 @@ func goto_next_level():
 		next_level_id = current_chapter.find_level_id(last_level_name) + 1
 
 	var next_level_name = current_chapter.get_level_name(next_level_id)
-	GameSaver.delete_level_temp_saves(next_level_name)
+	LevelSaver.delete_level_temp_saves(SAVEDLEVEL_DIR, next_level_name)
 
 	var _err = get_tree().change_scene_to(next_level)
 
@@ -169,7 +172,7 @@ func goto_level(level_index : int):
 
 	level = current_chapter.load_level(level_index)
 	var level_name = current_chapter.get_level_name(level_index)
-	GameSaver.delete_level_temp_saves(level_name)
+	LevelSaver.delete_level_temp_saves(SAVEDLEVEL_DIR, level_name)
 
 	var _err = get_tree().change_scene_to(level)
 
@@ -322,37 +325,14 @@ func on_level_ready(level : Level):
 	update_current_level_index(level)
 	fade_in()
 
-#	if level is InfiniteLevel:
-#		start_thread_savelevel([level, true])
-#		GameSaver.save_level_as_tscn(level)
-#		GameSaver.save_level_properties_as_json(level)
 
 # When a player reach a checkpoint
 func on_checkpoint_reached(level: Level, checkpoint_id: int):
 	if checkpoint_id + 1 > GAME.progression.checkpoint:
 		progression.checkpoint = checkpoint_id + 1
 	
-	#GameSaver.save_level_as_tscn(level)
-	GameSaver.save_level_properties_as_json(level)
+	LevelSaver.save_level_properties_as_json(SAVEDLEVEL_DIR, level)
 
-#	start_thread_savelevel([level, false])
-
-#func start_thread_savelevel(args : Array):
-#	save_thread = Thread.new()
-#	save_thread.start(self, "save_level", args)
-#
-#
-#func save_level(args : Array):
-#	GameSaver.save_level_as_tscn(args[0])
-#	if args[1]: #bool to check if we save json or not
-#		GameSaver.save_level_properties_as_json(args[0])
-#
-#	call_deferred("finish_thread_savelevel")
-#
-#func finish_thread_savelevel():
-#	var result = save_thread.wait_to_finish()
-#	if debug:
-#		print("save_thread Thread finished successfully. Level has been saved !")
 
 func on_seed_change_query(new_seed: int):
 	_set_current_seed(new_seed)
