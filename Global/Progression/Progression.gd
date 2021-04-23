@@ -1,7 +1,7 @@
 extends Node
 
 export (int, -1, 99) var chapter = -1 setget set_chapter, get_chapter
-export (int, -1, 99) var level = 0 setget set_level, get_level
+export (int, -1, 99) var last_level = 0 setget set_last_level, get_last_level
 export (int, -1, 99) var checkpoint = -1 setget set_checkpoint, get_checkpoint
 #export (int, 0, 999) var dialogue = 0
 export (int, 0, 999999999) var xion = 0 setget set_xion, get_xion
@@ -13,9 +13,9 @@ func set_chapter(value: int): chapter = value
 func get_chapter() -> int: return chapter
 func add_to_chapter(value: int): set_chapter(get_chapter() + value)
 
-func set_level(value: int): level = value
-func get_level() -> int: return level
-func add_to_level(value: int): set_level(get_level() + value)
+func set_last_level(value: int): last_level = value
+func get_last_level() -> int: return last_level
+func add_to_last_level(value: int): set_last_level(get_last_level() + value)
 
 func set_checkpoint(value: int): checkpoint = value
 func get_checkpoint() -> int: return checkpoint

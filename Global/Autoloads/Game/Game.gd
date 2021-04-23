@@ -71,9 +71,10 @@ var _settings ={
 			"HUD_switch_state": InputMap.get_action_list("HUD_switch_state")[0].scancode,
 			"display_console": InputMap.get_action_list("display_console")[0].scancode
 		},
-		"gameplay":{
-			"level_id": -1,
-			"checkpoint_reached": -1,
+		"progression":{
+			"last_level": -1,
+			"visited_levels": [],
+			"checkpoint": -1,
 			"xion": 0,
 			"gear": 0
 		}
@@ -240,7 +241,7 @@ func set_screen_fade_visible(value: bool):
 func update_current_level_index(level : Level):
 	var level_name = level.get_name()
 	var level_index = current_chapter.find_level_id(level_name)
-	GAME.progression.set_level(level_index)
+	GAME.progression.set_last_level(level_index)
 
 
 #### INPUTS ####
