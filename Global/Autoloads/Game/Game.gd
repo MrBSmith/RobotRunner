@@ -36,7 +36,13 @@ var sound_bus_id = AudioServer.get_bus_index("Sounds")
 
 var _config_file = ConfigFile.new()
 
-#var save_thread : Thread = null
+const level_property_to_serialize = {
+	"Collectable" : [],
+	"BreakableObjectBase" : [],
+	"Door" : ["open"],
+	"DoorButton": ["push"],
+	"Checkpoint": ["active"]
+}
 
 var _settings ={
 		"system":{
@@ -99,7 +105,6 @@ func _ready():
 	_err = EVENTS.connect("level_finished", self, "on_level_finished")
 	_err = EVENTS.connect("seed_change_query", self, "on_seed_change_query")
 
-	GameSaver.create_dirs(SAVEGAME_DIR, []) #Create saves directory at root
 	GameSaver.settings_update_keys(_settings)
 
 	# Generate the chapters
@@ -140,7 +145,7 @@ func goto_last_level():
 		yield(EVENTS, "level_entered_tree")
 		var level : Level = get_tree().get_current_scene()
 		level.is_loaded_from_save = loaded_from_save
-		LevelSaver.build_level_from_loaded_properties(SAVEDLEVEL_DIR, level)
+		LevelLoader.build_level_from_loaded_properties(SAVEDLEVEL_DIR, level)
 
 
 # Change scene to the next level scene
@@ -148,21 +153,14 @@ func goto_last_level():
 # Which means the last level will be launched again
 func goto_next_level():
 	var next_level : PackedScene = null
-	var next_level_id : int = 0
-
 	progression.set_checkpoint(-1)
-
+	
 	if last_level_name == "":
 		next_level = current_chapter.load_level(0)
 	else:
 		next_level = current_chapter.load_next_level(last_level_name)
-		next_level_id = current_chapter.find_level_id(last_level_name) + 1
-
-	var next_level_name = current_chapter.get_level_name(next_level_id)
-	LevelSaver.delete_level_temp_saves(SAVEDLEVEL_DIR, next_level_name)
-
+	
 	var _err = get_tree().change_scene_to(next_level)
-
 
 
 func goto_level(level_index : int):
@@ -175,8 +173,6 @@ func goto_level(level_index : int):
 	LevelSaver.delete_level_temp_saves(SAVEDLEVEL_DIR, level_name)
 
 	var _err = get_tree().change_scene_to(level)
-
-
 
 
 func goto_level_by_path(level_scene_path: String):
@@ -217,27 +213,6 @@ func gameover():
 		return
 
 	current_scene.set_process(false)
-
-
-### TRY TO RELOCATE THIS FUNCTION IN GAME_SAVER ###
-
-# Find the saved level with the corresponding name, and returns its path
-# Returns "" if nothing was found
-func find_saved_level_path(dir_path: String, level_name: String) -> String:
-	var dir = Directory.new()
-	if dir.open(dir_path) == OK:
-		dir.list_dir_begin(true)
-		var current_file_name : String = dir.get_next()
-
-		while current_file_name != "":
-			if dir.current_is_dir():
-				continue
-			else:
-				if level_name.is_subsequence_of(current_file_name):
-					return dir_path + current_file_name
-				else:
-					current_file_name = dir.get_next()
-	return ""
 
 
 func fade_in():
@@ -331,7 +306,7 @@ func on_checkpoint_reached(level: Level, checkpoint_id: int):
 	if checkpoint_id + 1 > GAME.progression.checkpoint:
 		progression.checkpoint = checkpoint_id + 1
 	
-	LevelSaver.save_level_properties_as_json(SAVEDLEVEL_DIR, level)
+	LevelSaver.save_level_properties_as_json(level_property_to_serialize, SAVEDLEVEL_DIR, level)
 
 
 func on_seed_change_query(new_seed: int):

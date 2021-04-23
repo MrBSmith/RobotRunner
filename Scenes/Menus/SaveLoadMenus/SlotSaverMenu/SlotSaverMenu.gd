@@ -1,14 +1,10 @@
 extends MenuBase
-
-class_name SlotSaver
+class_name SlotSaverMenu
 
 #### ACCESSORS ####
 
-func is_class(value: String):
-	return value == "" or .is_class(value)
-
-func get_class() -> String:
-	return ""
+func is_class(value: String): return value == "SlotSaverMenu" or .is_class(value)
+func get_class() -> String: return "SlotSaverMenu"
 
 #### BUILT-IN ####
 

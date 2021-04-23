@@ -314,6 +314,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Events/DialogueEvent/DialogueEvent.gd"
 }, {
+"base": "Node",
+"class": "DirNavHelper",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Statics/DirNavHelper.gd"
+}, {
 "base": "StateBase",
 "class": "Disappear",
 "language": "GDScript",
@@ -362,12 +367,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "GameLoader",
 "language": "GDScript",
-"path": "res://Global/Autoloads/Game/GameLoader.gd"
+"path": "res://BabaGodotLib/Statics/SaveSystem/GameLoader.gd"
 }, {
 "base": "Node",
 "class": "GameSaver",
 "language": "GDScript",
-"path": "res://Global/Autoloads/Game/GameSaver.gd"
+"path": "res://BabaGodotLib/Statics/SaveSystem/GameSaver.gd"
 }, {
 "base": "Control",
 "class": "Gauge",
@@ -504,6 +509,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Events/LevelEvent/LevelEvent.gd"
 }, {
+"base": "Node",
+"class": "LevelLoader",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Statics/SaveSystem/LevelLoader.gd"
+}, {
 "base": "Sprite",
 "class": "LevelNode",
 "language": "GDScript",
@@ -527,7 +537,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "LevelSaver",
 "language": "GDScript",
-"path": "res://Global/Autoloads/Game/LevelSaver.gd"
+"path": "res://BabaGodotLib/Statics/SaveSystem/LevelSaver.gd"
 }, {
 "base": "HBoxContainer",
 "class": "LineContainer",
@@ -815,9 +825,9 @@ _global_script_classes=[ {
 "path": "res://Scenes/Levels/InfiniteMode/Chuncks/SlopePlacer.gd"
 }, {
 "base": "MenuBase",
-"class": "SlotSaver",
+"class": "SlotSaverMenu",
 "language": "GDScript",
-"path": "res://Scenes/Menus/SaveLoadMenus/SlotSaverMenu/SlotSaver.gd"
+"path": "res://Scenes/Menus/SaveLoadMenus/SlotSaverMenu/SlotSaverMenu.gd"
 }, {
 "base": "ChunckRoom",
 "class": "SmallChunckRoom",
@@ -1061,6 +1071,7 @@ _global_script_class_icons={
 "Dialogue": "",
 "DialogueBox": "",
 "DialogueEvent": "",
+"DirNavHelper": "",
 "Disappear": "",
 "Door": "",
 "DoorButton": "",
@@ -1099,6 +1110,7 @@ _global_script_class_icons={
 "Level": "",
 "LevelChunck": "",
 "LevelEvent": "",
+"LevelLoader": "",
 "LevelNode": "",
 "LevelNodeBind": "",
 "LevelNode_HiddenState": "",
@@ -1161,7 +1173,7 @@ _global_script_class_icons={
 "ScreenTitleMenu": "",
 "SeedField": "",
 "SlopePlacer": "",
-"SlotSaver": "",
+"SlotSaverMenu": "",
 "SmallChunckRoom": "",
 "SpecialChunck": "",
 "StateBase": "",
