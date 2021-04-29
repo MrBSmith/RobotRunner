@@ -23,10 +23,10 @@
 [node name="Level1B" instance=ExtResource( 1 )]
 
 [node name="StartingPointP1" parent="." index="0" instance=ExtResource( 3 )]
-position = Vector2( 48, 264 )
+position = Vector2( 3344, 286 )
 
 [node name="StartingPointP2" parent="." index="1" instance=ExtResource( 4 )]
-position = Vector2( 48, 360 )
+position = Vector2( 3344, 382 )
 
 [node name="DebrisGenerator" parent="." index="4"]
 sfx_dict = {
@@ -195,7 +195,7 @@ position = Vector2( 3900, 744 )
 pool_size = Vector2( 170, 60 )
 
 [node name="GreatDoor" parent="InteractivesObjects/GreatDoorGroup" index="0" instance=ExtResource( 10 )]
-position = Vector2( 4320, 312 )
+position = Vector2( 4319, 312 )
 
 [node name="RedButton" parent="InteractivesObjects/GreatDoorGroup" index="1" instance=ExtResource( 9 )]
 position = Vector2( 3240, 304.965 )

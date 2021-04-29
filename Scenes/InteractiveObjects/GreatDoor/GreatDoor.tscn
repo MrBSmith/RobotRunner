@@ -517,30 +517,31 @@ __meta__ = {
 }
 
 [node name="Lights" type="Node2D" parent="Sprites/LeftDoor"]
+visible = false
 
 [node name="Light1" type="Light2D" parent="Sprites/LeftDoor/Lights"]
-position = Vector2( -82, 52.1833 )
+position = Vector2( -107.717, 75.3593 )
 texture = ExtResource( 6 )
 texture_scale = 0.03
 color = Color( 0.941176, 0.247059, 0.976471, 1 )
 energy = 1.5
 
 [node name="Light2" type="Light2D" parent="Sprites/LeftDoor/Lights"]
-position = Vector2( -93.3711, 42.2989 )
+position = Vector2( -108.385, 46.9469 )
 texture = ExtResource( 6 )
 texture_scale = 0.03
 color = Color( 0.941176, 0.247059, 0.976471, 1 )
 energy = 1.5
 
 [node name="Light3" type="Light2D" parent="Sprites/LeftDoor/Lights"]
-position = Vector2( -96.9464, -25.7663 )
+position = Vector2( -107.312, -22.7235 )
 texture = ExtResource( 6 )
 texture_scale = 0.03
 color = Color( 0.941176, 0.247059, 0.976471, 1 )
 energy = 1.5
 
 [node name="Light4" type="Light2D" parent="Sprites/LeftDoor/Lights"]
-position = Vector2( -46.7797, -108.052 )
+position = Vector2( -45.3082, -126.355 )
 texture = ExtResource( 6 )
 texture_scale = 0.03
 color = Color( 0.941176, 0.247059, 0.976471, 1 )
@@ -555,16 +556,17 @@ __meta__ = {
 }
 
 [node name="Lights" type="Node2D" parent="Sprites/RightDoor"]
+visible = false
 
 [node name="Light1" type="Light2D" parent="Sprites/RightDoor/Lights"]
-position = Vector2( 96.3097, -61.3045 )
+position = Vector2( 106.746, -56.5488 )
 texture = ExtResource( 6 )
 texture_scale = 0.03
 color = Color( 0.941176, 0.247059, 0.976471, 1 )
-energy = 0.179167
+energy = 0.0
 
 [node name="Light2" type="Light2D" parent="Sprites/RightDoor/Lights"]
-position = Vector2( 91.7325, -36.7743 )
+position = Vector2( 105.28, -33.0786 )
 texture = ExtResource( 6 )
 texture_scale = 0.03
 color = Color( 0.941176, 0.247059, 0.976471, 1 )
@@ -578,14 +580,14 @@ color = Color( 0.941176, 0.247059, 0.976471, 1 )
 energy = 1.5
 
 [node name="Light4" type="Light2D" parent="Sprites/RightDoor/Lights"]
-position = Vector2( 93.8481, 43.2641 )
+position = Vector2( 104.395, 46.61 )
 texture = ExtResource( 6 )
 texture_scale = 0.03
 color = Color( 0.941176, 0.247059, 0.976471, 1 )
 energy = 1.5
 
 [node name="Light5" type="Light2D" parent="Sprites/RightDoor/Lights"]
-position = Vector2( 58.4993, 110.31 )
+position = Vector2( 59.0809, 123.159 )
 texture = ExtResource( 6 )
 texture_scale = 0.03
 color = Color( 0.941176, 0.247059, 0.976471, 1 )
@@ -669,6 +671,7 @@ randomness = 0.3
 process_material = SubResource( 7 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]
+playback_speed = 2.0
 anims/Open = SubResource( 8 )
 
 [node name="Doors" type="AnimationPlayer" parent="."]

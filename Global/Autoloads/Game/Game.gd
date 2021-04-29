@@ -165,13 +165,14 @@ func goto_next_level():
 	var _err = get_tree().change_scene_to(next_level)
 
 
-### SOULD TAKE AN ID OF THE CHAPTER AS ARGUMENT TOO
-func goto_level(level_index : int):
+# Go to the level designated by the given level_index in the given chapter, designated by its id
+# By default, the chapter is the current one
+func goto_level(level_index : int, chapter_id: int = progression.get_chapter()):
 	var level : PackedScene = null
 
 	progression.set_checkpoint(-1)
 
-	level = current_chapter.load_level(level_index)
+	level = chapters_array[chapter_id].load_level(level_index)
 	var level_name = current_chapter.get_level_name(level_index)
 	LevelSaver.delete_level_temp_saves(SAVEDLEVEL_DIR, level_name)
 

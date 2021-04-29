@@ -36,11 +36,10 @@ func open_door(instant : bool = false):
 			animation_node.play("Open")
 			if audio_node != null:
 				audio_node.play()
-				
+			
 			# Triggers the camera movement
 			EVENTS.emit_signal("move_camera_to_query", position, !focus_on_door, -1.0, 0.0)
 		else:
-			#print("Self : ", self, " Children  : ", self.get_children())
 			for child in self.get_children():
 				if child is AnimationPlayer:
 					child.set_speed_scale(64)
