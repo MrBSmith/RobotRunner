@@ -59,10 +59,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/Actor/AI/ActorPath/ActorPath.gd"
 }, {
-"base": "StateBase",
+"base": "AnimatedObjectStateBase",
 "class": "ActorStateBase",
 "language": "GDScript",
 "path": "res://BabaGodotLib/Actor/States/ActorState/ActorStateBase.gd"
+}, {
+"base": "StateBase",
+"class": "AnimatedObjectStateBase",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Absract/StateMachine/AbstractStates/AnimatedObjectStateBase.gd"
 }, {
 "base": "StateBase",
 "class": "AppearState",
@@ -348,6 +353,11 @@ _global_script_classes=[ {
 "class": "EventsBase",
 "language": "GDScript",
 "path": "res://BabaGodotLib/Autoload/EventBase.gd"
+}, {
+"base": "CanvasLayer",
+"class": "FadeTransition",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Transitions/FadeTransition.gd"
 }, {
 "base": "RobotPlatformBase",
 "class": "FlyingPlatform",
@@ -834,6 +844,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Levels/InfiniteMode/ChunckRooms/SmallChunckRoom.gd"
 }, {
+"base": "Node2D",
+"class": "SoundEffectsHandler",
+"language": "GDScript",
+"path": "res://BabaGodotLib/SoundEffects/SoundEffectsHandler.gd"
+}, {
 "base": "LevelChunck",
 "class": "SpecialChunck",
 "language": "GDScript",
@@ -913,6 +928,11 @@ _global_script_classes=[ {
 "class": "TilemapDebugCursor",
 "language": "GDScript",
 "path": "res://Scenes/Levels/Debug/TilemapDebugCursor.gd"
+}, {
+"base": "StatesMachine",
+"class": "ToolStatesMachine",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Absract/StateMachine/ToolStateMachine.gd"
 }, {
 "base": "Area2D",
 "class": "TriggerArea",
@@ -1021,6 +1041,7 @@ _global_script_class_icons={
 "ActorMoveState": "",
 "ActorPath": "",
 "ActorStateBase": "",
+"AnimatedObjectStateBase": "",
 "AppearState": "",
 "Autotiler": "",
 "BabyBot": "",
@@ -1078,6 +1099,7 @@ _global_script_class_icons={
 "EarthBlock": "",
 "Event": "",
 "EventsBase": "",
+"FadeTransition": "",
 "FlyingPlatform": "",
 "GameCamera": "",
 "GameConsoleScript": "",
@@ -1175,6 +1197,7 @@ _global_script_class_icons={
 "SlopePlacer": "",
 "SlotSaverMenu": "",
 "SmallChunckRoom": "",
+"SoundEffectsHandler": "",
 "SpecialChunck": "",
 "StateBase": "",
 "StateLabel": "",
@@ -1191,6 +1214,7 @@ _global_script_class_icons={
 "TextLineContainer": "",
 "TileRenderPart": "",
 "TilemapDebugCursor": "",
+"ToolStatesMachine": "",
 "TriggerArea": "",
 "Water": "",
 "WorldMap": "",
