@@ -1,5 +1,5 @@
 extends MenuBase
-class_name LoadSaveMenu
+class_name LoadGameMenu
 
 onready var load_slot1_node = $HBoxContainer/V_OptContainer/LOAD_1
 onready var load_slot2_node = $HBoxContainer/V_OptContainer/LOAD_2
@@ -63,9 +63,7 @@ func load_save(slot_id : int):
 
 	if save_path != "Null" or save_path != "":
 		var last_level_id = GAME.progression.get_last_level_id()
-		GAME.goto_level(last_level_id)
-		queue_free()
-
+		GAME.goto_world_map()
 
 
 #### VIRTUALS #### 

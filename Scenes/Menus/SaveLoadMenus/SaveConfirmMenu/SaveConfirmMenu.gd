@@ -94,7 +94,7 @@ func submit_and_save_game():
 		DirNavHelper.delete_folder(GAME.SAVEGAME_DIR + "/" + save_folder_name)
 	
 	DirNavHelper.create_dir(GAME.SAVEGAME_DIR, save_name)
-	GameSaver.save_settings(GAME.SAVEGAME_DIR + "/" + save_name, save_name)
+	GameSaver.save_game(GAME.SAVEGAME_DIR + "/" + save_name, save_name)
 	
 	var save_slot_path = GameLoader.find_corresponding_save_file(GAME.SAVEGAME_DIR, save_id)
 	DirNavHelper.transfer_dir_content(GAME.SAVEDLEVEL_DIR, GAME.SAVEGAME_DIR + "/" + save_slot_path)

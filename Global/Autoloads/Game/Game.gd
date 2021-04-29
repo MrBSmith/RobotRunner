@@ -198,6 +198,12 @@ func goto_level_by_path(level_scene_path: String):
 	goto_level(level_id)
 
 
+func goto_world_map() -> void:
+	var _err = get_tree().change_scene_to(world_map_scene)
+	yield(get_tree(), "node_added")
+	fade_in()
+
+
 func find_level_path_in_chapter_array(level_name: String) -> String:
 	for chapter in chapters_array:
 		var level_path = chapter.find_level_path(level_name) 
@@ -291,13 +297,12 @@ func on_level_finished(level : Level):
 	fade_out()
 	transition_timer_node.start()
 	progression.append_visited_level(level)
+	GameSaver.save_game_in_slot(SAVEGAME_DIR, 0)
 
 
 # When the transition is finished, go to the next level
 func on_transition_timer_timeout():
-	var _err = get_tree().change_scene_to(world_map_scene)
-	yield(get_tree(), "node_added")
-	fade_in()
+	goto_world_map()
 
 
 # Called when the level is ready, correct

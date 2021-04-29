@@ -23,10 +23,10 @@
 [node name="Level1B" instance=ExtResource( 1 )]
 
 [node name="StartingPointP1" parent="." index="0" instance=ExtResource( 3 )]
-position = Vector2( 48, 260.948 )
+position = Vector2( 3344, 280 )
 
 [node name="StartingPointP2" parent="." index="1" instance=ExtResource( 4 )]
-position = Vector2( 48, 360 )
+position = Vector2( 3344, 379.052 )
 
 [node name="DebrisGenerator" parent="." index="4"]
 sfx_dict = {

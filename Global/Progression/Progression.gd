@@ -58,8 +58,6 @@ func append_visited_level(level: Level) -> void:
 	var level_scene_path = GAME.current_chapter.find_level_path(level.name)
 	if not level_scene_path in visited_levels:
 		visited_levels.append(level_scene_path)
-	
-	print(visited_levels)
 
 
 #### SIGNAL RESPONSES ####

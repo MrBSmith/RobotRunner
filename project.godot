@@ -570,9 +570,9 @@ _global_script_classes=[ {
 "path": "res://BabaGodotLib/UI/Menu/ListMenu.gd"
 }, {
 "base": "MenuBase",
-"class": "LoadSaveMenu",
+"class": "LoadGameMenu",
 "language": "GDScript",
-"path": "res://Scenes/Menus/SaveLoadMenus/SaveLoaderMenu/SaveLoader.gd"
+"path": "res://Scenes/Menus/SaveLoadMenus/LoadGameMenu/LoadGameMenu.gd"
 }, {
 "base": "Object",
 "class": "Math",
@@ -1147,7 +1147,7 @@ _global_script_class_icons={
 "LineData": "",
 "Liquid": "",
 "ListMenu": "",
-"LoadSaveMenu": "",
+"LoadGameMenu": "",
 "Math": "",
 "MenuBase": "",
 "MenuOptions": "",
