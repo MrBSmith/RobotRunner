@@ -116,11 +116,13 @@ __meta__ = {
 [node name="XL_LevelNode" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 130.105, 306.404 )
+level_scene_path = "res://Scenes/Levels/Chapter1/Level1/Level1A.tscn"
 level_name = "A"
 
 [node name="XL_LevelNode2" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 364.043, 206.553 )
+level_scene_path = "res://Scenes/Levels/Chapter1/Level1/Level1B.tscn"
 level_name = "B1"
 
 [node name="XL_LevelNode3" parent="Levels" instance=ExtResource( 14 )]

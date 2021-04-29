@@ -39,6 +39,9 @@ func get_level_name(id: int) -> String:
 	
 	return file_name.split(".")[0]
 
+func get_level_path(id: int) -> String:
+	return levels_scenes_array[id]
+
 # Return the index of a given string in a given array
 # Return -1 if the string wasn't found
 func find_level_id(level_name: String) -> int:

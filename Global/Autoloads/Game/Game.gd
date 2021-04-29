@@ -294,7 +294,7 @@ func on_level_finished(level : Level):
 
 # When the transition is finished, go to the next level
 func on_transition_timer_timeout():
-	var err = get_tree().change_scene_to(world_map_scene)
+	var _err = get_tree().change_scene_to(world_map_scene)
 	yield(get_tree(), "node_added")
 	fade_in()
 
