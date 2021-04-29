@@ -68,7 +68,7 @@ func load_save(slot_id : int):
 
 
 
-#### VIRTUALS ####
+#### VIRTUALS #### 
 
 
 

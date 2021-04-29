@@ -18,12 +18,13 @@ const JUMP_MAX_DIST := Vector2(6, 2)
 var window_width = ProjectSettings.get_setting("display/window/size/width")
 var window_height = ProjectSettings.get_setting("display/window/size/height")
 var window_size = Vector2(window_width, window_height)
-
 var chapters_array = []
 var current_chapter : Resource = null
 
 var player1 = preload("res://Scenes/Actor/Players/MrCold/MrCold.tscn")
 var player2 = preload("res://Scenes/Actor/Players/MrStonks/MrStonks.tscn")
+
+var world_map_scene = preload("res://Scenes/WorldMap/XL_WorldMap.tscn")
 
 var level_array : Array
 var last_level_name : String
@@ -293,7 +294,9 @@ func on_level_finished(level : Level):
 
 # When the transition is finished, go to the next level
 func on_transition_timer_timeout():
-	goto_next_level()
+	var err = get_tree().change_scene_to(world_map_scene)
+	yield(get_tree(), "node_added")
+	fade_in()
 
 
 # Called when the level is ready, correct
