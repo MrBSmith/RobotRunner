@@ -62,7 +62,6 @@ func load_save(slot_id : int):
 	var save_path : String = str(GameLoader.load_settings(GAME.SAVEGAME_DIR, slot_id))
 
 	if save_path != "Null" or save_path != "":
-		var last_level_id = GAME.progression.get_last_level_id()
 		GAME.goto_world_map()
 
 

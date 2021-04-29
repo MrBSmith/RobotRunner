@@ -17,7 +17,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
-debug = true
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource( 2 )

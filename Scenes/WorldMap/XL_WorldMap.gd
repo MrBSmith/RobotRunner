@@ -57,9 +57,11 @@ func enter_current_level():
 		pulsing_light.queue_free()
 	
 	var cursor_level_node = cursor.get_current_level()
+	var character_current_level = characters_container.get_current_level()
 	
-	light_moving_through(characters_container.current_level, cursor_level_node)
-	yield(self, "character_moving_feedback_finished")
+	if cursor_level_node != character_current_level:
+		light_moving_through(characters_container.current_level, cursor_level_node)
+		yield(self, "character_moving_feedback_finished")
 	
 	characters_container.move_to_level(cursor_level_node)
 	yield(characters_container, "enter_level_animation_finished")
