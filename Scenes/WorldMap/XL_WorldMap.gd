@@ -24,7 +24,12 @@ func _ready() -> void:
 	
 	if !Engine.editor_hint && current_level != null:
 		generate_pulsing_light(current_level)
-
+	
+	var visited_levels = GAME.progression.visited_levels
+	var last_level_id = GAME.progression.get_last_level_id()
+	var last_level_path = GAME.current_chapter.get_level_path(last_level_id)
+	
+	apply_current_progression(visited_levels, last_level_path)
 
 #### VIRTUALS ####
 
@@ -32,12 +37,31 @@ func _ready() -> void:
 
 #### LOGIC ####
 
-func enter_current_level():
-	pulsing_light.queue_free()
-	var cursor_level_node = cursor.get_current_level()
+
+func apply_current_progression(visited_levels: Array, last_level_path: String) -> void:
+	var levels_array = get_level_nodes()
+	var last_level : LevelNode = null
+	for level in levels_array:
+		var level_scene_path = level.get_level_scene_path()
+		if level_scene_path in visited_levels:
+			level.set_visited(true)
+		
+		if level_scene_path == last_level_path:
+			last_level = level
 	
-	light_moving_through(characters_container.current_level, cursor_level_node)
-	yield(self, "character_moving_feedback_finished")
+	init_cursor_position(last_level)
+
+
+func enter_current_level():
+	if pulsing_light != null:
+		pulsing_light.queue_free()
+	
+	var cursor_level_node = cursor.get_current_level()
+	var character_current_level = characters_container.get_current_level()
+	
+	if cursor_level_node != character_current_level:
+		light_moving_through(characters_container.current_level, cursor_level_node)
+		yield(self, "character_moving_feedback_finished")
 	
 	characters_container.move_to_level(cursor_level_node)
 	yield(characters_container, "enter_level_animation_finished")

@@ -1,7 +1,7 @@
 extends MenuBase
 class_name ScreenTitleMenu
 
-onready var save_loader_scene = preload("res://Scenes/Menus/SaveLoadMenus/SaveLoaderMenu/SaveLoaderMenu.tscn")
+onready var save_loader_scene = preload("res://Scenes/Menus/SaveLoadMenus/LoadGameMenu/LoadGameMenu.tscn")
 onready var infinite_level_scene = preload("res://Scenes/Levels/InfiniteMode/InfiniteLevel.tscn")
 onready var seed_field = $HBoxContainer/V_OptContainer/InfiniteMode/SeedField
 
@@ -20,6 +20,7 @@ func get_class() -> String: return "ScreenTitleMenu"
 
 
 #### VIRTUALS ####
+
 
 
 

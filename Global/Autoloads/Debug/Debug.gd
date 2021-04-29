@@ -6,7 +6,6 @@ func _enter_tree() -> void:
 
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
-	GameSaver.delete_all_level_temp_saves(false)
 
 
 func _input(event):
@@ -20,9 +19,10 @@ func _input(event):
 			AudioServer.set_bus_mute(master_bus_id, !is_master_muted)
 
 
-func on_scene_tree_node_added(node: Node):
-	if node is Level:
-		yield(node, "ready")
-		GameSaver.save_level_properties_as_json(node)
-		
-		get_tree().disconnect("node_added", self, "on_scene_tree_node_added")
+func on_scene_tree_node_added(_node: Node):
+	pass
+#	if node is Level:
+#		yield(node, "ready")
+#		GameSaver.save_level_properties_as_json(node)
+#
+#		get_tree().disconnect("node_added", self, "on_scene_tree_node_added")

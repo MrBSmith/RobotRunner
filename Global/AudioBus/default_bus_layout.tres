@@ -43,6 +43,7 @@ spread = 0.63
 wet = 0.37
 
 [resource]
+bus/0/mute = true
 bus/0/volume_db = -0.130497
 bus/1/name = "Sounds"
 bus/1/solo = false

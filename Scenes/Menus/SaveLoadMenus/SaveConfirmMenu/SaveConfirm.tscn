@@ -3,9 +3,8 @@
 [ext_resource path="res://BabaGodotLib/Fonts/BoldCapsPixel.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://BabaGodotLib/UI/Menu/OptionButtons/MenuOptionBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://BabaGodotLib/UI/Menu/MenuBase.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Menus/SaveLoadMenus/SaveConfirmMenu/SaveConfirm.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Menus/SaveLoadMenus/SaveConfirmMenu/SaveConfirmMenu.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Menus/SaveLoadMenus/SaveConfirmMenu/SaveNameField.gd" type="Script" id=5]
-
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -109,7 +108,7 @@ __meta__ = {
 
 [node name="CurrentSave" type="VBoxContainer" parent="SaveInformations" index="0"]
 margin_right = 405.0
-margin_bottom = 98.0
+margin_bottom = 75.0
 size_flags_horizontal = 2
 
 [node name="c_savenamestaken" type="Label" parent="SaveInformations/CurrentSave" index="0"]
@@ -175,9 +174,9 @@ uppercase = true
 
 [node name="TargetSave" type="VBoxContainer" parent="SaveInformations" index="1"]
 margin_left = 565.0
-margin_top = 16.0
+margin_top = 5.0
 margin_right = 800.0
-margin_bottom = 81.0
+margin_bottom = 70.0
 size_flags_vertical = 4
 alignment = 2
 

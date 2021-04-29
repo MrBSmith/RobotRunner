@@ -2,11 +2,15 @@ extends Node2D
 
 onready var gameover_timer_node = $GameoverTimer
 onready var transition_timer_node = $TransitionTimer
-onready var progression = $Progression
+onready var progression : Progression = $Progression
 
 export var debug : bool = false
 
 export var transition_time : float = 1.0
+
+const SAVEGAME_DIR : String = "res://saves"
+const SAVEDLEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
+const SAVEDFILE_DEFAULT_NAME : String = "save"
 
 const TILE_SIZE := Vector2(24, 24)
 const JUMP_MAX_DIST := Vector2(6, 2)
@@ -14,12 +18,13 @@ const JUMP_MAX_DIST := Vector2(6, 2)
 var window_width = ProjectSettings.get_setting("display/window/size/width")
 var window_height = ProjectSettings.get_setting("display/window/size/height")
 var window_size = Vector2(window_width, window_height)
-
 var chapters_array = []
 var current_chapter : Resource = null
 
 var player1 = preload("res://Scenes/Actor/Players/MrCold/MrCold.tscn")
 var player2 = preload("res://Scenes/Actor/Players/MrStonks/MrStonks.tscn")
+
+var world_map_scene = preload("res://Scenes/WorldMap/XL_WorldMap.tscn")
 
 var level_array : Array
 var last_level_name : String
@@ -32,7 +37,13 @@ var sound_bus_id = AudioServer.get_bus_index("Sounds")
 
 var _config_file = ConfigFile.new()
 
-#var save_thread : Thread = null
+const level_property_to_serialize = {
+	"Collectable" : [],
+	"BreakableObjectBase" : [],
+	"Door" : ["open"],
+	"DoorButton": ["push"],
+	"Checkpoint": ["active"]
+}
 
 var _settings ={
 		"system":{
@@ -61,9 +72,10 @@ var _settings ={
 			"HUD_switch_state": InputMap.get_action_list("HUD_switch_state")[0].scancode,
 			"display_console": InputMap.get_action_list("display_console")[0].scancode
 		},
-		"gameplay":{
-			"level_id": -1,
-			"checkpoint_reached": -1,
+		"progression":{
+			"last_level": -1,
+			"visited_levels": [],
+			"checkpoint": -1,
 			"xion": 0,
 			"gear": 0
 		}
@@ -88,15 +100,13 @@ func get_solo_mode() -> bool: return solo_mode
 
 #### BUILT-IN ####
 
-func _ready():	
+func _ready():
 	var _err = gameover_timer_node.connect("timeout",self, "on_gameover_timer_timeout")
 	_err = transition_timer_node.connect("timeout",self, "on_transition_timer_timeout")
 	_err = EVENTS.connect("level_ready", self, "on_level_ready")
 	_err = EVENTS.connect("level_finished", self, "on_level_finished")
 	_err = EVENTS.connect("seed_change_query", self, "on_seed_change_query")
 
-	GameSaver.create_dirs(GameSaver.SAVEGAME_DIR, []) #Create saves directory at root
-	GameSaver.create_dirs(GameSaver.SAVEDLEVEL_DIR, ["json", "tscn"]) #Create json and tscn directory at SAVEDLEVEL_DIR : String = "res://Scenes/Levels/SavedLevel/"
 	GameSaver.settings_update_keys(_settings)
 
 	# Generate the chapters
@@ -119,25 +129,25 @@ func goto_last_level():
 
 	var loaded_from_save : bool = false
 	var level_scene : PackedScene
-	var dir = GameSaver.SAVEDLEVEL_DIR + GameSaver.SAVEDLEVEL_TSCN_DIR
-	var level_to_load_path : String = find_saved_level_path(dir, last_level_name)
-
+	var level_to_load_path : String = current_chapter.find_level_path(last_level_name)
+	
+	if level_to_load_path == "":
+		level_to_load_path = find_level_path_in_chapter_array(last_level_name)
+	
 	# If no save of the current level exists, reload the same scene
-	if level_to_load_path != "":
+	if level_to_load_path == "":
+		print_debug("No level with the name " + last_level_name + " has been found in any chapter of the game")
+	else:
 		level_scene = load(level_to_load_path)
 		loaded_from_save = true
-
-	# If a save exists, load it
-	else:
-		level_scene = load(current_chapter.find_level_path(last_level_name))
-
+	
 	var __ = get_tree().change_scene_to(level_scene)
 
 	if loaded_from_save:
 		yield(EVENTS, "level_entered_tree")
 		var level : Level = get_tree().get_current_scene()
 		level.is_loaded_from_save = loaded_from_save
-		GameSaver.build_level_from_loaded_properties(level)
+		LevelLoader.build_level_from_loaded_properties(SAVEDLEVEL_DIR, level)
 
 
 # Change scene to the next level scene
@@ -145,40 +155,28 @@ func goto_last_level():
 # Which means the last level will be launched again
 func goto_next_level():
 	var next_level : PackedScene = null
-	var next_level_id : int = 0
-
 	progression.set_checkpoint(-1)
-
+	
 	if last_level_name == "":
 		next_level = current_chapter.load_level(0)
 	else:
 		next_level = current_chapter.load_next_level(last_level_name)
-		next_level_id = current_chapter.find_level_id(last_level_name) + 1
-
-	var next_level_name = current_chapter.get_level_name(next_level_id)
-	GameSaver.delete_level_temp_saves(next_level_name)
-
+	
 	var _err = get_tree().change_scene_to(next_level)
 
-	yield(EVENTS, "level_ready")
-	var level = get_tree().get_current_scene()
-	GameSaver.save_level_properties_as_json(level)
 
-
-func goto_level(level_index : int):
+# Go to the level designated by the given level_index in the given chapter, designated by its id
+# By default, the chapter is the current one
+func goto_level(level_index : int, chapter_id: int = progression.get_chapter()):
 	var level : PackedScene = null
 
 	progression.set_checkpoint(-1)
 
-	level = current_chapter.load_level(level_index)
+	level = chapters_array[chapter_id].load_level(level_index)
 	var level_name = current_chapter.get_level_name(level_index)
-	GameSaver.delete_level_temp_saves(level_name)
+	LevelSaver.delete_level_temp_saves(SAVEDLEVEL_DIR, level_name)
 
 	var _err = get_tree().change_scene_to(level)
-	yield(EVENTS, "level_ready")
-	var current_level = get_tree().get_current_scene()
-	GameSaver.save_level_properties_as_json(current_level)
-
 
 
 func goto_level_by_path(level_scene_path: String):
@@ -200,6 +198,21 @@ func goto_level_by_path(level_scene_path: String):
 	goto_level(level_id)
 
 
+func goto_world_map() -> void:
+	var _err = get_tree().change_scene_to(world_map_scene)
+	yield(get_tree(), "node_added")
+	fade_in()
+
+
+func find_level_path_in_chapter_array(level_name: String) -> String:
+	for chapter in chapters_array:
+		var level_path = chapter.find_level_path(level_name) 
+		if level_path != "":
+			return level_path
+	return ""
+
+
+
 # Triggers the timer before the gameover is triggered
 # Called when a player die
 func gameover():
@@ -210,27 +223,6 @@ func gameover():
 		return
 
 	current_scene.set_process(false)
-
-
-### TRY TO RELOCATE THIS FUNCTION IN GAME_SAVER ###
-
-# Find the saved level with the corresponding name, and returns its path
-# Returns "" if nothing was found
-func find_saved_level_path(dir_path: String, level_name: String) -> String:
-	var dir = Directory.new()
-	if dir.open(dir_path) == OK:
-		dir.list_dir_begin(true)
-		var current_file_name : String = dir.get_next()
-
-		while current_file_name != "":
-			if dir.current_is_dir():
-				continue
-			else:
-				if level_name.is_subsequence_of(current_file_name):
-					return dir_path + current_file_name
-				else:
-					current_file_name = dir.get_next()
-	return ""
 
 
 func fade_in():
@@ -258,7 +250,7 @@ func set_screen_fade_visible(value: bool):
 func update_current_level_index(level : Level):
 	var level_name = level.get_name()
 	var level_index = current_chapter.find_level_id(level_name)
-	GAME.progression.set_level(level_index)
+	GAME.progression.set_last_level_id(level_index)
 
 
 #### INPUTS ####
@@ -301,52 +293,33 @@ func on_gameover_timer_timeout():
 
 
 # Called when a level is finished: wait for the transition to be finished
-func on_level_finished(_level : Level):
+func on_level_finished(level : Level):
 	fade_out()
 	transition_timer_node.start()
+	progression.append_visited_level(level)
+	GameSaver.save_game_in_slot(SAVEGAME_DIR, 0)
 
 
 # When the transition is finished, go to the next level
 func on_transition_timer_timeout():
-	goto_next_level()
+	goto_world_map()
 
 
 # Called when the level is ready, correct
 func on_level_ready(level : Level):
 	last_level_name = level.get_name()
-	#if progression.level == 0: <- Why ?
+	
 	update_current_level_index(level)
 	fade_in()
 
-	if level is InfiniteLevel:
-#		start_thread_savelevel([level, true])
-		GameSaver.save_level_as_tscn(level)
-		GameSaver.save_level_properties_as_json(level)
 
 # When a player reach a checkpoint
 func on_checkpoint_reached(level: Level, checkpoint_id: int):
 	if checkpoint_id + 1 > GAME.progression.checkpoint:
 		progression.checkpoint = checkpoint_id + 1
 	
-	GameSaver.save_level_as_tscn(level)
-#	start_thread_savelevel([level, false])
+	LevelSaver.save_level_properties_as_json(level_property_to_serialize, SAVEDLEVEL_DIR, level)
 
-#func start_thread_savelevel(args : Array):
-#	save_thread = Thread.new()
-#	save_thread.start(self, "save_level", args)
-#
-#
-#func save_level(args : Array):
-#	GameSaver.save_level_as_tscn(args[0])
-#	if args[1]: #bool to check if we save json or not
-#		GameSaver.save_level_properties_as_json(args[0])
-#
-#	call_deferred("finish_thread_savelevel")
-#
-#func finish_thread_savelevel():
-#	var result = save_thread.wait_to_finish()
-#	if debug:
-#		print("save_thread Thread finished successfully. Level has been saved !")
 
 func on_seed_change_query(new_seed: int):
 	_set_current_seed(new_seed)

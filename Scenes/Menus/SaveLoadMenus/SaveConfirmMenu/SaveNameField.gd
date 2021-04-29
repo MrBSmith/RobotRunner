@@ -1,18 +1,14 @@
 extends LineEdit
+class_name SaveNameField
 
 var namestaken_info_node
 var submitsave_button
-var save_files : Array = []
+var save_folders : Array = []
 
 #### ACCESSORS ####
 
-func is_class(value: String):
-	return value == "" or .is_class(value)
-
-func get_class() -> String:
-	return ""
-
-
+func is_class(value: String): return value == "SaveNameField" or .is_class(value)
+func get_class() -> String: return "SaveNameField"
 
 #### BUILT-IN ####
 
@@ -20,13 +16,13 @@ func _ready():
 	var _err
 	_err = connect("text_changed", self, "_on_text_changed")
 	
-	save_files = GameSaver.find_all_saves_directories()
-	
+	save_folders = DirNavHelper.fetch_dir_content(GAME.SAVEGAME_DIR, DirNavHelper.DIR_FETCH_MODE.DIR_ONLY)
+
 #### LOGIC ####
 
 func check_if_name_is_already_taken(name : String) -> bool:
 	var is_taken : bool = false
-	for savefile in save_files:
+	for savefile in save_folders:
 		if savefile.to_upper().capitalize() == name.to_upper().capitalize():
 			is_taken = true
 			return is_taken
@@ -34,6 +30,7 @@ func check_if_name_is_already_taken(name : String) -> bool:
 			is_taken = false
 			continue
 	return is_taken
+
 
 #### VIRTUALS ####
 
@@ -44,6 +41,7 @@ func check_if_name_is_already_taken(name : String) -> bool:
 
 
 #### SIGNAL RESPONSES ####
+
 func _on_text_changed(new_text):
 	var allowed_characters = "[A-Za-z_ ]"
 	var old_caret_position = self.caret_position

@@ -47,6 +47,50 @@ func update_music_adaptation() -> void:
 			MUSIC.adapt_music(xion_cloud_node, players_array, player_in_danger)
 
 
+# Called by GameSaver
+# When the level is loaded; apply the properties fetched from the json file to it
+# The property dict must be structured this way: 
+# Keys are the path to the node, then the value is another dict where keys 
+# are the name of the property and the value the value of the named property
+func apply_loaded_properties(properties_dict : Dictionary):
+	var persitiant_objects : Array = []
+	var undestructed_obj : Array = []
+	get_every_persistant_object(self, persitiant_objects)
+	
+	for object_path in properties_dict.keys():
+		object_path = object_path.trim_prefix('root/')
+		var object = get_node_or_null(object_path)
+		
+		if object == null:
+			print_debug("The object with path : " + object_path + " couldn't be found")
+		
+		if not object in undestructed_obj:
+			undestructed_obj.append(object)
+		
+		for property in properties_dict[object_path].keys():
+			var value = properties_dict[object_path][property]
+			var setter = "set_" + property
+			if object.has_method(setter):
+				object.call(setter, value)
+			else:
+				object.set(property, value)
+	
+	for obj in persitiant_objects:
+		if not obj in undestructed_obj:
+			obj.queue_free()
+
+
+# Recursivly get every persistant objects direct/indirect children of the given node
+# Store the data in the array passed as argument
+func get_every_persistant_object(node: Node, array_to_fill: Array):
+	for child in node.get_children():
+		if child.is_class("Collectable") or child.is_class("BreakableObjectBase"):
+			if not child in array_to_fill:
+				array_to_fill.append(child)
+		elif child.get_child_count() > 0:
+			get_every_persistant_object(child, array_to_fill)
+
+
 # Load the last checkpoint visited and set the position accordingly,
 # Also disable every uneeded checkpoint
 func set_starting_points():
@@ -84,11 +128,10 @@ func instanciate_players():
 
 # Set the camera at the right position on start of the level
 func set_camera_position_on_start():
-	if(GAME.progression.checkpoint > 0):
-		var camera_node : Node = find_node("Camera")
-		var camera_position_on_start = camera_node.compute_average_pos()
-		camera_node.set_global_position(camera_position_on_start)
-		camera_node.pivot.set_global_position(camera_position_on_start)
+	var camera_node : Node = find_node("Camera")
+	var camera_position_on_start = camera_node.compute_average_pos()
+	camera_node.set_global_position(camera_position_on_start)
+	camera_node.pivot.set_global_position(camera_position_on_start)
 
 
 # Feed every needing node with weak references of the players so it can follow them

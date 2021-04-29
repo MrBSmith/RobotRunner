@@ -33,10 +33,10 @@ sfx_dict = {
 }
 
 [node name="StartingPointP1" parent="." index="3" instance=ExtResource( 3 )]
-position = Vector2( 728, 1153 )
+position = Vector2( 320, 216 )
 
 [node name="StartingPointP2" parent="." index="4" instance=ExtResource( 1 )]
-position = Vector2( 1288, 320 )
+position = Vector2( 264, 216 )
 
 [node name="Back" parent="Map/Background/Paralaxe" index="0"]
 motion_scale = Vector2( 0.5, 0.5 )

@@ -15,4 +15,4 @@ func event():
 			EVENTS.emit_signal("move_camera_to_query", $Position2D.get_global_position(), false, camera_new_speed, INF)
 		queue_free()
 	else:
-		print("An Event has been triggered but is disabled")
+		print_debug("An Event has been triggered but is disabled")

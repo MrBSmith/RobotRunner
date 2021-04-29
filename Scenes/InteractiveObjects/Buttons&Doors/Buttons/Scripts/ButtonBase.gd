@@ -8,26 +8,34 @@ onready var area2D_node = get_node("Area2D")
 onready var collision_shape_node = get_node("CollisionShape2D")
 
 var collision_shape_initial_pos : Vector2
+var is_ready : bool = false
 
-export var is_push : bool = false
+export var push : bool = false setget set_push, is_push
 
 #### ACCESSORS ####
 
-func is_class(value: String):
-	return value == "DoorButton" or .is_class(value)
+func is_class(value: String): return value == "DoorButton" or .is_class(value)
+func get_class() -> String: return "DoorButton"
 
-func get_class() -> String:
-	return "DoorButton"
+func set_push(value: bool):
+	if !is_ready:
+		yield(self, "ready")
+	
+	if collision_shape_node != null && !collision_shape_node.is_disabled() && value:
+		trigger(true)
+	
+	push = value
 
+func is_push() -> bool: return push
 
 #### BUILT-IN ####
 
 
 func _ready():
 	collision_shape_initial_pos = collision_shape_node.position
-	if is_push:
-		update_button_state_to_pushed()
-		
+	is_ready = true
+
+
 #### LOGIC ####
 
 
@@ -38,11 +46,16 @@ func setup():
 	_err = animation_node.connect("frame_changed", self, "on_frame_change")
 	_err = animation_node.connect("animation_finished", self, "on_animation_finished")
 
-# If a level load and a button is already pushed
-# Set its state to pushed state (animation, signals, etc...)
-func update_button_state_to_pushed():
-	animation_node.set_frame(animation_node.get_sprite_frames().get_frame_count("default")-1)
-	animation_node.play()
+
+func trigger(instant: bool = false):
+	if !instant:
+		animation_node.play()
+	else:
+		animation_node.set_frame(animation_node.get_sprite_frames().get_frame_count("default") - 1)
+		collision_shape_node.call_deferred("set_disabled", true)
+
+
+
 
 #### SIGNAL RESPONSES ####
 
@@ -50,14 +63,15 @@ func update_button_state_to_pushed():
 # Play the animation when a player touch the button
 func on_body_entered(body):
 	if body.is_class("Player"):
-		animation_node.play()
+		trigger()
 
 
 # When the animation is finished, emit the signal, and disable the collision shape
 func on_animation_finished():
 	emit_signal("button_trigger")
 	collision_shape_node.set_disabled(true)
-	is_push = true
+	set_push(true)
+
 
 # Move the shape at the same time as the sprite
 func on_frame_change():
