@@ -679,6 +679,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Actor/Players/PlayerBase/States/PlayerMoveState.gd"
 }, {
+"base": "Node",
+"class": "Progression",
+"language": "GDScript",
+"path": "res://Global/Progression/Progression.gd"
+}, {
 "base": "Node2D",
 "class": "PulsingLight",
 "language": "GDScript",
@@ -1164,6 +1169,7 @@ _global_script_class_icons={
 "PlayerIdleState": "",
 "PlayerJumpState": "",
 "PlayerMoveState": "",
+"Progression": "",
 "PulsingLight": "",
 "PushdownAutomata": "",
 "RT_ActorActionState": "",

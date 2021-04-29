@@ -1,11 +1,15 @@
 extends Node
+class_name Progression
 
 export (int, -1, 99) var chapter = -1 setget set_chapter, get_chapter
-export (int, -1, 99) var last_level = 0 setget set_last_level, get_last_level
+export (int, -1, 99) var last_level = 0 setget set_last_level_id, get_last_level_id
 export (int, -1, 99) var checkpoint = -1 setget set_checkpoint, get_checkpoint
 #export (int, 0, 999) var dialogue = 0
 export (int, 0, 999999999) var xion = 0 setget set_xion, get_xion
 export (int, 0, 9999) var gear = 0 setget set_gear, get_gear
+
+# Stock the scene path of every already visited levels 
+var visited_levels := Array()
 
 #### ACCESSORS ####
 
@@ -13,9 +17,9 @@ func set_chapter(value: int): chapter = value
 func get_chapter() -> int: return chapter
 func add_to_chapter(value: int): set_chapter(get_chapter() + value)
 
-func set_last_level(value: int): last_level = value
-func get_last_level() -> int: return last_level
-func add_to_last_level(value: int): set_last_level(get_last_level() + value)
+func set_last_level_id(value: int): last_level = value
+func get_last_level_id() -> int: return last_level
+func add_to_last_level_id(value: int): set_last_level_id(get_last_level_id() + value)
 
 func set_checkpoint(value: int): checkpoint = value
 func get_checkpoint() -> int: return checkpoint
@@ -43,6 +47,20 @@ func add_to_gear(value: int): set_gear(get_gear() + value)
 func _ready():
 	var _err = EVENTS.connect("collectable_amount_collected", self, "_on_collectable_amount_collected")
 	_err = EVENTS.connect("update_HUD", self, "_on_update_HUD")
+
+#### LOGIC ####
+
+func append_visited_level(level: Level) -> void:
+	if not level is Level:
+		push_error("The given value isn't a Level")
+		return
+	
+	var level_scene_path = GAME.current_chapter.find_level_path(level.name)
+	if not level_scene_path in visited_levels:
+		visited_levels.append(level_scene_path)
+	
+	print(visited_levels)
+
 
 #### SIGNAL RESPONSES ####
 

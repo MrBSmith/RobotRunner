@@ -2,7 +2,7 @@ extends Node2D
 
 onready var gameover_timer_node = $GameoverTimer
 onready var transition_timer_node = $TransitionTimer
-onready var progression = $Progression
+onready var progression : Progression = $Progression
 
 export var debug : bool = false
 
@@ -164,6 +164,7 @@ func goto_next_level():
 	var _err = get_tree().change_scene_to(next_level)
 
 
+### SOULD TAKE AN ID OF THE CHAPTER AS ARGUMENT TOO
 func goto_level(level_index : int):
 	var level : PackedScene = null
 
@@ -241,7 +242,7 @@ func set_screen_fade_visible(value: bool):
 func update_current_level_index(level : Level):
 	var level_name = level.get_name()
 	var level_index = current_chapter.find_level_id(level_name)
-	GAME.progression.set_last_level(level_index)
+	GAME.progression.set_last_level_id(level_index)
 
 
 #### INPUTS ####
@@ -284,9 +285,10 @@ func on_gameover_timer_timeout():
 
 
 # Called when a level is finished: wait for the transition to be finished
-func on_level_finished(_level : Level):
+func on_level_finished(level : Level):
 	fade_out()
 	transition_timer_node.start()
+	progression.append_visited_level(level)
 
 
 # When the transition is finished, go to the next level

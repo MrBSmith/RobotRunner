@@ -55,7 +55,7 @@ func update_menu_labels():
 func update_current_save_informations():
 	var target_cfg_save_time = GameLoader.get_cfg_property_value(GAME.SAVEGAME_DIR, "time", save_id)
 	label_csavetime_node.text = get_save_time(target_cfg_save_time)
-	label_csavelevel_node.text = label_csavelevel_node.text + "Level " + str(GAME.progression.get_level() + 1)
+	label_csavelevel_node.text = label_csavelevel_node.text + "Level " + str(GAME.progression.get_last_level_id() + 1)
 
 
 func update_target_save_informations():

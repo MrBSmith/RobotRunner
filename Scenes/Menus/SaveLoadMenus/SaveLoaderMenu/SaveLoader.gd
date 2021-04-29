@@ -60,16 +60,10 @@ func update_save_information(slot_id : int):
 
 func load_save(slot_id : int):
 	var save_path : String = str(GameLoader.load_settings(GAME.SAVEGAME_DIR, slot_id))
-	var tscn_path : String = save_path + "SavedLevel.tscn"
 
 	if save_path != "Null" or save_path != "":
-		var file = File.new()
-		var _err = file.open(tscn_path, File.READ)
-
-		if _err != OK:
-			return
-
-		var __ = get_tree().change_scene(tscn_path)
+		var last_level_id = GAME.progression.get_last_level_id()
+		GAME.goto_level(last_level_id)
 		queue_free()
 
 
