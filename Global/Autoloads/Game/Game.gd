@@ -328,5 +328,4 @@ func on_seed_change_query(new_seed: int):
 
 func _on_new_game():
 	goto_level(0)
-	var slots_taken = DirNavHelper.fetch_dir_content(SAVE_GAME_DIR, DirNavHelper.DIR_FETCH_MODE.DIR_ONLY)
-	save_slot = slots_taken.size() + 1
+	save_slot = GameLoader.find_first_slot_available(SAVED_LEVEL_DIR)
