@@ -137,8 +137,8 @@ margin_right = 540.0
 margin_bottom = 132.0
 text = "Slot 3"
 
-[node name="Return" parent="VBoxContainer/VBoxContainer2" index="3" instance=ExtResource( 2 )]
+[node name="BackToMenu" parent="VBoxContainer/VBoxContainer2" index="3" instance=ExtResource( 2 )]
 margin_top = 132.0
 margin_right = 540.0
 margin_bottom = 176.0
-text = "Return"
+text = "Back To Menu"

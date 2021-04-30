@@ -30,9 +30,10 @@ func _ready():
 	load_slot_button_nodes_array = [load_slot1_node, load_slot2_node, load_slot3_node]
 
 	for i in range(3):
-		var save_name : String = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "save_name", i + 1)
+		var save_name : String = save_directories[i] if i < save_directories.size() else ""
 		if save_name == "":
 			load_slot_button_nodes_array[i].text = "NO SAVE TO LOAD"
+			load_slot_button_nodes_array[i].set_disabled(true)
 		else:
 			load_slot_button_nodes_array[i].text = save_name
 
@@ -42,14 +43,18 @@ func update_save_information(slot_id : int):
 	if !save_directories.empty():
 		if !scene_ready:
 			yield(self, "ready")
-		if slot_id == -1:
+		
+		var slot_path = GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, slot_id)
+		
+		if slot_id == -1 or slot_path == "":
 			$VBoxContainer.visible = false
+			return
 		else:
 			$VBoxContainer.visible = true
 
 			var target_cfg_save_time = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "time", slot_id)
 			if typeof(target_cfg_save_time) == TYPE_DICTIONARY:
-				load_save_name_info_label_node.text = "Name : " + GameLoader.find_corresponding_save_file(GAME.SAVE_GAME_DIR, slot_id)
+				load_save_name_info_label_node.text = "Name : " + GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, slot_id).split("/")[-1]
 				load_save_date_info_label_node.text = "Time : " + str(target_cfg_save_time.get("day")) + "/" + str(target_cfg_save_time.get("month"))  +  "/" + str(target_cfg_save_time.get("year")) + " " + str(target_cfg_save_time.get("hour")) + "h" + str(target_cfg_save_time.get("minute")) + ":" + str(target_cfg_save_time.get("second"))
 				load_save_xion_info_label_node.text = "Xion : " + str(GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "xion", slot_id))
 				load_save_gear_info_label_node.text = "Gear : " + str(GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "gear", slot_id))
@@ -81,11 +86,14 @@ func _on_menu_option_focus_changed(_button : Button, focus: bool) -> void:
 	if focus && choice_sound_node != null:
 		choice_sound_node.play()
 
-	var buttonindex = _button.get_index()+1
-	var target_save_time = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "time", buttonindex)
+	var button_index = _button.get_index() + 1
+	if button_index > save_directories.size():
+		return
+	
+	var target_save_time = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "time", button_index)
 	if typeof(target_save_time) == TYPE_STRING:
-		buttonindex = -1
-	update_save_information(buttonindex)
+		button_index = -1
+	update_save_information(button_index)
 
 
 func _on_menu_option_chose(option: MenuOptionsBase):

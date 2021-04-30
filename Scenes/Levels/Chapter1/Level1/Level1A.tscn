@@ -28,6 +28,7 @@
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=26]
 
 [node name="Level1A" instance=ExtResource( 5 )]
+test_checkpoint = 1
 
 [node name="StartingPointP1" parent="." index="0" instance=ExtResource( 3 )]
 position = Vector2( -4296, 216 )

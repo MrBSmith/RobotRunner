@@ -32,6 +32,8 @@ var last_level_name : String
 var current_seed : int = 0 setget _set_current_seed, get_current_seed
 var solo_mode : bool = false setget set_solo_mode, get_solo_mode
 
+var save_slot : int = 0
+
 var music_bus_id = AudioServer.get_bus_index("Music")
 var sound_bus_id = AudioServer.get_bus_index("Sounds")
 
@@ -106,6 +108,7 @@ func _ready():
 	_err = EVENTS.connect("level_ready", self, "on_level_ready")
 	_err = EVENTS.connect("level_finished", self, "on_level_finished")
 	_err = EVENTS.connect("seed_change_query", self, "on_seed_change_query")
+	_err = EVENTS.connect("new_game", self, "_on_new_game")
 
 	# Generate the chapters
 	ChapterGenerator.create_chapters(ChapterGenerator.chapter_dir_path, chapters_array)
@@ -295,7 +298,7 @@ func on_level_finished(level : Level):
 	fade_out()
 	transition_timer_node.start()
 	progression.append_visited_level(level)
-	GameSaver.save_game_in_slot(SAVE_GAME_DIR, 0)
+	GameSaver.save_game_in_slot(SAVE_GAME_DIR, save_slot)
 
 
 # When the transition is finished, go to the next level
@@ -321,3 +324,9 @@ func on_checkpoint_reached(level: Level, checkpoint_id: int):
 
 func on_seed_change_query(new_seed: int):
 	_set_current_seed(new_seed)
+
+
+func _on_new_game():
+	goto_level(0)
+	var slots_taken = DirNavHelper.fetch_dir_content(SAVE_GAME_DIR, DirNavHelper.DIR_FETCH_MODE.DIR_ONLY)
+	save_slot = slots_taken.size() + 1

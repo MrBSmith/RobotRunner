@@ -29,7 +29,6 @@ func _ready() -> void:
 
 
 
-
 #### INPUTS ####
 
 
@@ -41,9 +40,12 @@ func _on_menu_option_chose(option: MenuOptionsBase):
 	var option_name = option.name
 	
 	match(option_name):
+		"Continue":
+			_err = GameLoader.load_settings(GAME.SAVE_GAME_DIR, 1)
+			GAME.goto_world_map()
 		"NewGame":
+			EVENTS.emit_signal("new_game")
 			queue_free()
-			_err = GAME.goto_level(0)
 		"LoadGame": 
 			_err = navigate_sub_menu(MENUS.saveloader_menu_scene.instance())
 		"InfiniteMode":

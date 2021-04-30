@@ -22,7 +22,7 @@ func get_class() -> String: return "SaveConfirmMenu"
 #### BUILT-IN ####
 
 func _ready():
-	save_folder_name = GameLoader.find_corresponding_save_file(GAME.SAVE_GAME_DIR, save_id)
+	save_folder_name = GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, save_id)
 	if save_folder_name != "":
 		update_menu_labels()
 	
@@ -47,7 +47,7 @@ func update_menu_labels():
 	# User will not overwrite any save if he confirms, hide targetsave container
 	if save_folder_name == "": 
 		targetsave_container_node.visible = false
-	# User will overwrite a save if he confirms ! > Display target save informations
+	# User will overwrite a save if he confirms ! > Displ. ay target save informations
 	else: 
 		update_target_save_informations()
 
@@ -96,7 +96,7 @@ func submit_and_save_game():
 	DirNavHelper.create_dir(GAME.SAVE_GAME_DIR, save_name)
 	GameSaver.save_game(GAME.SAVE_GAME_DIR + "/" + save_name, save_name)
 	
-	var save_slot_path = GameLoader.find_corresponding_save_file(GAME.SAVE_GAME_DIR, save_id)
+	var save_slot_path = GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, save_id)
 	DirNavHelper.transfer_dir_content(GAME.SAVED_LEVEL_DIR, GAME.SAVE_GAME_DIR + "/" + save_slot_path)
 	
 	cancel()
