@@ -1,11 +1,9 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://BabaGodotLib/UI/Menu/MenuBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Menus/ScreenTitle/Scripts/InfiniteModeMenuOption.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Menus/ScreenTitle/Sprites/TitleScreenXL.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/GUI/TextField.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Menus/ScreenTitle/Scripts/ScreenTitleMenu.gd" type="Script" id=5]
-[ext_resource path="res://BabaGodotLib/Fonts/BoldCapsPixel32.tres" type="DynamicFont" id=6]
 [ext_resource path="res://BabaGodotLib/Shaders/Glitch/Glitch.shader" type="Shader" id=7]
 [ext_resource path="res://BabaGodotLib/Shaders/Glitch/GlitchEffect.tscn" type="PackedScene" id=8]
 [ext_resource path="res://icon.png" type="Texture" id=9]
@@ -50,6 +48,7 @@ tracks/0/keys = {
 [node name="ScreenTitle" instance=ExtResource( 1 )]
 mouse_filter = 2
 script = ExtResource( 5 )
+opt_container_path = "VBoxContainer/VBoxContainer"
 
 [node name="MenuBackground" type="ColorRect" parent="." index="0"]
 margin_right = 960.0
@@ -107,22 +106,29 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Logo" type="TextureRect" parent="." index="2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="2"]
+margin_left = 298.1
+margin_top = 24.3001
+margin_right = 658.1
+margin_bottom = 520.3
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="VBoxContainer" index="0"]
 light_mask = 0
 material = SubResource( 2 )
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -181.9
-margin_top = 32.3001
-margin_right = 178.1
-margin_bottom = 282.3
+margin_right = 360.0
+margin_bottom = 250.0
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Head" type="TextureRect" parent="Logo" index="0"]
+[node name="Head" type="TextureRect" parent="VBoxContainer/Logo" index="0"]
 light_mask = 0
 margin_left = 98.1552
 margin_top = -1.19164
@@ -134,83 +140,60 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GlitchEffect" parent="Logo" index="1" instance=ExtResource( 8 )]
+[node name="GlitchEffect" parent="VBoxContainer/Logo" index="1" instance=ExtResource( 8 )]
 sound_volume = -6.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Logo" index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/Logo" index="2"]
 autoplay = "HeadFloating"
 anims/HeadFloating = SubResource( 3 )
 
-[node name="HBoxContainer" parent="." index="3"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -178.0
-margin_top = 47.0
-margin_right = 174.0
-margin_bottom = 200.0
-mouse_filter = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" index="1"]
+margin_top = 260.0
+margin_right = 360.0
+margin_bottom = 496.0
+rect_min_size = Vector2( 360, 236 )
+alignment = 1
 
-[node name="V_OptContainer" parent="HBoxContainer" index="0"]
-margin_right = 264.0
-margin_bottom = 188.0
-mouse_filter = 2
+[node name="Continue" parent="VBoxContainer/VBoxContainer" index="0" instance=ExtResource( 13 )]
+margin_right = 360.0
+text = "Continue"
 
-[node name="NewGame" parent="HBoxContainer/V_OptContainer" index="0" instance=ExtResource( 13 )]
-margin_right = 177.0
-custom_colors/font_color_disabled = Color( 0.337255, 0.337255, 0.337255, 1 )
-custom_colors/font_color_pressed = Color( 0.623529, 0.215686, 0.160784, 1 )
+[node name="NewGame" parent="VBoxContainer/VBoxContainer" index="1" instance=ExtResource( 13 )]
+margin_top = 48.0
+margin_right = 360.0
+margin_bottom = 92.0
 text = "New Game"
 
-[node name="LoadGame" parent="HBoxContainer/V_OptContainer" index="1" instance=ExtResource( 13 )]
-margin_top = 48.0
-margin_right = 177.0
-margin_bottom = 92.0
+[node name="LoadGame" parent="VBoxContainer/VBoxContainer" index="2" instance=ExtResource( 13 )]
+margin_top = 96.0
+margin_right = 360.0
+margin_bottom = 140.0
 text = "Load Game"
 
-[node name="InfiniteMode" parent="HBoxContainer/V_OptContainer" index="2" instance=ExtResource( 13 )]
-margin_top = 96.0
-margin_right = 177.0
-margin_bottom = 140.0
+[node name="InfiniteMode" parent="VBoxContainer/VBoxContainer" index="3" instance=ExtResource( 13 )]
+margin_top = 144.0
+margin_right = 360.0
+margin_bottom = 188.0
 text = "Infinite Mode"
-script = ExtResource( 2 )
 
-[node name="SeedField" type="VBoxContainer" parent="HBoxContainer/V_OptContainer/InfiniteMode" index="0"]
+[node name="SeedField" type="LineEdit" parent="VBoxContainer/VBoxContainer/InfiniteMode" index="0"]
 visible = false
-margin_left = 200.0
-margin_top = -9.591
-margin_right = 295.397
-margin_bottom = 37.409
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="HBoxContainer/V_OptContainer/InfiniteMode/SeedField" index="0"]
-light_mask = 0
-margin_right = 106.0
-margin_bottom = 19.0
-custom_fonts/font = ExtResource( 6 )
-text = "Seed"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer/V_OptContainer/InfiniteMode/SeedField" index="1"]
-margin_top = 23.0
-margin_right = 106.0
-margin_bottom = 52.0
-custom_fonts/font = ExtResource( 6 )
-text = "RANDOM"
-align = 1
+anchor_left = 0.829
+anchor_top = 0.321
+anchor_right = 0.829
+anchor_bottom = 0.334
+margin_left = -0.0257874
+margin_top = 0.583153
+margin_right = 100.974
+margin_bottom = 24.0112
+text = "Random seed"
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-default_text = "RANDOM"
 
-[node name="Quit" parent="HBoxContainer/V_OptContainer" index="3" instance=ExtResource( 13 )]
-margin_top = 144.0
-margin_right = 177.0
-margin_bottom = 188.0
+[node name="Quit" parent="VBoxContainer/VBoxContainer" index="4" instance=ExtResource( 13 )]
+margin_top = 192.0
+margin_right = 360.0
+margin_bottom = 236.0
 text = "Quit"

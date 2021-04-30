@@ -19,7 +19,7 @@ func _ready():
 #### VIRTUAL ####
 
 func cancel():
-	navigate_sub_menu(MENUS.option_menu_scene.instance())
+	navigate_sub_menu(MENUS.menu_dict["OptionsMenu"].instance())
 
 
 #### SIGNAL RESPONSES ####

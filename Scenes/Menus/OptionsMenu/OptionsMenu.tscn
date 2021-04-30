@@ -4,7 +4,6 @@
 [ext_resource path="res://BabaGodotLib/UI/Menu/OptionButtons/MenuOptionBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Menus/OptionsMenu/OptionsMenu.gd" type="Script" id=5]
 
-
 [node name="MenuOptions" instance=ExtResource( 1 )]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -15,6 +14,7 @@ margin_top = -270.0
 margin_right = 480.0
 margin_bottom = 270.0
 script = ExtResource( 5 )
+opt_container_path = "VBoxContainer"
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 modulate = Color( 0, 0, 0, 0.4 )
@@ -36,34 +36,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" parent="." index="1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="2"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -49.5
-margin_top = -70.0
-margin_right = 49.5
-margin_bottom = 70.0
+margin_left = -55.5
+margin_top = -101.0
+margin_right = 55.5
+margin_bottom = 101.0
+custom_constants/separation = 35
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="V_OptContainer" parent="HBoxContainer" index="0"]
-margin_left = 0.0
+[node name="Graphics" parent="VBoxContainer" index="0" instance=ExtResource( 2 )]
 margin_right = 111.0
-margin_bottom = 140.0
-
-[node name="Graphics" parent="HBoxContainer/V_OptContainer" index="0" instance=ExtResource( 2 )]
-margin_right = 111.0
-disabled = true
 text = "Graphics"
 
-[node name="Sounds" parent="HBoxContainer/V_OptContainer" index="1" instance=ExtResource( 2 )]
-margin_top = 48.0
+[node name="Sounds" parent="VBoxContainer" index="1" instance=ExtResource( 2 )]
+margin_top = 79.0
 margin_right = 111.0
-margin_bottom = 92.0
+margin_bottom = 123.0
 text = "Sounds"
 
-[node name="Inputs" parent="HBoxContainer/V_OptContainer" index="2" instance=ExtResource( 2 )]
-margin_top = 96.0
+[node name="Inputs" parent="VBoxContainer" index="2" instance=ExtResource( 2 )]
+margin_top = 158.0
 margin_right = 111.0
-margin_bottom = 140.0
+margin_bottom = 202.0
 text = "Inputs"

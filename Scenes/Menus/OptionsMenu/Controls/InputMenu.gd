@@ -1,4 +1,5 @@
-extends Control
+extends MenuBase
+class_name InputMenu
 
 #Get the ActionList node, which is type VBoxContainer. It will contains all the input information
 onready var _action_list = get_node("CanvasLayer/Column/ScrollContainer/ActionList")

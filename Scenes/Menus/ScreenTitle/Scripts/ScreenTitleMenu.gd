@@ -3,7 +3,9 @@ class_name ScreenTitleMenu
 
 onready var save_loader_scene = preload("res://Scenes/Menus/SaveLoadMenus/LoadGameMenu/LoadGameMenu.tscn")
 onready var infinite_level_scene = preload("res://Scenes/Levels/InfiniteMode/InfiniteLevel.tscn")
-onready var seed_field = $HBoxContainer/V_OptContainer/InfiniteMode/SeedField
+onready var seed_field = opt_container.get_node("InfiniteMode/SeedField")
+
+var all_slot_taken = false
 
 #### ACCESSORS ####
 
@@ -14,13 +16,21 @@ func get_class() -> String: return "ScreenTitleMenu"
 #### BUILT-IN ####
 
 
+func _ready() -> void:
+	if DirNavHelper.is_dir_empty(GAME.SAVE_GAME_DIR):
+		opt_container.get_node("Continue").queue_free()
+		opt_container.get_node("LoadGame").queue_free()
+	else:
+		var slots = DirNavHelper.fetch_dir_content(GAME.SAVE_GAME_DIR, DirNavHelper.DIR_FETCH_MODE.DIR_ONLY)
+		if slots.size() >= 3:
+			all_slot_taken = true
+
 
 #### LOGIC ####
 
 
 
 #### VIRTUALS ####
-
 
 
 
@@ -35,11 +45,19 @@ func _on_menu_option_chose(option: MenuOptionsBase):
 	var option_name = option.name
 	
 	match(option_name):
+		"Continue":
+			GAME.load_save_slot(1)
+			GAME.goto_world_map()
 		"NewGame":
-			queue_free()
-			_err = GAME.goto_level(0)
+			if all_slot_taken:
+				var load_menu = MENUS.menu_dict["LoadGameMenu"].instance()
+				load_menu.overwrite_mode = true
+				navigate_sub_menu(load_menu)
+			else:
+				EVENTS.emit_signal("new_game")
+				queue_free()
 		"LoadGame": 
-			_err = navigate_sub_menu(MENUS.saveloader_menu_scene.instance())
+			_err = navigate_sub_menu(MENUS.menu_dict["LoadGameMenu"].instance())
 		"InfiniteMode":
 			_err = get_tree().change_scene_to(infinite_level_scene)
 		"Quit":

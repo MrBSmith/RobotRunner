@@ -434,6 +434,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Menus/OptionsMenu/Controls/input_mapper/InputMapper.gd"
 }, {
+"base": "MenuBase",
+"class": "InputMenu",
+"language": "GDScript",
+"path": "res://Scenes/Menus/OptionsMenu/Controls/InputMenu.gd"
+}, {
 "base": "Area2D",
 "class": "InteractAreaBase",
 "language": "GDScript",
@@ -1120,6 +1125,7 @@ _global_script_class_icons={
 "InfiniteLevel": "",
 "InfiniteModeMenuOption": "",
 "InputMapper": "",
+"InputMenu": "",
 "InteractAreaBase": "",
 "InteractiveObject": "",
 "IsoAnimatedSprite": "",

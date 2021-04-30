@@ -8,12 +8,14 @@ export var debug : bool = false
 
 export var transition_time : float = 1.0
 
-const SAVEGAME_DIR : String = "res://saves"
-const SAVEDLEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
+const SAVE_GAME_DIR : String = "res://saves"
+const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
 
 const TILE_SIZE := Vector2(24, 24)
 const JUMP_MAX_DIST := Vector2(6, 2)
+
+const NB_SAVE_SLOT : int = 3
 
 var window_width = ProjectSettings.get_setting("display/window/size/width")
 var window_height = ProjectSettings.get_setting("display/window/size/height")
@@ -32,10 +34,12 @@ var last_level_name : String
 var current_seed : int = 0 setget _set_current_seed, get_current_seed
 var solo_mode : bool = false setget set_solo_mode, get_solo_mode
 
+var save_slot : int = 0
+
 var music_bus_id = AudioServer.get_bus_index("Music")
 var sound_bus_id = AudioServer.get_bus_index("Sounds")
 
-var _config_file = ConfigFile.new()
+var config_file = ConfigFile.new()
 
 const level_property_to_serialize = {
 	"Collectable" : [],
@@ -45,7 +49,7 @@ const level_property_to_serialize = {
 	"Checkpoint": ["active"]
 }
 
-var _settings ={
+var settings ={
 		"system":{
 			"slot_id": 1,
 			"save_name": "none",
@@ -106,8 +110,7 @@ func _ready():
 	_err = EVENTS.connect("level_ready", self, "on_level_ready")
 	_err = EVENTS.connect("level_finished", self, "on_level_finished")
 	_err = EVENTS.connect("seed_change_query", self, "on_seed_change_query")
-
-	GameSaver.settings_update_keys(_settings)
+	_err = EVENTS.connect("new_game", self, "_on_new_game")
 
 	# Generate the chapters
 	ChapterGenerator.create_chapters(ChapterGenerator.chapter_dir_path, chapters_array)
@@ -147,7 +150,7 @@ func goto_last_level():
 		yield(EVENTS, "level_entered_tree")
 		var level : Level = get_tree().get_current_scene()
 		level.is_loaded_from_save = loaded_from_save
-		LevelLoader.build_level_from_loaded_properties(SAVEDLEVEL_DIR, level)
+		LevelLoader.build_level_from_loaded_properties(SAVED_LEVEL_DIR, level)
 
 
 # Change scene to the next level scene
@@ -174,7 +177,7 @@ func goto_level(level_index : int, chapter_id: int = progression.get_chapter()):
 
 	level = chapters_array[chapter_id].load_level(level_index)
 	var level_name = current_chapter.get_level_name(level_index)
-	LevelSaver.delete_level_temp_saves(SAVEDLEVEL_DIR, level_name)
+	LevelSaver.delete_level_temp_saves(SAVED_LEVEL_DIR, level_name)
 
 	var _err = get_tree().change_scene_to(level)
 
@@ -253,6 +256,34 @@ func update_current_level_index(level : Level):
 	GAME.progression.set_last_level_id(level_index)
 
 
+func load_save_slot(slot_id : int) -> void:
+	config_file = GameLoader.load_config_file(SAVE_GAME_DIR, slot_id)
+	
+	var input_mapper = InputMapper.new()
+	
+	for section in config_file.get_sections():
+		match(section):
+			"system":
+				for key in config_file.get_section_keys(section):
+					if key == "slot_id":
+						GAME.save_slot = config_file.get_value(section, key)
+			"audio":
+				#set audio settings
+				for key in config_file.get_section_keys(section):
+					var value = config_file.get_value(section, key)
+					var bus_id = AudioServer.get_bus_index(key.capitalize())
+					AudioServer.set_bus_volume_db(bus_id, value)
+			"controls":
+				#set controls settings
+				for key in config_file.get_section_keys(section):
+					var value = config_file.get_value(section, key)
+					input_mapper.change_action_key(key, value)
+			"progression":
+				for key in config_file.get_section_keys(section):
+					var value = config_file.get_value(section, key)
+					GAME.progression.set(key, value)
+
+
 #### INPUTS ####
 
 # Manage the robot switching in solo mode
@@ -289,7 +320,7 @@ func _input(_event):
 #  Change scene to go to the gameover scene after the timer has finished
 func on_gameover_timer_timeout():
 	gameover_timer_node.stop()
-	var _err = get_tree().change_scene_to(MENUS.game_over_scene)
+	var _err = get_tree().change_scene_to(MENUS.menu_dict["GameOver"])
 
 
 # Called when a level is finished: wait for the transition to be finished
@@ -297,7 +328,7 @@ func on_level_finished(level : Level):
 	fade_out()
 	transition_timer_node.start()
 	progression.append_visited_level(level)
-	GameSaver.save_game_in_slot(SAVEGAME_DIR, 0)
+	GameSaver.save_game_in_slot(SAVE_GAME_DIR, save_slot, settings)
 
 
 # When the transition is finished, go to the next level
@@ -318,8 +349,13 @@ func on_checkpoint_reached(level: Level, checkpoint_id: int):
 	if checkpoint_id + 1 > GAME.progression.checkpoint:
 		progression.checkpoint = checkpoint_id + 1
 	
-	LevelSaver.save_level_properties_as_json(level_property_to_serialize, SAVEDLEVEL_DIR, level)
+	LevelSaver.save_level_properties_as_json(level_property_to_serialize, SAVED_LEVEL_DIR, level)
 
 
 func on_seed_change_query(new_seed: int):
 	_set_current_seed(new_seed)
+
+
+func _on_new_game():
+	goto_level(0)
+	save_slot = GameLoader.find_first_slot_available(SAVED_LEVEL_DIR, NB_SAVE_SLOT)

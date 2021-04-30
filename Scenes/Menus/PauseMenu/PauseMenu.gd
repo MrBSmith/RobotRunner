@@ -1,9 +1,6 @@
 extends MenuBase
 class_name PauseMenu
 
-onready var resume_label_node = $HBoxContainer/V_OptContainer/Resume
-
-
 
 #### BUILT-IN ####
 
@@ -39,12 +36,8 @@ func _on_menu_option_chose(option: MenuOptionsBase):
 			get_tree().set_pause(false)
 			_err = GAME.goto_last_level()
 		
-		"Options":
-			_err = navigate_sub_menu(MENUS.option_menu_scene.instance())
-		
-		"SaveGame":
-			_err = navigate_sub_menu(MENUS.slotsaver_menu_scene.instance())
+		"Options": _err = navigate_sub_menu(MENUS.menu_dict["OptionsMenu"].instance())
 		
 		"Quit": 
 			get_tree().set_pause(false)
-			_err = get_tree().change_scene_to(MENUS.title_screen_scene)
+			_err = get_tree().change_scene_to(MENUS.menu_dict["ScreenTitle"])

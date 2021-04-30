@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://BabaGodotLib/UI/Menu/MenuBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://BabaGodotLib/Fonts/BoldCapsPixel48.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/Menus/SaveLoadMenus/SlotSaverMenu/SlotSaverMenu.gd" type="Script" id=3]
+[ext_resource path="res://BabaGodotLib/UI/Menu/OptionButtons/MenuOptionsBase.gd" type="Script" id=4]
 [ext_resource path="res://BabaGodotLib/UI/Menu/OptionButtons/MenuOptionBase.tscn" type="PackedScene" id=5]
 
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="SlotSaverMenu" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+opt_container_path = "VBoxContainer2"
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 modulate = Color( 0, 0, 0, 0.4 )
@@ -31,32 +35,92 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="V_OptContainer" parent="HBoxContainer" index="0"]
-margin_left = 0.0
-margin_right = 216.0
-margin_bottom = 215.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="." index="2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -270.0
+margin_top = -88.0
+margin_right = 270.0
+margin_bottom = 88.0
+custom_constants/separation = 0
 alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="SAVE_SLOT_1" parent="HBoxContainer/V_OptContainer" index="0" instance=ExtResource( 5 )]
-margin_top = 13.0
-margin_right = 216.0
-margin_bottom = 57.0
-text = "Save into Slot 1"
+[node name="Slot1" type="Button" parent="VBoxContainer2" index="0" instance=ExtResource( 5 )]
+light_mask = 0
+margin_right = 540.0
+margin_bottom = 44.0
+custom_styles/focus = SubResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0.313726, 0.313726, 0.313726, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.686275, 0.176471, 0.176471, 1 )
+shortcut_in_tooltip = false
+text = "Slot 1"
+flat = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="SAVE_SLOT_2" parent="HBoxContainer/V_OptContainer" index="1" instance=ExtResource( 5 )]
-margin_top = 61.0
-margin_right = 216.0
-margin_bottom = 105.0
-text = "Save into Slot 2"
+[node name="Slot2" type="Button" parent="VBoxContainer2" index="1" instance=ExtResource( 5 )]
+light_mask = 0
+margin_top = 44.0
+margin_right = 540.0
+margin_bottom = 88.0
+custom_styles/focus = SubResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0.313726, 0.313726, 0.313726, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.686275, 0.176471, 0.176471, 1 )
+shortcut_in_tooltip = false
+text = "Slot 2"
+flat = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="SAVE_SLOT_3" parent="HBoxContainer/V_OptContainer" index="2" instance=ExtResource( 5 )]
-margin_top = 109.0
-margin_right = 216.0
-margin_bottom = 153.0
-text = "Save into Slot 3"
+[node name="Slot3" type="Button" parent="VBoxContainer2" index="2" instance=ExtResource( 5 )]
+light_mask = 0
+margin_top = 88.0
+margin_right = 540.0
+margin_bottom = 132.0
+custom_styles/focus = SubResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0.313726, 0.313726, 0.313726, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.686275, 0.176471, 0.176471, 1 )
+shortcut_in_tooltip = false
+text = "Slot 3"
+flat = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Resume" parent="HBoxContainer/V_OptContainer" index="3" instance=ExtResource( 5 )]
-margin_top = 157.0
-margin_right = 216.0
-margin_bottom = 201.0
-text = "Resume"
+[node name="Return" type="Button" parent="VBoxContainer2" index="3" instance=ExtResource( 5 )]
+light_mask = 0
+margin_top = 132.0
+margin_right = 540.0
+margin_bottom = 176.0
+custom_styles/focus = SubResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color_disabled = Color( 0.313726, 0.313726, 0.313726, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.686275, 0.176471, 0.176471, 1 )
+shortcut_in_tooltip = false
+text = "Return"
+flat = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}

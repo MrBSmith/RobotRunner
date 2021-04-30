@@ -22,14 +22,14 @@ func get_class() -> String: return "SaveConfirmMenu"
 #### BUILT-IN ####
 
 func _ready():
-	save_folder_name = GameLoader.find_corresponding_save_file(GAME.SAVEGAME_DIR, save_id)
+	save_folder_name = GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, save_id)
 	if save_folder_name != "":
 		update_menu_labels()
 	
 	if "namestaken_info_node" in lineedit_csavename_node:
 		lineedit_csavename_node.namestaken_info_node = $SaveInformations/CurrentSave/c_savenamestaken
 	if "submitsave_button" in lineedit_csavename_node:
-		lineedit_csavename_node.submitsave_button = $"HBoxContainer/V_OptContainer/Confirm Save"
+		lineedit_csavename_node.submitsave_button = $VBoxContainer/ConfirmAndSave
 
 
 #### VIRTUAL ####
@@ -47,23 +47,23 @@ func update_menu_labels():
 	# User will not overwrite any save if he confirms, hide targetsave container
 	if save_folder_name == "": 
 		targetsave_container_node.visible = false
-	# User will overwrite a save if he confirms ! > Display target save informations
+	# User will overwrite a save if he confirms ! > Displ. ay target save informations
 	else: 
 		update_target_save_informations()
 
 
 func update_current_save_informations():
-	var target_cfg_save_time = GameLoader.get_cfg_property_value(GAME.SAVEGAME_DIR, "time", save_id)
+	var target_cfg_save_time = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "time", save_id)
 	label_csavetime_node.text = get_save_time(target_cfg_save_time)
 	label_csavelevel_node.text = label_csavelevel_node.text + "Level " + str(GAME.progression.get_last_level_id() + 1)
 
 
 func update_target_save_informations():
 	var target_cfg_save_time : Dictionary = {}
-	target_cfg_save_time = GameLoader.get_cfg_property_value(GAME.SAVEGAME_DIR, "time", save_id)
+	target_cfg_save_time = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "time", save_id)
 	label_tsavename_node.text = get_save_time(target_cfg_save_time)
 
-	label_tsavelevel_node.text += "Level " + str(GameLoader.get_cfg_property_value(GAME.SAVEGAME_DIR, "level_id",save_id))
+	label_tsavelevel_node.text += "Level " + str(GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "level_id",save_id))
 
 
 func get_save_time(save_time_dict: Dictionary) -> String:
@@ -91,13 +91,13 @@ func submit_and_save_game():
 		save_name = "save" + str(save_id)
 
 	if save_folder_name != "":
-		DirNavHelper.delete_folder(GAME.SAVEGAME_DIR + "/" + save_folder_name)
+		DirNavHelper.delete_folder(GAME.SAVE_GAME_DIR + "/" + save_folder_name)
 	
-	DirNavHelper.create_dir(GAME.SAVEGAME_DIR, save_name)
-	GameSaver.save_game(GAME.SAVEGAME_DIR + "/" + save_name, save_name)
+	DirNavHelper.create_dir(GAME.SAVE_GAME_DIR, save_name)
+	GameSaver.save_game(GAME.SAVE_GAME_DIR + "/" + save_name, save_name, GAME.settings)
 	
-	var save_slot_path = GameLoader.find_corresponding_save_file(GAME.SAVEGAME_DIR, save_id)
-	DirNavHelper.transfer_dir_content(GAME.SAVEDLEVEL_DIR, GAME.SAVEGAME_DIR + "/" + save_slot_path)
+	var save_slot_path = GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, save_id)
+	DirNavHelper.transfer_dir_content(GAME.SAVED_LEVEL_DIR, GAME.SAVE_GAME_DIR + "/" + save_slot_path)
 	
 	cancel()
 
@@ -114,4 +114,4 @@ func submit_and_save_game():
 func _on_menu_option_chose(option) -> void:
 	match(option.get_name()):
 		"Cancel": cancel()
-		"Confirm Save": submit_and_save_game()
+		"ConfirmAndSave": submit_and_save_game()
