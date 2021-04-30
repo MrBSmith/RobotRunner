@@ -15,6 +15,8 @@ const SAVEDFILE_DEFAULT_NAME : String = "save"
 const TILE_SIZE := Vector2(24, 24)
 const JUMP_MAX_DIST := Vector2(6, 2)
 
+const NB_SAVE_SLOT : int = 5
+
 var window_width = ProjectSettings.get_setting("display/window/size/width")
 var window_height = ProjectSettings.get_setting("display/window/size/height")
 var window_size = Vector2(window_width, window_height)
@@ -328,4 +330,4 @@ func on_seed_change_query(new_seed: int):
 
 func _on_new_game():
 	goto_level(0)
-	save_slot = GameLoader.find_first_slot_available(SAVED_LEVEL_DIR)
+	save_slot = GameLoader.find_first_slot_available(SAVED_LEVEL_DIR, NB_SAVE_SLOT)

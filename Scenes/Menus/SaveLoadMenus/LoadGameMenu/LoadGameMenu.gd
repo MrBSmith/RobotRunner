@@ -1,9 +1,7 @@
 extends MenuBase
 class_name LoadGameMenu
 
-onready var load_slot1_node = $VBoxContainer/VBoxContainer2/Slot1
-onready var load_slot2_node = $VBoxContainer/VBoxContainer2/Slot2
-onready var load_slot3_node = $VBoxContainer/VBoxContainer2/Slot3
+onready var menu_option_base_scene = preload("res://BabaGodotLib/UI/Menu/OptionButtons/MenuOptionBase.tscn")
 
 onready var load_save_name_info_label_node= $VBoxContainer/VBoxContainer/LoadSaveName
 onready var load_save_date_info_label_node = $VBoxContainer/VBoxContainer/LoadSaveDate
@@ -14,8 +12,6 @@ var overwrite_mode : bool = false
 
 var scene_ready : bool = false
 var any_button_focused : bool = false
-
-var load_slot_button_nodes_array : Array
 
 var save_directories = DirNavHelper.fetch_dir_content(GAME.SAVE_GAME_DIR, DirNavHelper.DIR_FETCH_MODE.DIR_ONLY)
 var saves_name : Array = []
@@ -29,15 +25,21 @@ func get_class() -> String: return "LoadSaveMenu"
 
 func _ready():
 	scene_ready = true
-	load_slot_button_nodes_array = [load_slot1_node, load_slot2_node, load_slot3_node]
 
-	for i in range(3):
+	for i in range(GAME.NB_SAVE_SLOT):
+		var slot_option = menu_option_base_scene.instance()
+		opt_container.call_deferred("add_child",  slot_option)
 		var save_name : String = save_directories[i] if i < save_directories.size() else ""
 		if save_name == "":
-			load_slot_button_nodes_array[i].text = "NO SAVE TO LOAD"
-			load_slot_button_nodes_array[i].set_disabled(true)
+			slot_option.text = "NO SAVE TO LOAD"
+			slot_option.set_disabled(true)
 		else:
-			load_slot_button_nodes_array[i].text = save_name
+			slot_option.text = save_name
+	
+	var back_to_menu_option = menu_option_base_scene.instance()
+	back_to_menu_option.text = "Back To Menu"
+	back_to_menu_option.name = "BackToMenu"
+	opt_container.call_deferred("add_child", back_to_menu_option)
 
 #### LOGIC ####
 
