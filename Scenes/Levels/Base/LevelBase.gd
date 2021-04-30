@@ -9,6 +9,8 @@ onready var interactive_object_node = get_node("InteractivesObjects")
 onready var music_bus_id = AudioServer.get_bus_index("Music")
 onready var master_bus_id = AudioServer.get_bus_index("Master")
 
+export var test_checkpoint : int = 0
+
 var interactive_objects_dict : Dictionary
 var players_array : Array
 var player_in_danger : bool = false
@@ -28,6 +30,9 @@ func _enter_tree() -> void:
 
 func _ready():
 	var _err = music_timer.connect("timeout", self, "_on_music_timer_timeout")
+
+	if OS.is_debug_build():
+		GAME.progression.set_checkpoint(test_checkpoint)
 	
 	set_starting_points()
 	instanciate_players()
@@ -38,6 +43,7 @@ func _ready():
 	
 	EVENTS.emit_signal("update_HUD")
 	EVENTS.emit_signal("level_ready", self)
+	
 
 
 #### LOGIC ####

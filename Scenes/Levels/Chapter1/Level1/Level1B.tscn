@@ -21,12 +21,13 @@
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=19]
 
 [node name="Level1B" instance=ExtResource( 1 )]
+test_checkpoint = 2
 
 [node name="StartingPointP1" parent="." index="0" instance=ExtResource( 3 )]
-position = Vector2( 3344, 280 )
+position = Vector2( 48, 264 )
 
 [node name="StartingPointP2" parent="." index="1" instance=ExtResource( 4 )]
-position = Vector2( 3344, 379.052 )
+position = Vector2( 48, 360 )
 
 [node name="DebrisGenerator" parent="." index="4"]
 sfx_dict = {
