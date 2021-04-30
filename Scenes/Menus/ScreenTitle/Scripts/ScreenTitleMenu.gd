@@ -3,7 +3,7 @@ class_name ScreenTitleMenu
 
 onready var save_loader_scene = preload("res://Scenes/Menus/SaveLoadMenus/LoadGameMenu/LoadGameMenu.tscn")
 onready var infinite_level_scene = preload("res://Scenes/Levels/InfiniteMode/InfiniteLevel.tscn")
-onready var seed_field = $HBoxContainer/V_OptContainer/InfiniteMode/SeedField
+onready var seed_field = opt_container.get_node("InfiniteMode/SeedField")
 
 #### ACCESSORS ####
 
@@ -12,6 +12,12 @@ func get_class() -> String: return "ScreenTitleMenu"
 
 
 #### BUILT-IN ####
+
+
+func _ready() -> void:
+	if DirNavHelper.is_dir_empty(GAME.SAVE_GAME_DIR):
+		opt_container.get_node("Continue").queue_free()
+		opt_container.get_node("LoadGame").queue_free()
 
 
 

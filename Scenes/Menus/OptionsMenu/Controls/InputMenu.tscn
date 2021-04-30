@@ -182,4 +182,5 @@ text = "Press a Key..."
 align = 1
 autowrap = true
 uppercase = true
+
 [connection signal="pressed" from="CanvasLayer/Column/PlayButton" to="." method="_on_PlayButton_pressed"]

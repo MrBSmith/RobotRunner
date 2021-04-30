@@ -33,4 +33,4 @@ func _on_menu_option_chose(option: MenuOptionsBase):
 		"Resume":
 			resume_game()
 		_:
-			save_game_into_slot(option.get_index()+1)
+			save_game_into_slot(option.get_index() + 1)

@@ -23,7 +23,7 @@ font_data = ExtResource( 1 )
 
 [node name="LoadGameMenu" instance=ExtResource( 3 )]
 script = ExtResource( 4 )
-opt_container_path = "HBoxContainer/V_OptContainer"
+opt_container_path = "VBoxContainer/VBoxContainer2"
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 modulate = Color( 0, 0, 0, 0.4 )
@@ -44,19 +44,31 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." index="1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="2"]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = -480.0
-margin_top = 104.0
-margin_right = 480.0
+anchor_bottom = 0.5
+margin_left = -270.0
+margin_top = -176.0
+margin_right = 270.0
+margin_bottom = 176.0
+custom_constants/separation = 88
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" index="0"]
+margin_right = 540.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 540, 0 )
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LoadSaveName" type="Label" parent="VBoxContainer" index="0"]
-margin_right = 960.0
+[node name="LoadSaveName" type="Label" parent="VBoxContainer/VBoxContainer" index="0"]
+margin_right = 540.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.631373, 0.631373, 0.631373, 1 )
@@ -66,9 +78,9 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="LoadSaveDate" type="Label" parent="VBoxContainer" index="1"]
+[node name="LoadSaveDate" type="Label" parent="VBoxContainer/VBoxContainer" index="1"]
 margin_top = 23.0
-margin_right = 960.0
+margin_right = 540.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.631373, 0.631373, 0.631373, 1 )
@@ -77,9 +89,9 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="LoadSaveXion" type="Label" parent="VBoxContainer" index="2"]
+[node name="LoadSaveXion" type="Label" parent="VBoxContainer/VBoxContainer" index="2"]
 margin_top = 46.0
-margin_right = 960.0
+margin_right = 540.0
 margin_bottom = 65.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.631373, 0.631373, 0.631373, 1 )
@@ -88,9 +100,9 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="LoadSaveGear" type="Label" parent="VBoxContainer" index="3"]
+[node name="LoadSaveGear" type="Label" parent="VBoxContainer/VBoxContainer" index="3"]
 margin_top = 69.0
-margin_right = 960.0
+margin_right = 540.0
 margin_bottom = 88.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.631373, 0.631373, 0.631373, 1 )
@@ -99,42 +111,34 @@ align = 1
 valign = 1
 uppercase = true
 
-[node name="HBoxContainer" parent="." index="2"]
-anchor_left = 0.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 0.0
-margin_top = -300.0
-margin_right = 0.0
-margin_bottom = -112.0
-
-[node name="V_OptContainer" parent="HBoxContainer" index="0"]
-margin_left = 384.0
-margin_right = 576.0
-margin_bottom = 188.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer" index="1"]
+margin_top = 176.0
+margin_right = 540.0
+margin_bottom = 352.0
+custom_constants/separation = 0
 alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="LOAD_1" parent="HBoxContainer/V_OptContainer" index="0" instance=ExtResource( 2 )]
-margin_right = 192.0
-text = "Load Save 1"
+[node name="Slot1" parent="VBoxContainer/VBoxContainer2" index="0" instance=ExtResource( 2 )]
+margin_right = 540.0
+text = "Slot 1"
 
-[node name="LOAD_2" parent="HBoxContainer/V_OptContainer" index="1" instance=ExtResource( 2 )]
-margin_top = 48.0
-margin_right = 192.0
-margin_bottom = 92.0
-text = "Load Save 2"
+[node name="Slot2" parent="VBoxContainer/VBoxContainer2" index="1" instance=ExtResource( 2 )]
+margin_top = 44.0
+margin_right = 540.0
+margin_bottom = 88.0
+text = "Slot 2"
 
-[node name="LOAD_3" parent="HBoxContainer/V_OptContainer" index="2" instance=ExtResource( 2 )]
-margin_top = 96.0
-margin_right = 192.0
-margin_bottom = 140.0
-text = "Load Save 3"
+[node name="Slot3" parent="VBoxContainer/VBoxContainer2" index="2" instance=ExtResource( 2 )]
+margin_top = 88.0
+margin_right = 540.0
+margin_bottom = 132.0
+text = "Slot 3"
 
-[node name="BackToMenu" parent="HBoxContainer/V_OptContainer" index="3" instance=ExtResource( 2 )]
-margin_top = 144.0
-margin_right = 192.0
-margin_bottom = 188.0
-text = "Back To Menu"
+[node name="Return" parent="VBoxContainer/VBoxContainer2" index="3" instance=ExtResource( 2 )]
+margin_top = 132.0
+margin_right = 540.0
+margin_bottom = 176.0
+text = "Return"

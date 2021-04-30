@@ -16,7 +16,7 @@ func _ready():
 	var _err
 	_err = connect("text_changed", self, "_on_text_changed")
 	
-	save_folders = DirNavHelper.fetch_dir_content(GAME.SAVEGAME_DIR, DirNavHelper.DIR_FETCH_MODE.DIR_ONLY)
+	save_folders = DirNavHelper.fetch_dir_content(GAME.SAVE_GAME_DIR, DirNavHelper.DIR_FETCH_MODE.DIR_ONLY)
 
 #### LOGIC ####
 

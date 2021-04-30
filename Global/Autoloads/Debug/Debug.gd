@@ -21,8 +21,3 @@ func _input(event):
 
 func on_scene_tree_node_added(_node: Node):
 	pass
-#	if node is Level:
-#		yield(node, "ready")
-#		GameSaver.save_level_properties_as_json(node)
-#
-#		get_tree().disconnect("node_added", self, "on_scene_tree_node_added")

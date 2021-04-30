@@ -8,8 +8,8 @@ export var debug : bool = false
 
 export var transition_time : float = 1.0
 
-const SAVEGAME_DIR : String = "res://saves"
-const SAVEDLEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
+const SAVE_GAME_DIR : String = "res://saves"
+const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
 
 const TILE_SIZE := Vector2(24, 24)
@@ -107,8 +107,6 @@ func _ready():
 	_err = EVENTS.connect("level_finished", self, "on_level_finished")
 	_err = EVENTS.connect("seed_change_query", self, "on_seed_change_query")
 
-	GameSaver.settings_update_keys(_settings)
-
 	# Generate the chapters
 	ChapterGenerator.create_chapters(ChapterGenerator.chapter_dir_path, chapters_array)
 	new_chapter() # Set the current chapter to be the first one
@@ -147,7 +145,7 @@ func goto_last_level():
 		yield(EVENTS, "level_entered_tree")
 		var level : Level = get_tree().get_current_scene()
 		level.is_loaded_from_save = loaded_from_save
-		LevelLoader.build_level_from_loaded_properties(SAVEDLEVEL_DIR, level)
+		LevelLoader.build_level_from_loaded_properties(SAVED_LEVEL_DIR, level)
 
 
 # Change scene to the next level scene
@@ -174,7 +172,7 @@ func goto_level(level_index : int, chapter_id: int = progression.get_chapter()):
 
 	level = chapters_array[chapter_id].load_level(level_index)
 	var level_name = current_chapter.get_level_name(level_index)
-	LevelSaver.delete_level_temp_saves(SAVEDLEVEL_DIR, level_name)
+	LevelSaver.delete_level_temp_saves(SAVED_LEVEL_DIR, level_name)
 
 	var _err = get_tree().change_scene_to(level)
 
@@ -297,7 +295,7 @@ func on_level_finished(level : Level):
 	fade_out()
 	transition_timer_node.start()
 	progression.append_visited_level(level)
-	GameSaver.save_game_in_slot(SAVEGAME_DIR, 0)
+	GameSaver.save_game_in_slot(SAVE_GAME_DIR, 0)
 
 
 # When the transition is finished, go to the next level
@@ -318,7 +316,7 @@ func on_checkpoint_reached(level: Level, checkpoint_id: int):
 	if checkpoint_id + 1 > GAME.progression.checkpoint:
 		progression.checkpoint = checkpoint_id + 1
 	
-	LevelSaver.save_level_properties_as_json(level_property_to_serialize, SAVEDLEVEL_DIR, level)
+	LevelSaver.save_level_properties_as_json(level_property_to_serialize, SAVED_LEVEL_DIR, level)
 
 
 func on_seed_change_query(new_seed: int):
