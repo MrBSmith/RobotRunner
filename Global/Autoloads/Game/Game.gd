@@ -49,7 +49,7 @@ const level_property_to_serialize = {
 	"Checkpoint": ["active"]
 }
 
-var _settings ={
+var settings ={
 		"system":{
 			"slot_id": 1,
 			"save_name": "none",
@@ -328,7 +328,7 @@ func on_level_finished(level : Level):
 	fade_out()
 	transition_timer_node.start()
 	progression.append_visited_level(level)
-	GameSaver.save_game_in_slot(SAVE_GAME_DIR, save_slot)
+	GameSaver.save_game_in_slot(SAVE_GAME_DIR, save_slot, settings)
 
 
 # When the transition is finished, go to the next level
