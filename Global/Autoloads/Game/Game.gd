@@ -15,7 +15,7 @@ const SAVEDFILE_DEFAULT_NAME : String = "save"
 const TILE_SIZE := Vector2(24, 24)
 const JUMP_MAX_DIST := Vector2(6, 2)
 
-const NB_SAVE_SLOT : int = 5
+const NB_SAVE_SLOT : int = 3
 
 var window_width = ProjectSettings.get_setting("display/window/size/width")
 var window_height = ProjectSettings.get_setting("display/window/size/height")
@@ -39,7 +39,7 @@ var save_slot : int = 0
 var music_bus_id = AudioServer.get_bus_index("Music")
 var sound_bus_id = AudioServer.get_bus_index("Sounds")
 
-var _config_file = ConfigFile.new()
+var config_file = ConfigFile.new()
 
 const level_property_to_serialize = {
 	"Collectable" : [],
@@ -254,6 +254,34 @@ func update_current_level_index(level : Level):
 	var level_name = level.get_name()
 	var level_index = current_chapter.find_level_id(level_name)
 	GAME.progression.set_last_level_id(level_index)
+
+
+func load_save_slot(slot_id : int) -> void:
+	config_file = GameLoader.load_config_file(SAVE_GAME_DIR, slot_id)
+	
+	var input_mapper = InputMapper.new()
+	
+	for section in config_file.get_sections():
+		match(section):
+			"system":
+				for key in config_file.get_section_keys(section):
+					if key == "slot_id":
+						GAME.save_slot = config_file.get_value(section, key)
+			"audio":
+				#set audio settings
+				for key in config_file.get_section_keys(section):
+					var value = config_file.get_value(section, key)
+					var bus_id = AudioServer.get_bus_index(key.capitalize())
+					AudioServer.set_bus_volume_db(bus_id, value)
+			"controls":
+				#set controls settings
+				for key in config_file.get_section_keys(section):
+					var value = config_file.get_value(section, key)
+					input_mapper.change_action_key(key, value)
+			"progression":
+				for key in config_file.get_section_keys(section):
+					var value = config_file.get_value(section, key)
+					GAME.progression.set(key, value)
 
 
 #### INPUTS ####

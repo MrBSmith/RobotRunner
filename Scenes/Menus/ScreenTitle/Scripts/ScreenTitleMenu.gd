@@ -46,7 +46,7 @@ func _on_menu_option_chose(option: MenuOptionsBase):
 	
 	match(option_name):
 		"Continue":
-			_err = GameLoader.load_settings(GAME.SAVE_GAME_DIR, 1)
+			GAME.load_save_slot(1)
 			GAME.goto_world_map()
 		"NewGame":
 			if all_slot_taken:

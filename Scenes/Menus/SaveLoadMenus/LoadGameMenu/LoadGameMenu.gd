@@ -40,6 +40,9 @@ func _ready():
 	back_to_menu_option.text = "Back To Menu"
 	back_to_menu_option.name = "BackToMenu"
 	opt_container.call_deferred("add_child", back_to_menu_option)
+	
+	yield(back_to_menu_option, "ready")
+	connect_menu_options(opt_container)
 
 #### LOGIC ####
 
@@ -67,10 +70,8 @@ func update_save_information(slot_id : int):
 
 
 func load_save(slot_id : int):
-	var save_path : String = str(GameLoader.load_settings(GAME.SAVE_GAME_DIR, slot_id))
-
-	if save_path != "Null" or save_path != "":
-		GAME.goto_world_map()
+	GAME.load_save_slot(slot_id)
+	GAME.goto_world_map()
 
 
 func overwrite_slot(slot_id : int):
