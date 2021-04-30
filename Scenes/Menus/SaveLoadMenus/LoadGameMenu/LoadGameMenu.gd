@@ -29,7 +29,8 @@ func _ready():
 	for i in range(GAME.NB_SAVE_SLOT):
 		var slot_option = menu_option_base_scene.instance()
 		opt_container.call_deferred("add_child",  slot_option)
-		var save_name : String = save_directories[i] if i < save_directories.size() else ""
+		var save_path : String = GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, i + 1)
+		var save_name = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "save_name", i + 1) if save_path != "" else ""
 		if save_name == "":
 			slot_option.text = "NO SAVE TO LOAD"
 			slot_option.set_disabled(true)
@@ -113,7 +114,7 @@ func _on_menu_option_focus_changed(button : Button, focus: bool) -> void:
 func _on_menu_option_chose(option: MenuOptionsBase):
 	match(option.get_name()):
 		"BackToMenu":
-			navigate_sub_menu(MENUS.title_screen_scene.instance())
+			navigate_sub_menu(MENUS.menu_dict["ScreenTitle"].instance())
 		_:
 			var slot_id = option.get_index() + 1
 			if overwrite_mode: overwrite_slot(slot_id)

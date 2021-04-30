@@ -12,7 +12,7 @@ func get_class() -> String: return "SlotSaverMenu"
 
 func save_game_into_slot(slot_saved_id : int):
 	GAME.settings["system"]["slot_id"] = slot_saved_id
-	navigate_sub_menu(MENUS.saveconfirm_menu_scene.instance())
+	navigate_sub_menu(MENUS.menu_dict["SaveConfirmMenu"].instance())
 
 
 func resume_game():

@@ -320,7 +320,7 @@ func _input(_event):
 #  Change scene to go to the gameover scene after the timer has finished
 func on_gameover_timer_timeout():
 	gameover_timer_node.stop()
-	var _err = get_tree().change_scene_to(MENUS.game_over_scene)
+	var _err = get_tree().change_scene_to(MENUS.menu_dict["GameOver"])
 
 
 # Called when a level is finished: wait for the transition to be finished

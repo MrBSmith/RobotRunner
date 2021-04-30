@@ -50,14 +50,14 @@ func _on_menu_option_chose(option: MenuOptionsBase):
 			GAME.goto_world_map()
 		"NewGame":
 			if all_slot_taken:
-				var load_menu = MENUS.saveloader_menu_scene.instance()
+				var load_menu = MENUS.menu_dict["LoadGameMenu"].instance()
 				load_menu.overwrite_mode = true
 				navigate_sub_menu(load_menu)
 			else:
 				EVENTS.emit_signal("new_game")
 				queue_free()
 		"LoadGame": 
-			_err = navigate_sub_menu(MENUS.saveloader_menu_scene.instance())
+			_err = navigate_sub_menu(MENUS.menu_dict["LoadGameMenu"].instance())
 		"InfiniteMode":
 			_err = get_tree().change_scene_to(infinite_level_scene)
 		"Quit":
