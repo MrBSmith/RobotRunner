@@ -186,7 +186,6 @@ margin_left = -0.0257874
 margin_top = 0.583153
 margin_right = 100.974
 margin_bottom = 24.0112
-text = "Random seed"
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false

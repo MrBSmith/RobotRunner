@@ -31,8 +31,8 @@ func _enter_tree() -> void:
 
 func _ready():
 	var _err = music_timer.connect("timeout", self, "_on_music_timer_timeout")
-
-	if OS.is_debug_build():
+	_err = EVENTS.connect("gameover", self, "_on_gameover_event")
+	if OS.is_debug_build() && !is_loaded_from_save:
 		GAME.progression.set_checkpoint(test_checkpoint)
 	
 	set_starting_points()
@@ -173,7 +173,7 @@ func on_player_exited(player : PhysicsBody2D):
 		MUSIC.fade_out()
 		yield($Transition, "transition_finished")
 		EVENTS.emit_signal("level_finished", self)
-		
+
 
 func on_player_in_danger():
 	player_in_danger = true
@@ -181,3 +181,7 @@ func on_player_in_danger():
 
 func on_player_out_of_danger():
 	player_in_danger = false
+
+
+func _on_gameover_event():
+	fade_transition_node.fade(1.0, FadeTransition.FADE_MODE.FADE_OUT)
