@@ -6,6 +6,7 @@ const signal_light_scene = preload("res://Scenes/WorldMap/SignalLight.tscn")
 const pulsing_light_scene = preload("res://BabaGodotLib/Feedback/PulsingLight.tscn")
 
 onready var moving_light_container = $MovingLightContainer
+onready var fade_transition_node = $Transition
 
 var pulsing_light = null
 
@@ -30,6 +31,8 @@ func _ready() -> void:
 	var last_level_path = GAME.current_chapter.get_level_path(last_level_id)
 	
 	apply_current_progression(visited_levels, last_level_path)
+	fade_transition_node.fade(1.0, FadeTransition.FADE_MODE.FADE_IN)
+
 
 #### VIRTUALS ####
 
