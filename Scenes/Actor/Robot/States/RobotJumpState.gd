@@ -17,6 +17,7 @@ func enter_state():
 	if owner.get("current_snap") != null:
 		owner.current_snap = Vector2.ZERO
 	if owner.ignore_gravity:
+		pass
 		owner.ignore_gravity = false
 	
 	if owner.get("current_platform") != null:

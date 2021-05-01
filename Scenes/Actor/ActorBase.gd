@@ -151,6 +151,11 @@ func compute_velocity():
 		
 	if !ignore_gravity:
 		velocity += GRAVITY
+#	if !ignore_gravity:
+#		if current_platform != null:
+#			velocity += applied_gravity
+#		else:
+#			velocity += GRAVITY
 	
 	emit_signal("velocity_changed", velocity)
 
@@ -187,9 +192,12 @@ func set_force(key: String, value : Vector2):
 func force_exist(key: String):
 	return forces.has(key)
 
-func apply_movement(_delta):
+func apply_movement(delta):
 	# Apply movement
-	applied_force = move_and_slide_with_snap(applied_force, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
+	
+	#Have to check collisions, otherwise the actor will be able to go through solids
+	#Do not use 2 move_and_slide at the same time
+	position += applied_force * delta
 	velocity = move_and_slide_with_snap(velocity, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
 	
 func correct_jump_corner(delta):

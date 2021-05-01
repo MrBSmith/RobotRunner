@@ -80,7 +80,7 @@ func compute_velocity():
 	
 	emit_signal("velocity_changed", velocity)
 
-func apply_movement(_delta):
+func apply_movement(delta):
 	var next_point_position
 	var next_point_distance
 
@@ -90,10 +90,12 @@ func apply_movement(_delta):
 		next_point_position = get_point_world_position(path[next_point_index])
 		next_point_distance = get_global_position().distance_to(next_point_position)
 
-	if (velocity.length() * _delta) > next_point_distance:
+	if (velocity.length() * delta) > next_point_distance:
 		set_global_position(next_point_position)
 	else:
-		velocity = move_and_slide_with_snap(velocity, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
+		position += velocity * delta
+#		velocity = move_and_slide(velocity, Vector2.UP,false, 4, 0.785398, false)
+#		velocity = move_and_slide_with_snap(velocity, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
 
 #### INPUTS ####
 
@@ -102,12 +104,8 @@ func apply_movement(_delta):
 #### SIGNAL RESPONSES ####
 
 func _on_body_entered(body : Node):
-	
-	yield(get_tree(),"idle_frame")
 	if body.is_class("Player"):
-		body.set_velocity(Vector2.ZERO)	
 		body_triggering_area = body
-		body.current_platform = weakref(self)
 
 func _on_body_exited(body : Node):
 	yield(get_tree(),"idle_frame")
@@ -119,6 +117,6 @@ func _on_body_exited(body : Node):
 			body_triggering_area.remove_force("MovingInertia")
 		if "ignore_gravity" in body_triggering_area:
 			if body_triggering_area.ignore_gravity:
+				pass
 				body_triggering_area.ignore_gravity = false
 		body_triggering_area = null
-		body.current_platform = null

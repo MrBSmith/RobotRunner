@@ -45,7 +45,6 @@ func exit_state():
 	jump_buffered = false
 	owner.remove_impulse("bounce")
 	owner.remove_force("PlatformInertia")
-	owner.current_platform = null
 
 
 func update_state(_delta):

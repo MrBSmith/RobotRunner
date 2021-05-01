@@ -11,7 +11,7 @@ func _ready():
 
 
 func update_state( _delta):
-	if !owner.is_on_floor():
+	if !owner.is_on_floor() and !owner.ignore_gravity:
 		return "Fall"
 	elif owner.velocity.x == 0:
 		return "Idle"

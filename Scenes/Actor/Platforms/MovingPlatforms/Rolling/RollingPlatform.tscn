@@ -10,10 +10,11 @@
 extents = Vector2( 24.0238, 20.8458 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 24.009, 2.2291 )
+extents = Vector2( 22.9007, 2.2291 )
 
 [node name="RollingPlatform" instance=ExtResource( 3 )]
 collision_mask = 0
+collision/safe_margin = 1.0
 script = ExtResource( 5 )
 
 [node name="AnimatedSprite" parent="." index="0"]
@@ -40,6 +41,5 @@ __meta__ = {
 [node name="Area2D" type="Area2D" parent="." index="4"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 0, -21.8397 )
+position = Vector2( 0, -22.6343 )
 shape = SubResource( 2 )
-one_way_collision = true
