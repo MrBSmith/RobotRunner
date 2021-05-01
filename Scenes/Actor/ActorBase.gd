@@ -39,8 +39,6 @@ var collision_type
 
 var is_waiting : bool = false
 
-var current_platform : WeakRef = null
-
 signal velocity_changed(vel)
 signal direction_changed(dir)
 
@@ -151,11 +149,6 @@ func compute_velocity():
 		
 	if !ignore_gravity:
 		velocity += GRAVITY
-#	if !ignore_gravity:
-#		if current_platform != null:
-#			velocity += applied_gravity
-#		else:
-#			velocity += GRAVITY
 	
 	emit_signal("velocity_changed", velocity)
 

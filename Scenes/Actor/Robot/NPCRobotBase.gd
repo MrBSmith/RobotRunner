@@ -103,20 +103,13 @@ func apply_movement(delta):
 
 #### SIGNAL RESPONSES ####
 
-func _on_body_entered(body : Node):
-	if body.is_class("Player"):
-		body_triggering_area = body
+func _on_body_entered(_body : Node):
+	pass
 
 func _on_body_exited(body : Node):
-	yield(get_tree(),"idle_frame")
-	var overlapping_bodies = $Area2D.get_overlapping_bodies()
-	if body == null or body_triggering_area in overlapping_bodies or body != body_triggering_area:
-		return
-	else:
-		if body_triggering_area.has_method("remove_force"):
-			body_triggering_area.remove_force("MovingInertia")
-		if "ignore_gravity" in body_triggering_area:
-			if body_triggering_area.ignore_gravity:
-				pass
-				body_triggering_area.ignore_gravity = false
-		body_triggering_area = null
+	if body.is_class("Player"):
+		if "ignore_gravity" in body:
+			if body.ignore_gravity:
+				body.ignore_gravity = false
+		if body.get_state() == "Jump":
+			body.add_force("PlatformInertia",velocity)
