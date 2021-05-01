@@ -163,12 +163,12 @@ func add_impulse(key: String, impulse_value : Vector2):
 
 func remove_impulse(key : String):
 	if impulse.has(key):
-		impulse.erase(key)
+		var _i = impulse.erase(key)
 
 func remove_useless_impulse():
 	for key in impulse.keys():
 		if impulse[key] == Vector2.ZERO:
-			impulse.erase(key)
+			var _i = impulse.erase(key)
 
 func add_force(key: String, value : Vector2):
 	if !force_exist(key):
@@ -176,7 +176,7 @@ func add_force(key: String, value : Vector2):
 
 func remove_force(key: String):
 	if force_exist(key):
-		forces.erase(key)
+		var _f = forces.erase(key)
 
 func set_force(key: String, value : Vector2):
 	if force_exist(key):
