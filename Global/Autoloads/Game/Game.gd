@@ -35,9 +35,6 @@ var save_slot : int = 0
 
 var config_file = ConfigFile.new()
 
-
-
-
 #### ACCESSORS ####
 
 func _set_current_seed(value: int):
@@ -61,7 +58,9 @@ func _ready():
 	_err = EVENTS.connect("level_finished", self, "_on_level_finished")
 	_err = EVENTS.connect("seed_change_query", self, "_on_seed_change_query")
 	_err = EVENTS.connect("new_game", self, "_on_new_game")
-
+	
+	DirNavHelper.empty_folder(SAVED_LEVEL_DIR)
+	
 	# Generate the chapters
 	ChapterGenerator.create_chapters(ChapterGenerator.chapter_dir_path, chapters_array)
 	new_chapter() # Set the current chapter to be the first one
@@ -163,7 +162,7 @@ func gameover():
 		return
 	
 	current_scene.set_process(false)
-	add_child(MENUS.menu_dict["GameOver"].instance())
+	var __ = get_tree().change_scene_to(MENUS.menu_dict["GameOver"])
 
 
 #### LOGIC ####
