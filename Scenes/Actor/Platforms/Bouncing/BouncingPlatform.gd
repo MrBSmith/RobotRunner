@@ -9,9 +9,7 @@ export var bodies_trigger_array : PoolStringArray = []
 export var bouncing_duration : float = 0
 export var bouncing_impulse_force := Vector2.ZERO
 
-onready var triggerarea_node = $TriggerArea
 onready var platform_collisionshape_node = $CollisionShape2D
-var triggerarea_body_trigger : PhysicsBody2D = null
 
 #### ACCESSORS ####
 
@@ -19,7 +17,6 @@ var triggerarea_body_trigger : PhysicsBody2D = null
 
 func _ready():
 	if $TriggerArea != null:
-		var _err = $TriggerArea.connect("area_triggered", self, "on_bouncing_area_triggered")
 		if "triggering_bodies" in $TriggerArea and !bodies_trigger_array.empty():
 			$TriggerArea.triggering_bodies = bodies_trigger_array
 		if "trigger_cooldown" in $TriggerArea:
@@ -29,18 +26,22 @@ func _ready():
 
 #### LOGIC ####
 
+func bounce():
+	set_state("Bouncing")
+	impulse_object()
+	animated_sprite_node.set_flip_h(bouncing_impulse_force.x > 0)
+
 func impulse_object(): # HIT THE TARGETTED OBJECT WITH AN IMPULSION
-	if triggerarea_body_trigger.has_method("add_impulse"):
-		triggerarea_body_trigger.add_impulse("bounce",bouncing_impulse_force)
+	if body_triggering_area.has_method("add_impulse"):
+		body_triggering_area.add_impulse("bounce",bouncing_impulse_force)
 
 #### INPUTS ####
 
 #### SIGNAL RESPONSES ####
 
-func on_bouncing_area_triggered():
-	if triggerarea_node.body_triggerring_area != null:
-		triggerarea_body_trigger = triggerarea_node.body_triggerring_area
-			
-		set_state("Bouncing")
-		impulse_object()
-		animated_sprite_node.set_flip_h(bouncing_impulse_force.x > 0)
+#Function override
+func _on_area_triggered(body):
+	._on_body_entered(body)
+	yield(get_tree(),"idle_frame")
+	if body.is_class("Player"):
+		bounce()

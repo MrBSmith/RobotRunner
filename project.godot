@@ -367,7 +367,7 @@ _global_script_classes=[ {
 "base": "RobotPlatformBase",
 "class": "FlyingPlatform",
 "language": "GDScript",
-"path": "res://Scenes/Actor/Platforms/Flying/FlyingPlatform.gd"
+"path": "res://Scenes/Actor/Platforms/MovingPlatforms/Flying/FlyingPlatform.gd"
 }, {
 "base": "Camera2D",
 "class": "GameCamera",
@@ -612,7 +612,7 @@ _global_script_classes=[ {
 "base": "NPCRobotBase",
 "class": "MovingPlatform",
 "language": "GDScript",
-"path": "res://Scenes/Actor/Platforms/Moving/MovingPlatform.gd"
+"path": "res://Scenes/Actor/Platforms/MovingPlatforms/MovingPlatform.gd"
 }, {
 "base": "ActorBase",
 "class": "NPCRobotBase",
@@ -792,12 +792,12 @@ _global_script_classes=[ {
 "base": "RobotMoveState",
 "class": "RobotPlatformFlyingMoveState",
 "language": "GDScript",
-"path": "res://Scenes/Actor/Platforms/Flying/RobotPlatformFlyingMoveState.gd"
+"path": "res://Scenes/Actor/Platforms/MovingPlatforms/Flying/RobotPlatformFlyingMoveState.gd"
 }, {
 "base": "RobotMoveState",
 "class": "RobotPlatformMovingMoveState",
 "language": "GDScript",
-"path": "res://Scenes/Actor/Platforms/Moving/Move.gd"
+"path": "res://Scenes/Actor/Platforms/MovingPlatforms/Rolling/Move.gd"
 }, {
 "base": "AnimatedSprite",
 "class": "SFX_AnimationBase",

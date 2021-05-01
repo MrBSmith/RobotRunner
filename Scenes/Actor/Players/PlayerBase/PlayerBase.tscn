@@ -164,6 +164,9 @@ stereo = true
 [node name="PlayerBase" instance=ExtResource( 10 )]
 script = ExtResource( 7 )
 
+[node name="CollisionShape2D" parent="." index="1"]
+one_way_collision = true
+
 [node name="Idle" type="Node" parent="StatesMachine" index="0"]
 script = ExtResource( 6 )
 

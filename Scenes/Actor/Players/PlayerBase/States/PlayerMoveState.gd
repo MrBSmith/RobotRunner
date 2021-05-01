@@ -18,7 +18,7 @@ func update_state( _delta):
 
 
 func enter_state():
-	if !owner.is_on_floor():
+	if !owner.is_on_floor() and !owner.ignore_gravity:
 		states_machine.set_state("Jump")
 	
 	owner.current_snap = owner.snap_vector

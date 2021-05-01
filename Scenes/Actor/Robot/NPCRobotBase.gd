@@ -12,6 +12,11 @@ var travel_forward : bool = true
 
 onready var original_pos = get_global_position()
 
+onready var trigger_area_node = get_node_or_null("TriggerArea")
+onready var area_node : Area2D = get_node_or_null("Area2D")
+var body_triggering_area : PhysicsBody2D = null
+#export var triggering_bodies : PoolStringArray = ["Player"]
+
 #### ACCESSORS ####
 
 func is_class(value: String):
@@ -25,6 +30,11 @@ func get_class() -> String:
 func _ready():
 	if path_node != null and !path_disabled:
 		path = path_node.get_children()
+	if trigger_area_node != null:
+		var _err = trigger_area_node.connect("area_triggered",self,"_on_area_triggered")
+	if area_node != null:
+		var _err = area_node.connect("body_entered",self,"_on_body_entered")
+		_err = area_node.connect("body_exited",self,"_on_body_exited")
 
 #### LOGIC ####
 
@@ -67,6 +77,8 @@ func compute_velocity():
 	velocity = last_direction * current_speed
 	if !ignore_gravity:
 		velocity += GRAVITY
+	
+	emit_signal("velocity_changed", velocity)
 
 func apply_movement(_delta):
 	var next_point_position
@@ -81,10 +93,32 @@ func apply_movement(_delta):
 	if (velocity.length() * _delta) > next_point_distance:
 		set_global_position(next_point_position)
 	else:
-		set_global_position(get_global_position() + velocity * _delta)
+		velocity = move_and_slide_with_snap(velocity, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
 
 #### INPUTS ####
 
 
 
 #### SIGNAL RESPONSES ####
+
+func _on_body_entered(body : Node):
+	
+	yield(get_tree(),"idle_frame")
+	if body.is_class("Player"):
+		body.set_velocity(Vector2.ZERO)	
+		body_triggering_area = body
+		body.current_platform = weakref(self)
+
+func _on_body_exited(body : Node):
+	yield(get_tree(),"idle_frame")
+	var overlapping_bodies = $Area2D.get_overlapping_bodies()
+	if body == null or body_triggering_area in overlapping_bodies or body != body_triggering_area:
+		return
+	else:
+		if body_triggering_area.has_method("remove_force"):
+			body_triggering_area.remove_force("MovingInertia")
+		if "ignore_gravity" in body_triggering_area:
+			if body_triggering_area.ignore_gravity:
+				body_triggering_area.ignore_gravity = false
+		body_triggering_area = null
+		body.current_platform = null

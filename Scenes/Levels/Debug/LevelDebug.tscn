@@ -16,10 +16,10 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/BD_Group.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/BlueButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/BlueDoor.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/Actor/Platforms/Moving/MovingPlatform.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Actor/Platforms/MovingPlatforms/Rolling/RollingPlatform.tscn" type="PackedScene" id=17]
 [ext_resource path="res://BabaGodotLib/Actor/AI/ActorPath/ActorPath.gd" type="Script" id=18]
 [ext_resource path="res://BabaGodotLib/Actor/AI/ActorPath/PathPointBase.gd" type="Script" id=19]
-[ext_resource path="res://Scenes/Actor/Platforms/Flying/FlyingPlatform.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/Actor/Platforms/MovingPlatforms/Flying/FlyingPlatform.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/Actor/Platforms/Bouncing/BouncingPlatform.tscn" type="PackedScene" id=21]
 
 [node name="LevelDebug" instance=ExtResource( 4 )]
@@ -173,23 +173,13 @@ __meta__ = {
 }
 
 [node name="PathPoint" type="Position2D" parent="InteractivesObjects/Platform/Moving/MovingPlatform/Path" index="0"]
-position = Vector2( 128, 0 )
-script = ExtResource( 19 )
-
-[node name="PathPoint2" type="Position2D" parent="InteractivesObjects/Platform/Moving/MovingPlatform/Path" index="1"]
-position = Vector2( 299, 0 )
+position = Vector2( 45, 0 )
 script = ExtResource( 19 )
 method_name = "wait_for_delay"
-argument_array = [ 1.0 ]
+argument_array = [ 4.0 ]
 
-[node name="PathPoint3" type="Position2D" parent="InteractivesObjects/Platform/Moving/MovingPlatform/Path" index="2"]
-position = Vector2( 475, 0 )
-script = ExtResource( 19 )
-method_name = "wait_for_delay"
-argument_array = [ 3.0 ]
-
-[node name="PathPoint4" type="Position2D" parent="InteractivesObjects/Platform/Moving/MovingPlatform/Path" index="3"]
-position = Vector2( 699, 0 )
+[node name="PathPoint4" type="Position2D" parent="InteractivesObjects/Platform/Moving/MovingPlatform/Path" index="1"]
+position = Vector2( 1246, 0 )
 script = ExtResource( 19 )
 method_name = "wait_for_delay"
 argument_array = [ 1.0 ]
@@ -200,7 +190,7 @@ __meta__ = {
 }
 
 [node name="FlyingPlatform" parent="InteractivesObjects/Platform/Flying" index="0" instance=ExtResource( 20 )]
-position = Vector2( 65, 912 )
+position = Vector2( 80, 1136 )
 ignore_gravity = true
 movement_type = 1
 
@@ -211,25 +201,19 @@ __meta__ = {
 }
 
 [node name="PathPoint2" type="Position2D" parent="InteractivesObjects/Platform/Flying/FlyingPlatform/Path" index="0"]
-position = Vector2( 200, 0 )
+position = Vector2( 560, -16 )
 script = ExtResource( 19 )
 method_name = "wait_for_delay"
 argument_array = [ 1.0 ]
 
 [node name="PathPoint3" type="Position2D" parent="InteractivesObjects/Platform/Flying/FlyingPlatform/Path" index="1"]
-position = Vector2( 256, 240 )
+position = Vector2( 912, -16 )
 script = ExtResource( 19 )
 method_name = "wait_for_delay"
 argument_array = [ 1.0 ]
 
 [node name="PathPoint4" type="Position2D" parent="InteractivesObjects/Platform/Flying/FlyingPlatform/Path" index="2"]
-position = Vector2( 768, 176 )
-script = ExtResource( 19 )
-method_name = "wait_for_delay"
-argument_array = [ 1.0 ]
-
-[node name="PathPoint5" type="Position2D" parent="InteractivesObjects/Platform/Flying/FlyingPlatform/Path" index="3"]
-position = Vector2( 1240, 240 )
+position = Vector2( 240, -16 )
 script = ExtResource( 19 )
 method_name = "wait_for_delay"
 argument_array = [ 1.0 ]
