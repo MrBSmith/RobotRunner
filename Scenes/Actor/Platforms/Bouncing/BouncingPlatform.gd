@@ -26,14 +26,14 @@ func _ready():
 
 #### LOGIC ####
 
-func bounce():
+func bounce(body : Node):
 	set_state("Bouncing")
-	impulse_object()
+	impulse_object(body)
 	animated_sprite_node.set_flip_h(bouncing_impulse_force.x > 0)
 
-func impulse_object(): # HIT THE TARGETTED OBJECT WITH AN IMPULSION
-	if body_triggering_area.has_method("add_impulse"):
-		body_triggering_area.add_impulse("bounce",bouncing_impulse_force)
+func impulse_object(body : Node): # HIT THE TARGETTED OBJECT WITH AN IMPULSION
+	if body.has_method("add_impulse"):
+		body.add_impulse("bounce",bouncing_impulse_force)
 
 #### INPUTS ####
 
@@ -44,4 +44,4 @@ func _on_area_triggered(body):
 	._on_body_entered(body)
 	yield(get_tree(),"idle_frame")
 	if body.is_class("Player"):
-		bounce()
+		bounce(body)

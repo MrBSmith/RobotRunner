@@ -14,8 +14,6 @@ onready var original_pos = get_global_position()
 
 onready var trigger_area_node = get_node_or_null("TriggerArea")
 onready var area_node : Area2D = get_node_or_null("Area2D")
-var body_triggering_area : PhysicsBody2D = null
-#export var triggering_bodies : PoolStringArray = ["Player"]
 
 #### ACCESSORS ####
 
@@ -93,9 +91,10 @@ func apply_movement(delta):
 	if (velocity.length() * delta) > next_point_distance:
 		set_global_position(next_point_position)
 	else:
+		#Collision test required
 		position += velocity * delta
-#		velocity = move_and_slide(velocity, Vector2.UP,false, 4, 0.785398, false)
-#		velocity = move_and_slide_with_snap(velocity, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
+		#Move and slide doesn't work, it blocks the platform from moving when a solid is on top of it
+#		velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.79, false)
 
 #### INPUTS ####
 
@@ -106,10 +105,5 @@ func apply_movement(delta):
 func _on_body_entered(_body : Node):
 	pass
 
-func _on_body_exited(body : Node):
-	if body.is_class("Player"):
-		if "ignore_gravity" in body:
-			if body.ignore_gravity:
-				body.ignore_gravity = false
-		if body.get_state() == "Jump":
-			body.add_force("PlatformInertia",velocity)
+func _on_body_exited(_body : Node):
+	pass

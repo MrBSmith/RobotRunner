@@ -14,7 +14,6 @@ extents = Vector2( 22.9007, 2.2291 )
 
 [node name="RollingPlatform" instance=ExtResource( 3 )]
 collision_mask = 0
-collision/safe_margin = 1.0
 script = ExtResource( 5 )
 
 [node name="AnimatedSprite" parent="." index="0"]

@@ -21,3 +21,11 @@ func get_class() -> String: return "MovingPlatform"
 func _on_body_entered(body : Node):
 	if body.is_class("Player"):
 		body.ignore_gravity = true
+
+func _on_body_exited(body : Node):
+	if body.is_class("Player"):
+		if "ignore_gravity" in body:
+			if body.ignore_gravity:
+				body.ignore_gravity = false
+		if body.get_state() == "Jump":
+			body.add_force("PlatformInertia",velocity)
