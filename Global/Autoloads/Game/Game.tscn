@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Global/Autoloads/Game/Game.gd" type="Script" id=1]
 [ext_resource path="res://Global/Progression/Progression.gd" type="Script" id=2]
+[ext_resource path="res://Global/Autoloads/Game/SaveData.gd" type="Script" id=3]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,29 +11,5 @@ debug = true
 [node name="Progression" type="Node" parent="."]
 script = ExtResource( 2 )
 
-[node name="GameoverTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="TransitionTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -480.0
-margin_top = -270.0
-margin_right = 480.0
-margin_bottom = 270.0
-mouse_filter = 2
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tween" type="Tween" parent="."]
+[node name="SaveData" type="Node" parent="."]
+script = ExtResource( 3 )

@@ -814,6 +814,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Menus/SaveLoadMenus/SaveConfirmMenu/SaveConfirmMenu.gd"
 }, {
+"base": "Node",
+"class": "SaveData",
+"language": "GDScript",
+"path": "res://Global/Autoloads/Game/SaveData.gd"
+}, {
 "base": "MenuOptionsBase",
 "class": "SaveLoadButtonBase",
 "language": "GDScript",
@@ -1201,6 +1206,7 @@ _global_script_class_icons={
 "SFX_Explosion": "",
 "SFX_group_base": "",
 "SaveConfirmMenu": "",
+"SaveData": "",
 "SaveLoadButtonBase": "",
 "SaveNameField": "",
 "SceneFinder": "",

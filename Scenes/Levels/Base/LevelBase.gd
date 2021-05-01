@@ -1,6 +1,7 @@
 extends Node2D
 class_name Level
 
+onready var fade_transition_node = $Transition
 onready var music_timer = $MusicTimer
 onready var xion_cloud_node = get_node_or_null("XionCloud")
 onready var hud_node = "GUI/HUD"
@@ -39,11 +40,13 @@ func _ready():
 	set_camera_position_on_start()
 	propagate_weakref_players_array()
 	
+	fade_transition_node.fade(1.0, FadeTransition.FADE_MODE.FADE_IN)
+	
 	MUSIC.play()
 	
 	EVENTS.emit_signal("update_HUD")
 	EVENTS.emit_signal("level_ready", self)
-	
+
 
 
 #### LOGIC ####
@@ -166,8 +169,11 @@ func on_player_exited(player : PhysicsBody2D):
 		players_array.remove(player_index)
 
 	if players_exited == 2:
+		$Transition.fade(1.0, FadeTransition.FADE_MODE.FADE_OUT)
+		MUSIC.fade_out()
+		yield($Transition, "transition_finished")
 		EVENTS.emit_signal("level_finished", self)
-
+		
 
 func on_player_in_danger():
 	player_in_danger = true

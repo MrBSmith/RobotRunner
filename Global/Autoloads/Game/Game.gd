@@ -1,12 +1,9 @@
 extends Node2D
 
-onready var gameover_timer_node = $GameoverTimer
-onready var transition_timer_node = $TransitionTimer
 onready var progression : Progression = $Progression
+onready var save_data : SaveData = $SaveData
 
 export var debug : bool = false
-
-export var transition_time : float = 1.0
 
 const SAVE_GAME_DIR : String = "res://saves"
 const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
@@ -36,54 +33,9 @@ var solo_mode : bool = false setget set_solo_mode, get_solo_mode
 
 var save_slot : int = 0
 
-var music_bus_id = AudioServer.get_bus_index("Music")
-var sound_bus_id = AudioServer.get_bus_index("Sounds")
-
 var config_file = ConfigFile.new()
 
-const level_property_to_serialize = {
-	"Collectable" : [],
-	"BreakableObjectBase" : [],
-	"Door" : ["open"],
-	"DoorButton": ["push"],
-	"Checkpoint": ["active"]
-}
 
-var settings ={
-		"system":{
-			"slot_id": 1,
-			"save_name": "none",
-			"time": "unknown"
-		},
-		"audio":{
-			"music": AudioServer.get_bus_volume_db(music_bus_id),
-			"sounds": AudioServer.get_bus_volume_db(sound_bus_id)
-		},
-		"controls":{
-			"jump_player1": InputMap.get_action_list("jump_player1")[0].scancode,
-			"move_left_player1": InputMap.get_action_list("move_left_player1")[0].scancode,
-			"move_right_player1": InputMap.get_action_list("move_right_player1")[0].scancode,
-			"teleport_player1": InputMap.get_action_list("teleport_player1")[0].scancode,
-			"action_player1": InputMap.get_action_list("action_player1")[0].scancode,
-				
-			"jump_player2": InputMap.get_action_list("jump_player2")[0].scancode,
-			"move_left_player2": InputMap.get_action_list("move_left_player2")[0].scancode,
-			"move_right_player2": InputMap.get_action_list("move_right_player2")[0].scancode,
-			"teleport_player2": InputMap.get_action_list("teleport_player2")[0].scancode,
-			"action_player2": InputMap.get_action_list("action_player2")[0].scancode,
-				
-			"game_restart": InputMap.get_action_list("game_restart")[0].scancode,
-			"HUD_switch_state": InputMap.get_action_list("HUD_switch_state")[0].scancode,
-			"display_console": InputMap.get_action_list("display_console")[0].scancode
-		},
-		"progression":{
-			"last_level": -1,
-			"visited_levels": [],
-			"checkpoint": -1,
-			"xion": 0,
-			"gear": 0
-		}
-	}
 
 
 #### ACCESSORS ####
@@ -105,11 +57,9 @@ func get_solo_mode() -> bool: return solo_mode
 #### BUILT-IN ####
 
 func _ready():
-	var _err = gameover_timer_node.connect("timeout",self, "on_gameover_timer_timeout")
-	_err = transition_timer_node.connect("timeout",self, "on_transition_timer_timeout")
-	_err = EVENTS.connect("level_ready", self, "on_level_ready")
-	_err = EVENTS.connect("level_finished", self, "on_level_finished")
-	_err = EVENTS.connect("seed_change_query", self, "on_seed_change_query")
+	var _err = EVENTS.connect("level_ready", self, "_on_level_ready")
+	_err = EVENTS.connect("level_finished", self, "_on_level_finished")
+	_err = EVENTS.connect("seed_change_query", self, "_on_seed_change_query")
 	_err = EVENTS.connect("new_game", self, "_on_new_game")
 
 	# Generate the chapters
@@ -117,7 +67,7 @@ func _ready():
 	new_chapter() # Set the current chapter to be the first one
 
 
-#### LOGIC ####
+#### SCENE CHANGE ####
 
 func new_chapter():
 	progression.add_to_chapter(1)
@@ -135,7 +85,7 @@ func goto_last_level():
 	var level_to_load_path : String = current_chapter.find_level_path(last_level_name)
 	
 	if level_to_load_path == "":
-		level_to_load_path = find_level_path_in_chapter_array(last_level_name)
+		level_to_load_path = find_level_in_chapter_array(last_level_name)
 	
 	# If no save of the current level exists, reload the same scene
 	if level_to_load_path == "":
@@ -203,49 +153,27 @@ func goto_level_by_path(level_scene_path: String):
 
 func goto_world_map() -> void:
 	var _err = get_tree().change_scene_to(world_map_scene)
-	yield(get_tree(), "node_added")
-	fade_in()
-
-
-func find_level_path_in_chapter_array(level_name: String) -> String:
-	for chapter in chapters_array:
-		var level_path = chapter.find_level_path(level_name) 
-		if level_path != "":
-			return level_path
-	return ""
-
 
 
 # Triggers the timer before the gameover is triggered
 # Called when a player die
 func gameover():
-	gameover_timer_node.start()
-
 	var current_scene = get_tree().get_current_scene()
 	if !current_scene is Level:
 		return
-
+	
 	current_scene.set_process(false)
+	add_child(MENUS.menu_dict["GameOver"].instance())
 
 
-func fade_in():
-	$Tween.interpolate_property($CanvasLayer/ColorRect, "modulate",
-		Color.black, Color.transparent, transition_time,
-		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Tween.start()
+#### LOGIC ####
 
-
-func fade_out():
-	$Tween.interpolate_property($CanvasLayer/ColorRect, "modulate",
-		Color.transparent, Color.black, transition_time,
-		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$Tween.start()
-
-	MUSIC.fade_out()
-
-
-func set_screen_fade_visible(value: bool):
-	$CanvasLayer/ColorRect.set_visible(value)
+func find_level_in_chapter_array(level_name: String) -> String:
+	for chapter in chapters_array:
+		var level_path = chapter.find_level_path(level_name) 
+		if level_path != "":
+			return level_path
+	return ""
 
 
 # Check if the current level index is the right one when a new level is ready
@@ -256,32 +184,9 @@ func update_current_level_index(level : Level):
 	GAME.progression.set_last_level_id(level_index)
 
 
-func load_save_slot(slot_id : int) -> void:
-	config_file = GameLoader.load_config_file(SAVE_GAME_DIR, slot_id)
-	
-	var input_mapper = InputMapper.new()
-	
-	for section in config_file.get_sections():
-		match(section):
-			"system":
-				for key in config_file.get_section_keys(section):
-					if key == "slot_id":
-						GAME.save_slot = config_file.get_value(section, key)
-			"audio":
-				#set audio settings
-				for key in config_file.get_section_keys(section):
-					var value = config_file.get_value(section, key)
-					var bus_id = AudioServer.get_bus_index(key.capitalize())
-					AudioServer.set_bus_volume_db(bus_id, value)
-			"controls":
-				#set controls settings
-				for key in config_file.get_section_keys(section):
-					var value = config_file.get_value(section, key)
-					input_mapper.change_action_key(key, value)
-			"progression":
-				for key in config_file.get_section_keys(section):
-					var value = config_file.get_value(section, key)
-					GAME.progression.set(key, value)
+func load_slot(slot_id: int):
+	GameLoader.load_save_slot(SAVE_GAME_DIR, slot_id, progression)
+	save_slot = GameLoader.get_cfg_property_value(SAVE_GAME_DIR, "slot_id", slot_id)
 
 
 #### INPUTS ####
@@ -317,42 +222,29 @@ func _input(_event):
 
 #### SIGNAL RESPONSES ####
 
-#  Change scene to go to the gameover scene after the timer has finished
-func on_gameover_timer_timeout():
-	gameover_timer_node.stop()
-	var _err = get_tree().change_scene_to(MENUS.menu_dict["GameOver"])
-
 
 # Called when a level is finished: wait for the transition to be finished
-func on_level_finished(level : Level):
-	fade_out()
-	transition_timer_node.start()
+func _on_level_finished(level : Level):
 	progression.append_visited_level(level)
-	GameSaver.save_game_in_slot(SAVE_GAME_DIR, save_slot, settings)
-
-
-# When the transition is finished, go to the next level
-func on_transition_timer_timeout():
+	GameSaver.save_game_in_slot(progression, SAVE_GAME_DIR, save_slot, save_data.settings)
 	goto_world_map()
 
 
 # Called when the level is ready, correct
-func on_level_ready(level : Level):
+func _on_level_ready(level : Level):
 	last_level_name = level.get_name()
-	
 	update_current_level_index(level)
-	fade_in()
 
 
 # When a player reach a checkpoint
-func on_checkpoint_reached(level: Level, checkpoint_id: int):
+func _on_checkpoint_reached(level: Level, checkpoint_id: int):
 	if checkpoint_id + 1 > GAME.progression.checkpoint:
 		progression.checkpoint = checkpoint_id + 1
 	
-	LevelSaver.save_level_properties_as_json(level_property_to_serialize, SAVED_LEVEL_DIR, level)
+	LevelSaver.save_level_properties_as_json(save_data.level_property_to_serialize, SAVED_LEVEL_DIR, level)
 
 
-func on_seed_change_query(new_seed: int):
+func _on_seed_change_query(new_seed: int):
 	_set_current_seed(new_seed)
 
 
