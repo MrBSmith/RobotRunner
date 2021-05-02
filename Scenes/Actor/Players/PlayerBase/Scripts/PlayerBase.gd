@@ -77,7 +77,7 @@ func stop_overheat():
 # and destroy this instance
 func destroy():
 	EVENTS.emit_signal("play_SFX", "normal_explosion", global_position)
-	GAME.gameover()
+	EVENTS.emit_signal("gameover")
 	queue_free()
 
 #### INPUT RESPONSES ####

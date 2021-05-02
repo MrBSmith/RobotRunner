@@ -7,8 +7,6 @@ onready var animated_sprite_node = $AnimatedSprite
 
 var is_ready : bool = false
 
-signal checkpoint_reached
-
 #### ACCESSORS ####
 
 func is_class(value: String): return value == "Checkpoint" or .is_class(value)
@@ -29,7 +27,6 @@ func is_active() -> bool: return active
 func _ready():
 	var _err
 	_err = animated_sprite_node.connect("animation_finished", self, "on_animation_finished")
-	_err = connect("checkpoint_reached", GAME, "_on_checkpoint_reached")
 	
 	is_ready = true
 
@@ -37,7 +34,7 @@ func _ready():
 
 func event():
 	set_active(true)
-	emit_signal("checkpoint_reached", get_tree().get_current_scene(), get_index())
+	EVENTS.emit_signal("checkpoint_reached", get_tree().get_current_scene(), get_index())
 
 
 #### LOGIC ####

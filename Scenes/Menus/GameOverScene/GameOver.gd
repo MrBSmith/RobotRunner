@@ -20,7 +20,6 @@ func _ready():
 	var _err = timer_node.connect("timeout", self, "on_timer_timeout")
 	quit_text_node.bbcode_text = QUIT_TEXT
 	restart_text_node.bbcode_text = RESTART_TEXT
-	#print(InputMap.get_action_list("game_restart")[0].as_text()) ## DEBUG PURPOSE ##
 
 
 func _input(_event):

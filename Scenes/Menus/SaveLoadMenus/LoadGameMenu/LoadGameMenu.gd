@@ -30,7 +30,7 @@ func _ready():
 		var slot_option = menu_option_base_scene.instance()
 		opt_container.call_deferred("add_child",  slot_option)
 		var save_path : String = GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, i + 1)
-		var save_name = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "save_name", i + 1) if save_path != "" else ""
+		var save_name = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "save_name", i + 1) if save_path != "" else ""
 		if save_name == "":
 			slot_option.text = "NO SAVE TO LOAD"
 			slot_option.set_disabled(true)
@@ -59,12 +59,12 @@ func update_save_information(slot_id : int):
 		else:
 			$VBoxContainer.visible = true
 
-			var target_cfg_save_time = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "time", slot_id)
+			var target_cfg_save_time = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "time", slot_id)
 			if typeof(target_cfg_save_time) == TYPE_DICTIONARY:
 				load_save_name_info_label_node.text = "Name : " + GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, slot_id).split("/")[-1]
 				load_save_date_info_label_node.text = "Time : " + str(target_cfg_save_time.get("day")) + "/" + str(target_cfg_save_time.get("month"))  +  "/" + str(target_cfg_save_time.get("year")) + " " + str(target_cfg_save_time.get("hour")) + "h" + str(target_cfg_save_time.get("minute")) + ":" + str(target_cfg_save_time.get("second"))
-				load_save_xion_info_label_node.text = "Xion : " + str(GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "xion", slot_id))
-				load_save_gear_info_label_node.text = "Gear : " + str(GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "gear", slot_id))
+				load_save_xion_info_label_node.text = "Xion : " + str(GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "xion", slot_id))
+				load_save_gear_info_label_node.text = "Gear : " + str(GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "gear", slot_id))
 	else:
 		$VBoxContainer.visible = false
 
@@ -105,7 +105,7 @@ func _on_menu_option_focus_changed(button : Button, focus: bool) -> void:
 	if button_index > save_directories.size():
 		return
 	
-	var target_save_time = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "time", button_index + 1)
+	var target_save_time = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "time", button_index + 1)
 	if typeof(target_save_time) == TYPE_STRING:
 		button_index = -1
 	update_save_information(button_index + 1)

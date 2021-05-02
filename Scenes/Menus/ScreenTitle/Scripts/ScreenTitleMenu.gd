@@ -46,8 +46,7 @@ func _on_menu_option_chose(option: MenuOptionsBase):
 	
 	match(option_name):
 		"Continue":
-			GAME.load_slot(1)
-			GAME.goto_world_map()
+			GAME.continue_game()
 		"NewGame":
 			if all_slot_taken:
 				var load_menu = MENUS.menu_dict["LoadGameMenu"].instance()

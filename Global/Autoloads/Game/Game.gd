@@ -8,6 +8,7 @@ export var debug : bool = false
 const SAVE_GAME_DIR : String = "res://saves"
 const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
+const DEFAULT_SETTINGS_PATH : String = "res://default_settings.cfg"
 
 const TILE_SIZE := Vector2(24, 24)
 const JUMP_MAX_DIST := Vector2(6, 2)
@@ -33,8 +34,6 @@ var solo_mode : bool = false setget set_solo_mode, get_solo_mode
 
 var save_slot : int = 0
 
-var config_file = ConfigFile.new()
-
 #### ACCESSORS ####
 
 func _set_current_seed(value: int):
@@ -54,16 +53,33 @@ func get_solo_mode() -> bool: return solo_mode
 #### BUILT-IN ####
 
 func _ready():
-	var _err = EVENTS.connect("level_ready", self, "_on_level_ready")
-	_err = EVENTS.connect("level_finished", self, "_on_level_finished")
-	_err = EVENTS.connect("seed_change_query", self, "_on_seed_change_query")
-	_err = EVENTS.connect("new_game", self, "_on_new_game")
+	var _err = EVENTS.connect("level_ready", self, "_on_level_ready_event")
+	_err = EVENTS.connect("gameover", self, "_on_gameover_event")
+	_err = EVENTS.connect("level_finished", self, "_on_level_finished_event")
+	_err = EVENTS.connect("seed_change_query", self, "_on_seed_change_query_event")
+	_err = EVENTS.connect("new_game", self, "_on_new_game_event")
+	_err = EVENTS.connect("checkpoint_reached", self, "_on_checkpoint_reached_event")
+	
+	# Create the default settings
+	if !DirNavHelper.is_file_existing(DEFAULT_SETTINGS_PATH):
+		GameSaver.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
 	
 	DirNavHelper.empty_folder(SAVED_LEVEL_DIR)
+	load_default_settings()
 	
 	# Generate the chapters
 	ChapterGenerator.create_chapters(ChapterGenerator.chapter_dir_path, chapters_array)
 	new_chapter() # Set the current chapter to be the first one
+
+#### START GAME ####
+
+func continue_game():
+	if GameLoader.find_corresponding_save_file(SAVE_GAME_DIR, save_slot) != "":
+		load_slot(save_slot)
+	else:
+		var slot = GameLoader.find_first_save_file(SAVE_GAME_DIR, NB_SAVE_SLOT)
+		load_slot(slot)
+	goto_world_map()
 
 
 #### SCENE CHANGE ####
@@ -79,19 +95,19 @@ func goto_last_level():
 		print("GAME.goto_last_level needs a previous_level. previous level is currently null")
 		return
 
-	var loaded_from_save : bool = false
+	var loaded_from_save : bool = find_saved_level(last_level_name) != ""
 	var level_scene : PackedScene
-	var level_to_load_path : String = current_chapter.find_level_path(last_level_name)
 	
+	var level_to_load_path : String = current_chapter.find_level_path(last_level_name)
 	if level_to_load_path == "":
 		level_to_load_path = find_level_in_chapter_array(last_level_name)
 	
 	# If no save of the current level exists, reload the same scene
 	if level_to_load_path == "":
-		print_debug("No level with the name " + last_level_name + " has been found in any chapter of the game")
-	else:
-		level_scene = load(level_to_load_path)
-		loaded_from_save = true
+		push_error("No level with the name " + last_level_name + " has been found in any chapter of the game")
+		return
+	
+	level_scene = load(level_to_load_path)
 	
 	var __ = get_tree().change_scene_to(level_scene)
 
@@ -161,8 +177,20 @@ func gameover():
 	if !current_scene is Level:
 		return
 	
-	current_scene.set_process(false)
+	yield(get_tree().create_timer(1.0), "timeout")
+	
+	if current_scene != null:
+		current_scene.set_process(false)
+	
 	var __ = get_tree().change_scene_to(MENUS.menu_dict["GameOver"])
+
+
+func find_saved_level(level_name: String) -> String:
+	var levels_array = DirNavHelper.fetch_dir_content(SAVED_LEVEL_DIR, DirNavHelper.DIR_FETCH_MODE.FILE_ONLY)
+	for level_file in levels_array:
+		if level_name.is_subsequence_ofi(level_file):
+			return level_file
+	return ""
 
 
 #### LOGIC ####
@@ -185,8 +213,15 @@ func update_current_level_index(level : Level):
 
 func load_slot(slot_id: int):
 	GameLoader.load_save_slot(SAVE_GAME_DIR, slot_id, progression)
-	save_slot = GameLoader.get_cfg_property_value(SAVE_GAME_DIR, "slot_id", slot_id)
+	save_slot = GameLoader.get_save_property_value(SAVE_GAME_DIR, "slot_id", slot_id)
+	
+	# Set the selected slot as the default slot for the next time the game is runned
+	GameSaver.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
 
+
+func load_default_settings():
+	var config_file : ConfigFile = GameLoader.load_config_file(DEFAULT_SETTINGS_PATH)
+	save_slot = GameLoader.get_cfg_property_value(config_file, "slot_id")
 
 #### INPUTS ####
 
@@ -223,30 +258,34 @@ func _input(_event):
 
 
 # Called when a level is finished: wait for the transition to be finished
-func _on_level_finished(level : Level):
+func _on_level_finished_event(level : Level):
 	progression.append_visited_level(level)
 	GameSaver.save_game_in_slot(progression, SAVE_GAME_DIR, save_slot, save_data.settings)
 	goto_world_map()
 
 
 # Called when the level is ready, correct
-func _on_level_ready(level : Level):
+func _on_level_ready_event(level : Level):
 	last_level_name = level.get_name()
 	update_current_level_index(level)
 
 
 # When a player reach a checkpoint
-func _on_checkpoint_reached(level: Level, checkpoint_id: int):
+func _on_checkpoint_reached_event(level: Level, checkpoint_id: int):
 	if checkpoint_id + 1 > GAME.progression.checkpoint:
 		progression.checkpoint = checkpoint_id + 1
 	
 	LevelSaver.save_level_properties_as_json(save_data.level_property_to_serialize, SAVED_LEVEL_DIR, level)
 
 
-func _on_seed_change_query(new_seed: int):
+func _on_gameover_event():
+	gameover()
+
+
+func _on_seed_change_query_event(new_seed: int):
 	_set_current_seed(new_seed)
 
 
-func _on_new_game():
+func _on_new_game_event():
 	goto_level(0)
-	save_slot = GameLoader.find_first_slot_available(SAVED_LEVEL_DIR, NB_SAVE_SLOT)
+	save_slot = GameLoader.find_first_empty_slot(SAVED_LEVEL_DIR, NB_SAVE_SLOT)
