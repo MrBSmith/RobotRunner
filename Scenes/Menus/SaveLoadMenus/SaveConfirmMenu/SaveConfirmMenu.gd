@@ -53,17 +53,17 @@ func update_menu_labels():
 
 
 func update_current_save_informations():
-	var target_cfg_save_time = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "time", save_id)
+	var target_cfg_save_time = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "time", save_id)
 	label_csavetime_node.text = get_save_time(target_cfg_save_time)
 	label_csavelevel_node.text = label_csavelevel_node.text + "Level " + str(GAME.progression.get_last_level_id() + 1)
 
 
 func update_target_save_informations():
 	var target_cfg_save_time : Dictionary = {}
-	target_cfg_save_time = GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "time", save_id)
+	target_cfg_save_time = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "time", save_id)
 	label_tsavename_node.text = get_save_time(target_cfg_save_time)
 
-	label_tsavelevel_node.text += "Level " + str(GameLoader.get_cfg_property_value(GAME.SAVE_GAME_DIR, "level_id",save_id))
+	label_tsavelevel_node.text += "Level " + str(GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "level_id",save_id))
 
 
 func get_save_time(save_time_dict: Dictionary) -> String:

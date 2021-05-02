@@ -8,6 +8,7 @@ export var debug : bool = false
 const SAVE_GAME_DIR : String = "res://saves"
 const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
+const DEFAULT_SETTINGS_PATH : String = "res://default_settings.cfg"
 
 const TILE_SIZE := Vector2(24, 24)
 const JUMP_MAX_DIST := Vector2(6, 2)
@@ -32,8 +33,6 @@ var current_seed : int = 0 setget _set_current_seed, get_current_seed
 var solo_mode : bool = false setget set_solo_mode, get_solo_mode
 
 var save_slot : int = 0
-
-var config_file = ConfigFile.new()
 
 #### ACCESSORS ####
 
@@ -61,11 +60,26 @@ func _ready():
 	_err = EVENTS.connect("new_game", self, "_on_new_game_event")
 	_err = EVENTS.connect("checkpoint_reached", self, "_on_checkpoint_reached_event")
 	
+	# Create the default settings
+	if !DirNavHelper.is_file_existing(DEFAULT_SETTINGS_PATH):
+		GameSaver.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
+	
 	DirNavHelper.empty_folder(SAVED_LEVEL_DIR)
+	load_default_settings()
 	
 	# Generate the chapters
 	ChapterGenerator.create_chapters(ChapterGenerator.chapter_dir_path, chapters_array)
 	new_chapter() # Set the current chapter to be the first one
+
+#### START GAME ####
+
+func continue_game():
+	if GameLoader.find_corresponding_save_file(SAVE_GAME_DIR, save_slot) != "":
+		load_slot(save_slot)
+	else:
+		var slot = GameLoader.find_first_save_file(SAVE_GAME_DIR, NB_SAVE_SLOT)
+		load_slot(slot)
+	goto_world_map()
 
 
 #### SCENE CHANGE ####
@@ -165,7 +179,9 @@ func gameover():
 	
 	yield(get_tree().create_timer(1.0), "timeout")
 	
-	current_scene.set_process(false)
+	if current_scene != null:
+		current_scene.set_process(false)
+	
 	var __ = get_tree().change_scene_to(MENUS.menu_dict["GameOver"])
 
 
@@ -197,8 +213,15 @@ func update_current_level_index(level : Level):
 
 func load_slot(slot_id: int):
 	GameLoader.load_save_slot(SAVE_GAME_DIR, slot_id, progression)
-	save_slot = GameLoader.get_cfg_property_value(SAVE_GAME_DIR, "slot_id", slot_id)
+	save_slot = GameLoader.get_save_property_value(SAVE_GAME_DIR, "slot_id", slot_id)
+	
+	# Set the selected slot as the default slot for the next time the game is runned
+	GameSaver.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
 
+
+func load_default_settings():
+	var config_file : ConfigFile = GameLoader.load_config_file(DEFAULT_SETTINGS_PATH)
+	save_slot = GameLoader.get_cfg_property_value(config_file, "slot_id")
 
 #### INPUTS ####
 
@@ -265,4 +288,4 @@ func _on_seed_change_query_event(new_seed: int):
 
 func _on_new_game_event():
 	goto_level(0)
-	save_slot = GameLoader.find_first_slot_available(SAVED_LEVEL_DIR, NB_SAVE_SLOT)
+	save_slot = GameLoader.find_first_empty_slot(SAVED_LEVEL_DIR, NB_SAVE_SLOT)
