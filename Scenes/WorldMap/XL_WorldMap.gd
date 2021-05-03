@@ -26,12 +26,12 @@ func _ready() -> void:
 	if !Engine.editor_hint && current_level != null:
 		generate_pulsing_light(current_level)
 	
-	var visited_levels = GAME.progression.visited_levels
-	var last_level_id = GAME.progression.get_last_level_id()
-	var last_level_path = GAME.current_chapter.get_level_path(last_level_id)
+		var visited_levels = GAME.progression.visited_levels
+		var last_level_id = GAME.progression.get_last_level_id()
+		var last_level_path = GAME.current_chapter.get_level_path(last_level_id)
 	
-	apply_current_progression(visited_levels, last_level_path)
-	fade_transition_node.fade(1.0, FadeTransition.FADE_MODE.FADE_IN)
+		apply_current_progression(visited_levels, last_level_path)
+		fade_transition_node.fade(1.0, FadeTransition.FADE_MODE.FADE_IN)
 
 
 #### VIRTUALS ####
