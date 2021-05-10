@@ -2,6 +2,7 @@
 
 [ext_resource path="res://BabaGodotLib/UI/Menu/MenuBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Menus/ScreenTitle/Sprites/TitleScreenXL.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/GUI/TextField.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Menus/ScreenTitle/Scripts/ScreenTitleMenu.gd" type="Script" id=5]
 [ext_resource path="res://BabaGodotLib/Shaders/Glitch/Glitch.shader" type="Shader" id=7]
 [ext_resource path="res://BabaGodotLib/Shaders/Glitch/GlitchEffect.tscn" type="PackedScene" id=8]
@@ -9,6 +10,7 @@
 [ext_resource path="res://Scenes/Fog/CosmeticFog/Fog.shader" type="Shader" id=10]
 [ext_resource path="res://Scenes/Menus/ScreenTitle/Sprites/RobotHead.png" type="Texture" id=11]
 [ext_resource path="res://Global/Lights/Light500.png" type="Texture" id=12]
+[ext_resource path="res://BabaGodotLib/UI/Menu/OptionButtons/MenuOptionBase.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Fog/CosmeticFog/FogNoise1.tres" type="Texture" id=14]
 [ext_resource path="res://Scenes/Fog/CosmeticFog/FogNoise2.tres" type="Texture" id=15]
 
@@ -188,7 +190,6 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-default_text = ""
 
 [node name="Quit" parent="VBoxContainer/VBoxContainer" index="4" instance=ExtResource( 13 )]
 margin_top = 192.0

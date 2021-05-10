@@ -167,163 +167,51 @@ position = Vector2( -2100, 132 )
 
 [node name="M_IceBlock" parent="InteractivesObjects/IceBlocks/M" index="0" instance=ExtResource( 14 )]
 position = Vector2( 816, 289 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock11" parent="InteractivesObjects/IceBlocks/M" index="1" instance=ExtResource( 14 )]
 position = Vector2( -2456, 145 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock12" parent="InteractivesObjects/IceBlocks/M" index="2" instance=ExtResource( 14 )]
 position = Vector2( -2136, 169 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock13" parent="InteractivesObjects/IceBlocks/M" index="3" instance=ExtResource( 14 )]
 position = Vector2( -2136, 121 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock14" parent="InteractivesObjects/IceBlocks/M" index="4" instance=ExtResource( 14 )]
 position = Vector2( -2088, 167.145 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock15" parent="InteractivesObjects/IceBlocks/M" index="5" instance=ExtResource( 14 )]
 position = Vector2( -1344, 408 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock16" parent="InteractivesObjects/IceBlocks/M" index="6" instance=ExtResource( 14 )]
 position = Vector2( -1056, 96 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock9" parent="InteractivesObjects/IceBlocks/M" index="7" instance=ExtResource( 14 )]
 position = Vector2( 960, 408 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock2" parent="InteractivesObjects/IceBlocks/M" index="8" instance=ExtResource( 14 )]
 position = Vector2( 1056, 72 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock4" parent="InteractivesObjects/IceBlocks/M" index="9" instance=ExtResource( 14 )]
 position = Vector2( 2376, 312 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock6" parent="InteractivesObjects/IceBlocks/M" index="10" instance=ExtResource( 14 )]
 position = Vector2( 2376, 360 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock8" parent="InteractivesObjects/IceBlocks/M" index="11" instance=ExtResource( 14 )]
 position = Vector2( 2784, 288 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock10" parent="InteractivesObjects/IceBlocks/M" index="12" instance=ExtResource( 14 )]
 position = Vector2( 3120, 264 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock7" parent="InteractivesObjects/IceBlocks/M" index="13" instance=ExtResource( 14 )]
 position = Vector2( 2376, 408 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock5" parent="InteractivesObjects/IceBlocks/M" index="14" instance=ExtResource( 14 )]
 position = Vector2( 2280, 432 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="M_IceBlock3" parent="InteractivesObjects/IceBlocks/M" index="15" instance=ExtResource( 14 )]
 position = Vector2( 1224, 456 )
-z_as_relative = false
-mode = 1
-gravity_scale = 10.0
-contacts_reported = 1
-contact_monitor = true
-sleeping = true
-linear_damp = 1.0
 
 [node name="EarthBlockBase" parent="InteractivesObjects/EarthBlocks/S" index="0" instance=ExtResource( 11 )]
 position = Vector2( 3084, 492 )
@@ -378,28 +266,22 @@ position = Vector2( -1056, 168 )
 
 [node name="Water" parent="InteractivesObjects/WaterTiles" index="0" instance=ExtResource( 10 )]
 position = Vector2( 585.101, 477.957 )
-group_name = ""
 pool_size = Vector2( 200.364, 79.405 )
 
 [node name="Water2" parent="InteractivesObjects/WaterTiles" index="1" instance=ExtResource( 10 )]
 position = Vector2( 2688, 375.073 )
-group_name = ""
 pool_size = Vector2( 200, 68.898 )
 
 [node name="Water3" parent="InteractivesObjects/WaterTiles" index="2" instance=ExtResource( 10 )]
 position = Vector2( -3234.95, 220 )
-group_name = ""
 pool_size = Vector2( 253.449, 60.504 )
 
 [node name="Water4" parent="InteractivesObjects/WaterTiles" index="3" instance=ExtResource( 10 )]
 position = Vector2( -2461.68, 499.246 )
-group_name = ""
 pool_size = Vector2( 748.09, 83.953 )
 
 [node name="Lava" parent="InteractivesObjects/LavaTiles" index="0" instance=ExtResource( 1 )]
 position = Vector2( 1812, 441.406 )
-group_name = ""
-empty_part = 48.0
 pool_size = Vector2( 512, 150 )
 
 [node name="GreatDoor" parent="InteractivesObjects/GreatDoorGroup" index="0" instance=ExtResource( 13 )]

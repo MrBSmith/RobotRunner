@@ -74,14 +74,6 @@ func load_save(slot_id : int):
 	GAME.load_slot(slot_id)
 	GAME.goto_world_map()
 
-
-func overwrite_slot(slot_id : int):
-	var chosen_slot_path = GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, slot_id)
-	DirNavHelper.delete_folder(chosen_slot_path)
-	GAME.save_slot = slot_id
-	GAME.goto_level(0)
-	queue_free()
-
 #### VIRTUALS #### 
 
 
@@ -117,5 +109,7 @@ func _on_menu_option_chose(option: MenuOptionsBase):
 			navigate_sub_menu(MENUS.menu_dict["ScreenTitle"].instance())
 		_:
 			var slot_id = option.get_index() + 1
-			if overwrite_mode: overwrite_slot(slot_id)
+			GAME.save_slot = slot_id
+#			if overwrite_mode: overwrite_slot(slot_id)
+			if overwrite_mode: navigate_sub_menu(MENUS.menu_dict["SaveConfirmMenu"].instance())
 			else: load_save(slot_id)
