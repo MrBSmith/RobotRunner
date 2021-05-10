@@ -3,6 +3,7 @@
 [ext_resource path="res://Scenes/Events/BaseScene/TriggerAreaBase.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 23.7861, 2.48927 )
 
 [node name="TriggerArea" type="Area2D"]
 script = ExtResource( 1 )

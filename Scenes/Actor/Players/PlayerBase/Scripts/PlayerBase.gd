@@ -49,7 +49,6 @@ func _ready():
 	_err = connect("layer_change", self, "on_layer_change")
 	add_to_group("Players")
 
-
 #### LOGIC ####
 
 

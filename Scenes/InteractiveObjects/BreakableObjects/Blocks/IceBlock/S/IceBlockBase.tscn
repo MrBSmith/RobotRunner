@@ -3,11 +3,9 @@
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/Blocks/BreakableBlockBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/Blocks/IceBlock/Sound/BreakIce.wav" type="AudioStream" id=2]
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/Blocks/IceBlock/S/IceBlockBase.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/Blocks/IceBlock/S/Smallice.png" type="Texture" id=4]
 
-[sub_resource type="StreamTexture" id=1]
-load_path = "res://.import/Smallice.png-66dce34a692e82e4a965162695fb0af8.stex"
-
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 2
 emission_box_extents = Vector3( 10, 10, 1 )
 flag_disable_z = true
@@ -32,13 +30,13 @@ explosion_impulse = 80.0
 
 [node name="Sprite" parent="." index="0"]
 light_mask = 1024
-texture = SubResource( 1 )
+texture = ExtResource( 4 )
 
 [node name="AudioStreamPlayer" parent="." index="2"]
 stream = ExtResource( 2 )
 
 [node name="Particles2D" parent="." index="3"]
-process_material = SubResource( 2 )
+process_material = SubResource( 1 )
 
 [node name="CollisionShape2D" parent="AwakeArea" index="0"]
 position = Vector2( -0.113628, -14.6841 )

@@ -30,7 +30,7 @@ func _ready():
 
 # Each time an area is triggered, check if every area is triggered
 # If it is the case, call the event
-func on_area_triggered():
+func on_area_triggered(_body):
 	if are_every_area_triggered():
 		event()
 

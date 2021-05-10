@@ -40,9 +40,11 @@ func enter_state():
 
 
 # Reset the jump tolerance and jump buffered bools to ensure no unwanted behaviours
-func _exit_state():
+func exit_state():
 	jump_tolerance = false
 	jump_buffered = false
+	owner.remove_impulse("bounce")
+	owner.remove_force("PlatformInertia")
 
 
 func update_state(_delta):
@@ -51,6 +53,10 @@ func update_state(_delta):
 			return "Jump"
 		else:
 			return "Idle"
+	elif owner.ignore_gravity:
+		return "Idle"
+	else:
+		return
 
 
 #### INPUTS ####

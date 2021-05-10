@@ -288,4 +288,4 @@ func _on_seed_change_query_event(new_seed: int):
 
 func _on_new_game_event():
 	goto_level(0)
-	save_slot = GameLoader.find_first_empty_slot(SAVED_LEVEL_DIR, NB_SAVE_SLOT)
+	save_slot = GameLoader.find_first_empty_slot(SAVE_GAME_DIR, NB_SAVE_SLOT)

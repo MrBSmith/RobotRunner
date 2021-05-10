@@ -159,11 +159,11 @@ position = Vector2( 3108, 228 )
 [node name="IceBlockBase4" parent="InteractivesObjects/IceBlocks/S" index="3" instance=ExtResource( 15 )]
 position = Vector2( 3132, 228 )
 
-[node name="IceBlockBase5" parent="InteractivesObjects/IceBlocks/S" index="4" instance=ExtResource( 15 )]
-position = Vector2( -2100, 132 )
-
-[node name="IceBlockBase6" parent="InteractivesObjects/IceBlocks/S" index="5" instance=ExtResource( 15 )]
+[node name="IceBlockBase6" parent="InteractivesObjects/IceBlocks/S" index="4" instance=ExtResource( 15 )]
 position = Vector2( -2076, 132 )
+
+[node name="IceBlockBase7" parent="InteractivesObjects/IceBlocks/S" index="5" instance=ExtResource( 15 )]
+position = Vector2( -2100, 132 )
 
 [node name="M_IceBlock" parent="InteractivesObjects/IceBlocks/M" index="0" instance=ExtResource( 14 )]
 position = Vector2( 816, 289 )
@@ -266,28 +266,22 @@ position = Vector2( -1056, 168 )
 
 [node name="Water" parent="InteractivesObjects/WaterTiles" index="0" instance=ExtResource( 10 )]
 position = Vector2( 585.101, 477.957 )
-group_name = ""
 pool_size = Vector2( 200.364, 79.405 )
 
 [node name="Water2" parent="InteractivesObjects/WaterTiles" index="1" instance=ExtResource( 10 )]
 position = Vector2( 2688, 375.073 )
-group_name = ""
 pool_size = Vector2( 200, 68.898 )
 
 [node name="Water3" parent="InteractivesObjects/WaterTiles" index="2" instance=ExtResource( 10 )]
 position = Vector2( -3234.95, 220 )
-group_name = ""
 pool_size = Vector2( 253.449, 60.504 )
 
 [node name="Water4" parent="InteractivesObjects/WaterTiles" index="3" instance=ExtResource( 10 )]
 position = Vector2( -2461.68, 499.246 )
-group_name = ""
 pool_size = Vector2( 748.09, 83.953 )
 
 [node name="Lava" parent="InteractivesObjects/LavaTiles" index="0" instance=ExtResource( 1 )]
 position = Vector2( 1812, 441.406 )
-group_name = ""
-empty_part = 48.0
 pool_size = Vector2( 512, 150 )
 
 [node name="GreatDoor" parent="InteractivesObjects/GreatDoorGroup" index="0" instance=ExtResource( 13 )]

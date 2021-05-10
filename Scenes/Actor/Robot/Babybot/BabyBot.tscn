@@ -10,11 +10,11 @@
 [ext_resource path="res://Scenes/Actor/Players/Inputs.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/States/BabyBotIdleState.gd" type="Script" id=9]
 
-
 [node name="BabyBot" instance=ExtResource( 1 )]
 z_index = 0
 script = ExtResource( 6 )
 max_speed = 60.0
+ignore_gravity = true
 
 [node name="Hidden" type="Node" parent="StatesMachine" index="0"]
 script = ExtResource( 4 )

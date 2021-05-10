@@ -18,6 +18,7 @@ offset = Vector2( 25, -4 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
+one_way_collision = false
 
 [node name="AudioStreamPlayer" parent="StatesMachine/Jump" index="0"]
 pitch_scale = 1.71

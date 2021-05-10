@@ -17,7 +17,7 @@ func _ready():
 
 # Check if the character is falling, before it triggers fall state
 func update_state(_delta):
-	if !owner.is_on_floor():
+	if !owner.is_on_floor() and !owner.ignore_gravity:
 		return "Fall"
 
 	# Chage state to move if the player is moving horizontaly
@@ -29,7 +29,7 @@ func update_state(_delta):
 # Triggers the Idle aniamtion when entering the state,
 # If the character was falling before, triggers the landing animation before
 func enter_state():
-	if !owner.is_on_floor():
+	if !owner.is_on_floor() and !owner.ignore_gravity:
 		states_machine.set_state("Fall")
 	
 	var animations_array = animated_sprite.get_sprite_frames().get_animation_names()

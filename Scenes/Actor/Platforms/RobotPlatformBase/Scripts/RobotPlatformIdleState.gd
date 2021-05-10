@@ -1,5 +1,5 @@
 extends ActorStateBase
-class_name RobotPlatformMovingIdleState
+class_name RobotPlatformBaseIdleState
 
 #### ACCESSORS ####
 

@@ -1,6 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/Actor/Platforms/Moving/MovingPlatform.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Actor/Platforms/MovingPlatforms/Rolling/MovingPlatform.png" type="Texture" id=1]
+
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
