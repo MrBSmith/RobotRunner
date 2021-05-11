@@ -619,16 +619,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Actor/Robot/NPCRobotBase.gd"
 }, {
-"base": "PushdownAutomata",
-"class": "NestedPushdownAutomata",
-"language": "GDScript",
-"path": "res://BabaGodotLib/Absract/StateMachine/PushdownAutomata/NestedPushdownAutomata.gd"
-}, {
-"base": "StatesMachine",
-"class": "NestedStatesMachine",
-"language": "GDScript",
-"path": "res://BabaGodotLib/Absract/StateMachine/NestedStatesMachine.gd"
-}, {
 "base": "LineData",
 "class": "NormalLineData",
 "language": "GDScript",
@@ -914,6 +904,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/Actor/States/ActorState/TurnBasedStates/TB_ActorMoveState.gd"
 }, {
+"base": "TRPG_ActorStateBase",
+"class": "TRPG_ActionState",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Absract/StateMachine/AbstractStates/TRPG_ActionState.gd"
+}, {
 "base": "TRPG_DamagableObject",
 "class": "TRPG_Actor",
 "language": "GDScript",
@@ -1172,8 +1167,6 @@ _global_script_class_icons={
 "MetaChunckGenData": "",
 "MovingPlatform": "",
 "NPCRobotBase": "",
-"NestedPushdownAutomata": "",
-"NestedStatesMachine": "",
 "NormalLineData": "",
 "OptionDataContainer": "",
 "OptionLineContainer": "",
@@ -1231,6 +1224,7 @@ _global_script_class_icons={
 "TB_ActorIdleState": "",
 "TB_ActorJumpState": "",
 "TB_ActorMoveState": "",
+"TRPG_ActionState": "",
 "TRPG_Actor": "",
 "TRPG_ActorStateBase": "",
 "TRPG_DamagableObject": "",

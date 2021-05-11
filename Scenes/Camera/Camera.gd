@@ -236,8 +236,8 @@ func shake(magnitude: float, duration: float):
 
 #### SIGNAL RESPONSES ####
 
-func on_state_changed(state_name: String):
-	var string = "State: " + state_name
+func on_state_changed(state: Object):
+	var string = "State: " + state.name if state != null else "State: "
 	state_label.set_text(string)
 
 
