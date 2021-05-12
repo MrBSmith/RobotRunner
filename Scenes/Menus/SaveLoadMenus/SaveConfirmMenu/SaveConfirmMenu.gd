@@ -3,8 +3,6 @@ class_name SaveConfirmMenu
 
 onready var currentsave_container_node = $SaveInformations/CurrentSave
 onready var lineedit_csavename_node = $SaveInformations/CurrentSave/HBoxContainer/SaveNameField
-onready var label_csavetime_node = $SaveInformations/CurrentSave/c_savetime
-onready var label_csavelevel_node = $SaveInformations/CurrentSave/c_savelevel
 
 onready var targetsave_container_node = $SaveInformations/TargetSave
 onready var label_tsavename_node = $SaveInformations/TargetSave/t_savename
@@ -42,9 +40,7 @@ func cancel():
 
 #### LOGIC ####
 
-func update_menu_labels():
-	update_current_save_informations()
-	
+func update_menu_labels():	
 	# User will not overwrite any save if he confirms, hide targetsave container
 	if save_folder_path == "": 
 		targetsave_container_node.visible = false
@@ -52,20 +48,15 @@ func update_menu_labels():
 	else: 
 		update_target_save_informations()
 
-
-func update_current_save_informations():
-	var target_cfg_save_time = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "time", GAME.save_slot)
-	label_csavetime_node.text = get_save_time(target_cfg_save_time)
-	label_csavelevel_node.text = label_csavelevel_node.text + "Level " + str(GAME.progression.get_last_level_id() + 1)
-
-
 func update_target_save_informations():
+	label_tsavename_node.text = "Targetted Save Name: " + GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "save_name", GAME.save_slot)
+	
 	var target_cfg_save_time : Dictionary = {}
 	target_cfg_save_time = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "time", GAME.save_slot)
-	label_tsavename_node.text = get_save_time(target_cfg_save_time)
-
-	label_tsavelevel_node.text += "Level " + str(GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "level_id",GAME.save_slot))
-
+	label_tsavetime_node.text = "Targetted Save Time: " + get_save_time(target_cfg_save_time)
+	
+	var target_save_last_visited_level : String = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "last_level", GAME.save_slot)
+	label_tsavelevel_node.text = "Targetted Save Level: " +  GAME.current_chapter.get_level_name(target_save_last_visited_level)
 
 func get_save_time(save_time_dict: Dictionary) -> String:
 	var save_time := ""

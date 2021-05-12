@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://BabaGodotLib/Fonts/BoldCapsPixel.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://BabaGodotLib/UI/Menu/OptionButtons/MenuOptionBase.tscn" type="PackedScene" id=2]
@@ -27,10 +27,6 @@ size = 24
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=6]
-size = 24
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=7]
 size = 24
 font_data = ExtResource( 1 )
 
@@ -80,8 +76,8 @@ __meta__ = {
 }
 
 [node name="CurrentSave" type="VBoxContainer" parent="SaveInformations" index="0"]
-margin_right = 405.0
-margin_bottom = 75.0
+margin_right = 372.0
+margin_bottom = 65.0
 size_flags_horizontal = 2
 
 [node name="c_savenamestaken" type="Label" parent="SaveInformations/CurrentSave" index="0"]
@@ -95,22 +91,22 @@ valign = 1
 uppercase = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SaveInformations/CurrentSave" index="1"]
-margin_right = 405.0
+margin_right = 372.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 
 [node name="c_savename" type="Label" parent="SaveInformations/CurrentSave/HBoxContainer" index="0"]
 margin_top = 5.0
-margin_right = 151.0
+margin_right = 118.0
 margin_bottom = 24.0
 custom_fonts/font = SubResource( 2 )
-text = "Current name : "
+text = "Save name : "
 valign = 1
 uppercase = true
 
 [node name="SaveNameField" type="LineEdit" parent="SaveInformations/CurrentSave/HBoxContainer" index="1"]
-margin_left = 155.0
-margin_right = 405.0
+margin_left = 122.0
+margin_right = 372.0
 margin_bottom = 29.0
 rect_min_size = Vector2( 250, 0 )
 custom_fonts/font = SubResource( 3 )
@@ -119,7 +115,7 @@ max_length = 32
 expand_to_text_length = true
 context_menu_enabled = false
 clear_button_enabled = true
-placeholder_text = "SAVE NAME"
+placeholder_text = " NAME"
 caret_blink = true
 caret_blink_speed = 0.5
 script = ExtResource( 5 )
@@ -127,29 +123,10 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="c_savetime" type="Label" parent="SaveInformations/CurrentSave" index="2"]
-margin_top = 33.0
-margin_right = 405.0
-margin_bottom = 52.0
-custom_fonts/font = SubResource( 4 )
-text = "Current Time : "
-valign = 1
-uppercase = true
-
-[node name="c_savelevel" type="Label" parent="SaveInformations/CurrentSave" index="3"]
-margin_top = 56.0
-margin_right = 405.0
-margin_bottom = 75.0
-custom_fonts/font = SubResource( 1 )
-text = "Current Level : "
-valign = 1
-uppercase = true
-
 [node name="TargetSave" type="VBoxContainer" parent="SaveInformations" index="1"]
 margin_left = 565.0
-margin_top = 5.0
 margin_right = 800.0
-margin_bottom = 70.0
+margin_bottom = 65.0
 size_flags_vertical = 4
 alignment = 2
 
@@ -158,7 +135,7 @@ margin_right = 225.0
 margin_bottom = 19.0
 size_flags_horizontal = 0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "Targetted Save name : "
 valign = 1
 uppercase = true
@@ -169,7 +146,7 @@ margin_right = 225.0
 margin_bottom = 42.0
 size_flags_horizontal = 0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 text = "Targetted Save Time : "
 valign = 1
 uppercase = true
@@ -180,7 +157,7 @@ margin_right = 235.0
 margin_bottom = 65.0
 size_flags_horizontal = 0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 text = "Targetted Save Level : "
 valign = 1
 uppercase = true
