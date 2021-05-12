@@ -49,7 +49,7 @@ func _input(event):
 	
 	if is_current_state():
 		if event.is_action_pressed(inputs_node.get_input("Jump")):
-			states_machine.set_state("Jump")
+			owner.jump()
 		
 		elif event.is_action_pressed(inputs_node.get_input("Teleport")):
 			owner.emit_signal("layer_change")
