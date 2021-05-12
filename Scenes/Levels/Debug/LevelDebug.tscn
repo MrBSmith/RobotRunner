@@ -34,10 +34,10 @@ sfx_dict = {
 }
 
 [node name="StartingPointP1" parent="." index="3" instance=ExtResource( 3 )]
-position = Vector2( 1280, 1136 )
+position = Vector2( 168, 1199.68 )
 
 [node name="StartingPointP2" parent="." index="4" instance=ExtResource( 1 )]
-position = Vector2( 1952, 512 )
+position = Vector2( 264, 1199.68 )
 
 [node name="Back" parent="Map/Background/Paralaxe" index="0"]
 motion_scale = Vector2( 0.5, 0.5 )
@@ -161,7 +161,8 @@ __meta__ = {
 }
 
 [node name="MovingPlatform" parent="InteractivesObjects/Platform/Moving" index="0" instance=ExtResource( 17 )]
-position = Vector2( 88, 1208 )
+position = Vector2( 84, 1212 )
+collision/safe_margin = 0.08
 max_speed = 300.0
 ignore_gravity = true
 movement_type = 1
@@ -191,7 +192,7 @@ __meta__ = {
 
 [node name="FlyingPlatform" parent="InteractivesObjects/Platform/Flying" index="0" instance=ExtResource( 20 )]
 position = Vector2( 80, 1088 )
-ignore_gravity = true
+collision/safe_margin = 0.01
 movement_type = 1
 
 [node name="Path" type="Node2D" parent="InteractivesObjects/Platform/Flying/FlyingPlatform" index="4"]

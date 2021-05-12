@@ -28,7 +28,7 @@ func _ready() -> void:
 #### LOGIC ####
 
 func move_to_level(level_node: LevelNode, interpol: bool = true):
-	var current_state_name = $StatesMachine.get_state().name
+	var current_state_name = $StatesMachine.get_state_name()
 	
 	if current_state_name == "Move":
 		return

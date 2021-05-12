@@ -21,7 +21,7 @@ export var interactables := PoolStringArray(["InteractiveObject"])
 export var jump_force : int = -490
 export (int, 0, 1000) var push = 2
 
-const GRAVITY : Vector2 = Vector2(0,30)
+const GRAVITY : Vector2 = Vector2(0, 30)
 export var ignore_gravity : bool = false
 
 var snap_vector = Vector2(0, 10)
@@ -68,7 +68,8 @@ func get_velocity() -> Vector2:
 	return velocity
 
 func set_state(value): $StatesMachine.set_state(value)
-func get_state() -> String: return $StatesMachine.get_state_name()
+func get_state() -> Object: return $StatesMachine.get_state()
+func get_state_name() -> String: return $StatesMachine.get_state_name()
 
 func get_extents() -> Vector2: return $CollisionShape2D.get_shape().get_extents()
 
@@ -146,7 +147,7 @@ func compute_velocity():
 		reduce_impulse_force_by_friction(key)
 		
 	velocity.x = last_direction.x * current_speed
-		
+	
 	if !ignore_gravity:
 		velocity += GRAVITY
 	
@@ -194,10 +195,10 @@ func apply_movement(delta):
 	velocity = move_and_slide_with_snap(velocity, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
 	
 func correct_jump_corner(delta):
-	var state = get_state()
+	var state_name = get_state_name()
 	
 	# Jump corner correction
-	if state == "Jump":
+	if state_name == "Jump":
 		# Make a movement test to check collisions preemptively
 		var corner_col = move_and_collide(velocity * delta, true, true, true)
 		if corner_col != null:
@@ -205,12 +206,14 @@ func correct_jump_corner(delta):
 			if col_normal.x < 0.2 && col_normal.x > -0.2:
 				var __ = corner_correct(20, delta, corner_col)
 
+
 func step_correct(delta):
 	# Check for little horizontal gap (few pxls)
-	var state = get_state()
-	if velocity.x != 0 && (state == "Idle" or state == "Move"):
+	var state_name = get_state_name()
+	if velocity.x != 0 && (state_name in ["Idle", "Move"]):
 		if ground_frontal_collision(delta):
 			return
+
 
 func apply_force_to_colliding_bodies():
 	# Apply force to bodies it hit
@@ -218,6 +221,7 @@ func apply_force_to_colliding_bodies():
 		var collision = get_slide_collision(index)
 		if collision.collider.is_in_group("MovableBodies"):
 			collision.collider.apply_central_impulse(-collision.normal * push)
+
 
 func jump(dir := Vector2.ZERO):
 	set_direction(dir)

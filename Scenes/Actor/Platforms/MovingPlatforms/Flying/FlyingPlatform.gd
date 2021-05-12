@@ -6,12 +6,22 @@ func get_class() -> String: return "FlyingPlatform"
 
 #### ACCESSORS ####
 
+
 #### BUILT-IN ####
+
 
 #### VIRTUALS ####
 
+
 #### LOGIC ####
 
+# function override
+func compute_velocity():
+	velocity = last_direction * current_speed
+	if !ignore_gravity:
+		velocity += GRAVITY
+
+	emit_signal("velocity_changed", velocity)
 
 
 #### INPUTS ####

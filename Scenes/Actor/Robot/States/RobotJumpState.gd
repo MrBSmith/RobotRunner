@@ -18,7 +18,7 @@ func enter_state():
 		owner.ignore_gravity = false
 
 	# Apply the jump force
-	owner.velocity.y += owner.jump_force
+	owner.velocity.y = owner.jump_force
 
 func _on_animation_finished():
 	if is_current_state():

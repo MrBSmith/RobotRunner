@@ -5,6 +5,7 @@ enum MOVEMENT_TYPE{ONESHOT = 0, PINGPONG, LOOP}
 
 export(MOVEMENT_TYPE) var movement_type
 export var path_disabled : bool = false
+
 var path = []
 var next_point_index : int = 0
 var path_finished : bool = false
@@ -52,14 +53,7 @@ func is_path_finished(destination: PathPoint) -> bool:
 
 func wait_for_delay(value : float):
 	is_waiting = true
-	var t = Timer.new()
-	t.set_wait_time(value)
-	t.set_one_shot(true)
-	self.add_child(t)
-	t.start()
-	set_state("Idle")
-	yield(t, "timeout")
-	t.queue_free()
+	yield(get_tree().create_timer(value), "timeout")
 	is_waiting = false
 	set_state($StatesMachine.previous_state)
 	
@@ -69,14 +63,6 @@ func get_point_world_position(point: Position2D) -> Vector2:
 	return original_pos + point.get_global_position()
 
 #### VIRTUALS ####
-
-func compute_velocity():
-	# Compute velocity
-	velocity = last_direction * current_speed
-	if !ignore_gravity:
-		velocity += GRAVITY
-	
-	emit_signal("velocity_changed", velocity)
 
 func apply_movement(delta):
 	var next_point_position
@@ -91,10 +77,7 @@ func apply_movement(delta):
 	if (velocity.length() * delta) > next_point_distance:
 		set_global_position(next_point_position)
 	else:
-		#Collision test required
-		position += velocity * delta
-		#Move and slide doesn't work, it blocks the platform from moving when a solid is on top of it
-#		velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.79, false)
+		velocity = move_and_slide(velocity, Vector2.UP, false, 4, 0.79, false)
 
 #### INPUTS ####
 

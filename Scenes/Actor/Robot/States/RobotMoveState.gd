@@ -10,7 +10,7 @@ func update_state(_delta : float):
 	var last_point : PathPoint = owner.path[owner.next_point_index]
 	if owner.is_arrived(owner.get_point_world_position(last_point)):
 
-		# Trigger the event of the last point the free it
+		# Trigger the event of the last point then free it
 		var event_array = last_point.get_event()
 		if event_array != [] && len(event_array) != 0:
 			var method = event_array.pop_front()

@@ -27,5 +27,5 @@ func _on_body_exited(body : Node):
 		if "ignore_gravity" in body:
 			if body.ignore_gravity:
 				body.ignore_gravity = false
-		if body.get_state() == "Jump":
+		if body.get_state_name() == "Jump":
 			body.add_force("PlatformInertia",velocity)

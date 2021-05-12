@@ -14,7 +14,6 @@
 z_index = 0
 script = ExtResource( 6 )
 max_speed = 60.0
-ignore_gravity = true
 
 [node name="Hidden" type="Node" parent="StatesMachine" index="0"]
 script = ExtResource( 4 )
@@ -33,6 +32,9 @@ script = ExtResource( 5 )
 
 [node name="Fall" type="Node" parent="StatesMachine" index="6"]
 script = ExtResource( 7 )
+
+[node name="StateLabel" parent="StatesMachine" index="8"]
+visible = true
 
 [node name="Input" type="Node" parent="." index="5"]
 script = ExtResource( 8 )
