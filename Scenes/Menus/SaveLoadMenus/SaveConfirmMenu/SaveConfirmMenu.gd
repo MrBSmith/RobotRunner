@@ -55,7 +55,8 @@ func update_target_save_informations():
 	target_cfg_save_time = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "time", GAME.save_slot)
 	label_tsavetime_node.text = "Targetted Save Time: " + get_save_time(target_cfg_save_time)
 	
-	label_tsavelevel_node.text = "Targetted Save Level: " +  GAME.current_chapter.get_level_name(GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "last_level", GAME.save_slot))
+	var target_save_last_visited_level : String = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "last_level", GAME.save_slot)
+	label_tsavelevel_node.text = "Targetted Save Level: " +  GAME.current_chapter.get_level_name(target_save_last_visited_level)
 
 func get_save_time(save_time_dict: Dictionary) -> String:
 	var save_time := ""
