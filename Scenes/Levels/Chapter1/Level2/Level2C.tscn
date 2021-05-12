@@ -30,8 +30,6 @@
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=29]
 
-
-
 [sub_resource type="Curve2D" id=1]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 124.587, 289.079, 0, 0, 0, 0, 4047.73, 277.073 )
@@ -44,6 +42,15 @@ position = Vector2( 96, 288 )
 
 [node name="StartingPointP2" parent="." index="1" instance=ExtResource( 1 )]
 position = Vector2( 64, 192 )
+
+[node name="DebrisGenerator" parent="." index="4"]
+sfx_dict = {
+"great_hit": "res://Scenes/SFX/Feedbacks/GreatHit/GreatHit.tscn",
+"normal_explosion": "res://Scenes/SFX/NormalExplosion/NormalExplosion.tscn",
+"normal_hit": "res://Scenes/SFX/Feedbacks/NormalHit/NormalHit.tscn",
+"small_explosion": "res://Scenes/SFX/SmallExplosion/SmallExplosion.tscn",
+"xion_explosion": "res://Scenes/SFX/XionExplosion/XionExplosion.tscn"
+}
 
 [node name="Light" parent="Map/Background/Paralaxe/Lights" index="0" instance=ExtResource( 4 )]
 position = Vector2( 288.235, 293.109 )
@@ -224,30 +231,44 @@ pool_size = Vector2( 200, 69.736 )
 
 [node name="Lava" parent="InteractivesObjects/LavaTiles" index="0" instance=ExtResource( 25 )]
 position = Vector2( 1768, 384 )
+group_name = ""
+empty_part = 48.0
 pool_size = Vector2( 512, 120 )
 
 [node name="Lava3" parent="InteractivesObjects/LavaTiles" index="1" instance=ExtResource( 25 )]
 position = Vector2( 4072, 697.209 )
+group_name = ""
+empty_part = 48.0
 pool_size = Vector2( 340.789, 48 )
 
 [node name="Lava4" parent="InteractivesObjects/LavaTiles" index="2" instance=ExtResource( 25 )]
 position = Vector2( 4376, 699.895 )
+group_name = ""
+empty_part = 48.0
 pool_size = Vector2( 300, 48 )
 
 [node name="Lava5" parent="InteractivesObjects/LavaTiles" index="3" instance=ExtResource( 25 )]
 position = Vector2( 4608, 691.926 )
+group_name = ""
+empty_part = 48.0
 pool_size = Vector2( 100, 44.307 )
 
 [node name="Lava6" parent="InteractivesObjects/LavaTiles" index="4" instance=ExtResource( 25 )]
 position = Vector2( 3984, 236.051 )
+group_name = ""
+empty_part = 48.0
 pool_size = Vector2( 367.635, 70 )
 
 [node name="Lava7" parent="InteractivesObjects/LavaTiles" index="5" instance=ExtResource( 25 )]
 position = Vector2( 4400, 198.531 )
+group_name = ""
+empty_part = 48.0
 pool_size = Vector2( 300, 110 )
 
 [node name="Lava2" parent="InteractivesObjects/LavaTiles" index="6" instance=ExtResource( 25 )]
 position = Vector2( 2784, 688.381 )
+group_name = ""
+empty_part = 48.0
 pool_size = Vector2( 512, 87.791 )
 
 [node name="G1" type="Node2D" parent="InteractivesObjects/Buttons&Doors" index="0"]
@@ -496,10 +517,18 @@ position = Vector2( 4456, 592 )
 [node name="2TilesBreakablePlateform10" parent="InteractivesObjects/Platform/2 Tiles" index="7" instance=ExtResource( 21 )]
 position = Vector2( 4080, 660 )
 
+[node name="XionCloud" parent="." index="7" instance=ExtResource( 20 )]
+position = Vector2( -1162.65, 244.964 )
+scale = Vector2( 1.72418, 1.35929 )
+time_before_moving = 30.0
+
+[node name="CloudPath" parent="XionCloud" index="4" instance=ExtResource( 19 )]
+position = Vector2( 242.118, 7.31703 )
+scale = Vector2( 0.629866, 0.168739 )
+curve = SubResource( 1 )
+
 [node name="Checkpoint" parent="Events/Checkpoints" index="0" instance=ExtResource( 26 )]
 position = Vector2( 1272, 496 )
-triggers_on_level_start = false
-event_disabled = false
 
 [node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint" index="3" instance=ExtResource( 28 )]
 position = Vector2( -32, -16 )
@@ -509,8 +538,6 @@ position = Vector2( 32, -16 )
 
 [node name="Checkpoint2" parent="Events/Checkpoints" index="1" instance=ExtResource( 26 )]
 position = Vector2( 2352, 88 )
-triggers_on_level_start = false
-event_disabled = false
 
 [node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint2" index="3" instance=ExtResource( 28 )]
 position = Vector2( -32, -16 )
@@ -520,8 +547,6 @@ position = Vector2( 32, -16 )
 
 [node name="Checkpoint3" parent="Events/Checkpoints" index="2" instance=ExtResource( 26 )]
 position = Vector2( 3888, 664 )
-triggers_on_level_start = false
-event_disabled = false
 
 [node name="NewStartingPoint1" parent="Events/Checkpoints/Checkpoint3" index="3" instance=ExtResource( 28 )]
 position = Vector2( -24, -16 )
@@ -533,13 +558,3 @@ position = Vector2( -176, -544 )
 position = Vector2( 4224, 336 )
 scale = Vector2( 1, 32.84 )
 camera_new_zoom = Vector2( 2, 2 )
-
-[node name="XionCloud" parent="." index="7" instance=ExtResource( 20 )]
-position = Vector2( -1162.65, 244.964 )
-scale = Vector2( 1.72418, 1.35929 )
-time_before_moving = 30.0
-
-[node name="CloudPath" parent="XionCloud" index="4" instance=ExtResource( 19 )]
-position = Vector2( 242.118, 7.31703 )
-scale = Vector2( 0.629866, 0.168739 )
-curve = SubResource( 1 )
