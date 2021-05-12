@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Actor/Platforms/MovingPlatforms/Flying/RobotPlatformFlyingMoveState.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Actor/Platforms/MovingPlatforms/Flying/FlyingPlatform.gd" type="Script" id=2]
 [ext_resource path="res://BabaGodotLib/Absract/StateMachine/StateLabel.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Actor/Platforms/RobotPlatformBase/RobotPlatformBase.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Actor/Platforms/MovingPlatforms/Flying/FlyingPlatformAnimation.tres" type="SpriteFrames" id=5]
-[ext_resource path="res://Scenes/Actor/Platforms/MovingPlatforms/MovingPlatform.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.25, 24 )
@@ -13,7 +13,7 @@ extents = Vector2( 4.25, 24 )
 extents = Vector2( 23.9907, 5.39063 )
 
 [node name="FlyingPlatform" instance=ExtResource( 4 )]
-script = ExtResource( 6 )
+script = ExtResource( 2 )
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 5 )

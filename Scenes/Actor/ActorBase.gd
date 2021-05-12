@@ -21,7 +21,7 @@ export var interactables := PoolStringArray(["InteractiveObject"])
 export var jump_force : int = -490
 export (int, 0, 1000) var push = 2
 
-const GRAVITY : Vector2 = Vector2(0,30)
+const GRAVITY : Vector2 = Vector2(0, 30)
 export var ignore_gravity : bool = false
 
 var snap_vector = Vector2(0, 10)
@@ -146,7 +146,7 @@ func compute_velocity():
 		reduce_impulse_force_by_friction(key)
 		
 	velocity.x = last_direction.x * current_speed
-		
+	
 	if !ignore_gravity:
 		velocity += GRAVITY
 	

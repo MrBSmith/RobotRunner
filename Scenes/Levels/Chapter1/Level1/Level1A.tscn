@@ -336,7 +336,7 @@ method_name = "overheat"
 position = Vector2( 372, -48 )
 
 [node name="BabyHammer1" parent="InteractivesObjects/Robot" index="1" instance=ExtResource( 23 )]
-position = Vector2( -4092, 468 )
+position = Vector2( -4092.56, 468 )
 default_state = "Rise"
 
 [node name="Path" type="Node2D" parent="InteractivesObjects/Robot/BabyHammer1" index="5"]
