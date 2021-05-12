@@ -105,11 +105,11 @@ func _input(event):
 		if is_on_floor() or jump_tolerance:
 			jump()
 		
-		elif get_state() == "Fall":
+		elif get_state_name() == "Fall":
 			$StatesMachine/Fall.jump_buffer_timer_node.start()
 			jump_buffered = true
 	
-	if get_state() != "Action":
+	if get_state_name() != "Action":
 		if Input.is_action_just_pressed(inputs_node.get_input("Teleport")):
 			emit_signal("layer_change")
 		

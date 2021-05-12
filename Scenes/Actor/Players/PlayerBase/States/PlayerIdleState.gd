@@ -33,8 +33,9 @@ func enter_state():
 	var animations_array = animated_sprite.get_sprite_frames().get_animation_names()
 	owner.current_snap = owner.snap_vector
 	
-	if states_machine.previous_state != null && states_machine.previous_state.name == "Fall"\
-	 	&& "StartFalling" in animations_array:
+	var previous_state = states_machine.previous_state
+	
+	if previous_state != null && previous_state.name == "Fall" && "StartFalling" in animations_array:
 		animated_sprite.play("Land")
 	else:
 		animated_sprite.play(self.name)

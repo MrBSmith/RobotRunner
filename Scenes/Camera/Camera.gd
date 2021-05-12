@@ -37,8 +37,8 @@ func is_class(value: String) -> bool: return value == "GameCamera" or .is_class(
 func get_class() -> String: return "GameCamera"
 
 func set_state(state_name: String): state_machine_node.set_state(state_name)
-func get_state() -> StateBase: return state_machine_node.get_state()
-func get_state_name() -> String: return get_state().get_name()
+func get_state() -> Object: return state_machine_node.get_state()
+func get_state_name() -> String: return state_machine_node.get_state_name()
 
 func set_debug(value: bool):
 	if value != debug:
@@ -53,7 +53,7 @@ func set_debug(value: bool):
 		
 		var state = get_state()
 		if state != null:
-		 state.set_debug_panel_visible(debug)
+			state.set_debug_panel_visible(debug)
 
 func is_debug() -> bool: return debug
 
