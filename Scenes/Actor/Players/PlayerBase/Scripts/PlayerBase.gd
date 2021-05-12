@@ -19,6 +19,9 @@ var level_node : Node
 
 var active : bool = true
 
+var jump_tolerance : bool = false
+var jump_buffered : bool = false
+
 #### ACCESSORS ####
 
 func is_class(value: String): return value == "Player" or .is_class(value)
@@ -79,6 +82,7 @@ func destroy():
 	EVENTS.emit_signal("gameover")
 	queue_free()
 
+
 #### INPUT RESPONSES ####
 
 func _input(event):
@@ -96,6 +100,21 @@ func _input(event):
 	
 	elif event.is_action_released(inputs_node.get_input("MoveRight")):
 		dirRight = 0
+	
+	elif Input.is_action_just_pressed(inputs_node.get_input("Jump")):
+		if is_on_floor() or jump_tolerance:
+			jump()
+		
+		elif get_state() == "Fall":
+			$StatesMachine/Fall.jump_buffer_timer_node.start()
+			jump_buffered = true
+	
+	if get_state() != "Action":
+		if Input.is_action_just_pressed(inputs_node.get_input("Teleport")):
+			emit_signal("layer_change")
+		
+		elif Input.is_action_just_pressed(inputs_node.get_input("Action")):
+			set_state("Action")
 	
 	set_direction(Vector2(dirRight - dirLeft, 0))
 
@@ -119,3 +138,13 @@ func on_layer_change():
 	if teleport_node != null:
 		teleport_node.teleport_layer(self)
 		$LayerChangeAudio.play()
+
+
+# When the tolerence time is finished, reset the jump_tolerance to false
+func on_tolerence_timeout():
+	jump_tolerance = false
+
+
+# When the jump buffer time is finished, reset the jump_buffer to false
+func on_jump_buffer_timeout():
+	jump_buffered = false

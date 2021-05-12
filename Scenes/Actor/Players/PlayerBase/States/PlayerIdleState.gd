@@ -4,13 +4,11 @@ class_name PlayerIdleState
 ### IDLE STATE ###
 
 var SFX_node : Node
-var inputs_node : Node
 
 # Setup method
 func _ready():
 	yield(owner, "ready")
 	SFX_node = owner.get_node("SFX")
-	inputs_node = owner.get_node("Inputs")
 	
 	var _err = animated_sprite.connect("animation_finished", self, "on_animation_finished")
 
@@ -42,24 +40,8 @@ func enter_state():
 		animated_sprite.play(self.name)
 
 
-# Define the actions the player can do in this state
-func _input(event):
-	if !owner.active:
-		return
-	
-	if is_current_state():
-		if event.is_action_pressed(inputs_node.get_input("Jump")):
-			owner.jump()
-		
-		elif event.is_action_pressed(inputs_node.get_input("Teleport")):
-			owner.emit_signal("layer_change")
-		
-		elif event.is_action_pressed(inputs_node.get_input("Action")):
-			states_machine.set_state("Action")
-
-
 # Triggers the idle animation when the slanding is over
 func on_animation_finished():
 	if is_current_state():
 		if animated_sprite.get_animation() == "Land":
-				animated_sprite.play(self.name)
+			animated_sprite.play(self.name)

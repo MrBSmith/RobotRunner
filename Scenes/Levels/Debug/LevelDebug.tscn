@@ -77,8 +77,6 @@ position = Vector2( 672, 488 )
 
 [node name="GrosLacDeLaveImmense" parent="InteractivesObjects/LavaTiles" index="0" instance=ExtResource( 6 )]
 position = Vector2( 1744, 1232 )
-group_name = ""
-empty_part = 48.0
 
 [node name="BlueTeleporter" parent="InteractivesObjects/TeleportGroups" index="0" instance=ExtResource( 11 )]
 position = Vector2( 512, 492 )
