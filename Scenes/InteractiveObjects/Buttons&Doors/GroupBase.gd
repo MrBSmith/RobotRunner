@@ -23,7 +23,7 @@ func open_all_doors(open: bool = true) -> void:
 func are_all_button_triggered() -> bool:
 	for child in get_children():
 		if child.is_class("DoorButton"):
-			if !child.is_push():
+			if !child.is_pushed():
 				return false
 	return true
 

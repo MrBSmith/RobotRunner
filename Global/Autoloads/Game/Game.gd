@@ -64,7 +64,14 @@ func _ready():
 	if !DirNavHelper.is_file_existing(DEFAULT_SETTINGS_PATH):
 		GameSaver.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
 	
-	DirNavHelper.empty_folder(SAVED_LEVEL_DIR)
+	if !DirNavHelper.is_dir_existing(SAVED_LEVEL_DIR):
+		DirNavHelper.create_dir(SAVED_LEVEL_DIR)
+	else:
+		DirNavHelper.empty_folder(SAVED_LEVEL_DIR)
+	
+	if !DirNavHelper.is_dir_existing(SAVE_GAME_DIR):
+		DirNavHelper.create_dir(SAVE_GAME_DIR)
+	
 	load_default_settings()
 	
 	# Generate the chapters
