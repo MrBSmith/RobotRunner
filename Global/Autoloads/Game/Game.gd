@@ -223,6 +223,13 @@ func load_default_settings():
 	var config_file : ConfigFile = GameLoader.load_config_file(DEFAULT_SETTINGS_PATH)
 	save_slot = GameLoader.get_cfg_property_value(config_file, "slot_id")
 
+
+func save_level(level: Level = null):
+	if level == null:
+		level = get_tree().get_current_scene()
+	LevelSaver.save_level_properties_as_json(save_data.level_property_to_serialize, SAVED_LEVEL_DIR, level)
+
+
 #### INPUTS ####
 
 # Manage the robot switching in solo mode
@@ -275,7 +282,7 @@ func _on_checkpoint_reached_event(level: Level, checkpoint_id: int):
 	if checkpoint_id + 1 > GAME.progression.checkpoint:
 		progression.checkpoint = checkpoint_id + 1
 	
-	LevelSaver.save_level_properties_as_json(save_data.level_property_to_serialize, SAVED_LEVEL_DIR, level)
+	save_level(level)
 
 
 func _on_gameover_event():

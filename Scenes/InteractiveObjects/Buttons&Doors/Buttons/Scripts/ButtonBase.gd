@@ -11,22 +11,22 @@ onready var collision_shape_node = get_node("CollisionShape2D")
 var collision_shape_initial_pos : Vector2
 var is_ready : bool = false
 
-export var push : bool = false setget set_push, is_push
+export var pushed : bool = false setget set_pushed, is_pushed
 
 #### ACCESSORS ####
 
 func is_class(value: String): return value == "DoorButton" or .is_class(value)
 func get_class() -> String: return "DoorButton"
 
-func set_push(value: bool):
+func set_pushed(value: bool):
 	if !is_ready:
 		yield(self, "ready")
 		if collision_shape_node != null && !collision_shape_node.is_disabled() && value:
 			trigger(true, true)
 	
-	push = value
+	pushed = value
 
-func is_push() -> bool: return push
+func is_pushed() -> bool: return pushed
 
 #### BUILT-IN ####
 
@@ -70,6 +70,7 @@ func _on_body_entered(body):
 func _on_animation_finished():
 	var current_frame = animation_node.get_frame()
 	var triggered = current_frame != 0
+	set_pushed(triggered)
 	
 	if triggered:
 		emit_signal("triggered")
@@ -77,7 +78,6 @@ func _on_animation_finished():
 		emit_signal("untriggered")
 	
 	collision_shape_node.set_disabled(triggered)
-	set_push(triggered)
 
 
 # Move the shape at the same time as the sprite
