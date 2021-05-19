@@ -21,9 +21,8 @@ func get_class() -> String: return "DoorButton"
 func set_push(value: bool):
 	if !is_ready:
 		yield(self, "ready")
-	
-	if collision_shape_node != null && !collision_shape_node.is_disabled() && value:
-		trigger(true)
+		if collision_shape_node != null && !collision_shape_node.is_disabled() && value:
+			trigger(true, true)
 	
 	push = value
 
@@ -33,6 +32,10 @@ func is_push() -> bool: return push
 
 
 func _ready():
+	var _err = area2D_node.connect("body_entered", self, "_on_body_entered")
+	_err = animation_node.connect("frame_changed", self, "_on_frame_changed")
+	_err = animation_node.connect("animation_finished", self, "_on_animation_finished")
+	
 	collision_shape_initial_pos = collision_shape_node.position
 	is_ready = true
 
@@ -40,24 +43,17 @@ func _ready():
 #### LOGIC ####
 
 
-func setup():
-	# Connect signals
-	var _err = connect("triggered", get_parent(), "_on_button_triggered")
-	_err = area2D_node.connect("body_entered", self, "on_body_entered")
-	_err = animation_node.connect("frame_changed", self, "on_frame_change")
-	_err = animation_node.connect("animation_finished", self, "on_animation_finished")
 
-
-func trigger(untrigger: bool = false, instant: bool = false):
+func trigger(trigger: bool = true, instant: bool = false):
 	if !instant:
-		animation_node.play("Trigger", untrigger)
+		animation_node.play("Trigger", !trigger)
 	else:
-		if untrigger:
-			animation_node.set_frame(0)
-		else:
+		if trigger:
 			animation_node.set_frame(animation_node.get_sprite_frames().get_frame_count("Trigger") - 1)
-		
-		collision_shape_node.call_deferred("set_disabled", !untrigger)
+		else:
+			animation_node.set_frame(0)
+	
+	collision_shape_node.call_deferred("set_disabled", trigger)
 
 
 
@@ -65,15 +61,14 @@ func trigger(untrigger: bool = false, instant: bool = false):
 
 
 # Play the animation when a player touch the button
-func on_body_entered(body):
+func _on_body_entered(body):
 	if body.is_class("ActorBase"):
 		trigger()
 
 
 # When the animation is finished, emit the signal, and disable the collision shape
-func on_animation_finished():
+func _on_animation_finished():
 	var current_frame = animation_node.get_frame()
-	
 	var triggered = current_frame != 0
 	
 	if triggered:
@@ -86,7 +81,12 @@ func on_animation_finished():
 
 
 # Move the shape at the same time as the sprite
-func on_frame_change():
+func _on_frame_changed():
+	var current_frame = animation_node.get_frame()
+	if current_frame == 0:
+		animation_node.emit_signal("animation_finished")
+		animation_node.stop()
+	
 	var new_pos = collision_shape_initial_pos
 	new_pos.y += (animation_node.get_frame() * 2) + 2
 	collision_shape_node.set_position(new_pos)

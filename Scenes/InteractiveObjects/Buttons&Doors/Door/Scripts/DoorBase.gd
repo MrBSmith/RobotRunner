@@ -5,7 +5,7 @@ onready var animation_node = get_node_or_null("Animation")
 onready var collision_node = get_node_or_null("CollisionShape2D")
 onready var audio_node = get_node_or_null("AudioStreamPlayer")
 
-export var open : bool = false setget set_open, is_open
+export var openned : bool = false setget set_openned, is_openned
 export var need_delay : bool = false
 export var open_delay : float = 0.0
 
@@ -18,16 +18,16 @@ var timer_door
 func is_class(value: String): return value == "Door" or .is_class(value)
 func get_class() -> String: return "Door"
 
-func set_open(value: bool):
+func set_openned(value: bool):
 	if !is_ready:
 		yield(self, "ready")
 	
 	if collision_node != null && !collision_node.is_disabled() && value == true:
-		open_door(true)
+		open(true, true)
 	else:
-		open = value
+		openned = value
 
-func is_open() -> bool: return open
+func is_openned() -> bool: return openned
 
 
 #### BUILT-IN ####
@@ -35,51 +35,36 @@ func is_open() -> bool: return open
 func _ready():
 	is_ready = true
 
+
 #### LOGIC ####
 
-func open_door(instant : bool = false):
+func open(open: bool = true, instant : bool = false):
 	#If the door has a delay before opening we will create the timer
 	if need_delay:
 		yield(get_tree().create_timer(open_delay), "timeout")
 	
 	if animation_node != null:
-		if !instant:
-			animation_node.play("Open")
-		else:
-			animation_node.set_frame(animation_node.get_sprite_frames().get_frame_count("Open") - 1)
-	
-	if collision_node != null:
-		collision_node.set_disabled(true)
-	
-	if audio_node != null and !instant:
-		audio_node.play()
-	
-	set_open(true)
-
-
-func close_door(instant: bool = false) -> void:
-	if animation_node != null:
 		var sprite_frame = animation_node.get_sprite_frames()
+		var has_close_anim = sprite_frame.has_animation("Close")
+		var anim_to_play = "Open" if open or !has_close_anim else "Close"
+		var play_backwards : bool = !has_close_anim && !open
+		
 		if !instant:
-			if sprite_frame.has_animation("Close"):
-				animation_node.play("Close")
-			else:
-				# If there is no Close animation, just play the Open animation backwards 
-				animation_node.play("Open", true)
+			animation_node.play(anim_to_play, play_backwards)
 		else:
-			if sprite_frame.has_animation("Close"):
-				animation_node.set_frame(animation_node.get_sprite_frames().get_frame_count("Close") - 1)
-			else:
+			if play_backwards:
 				animation_node.set_frame(0)
+			else:
+				var last_frame = sprite_frame.get_frame_count(anim_to_play) - 1
+				animation_node.set_frame(last_frame)
 	
 	if collision_node != null:
-		collision_node.set_disabled(false)
+		collision_node.set_disabled(open)
 	
 	if audio_node != null and !instant:
 		audio_node.play()
 	
-	set_open(false)
-
+	set_openned(open)
 
 
 #### SIGNAL RESPONSES ####

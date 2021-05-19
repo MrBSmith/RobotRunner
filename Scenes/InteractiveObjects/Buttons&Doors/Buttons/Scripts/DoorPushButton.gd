@@ -29,4 +29,4 @@ func _ready() -> void:
 
 func _on_body_exited(body: Node2D):
 	if body.is_class("ActorBase"):
-		trigger(true)
+		trigger(false)
