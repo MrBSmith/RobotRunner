@@ -6,7 +6,6 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
-debug = true
 
 [node name="Progression" type="Node" parent="."]
 script = ExtResource( 2 )
