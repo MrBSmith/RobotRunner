@@ -16,7 +16,7 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/BD_Group.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/BlueButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/BlueDoor.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/Scripts/DoorPushButton.gd" type="Script" id=17]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/PushButton/PushButton.tscn" type="PackedScene" id=17]
 
 [node name="LevelDebug" instance=ExtResource( 4 )]
 
@@ -30,10 +30,10 @@ sfx_dict = {
 }
 
 [node name="StartingPointP1" parent="." index="3" instance=ExtResource( 3 )]
-position = Vector2( 168, 1199.68 )
+position = Vector2( 150.204, 1200 )
 
 [node name="StartingPointP2" parent="." index="4" instance=ExtResource( 1 )]
-position = Vector2( 264, 1199.68 )
+position = Vector2( 246.204, 1200 )
 
 [node name="Back" parent="Map/Background/Paralaxe" index="0"]
 motion_scale = Vector2( 0.5, 0.5 )
@@ -98,13 +98,12 @@ position = Vector2( 490.201, 168.15 )
 [node name="BlueDoor" parent="InteractivesObjects/Buttons&Doors/BD_Group2" index="0" instance=ExtResource( 16 )]
 position = Vector2( 552, 1200 )
 
-[node name="Button" parent="InteractivesObjects/Buttons&Doors/BD_Group2" index="1" instance=ExtResource( 15 )]
-position = Vector2( 444, 1216 )
-script = ExtResource( 17 )
+[node name="PushButton" parent="InteractivesObjects/Buttons&Doors/BD_Group2" index="1" instance=ExtResource( 17 )]
+position = Vector2( 372, 1220 )
+push_delay = 0.0
 
-[node name="Button2" parent="InteractivesObjects/Buttons&Doors/BD_Group2" index="2" instance=ExtResource( 15 )]
-position = Vector2( 360, 1216 )
-script = ExtResource( 17 )
+[node name="PushButton2" parent="InteractivesObjects/Buttons&Doors/BD_Group2" index="2" instance=ExtResource( 17 )]
+position = Vector2( 444, 1220 )
 
 [node name="RedButton" parent="InteractivesObjects/GreatDoorGroup" index="0" instance=ExtResource( 2 )]
 position = Vector2( 784, 232 )

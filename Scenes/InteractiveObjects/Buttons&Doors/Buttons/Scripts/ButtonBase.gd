@@ -8,9 +8,11 @@ onready var animation_node = get_node("Animation")
 onready var area2D_node = get_node("Area2D")
 onready var collision_shape_node = get_node("CollisionShape2D")
 
+
 var collision_shape_initial_pos : Vector2
 var is_ready : bool = false
 
+export var push_delay : float = 0.0
 export var pushed : bool = false setget set_pushed, is_pushed
 
 #### ACCESSORS ####
@@ -46,14 +48,14 @@ func _ready():
 
 func trigger(trigger: bool = true, instant: bool = false):
 	if !instant:
+		if push_delay != 0.0:
+			yield(get_tree().create_timer(push_delay), "timeout")
 		animation_node.play("Trigger", !trigger)
 	else:
 		if trigger:
 			animation_node.set_frame(animation_node.get_sprite_frames().get_frame_count("Trigger") - 1)
 		else:
 			animation_node.set_frame(0)
-	
-	collision_shape_node.call_deferred("set_disabled", trigger)
 
 
 
@@ -88,5 +90,5 @@ func _on_frame_changed():
 		animation_node.stop()
 	
 	var new_pos = collision_shape_initial_pos
-	new_pos.y += (animation_node.get_frame() * 2) + 2
+	new_pos.y += (animation_node.get_frame() * 2) + 1
 	collision_shape_node.set_position(new_pos)
