@@ -39,7 +39,9 @@ func _ready():
 #### LOGIC ####
 
 func open(open: bool = true, instant : bool = false):
-	#If the door has a delay before opening we will create the timer
+	if open == openned:
+		return
+	
 	if need_delay:
 		yield(get_tree().create_timer(open_delay), "timeout")
 	

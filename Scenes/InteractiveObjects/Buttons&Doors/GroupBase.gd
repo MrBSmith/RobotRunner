@@ -30,4 +30,5 @@ func _on_button_triggered() -> void:
 
 
 func _on_button_untriggered() -> void:
+	nb_button_triggered -= 1
 	open_all_doors(false)

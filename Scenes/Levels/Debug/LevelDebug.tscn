@@ -102,6 +102,10 @@ position = Vector2( 552, 1200 )
 position = Vector2( 444, 1216 )
 script = ExtResource( 17 )
 
+[node name="Button2" parent="InteractivesObjects/Buttons&Doors/BD_Group2" index="2" instance=ExtResource( 15 )]
+position = Vector2( 360, 1216 )
+script = ExtResource( 17 )
+
 [node name="RedButton" parent="InteractivesObjects/GreatDoorGroup" index="0" instance=ExtResource( 2 )]
 position = Vector2( 784, 232 )
 
