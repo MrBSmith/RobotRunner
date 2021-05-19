@@ -10,6 +10,7 @@ extents = Vector2( 24.0036, 23.9946 )
 
 [node name="Animation" parent="." index="0"]
 frames = ExtResource( 2 )
+animation = "Open"
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )

@@ -1,7 +1,8 @@
 extends StaticBody2D
 class_name DoorButton
 
-signal button_trigger
+signal triggered
+signal untriggered
 
 onready var animation_node = get_node("Animation")
 onready var area2D_node = get_node("Area2D")
@@ -41,19 +42,22 @@ func _ready():
 
 func setup():
 	# Connect signals
-	var _err = connect("button_trigger", get_parent(), "button_triggered")
+	var _err = connect("triggered", get_parent(), "_on_button_triggered")
 	_err = area2D_node.connect("body_entered", self, "on_body_entered")
 	_err = animation_node.connect("frame_changed", self, "on_frame_change")
 	_err = animation_node.connect("animation_finished", self, "on_animation_finished")
 
 
-func trigger(instant: bool = false):
+func trigger(untrigger: bool = false, instant: bool = false):
 	if !instant:
-		animation_node.play()
+		animation_node.play("Trigger", untrigger)
 	else:
-		animation_node.set_frame(animation_node.get_sprite_frames().get_frame_count("default") - 1)
-		collision_shape_node.call_deferred("set_disabled", true)
-
+		if untrigger:
+			animation_node.set_frame(0)
+		else:
+			animation_node.set_frame(animation_node.get_sprite_frames().get_frame_count("Trigger") - 1)
+		
+		collision_shape_node.call_deferred("set_disabled", !untrigger)
 
 
 
@@ -62,15 +66,23 @@ func trigger(instant: bool = false):
 
 # Play the animation when a player touch the button
 func on_body_entered(body):
-	if body.is_class("Player"):
+	if body.is_class("ActorBase"):
 		trigger()
 
 
 # When the animation is finished, emit the signal, and disable the collision shape
 func on_animation_finished():
-	emit_signal("button_trigger")
-	collision_shape_node.set_disabled(true)
-	set_push(true)
+	var current_frame = animation_node.get_frame()
+	
+	var triggered = current_frame != 0
+	
+	if triggered:
+		emit_signal("triggered")
+	else:
+		emit_signal("untriggered")
+	
+	collision_shape_node.set_disabled(triggered)
+	set_push(triggered)
 
 
 # Move the shape at the same time as the sprite

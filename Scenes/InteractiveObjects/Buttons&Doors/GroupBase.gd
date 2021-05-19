@@ -1,5 +1,5 @@
 extends Node2D
-class_name BtnDoorsGroup
+class_name ButtonDoorGroup
 
 onready var children_array : Array = get_children()
 var buttons_to_trigger : Array
@@ -15,7 +15,7 @@ func _ready():
 			nb_buttons += 1
 
 
-func button_triggered():
+func _on_button_triggered():
 	nb_button_triggered += 1
 	if nb_button_triggered >= nb_buttons:
 		for doors in children_array:
