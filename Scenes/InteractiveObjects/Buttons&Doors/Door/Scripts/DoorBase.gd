@@ -5,7 +5,7 @@ onready var animation_node = get_node_or_null("Animation")
 onready var collision_node = get_node_or_null("CollisionShape2D")
 onready var audio_node = get_node_or_null("AudioStreamPlayer")
 
-export var openned : bool = false setget set_openned, is_openned
+export var opened : bool = false setget set_opened, is_opened
 export var need_delay : bool = false
 export var open_delay : float = 0.0
 
@@ -18,16 +18,16 @@ var timer_door
 func is_class(value: String): return value == "Door" or .is_class(value)
 func get_class() -> String: return "Door"
 
-func set_openned(value: bool):
+func set_opened(value: bool):
 	if !is_ready:
 		yield(self, "ready")
 	
 	if collision_node != null && !collision_node.is_disabled() && value == true:
 		open(true, true)
 	else:
-		openned = value
+		opened = value
 
-func is_openned() -> bool: return openned
+func is_opened() -> bool: return opened
 
 
 #### BUILT-IN ####
@@ -39,7 +39,7 @@ func _ready():
 #### LOGIC ####
 
 func open(open: bool = true, instant : bool = false):
-	if open == openned:
+	if open == opened:
 		return
 	
 	if need_delay:
@@ -66,7 +66,7 @@ func open(open: bool = true, instant : bool = false):
 	if audio_node != null and !instant:
 		audio_node.play()
 	
-	set_openned(open)
+	set_opened(open)
 
 
 #### SIGNAL RESPONSES ####

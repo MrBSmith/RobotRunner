@@ -19,7 +19,7 @@ func _ready() -> void:
 
 #### LOGIC ####
 
-func is_button_beeing_pressed(exception_body: Node2D) -> bool:
+func is_button_being_pressed(exception_body: Node2D) -> bool:
 	for body in area2D_node.get_overlapping_bodies():
 		if body == exception_body:
 			continue
@@ -36,5 +36,5 @@ func is_button_beeing_pressed(exception_body: Node2D) -> bool:
 
 func _on_body_exited(body: Node2D):
 	if body.is_class("ActorBase"):
-		if !is_button_beeing_pressed(body):
+		if !is_button_being_pressed(body):
 			trigger(false)
