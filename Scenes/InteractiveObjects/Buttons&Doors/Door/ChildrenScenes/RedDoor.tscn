@@ -7,5 +7,8 @@ extents = Vector2( 23.7974, 23.7134 )
 
 [node name="RedDoor" instance=ExtResource( 1 )]
 
+[node name="Animation" parent="." index="0"]
+animation = "Open"
+
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )

@@ -4,8 +4,8 @@ class_name SaveData
 const level_property_to_serialize = {
 	"Collectable" : [],
 	"BreakableObjectBase" : [],
-	"Door" : ["open"],
-	"DoorButton": ["push"],
+	"Door" : ["opened"],
+	"DoorButton": ["pushed"],
 	"Checkpoint": ["active"]
 }
 

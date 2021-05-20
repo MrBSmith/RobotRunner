@@ -155,7 +155,7 @@ _global_script_classes=[ {
 "path": "res://Scenes/InteractiveObjects/Platform/BreakablePlatform/5Tiles(Base)/BreakablePlateform.gd"
 }, {
 "base": "Node2D",
-"class": "BtnDoorsGroup",
+"class": "ButtonDoorGroup",
 "language": "GDScript",
 "path": "res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd"
 }, {
@@ -343,6 +343,11 @@ _global_script_classes=[ {
 "class": "DoorButton",
 "language": "GDScript",
 "path": "res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/Scripts/ButtonBase.gd"
+}, {
+"base": "DoorButton",
+"class": "DoorPushButton",
+"language": "GDScript",
+"path": "res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/PushButton/DoorPushButton.gd"
 }, {
 "base": "BlockBase",
 "class": "EarthBlock",
@@ -1074,7 +1079,7 @@ _global_script_class_icons={
 "BouncingState": "",
 "BreakableObjectBase": "",
 "BreakablePlatfrom": "",
-"BtnDoorsGroup": "",
+"ButtonDoorGroup": "",
 "CameraDebugState": "",
 "CameraEventBase": "",
 "CameraFollowState": "",
@@ -1112,6 +1117,7 @@ _global_script_class_icons={
 "Disappear": "",
 "Door": "",
 "DoorButton": "",
+"DoorPushButton": "",
 "EarthBlock": "",
 "Event": "",
 "EventsBase": "",

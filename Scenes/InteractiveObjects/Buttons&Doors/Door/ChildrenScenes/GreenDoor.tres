@@ -11,6 +11,6 @@
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
-"name": "default",
+"name": "Open",
 "speed": 10.0
 } ]

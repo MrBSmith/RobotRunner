@@ -1,0 +1,43 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ButtonBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/PushButton/PushButtonSpriteSheet.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/PushButton/DoorPushButton.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 48, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 48, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 48, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 144, 0, 48, 16 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": false,
+"name": "Trigger",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 24, 7.37141 )
+
+[node name="PushButton" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+push_delay = 0.2
+
+[node name="Animation" parent="." index="0"]
+frames = SubResource( 5 )
+animation = "Trigger"
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 6 )

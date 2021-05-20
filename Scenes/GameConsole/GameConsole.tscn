@@ -180,3 +180,10 @@ cmd_name = "TOGGLE_FREE_CAMERA"
 cmd_description = "Set the state of the camera to the given state"
 target = "GAME"
 target_method = "toggle_free_camera_mode"
+
+[node name="SAVE_LEVEL" type="Node" parent="CommandsList"]
+script = ExtResource( 5 )
+cmd_name = "SAVE_LEVEL"
+cmd_description = "Save the current level in a .json file"
+target = "GAME"
+target_method = "save_level"

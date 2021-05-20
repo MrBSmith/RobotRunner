@@ -9,6 +9,6 @@
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": false,
-"name": "default",
+"name": "Trigger",
 "speed": 7.0
 } ]
