@@ -320,6 +320,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="SafetyLock" type="Node2D" parent="InteractivesObjects"]
+
 [node name="Events" type="Node2D" parent="."]
 __meta__ = {
 "_edit_lock_": true
