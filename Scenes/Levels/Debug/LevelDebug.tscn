@@ -153,6 +153,7 @@ position = Vector2( 1336, 920 )
 
 [node name="SafetyLock" parent="InteractivesObjects/SafetyLock" index="0" instance=ExtResource( 17 )]
 position = Vector2( 528, 1200 )
+wanted_class = "MrCold"
 
 [node name="Checkpoint" parent="Events/Checkpoints" index="0" instance=ExtResource( 9 )]
 position = Vector2( 128, 232 )
