@@ -38,7 +38,7 @@ _data = {
 
 [sub_resource type="Curve2D" id=4]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 288, 412, 0, 0, 0, 0, 288, 430, 0, 0, 0, 0, 490.433, 430 )
+"points": PoolVector2Array( 0, 0, 0, 0, 308, 432, 0, 0, 0, 0, 492, 432 )
 }
 
 [sub_resource type="Curve2D" id=5]
@@ -53,7 +53,7 @@ _data = {
 
 [sub_resource type="Curve2D" id=7]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 530.433, 430, 0, 0, 0, 0, 634.275, 430, 0, 0, 0, 0, 634.275, 302.528 )
+"points": PoolVector2Array( 0, 0, 0, 0, 532, 432, 0, 0, 0, 0, 634.275, 432, 0, 0, 0, 0, 634.275, 302.528 )
 }
 
 [sub_resource type="ShaderMaterial" id=8]
@@ -117,35 +117,36 @@ __meta__ = {
 [node name="XL_LevelNode" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 130.105, 306.404 )
-level_scene_path = "res://Scenes/Levels/OldLevels/Level1/Level1A.tscn"
-level_name = "1A"
+level_scene_path = "res://Scenes/Levels/Chapter1/Level1.tscn"
+level_name = "L1"
 
 [node name="XL_LevelNode2" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 364.043, 206.553 )
 level_scene_path = "res://Scenes/Levels/OldLevels/Level1/Level1B.tscn"
-level_name = "1B"
+level_name = "L5"
 
 [node name="XL_LevelNode3" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 288, 432 )
-level_name = "X"
+level_scene_path = "res://Scenes/Levels/Chapter1/Level2.tscn"
+level_name = "L2"
 
 [node name="XL_LevelNode4" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 510.433, 430 )
-level_name = "XX"
+position = Vector2( 512, 432 )
+level_name = "L3"
 
 [node name="XL_LevelNode5" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 634.275, 282.528 )
 level_scene_path = "res://Scenes/Levels/OldLevels/Level1/Level1C.tscn"
-level_name = "1C"
+level_name = "L4"
 
 [node name="XL_LevelNode6" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 475.105, 105.404 )
-level_name = "XXX"
+level_name = "L6"
 
 [node name="Binds" type="Node2D" parent="."]
 __meta__ = {
