@@ -21,7 +21,7 @@ func get_class() -> String: return "Door"
 func set_opened(value: bool):
 	if !is_ready:
 		yield(self, "ready")
-		if collision_node != null && !collision_node.is_disabled() && value == true:
+		if value == true:
 			open(true, true)
 
 	openned = value

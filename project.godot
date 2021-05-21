@@ -824,6 +824,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/SafetyLock/SafetyLock.gd"
 }, {
+"base": "Door",
+"class": "SafetyLockDoor",
+"language": "GDScript",
+"path": "res://Scenes/SafetyLock/SafetyLockDoor/SafetyLockDoor.gd"
+}, {
 "base": "MenuBase",
 "class": "SaveConfirmMenu",
 "language": "GDScript",
@@ -1228,6 +1233,7 @@ _global_script_class_icons={
 "SFX_Explosion": "",
 "SFX_group_base": "",
 "SafetyLock": "",
+"SafetyLockDoor": "",
 "SaveConfirmMenu": "",
 "SaveData": "",
 "SaveLoadButtonBase": "",
