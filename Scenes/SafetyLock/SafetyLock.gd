@@ -22,6 +22,7 @@ func _ready() -> void:
 	var __ = area_node.connect("body_entered", self, "_on_body_entered")
 	__ = area_node.connect("body_exited", self, "_on_body_exited")
 	__ = screen_timer.connect("timeout", self, "_on_screen_timer_timeout")
+	__ = animation_player.connect("animation_finished", self, "_on_animation_player_animation_finished")
 	
 	play_default_screen_animation()
 
@@ -40,25 +41,52 @@ func play_default_screen_animation() -> void:
 		screen_sprite.play(wanted_class)
 
 
+func count_robots(bodies_array: Array) -> int:
+	var count = 0
+	for body in bodies_array:
+		if body.is_class("Player"):
+			count += 1
+	return count
+
+
+func is_wanted_robot(bodies_array: Array) -> bool:
+	for body in bodies_array:
+		if body.is_class(wanted_class):
+			return true
+	return false
+
+
 #### INPUTS ####
 
 
 
 #### SIGNAL RESPONSES ####
 
-func _on_body_entered(body: Node2D) -> void:
-	animation_player.play("LaserMovement")
-	yield(animation_player, "animation_finished")
+func _on_body_entered(_body: Node2D) -> void:
+	if !animation_player.is_playing():
+		animation_player.play("LaserMovement")
+
+
+func _on_animation_player_animation_finished(_anim_name: String) -> void:
+	var bodies = area_node.get_overlapping_bodies()
 	
-	if body.is_class(wanted_class):
+	if count_robots(bodies) > 1 or !is_wanted_robot(bodies):
+		screen_sprite.play("Invalid")
+	else:
 		screen_sprite.play("Valid")
 		in_door.open(!in_door.is_openned())
 		out_door.open(!out_door.is_openned())
-	else:
-		screen_sprite.play("Invalid")
 
 
-func _on_body_exited(_body: Node2D) -> void:
+func _on_body_exited(body: Node2D) -> void:
+	var bodies = area_node.get_overlapping_bodies()
+	
+	for overlapping_body in bodies:
+		if overlapping_body == body:
+			continue
+		if overlapping_body.is_class("Player"):
+			return
+	
 	screen_timer.start()
 
 
