@@ -135,7 +135,6 @@ frames = SubResource( 10 )
 position = Vector2( 0, 40 )
 frames = SubResource( 13 )
 animation = "Laser"
-frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

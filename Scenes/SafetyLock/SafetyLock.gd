@@ -69,13 +69,17 @@ func _on_body_entered(_body: Node2D) -> void:
 
 func _on_animation_player_animation_finished(_anim_name: String) -> void:
 	var bodies = area_node.get_overlapping_bodies()
+	var nb_robots = count_robots(bodies)
 	
-	if count_robots(bodies) > 1 or !is_wanted_robot(bodies):
+	if nb_robots > 1 or !is_wanted_robot(bodies):
 		screen_sprite.play("Invalid")
 	else:
 		screen_sprite.play("Valid")
 		in_door.open(!in_door.is_openned())
 		out_door.open(!out_door.is_openned())
+	
+	if nb_robots == 0:
+		screen_timer.start()
 
 
 func _on_body_exited(body: Node2D) -> void:
