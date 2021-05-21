@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/StartingPoints/StartingPointP2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/RedButton.tscn" type="PackedScene" id=2]
@@ -16,7 +16,8 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/BD_Group.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/BlueButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/BlueDoor.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/PushButton/PushButton.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/SafetyLock/MrColdSafetyLock.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/SafetyLock/MrStonksSafetyLock.tscn" type="PackedScene" id=18]
 
 [node name="LevelDebug" instance=ExtResource( 4 )]
 
@@ -30,10 +31,10 @@ sfx_dict = {
 }
 
 [node name="StartingPointP1" parent="." index="3" instance=ExtResource( 3 )]
-position = Vector2( 254, 212.771 )
+position = Vector2( 156, 1195.18 )
 
 [node name="StartingPointP2" parent="." index="4" instance=ExtResource( 1 )]
-position = Vector2( 350, 212.771 )
+position = Vector2( 252, 1195.18 )
 
 [node name="Back" parent="Map/Background/Paralaxe" index="0"]
 motion_scale = Vector2( 0.5, 0.5 )
@@ -73,8 +74,6 @@ position = Vector2( 672, 488 )
 
 [node name="GrosLacDeLaveImmense" parent="InteractivesObjects/LavaTiles" index="0" instance=ExtResource( 6 )]
 position = Vector2( 1744, 1232 )
-group_name = ""
-empty_part = 48.0
 
 [node name="BlueTeleporter" parent="InteractivesObjects/TeleportGroups" index="0" instance=ExtResource( 11 )]
 position = Vector2( 512, 492 )
@@ -92,18 +91,6 @@ position = Vector2( 413.251, 231.8 )
 
 [node name="BlueDoor" parent="InteractivesObjects/Buttons&Doors/BD_Group" index="1" instance=ExtResource( 16 )]
 position = Vector2( 490.201, 168.15 )
-
-[node name="BD_Group2" parent="InteractivesObjects/Buttons&Doors" index="1" instance=ExtResource( 14 )]
-
-[node name="BlueDoor" parent="InteractivesObjects/Buttons&Doors/BD_Group2" index="0" instance=ExtResource( 16 )]
-position = Vector2( 552, 1200 )
-
-[node name="PushButton" parent="InteractivesObjects/Buttons&Doors/BD_Group2" index="1" instance=ExtResource( 17 )]
-position = Vector2( 372, 1220 )
-push_delay = 0.0
-
-[node name="PushButton2" parent="InteractivesObjects/Buttons&Doors/BD_Group2" index="2" instance=ExtResource( 17 )]
-position = Vector2( 444, 1220 )
 
 [node name="RedButton" parent="InteractivesObjects/GreatDoorGroup" index="0" instance=ExtResource( 2 )]
 position = Vector2( 784, 232 )
@@ -164,6 +151,12 @@ position = Vector2( 848, 1128 )
 
 [node name="Gear8" parent="InteractivesObjects/Collactables/Gears" index="7" instance=ExtResource( 8 )]
 position = Vector2( 1336, 920 )
+
+[node name="MrColdSafetyLock" parent="InteractivesObjects/SafetyLock" index="0" instance=ExtResource( 17 )]
+position = Vector2( 468, 1188 )
+
+[node name="SafetyLock" parent="InteractivesObjects/SafetyLock" index="1" instance=ExtResource( 18 )]
+position = Vector2( 733, 1188 )
 
 [node name="Checkpoint" parent="Events/Checkpoints" index="0" instance=ExtResource( 9 )]
 position = Vector2( 128, 232 )

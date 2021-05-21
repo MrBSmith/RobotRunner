@@ -1,0 +1,144 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Scenes/SafetyLock/SafetyLockDoor/SafetyLockDoor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/SafetyLock/SafetyLock.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/SafetyLock/Sprites/EmptyScreen1.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/SafetyLock/Sprites/InvalidScreen.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/SafetyLock/Sprites/ValidScreen.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/SafetyLock/Sprites/TankScreen.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/SafetyLock/Sprites/HammerScreen.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/SafetyLock/Sprites/Laser.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 19.8679, 23.9155 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 54, 19 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 54, 0, 54, 19 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 54, 19 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 54, 0, 54, 19 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 54, 19 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 7 )
+region = Rect2( 54, 0, 54, 19 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 54, 19 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 6 )
+region = Rect2( 54, 0, 54, 19 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "Valid",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "Invalid",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "MrStonks",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "MrCold",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 78, 7 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 7, 78, 7 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "Laser",
+"speed": 10.0
+} ]
+
+[sub_resource type="Animation" id=14]
+resource_name = "LaserMovement"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Laser:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 40 ), Vector2( 0, -10 ), Vector2( 0, 40 ) ]
+}
+
+[node name="SafetyLock" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="InDoor" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( -52, 0 )
+opened = true
+
+[node name="OutDoor" parent="." instance=ExtResource( 1 )]
+position = Vector2( 52, 0 )
+flip_h = true
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="Backgound" type="Sprite" parent="."]
+
+[node name="ScreenBackground" type="Sprite" parent="."]
+position = Vector2( 1, -26 )
+texture = ExtResource( 3 )
+
+[node name="Screen" type="AnimatedSprite" parent="."]
+position = Vector2( 1, -26 )
+frames = SubResource( 10 )
+
+[node name="Laser" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 40 )
+frames = SubResource( 13 )
+animation = "Laser"
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/LaserMovement = SubResource( 14 )
+
+[node name="ScreenTimer" type="Timer" parent="."]
+one_shot = true
