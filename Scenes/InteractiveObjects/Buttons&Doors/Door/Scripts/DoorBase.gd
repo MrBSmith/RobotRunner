@@ -24,7 +24,7 @@ func set_opened(value: bool):
 		if value == true:
 			open(true, true)
 
-	openned = value
+	opened = value
 
 func is_opened() -> bool: return opened
 
@@ -66,7 +66,7 @@ func open(open: bool = true, instant : bool = false):
 		audio_node.play()
 
 	if !instant:
-		set_openned(open)
+		set_opened(open)
 
 
 #### SIGNAL RESPONSES ####

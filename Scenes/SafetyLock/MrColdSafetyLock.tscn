@@ -6,14 +6,14 @@
 [node name="MrColdSafetyLock" instance=ExtResource( 2 )]
 wanted_class = "MrCold"
 
+[node name="InDoor" parent="." index="0"]
+opened = true
+
 [node name="Backgound" parent="." index="3"]
 texture = ExtResource( 1 )
 
 [node name="Screen" parent="." index="5"]
 playing = true
-
-[node name="Laser" parent="." index="6"]
-frame = 0
 
 [node name="ScreenTimer" parent="." index="8"]
 wait_time = 0.5
