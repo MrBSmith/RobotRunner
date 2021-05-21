@@ -107,6 +107,7 @@ tracks/0/keys = {
 script = ExtResource( 2 )
 
 [node name="InDoor" parent="." instance=ExtResource( 1 )]
+visible = false
 position = Vector2( -52, 0 )
 openned = true
 
@@ -134,7 +135,11 @@ frames = SubResource( 10 )
 position = Vector2( 0, 40 )
 frames = SubResource( 13 )
 animation = "Laser"
+frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/LaserMovement = SubResource( 14 )
+
+[node name="ScreenTimer" type="Timer" parent="."]
+one_shot = true

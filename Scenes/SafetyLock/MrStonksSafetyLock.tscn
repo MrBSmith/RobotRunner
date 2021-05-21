@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/SafetyLock/SafetyLock.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/SafetyLock/Sprites/SafetyLockEarth.png" type="Texture" id=2]
+
+[node name="SafetyLock" instance=ExtResource( 1 )]
+wanted_class = "MrStonks"
+
+[node name="Backgound" parent="." index="3"]
+texture = ExtResource( 2 )
+
+[node name="Laser" parent="." index="6"]
+frame = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/StartingPoints/StartingPointP2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/RedButton.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/BlueButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/BlueDoor.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/SafetyLock/MrColdSafetyLock.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/SafetyLock/MrStonksSafetyLock.tscn" type="PackedScene" id=18]
 
 [node name="LevelDebug" instance=ExtResource( 4 )]
 
@@ -153,6 +154,9 @@ position = Vector2( 1336, 920 )
 
 [node name="MrColdSafetyLock" parent="InteractivesObjects/SafetyLock" index="0" instance=ExtResource( 17 )]
 position = Vector2( 468, 1188 )
+
+[node name="SafetyLock" parent="InteractivesObjects/SafetyLock" index="1" instance=ExtResource( 18 )]
+position = Vector2( 733, 1188 )
 
 [node name="Checkpoint" parent="Events/Checkpoints" index="0" instance=ExtResource( 9 )]
 position = Vector2( 128, 232 )
