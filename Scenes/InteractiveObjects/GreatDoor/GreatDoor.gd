@@ -30,13 +30,15 @@ func _ready():
 #### LOGIC ####
 
 # Triggers the opening of the door
-func open(_open: bool = false, _instant : bool = false):
+func open(open: bool = false, _instant : bool = false):
 	# Triggers the camera movement
 	EVENTS.emit_signal("move_camera_to_query", position, !focus_on_door, -1.0, 0.0)
 	
 	for child in self.get_children():
 		if child is AnimationPlayer:
 			animation_node.play("Open")
+	
+	collision_node.set_disabled(open)
 
 #### SIGNAL RESPONSES ####
 
