@@ -1,7 +1,7 @@
 extends Camera2D
 class_name GameCamera
 
-const DEFAULT_INTERPOL_DUR : float = 1.3
+const DEFAULT_INTERPOL_DUR : float = 0.5
 
 onready var state_machine_node = $StateMachine
 onready var stop_state_node = $StateMachine/Stop
