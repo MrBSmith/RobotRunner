@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenes/SafetyLock/SafetyLockDoor/SafetyLockDoor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/SafetyLock/SafetyLock.gd" type="Script" id=2]
@@ -8,40 +8,41 @@
 [ext_resource path="res://Scenes/SafetyLock/Sprites/TankScreen.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/SafetyLock/Sprites/HammerScreen.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/SafetyLock/Sprites/Laser.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Events/BaseScene/TriggerAreaBase.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 19.8679, 23.9155 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 7 )
 region = Rect2( 54, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 6 )
 region = Rect2( 54, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 54, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 6 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 6 )
+atlas = ExtResource( 4 )
 region = Rect2( 54, 0, 54, 19 )
 
 [sub_resource type="SpriteFrames" id=10]
@@ -53,22 +54,22 @@ animations = [ {
 }, {
 "frames": [ SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
-"name": "Valid",
+"name": "MrStonks",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
-"name": "Invalid",
+"name": "MrCold",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 6 ), SubResource( 7 ) ],
 "loop": true,
-"name": "MrStonks",
+"name": "Valid",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
-"name": "MrCold",
+"name": "Invalid",
 "speed": 10.0
 } ]
 
@@ -103,16 +104,24 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 40 ), Vector2( 0, -10 ), Vector2( 0, 40 ) ]
 }
 
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 10, 36 )
+
 [node name="SafetyLock" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="InDoor" parent="." instance=ExtResource( 1 )]
-visible = false
 position = Vector2( -52, 0 )
 opened = true
+need_delay = false
+open_delay = 0.0
+flip_h = false
 
 [node name="OutDoor" parent="." instance=ExtResource( 1 )]
 position = Vector2( 52, 0 )
+opened = false
+need_delay = false
+open_delay = 0.0
 flip_h = true
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -142,3 +151,10 @@ anims/LaserMovement = SubResource( 14 )
 
 [node name="ScreenTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="ExitArea" type="Area2D" parent="."]
+position = Vector2( 100, 0 )
+script = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea"]
+shape = SubResource( 15 )
