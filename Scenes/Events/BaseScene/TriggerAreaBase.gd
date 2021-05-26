@@ -1,8 +1,7 @@
 extends Area2D
 class_name TriggerArea
 
-const CLASS = "TriggerArea"
-
+export var waited_class : String = "Player"
 export var all_players : bool = false
 export var trigger_cooldown : float = 0 setget set_trigger_cooldown, get_trigger_cooldown
 
@@ -12,14 +11,12 @@ var triggered : bool = false setget set_triggered, is_triggered
 
 signal area_triggered
 
-func get_class() -> String:
-	return CLASS
-
-func is_class(value : String) -> bool:
-	return value == CLASS
+func is_class(value : String) -> bool: return value == "TriggerArea" or .is_class(value)
+func get_class() -> String: return "TriggerArea"
 
 func set_trigger_cooldown(value : float):
 	trigger_cooldown = value
+	
 func  get_trigger_cooldown() -> float:
 	return trigger_cooldown
 
@@ -54,7 +51,7 @@ func on_body_entered(body : Node):
 	if body == null:
 		return
 	
-	if body.is_class("Player"):
+	if body.is_class(waited_class):
 		if all_players == false:
 			set_triggered(true, body)
 		else:
