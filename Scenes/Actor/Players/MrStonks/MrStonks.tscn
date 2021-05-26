@@ -63,23 +63,23 @@ region = Rect2( 128, 128, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 128, 64, 64 )
+region = Rect2( 0, 256, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 384, 64, 64 )
+region = Rect2( 64, 256, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 1 )
-region = Rect2( 64, 384, 64, 64 )
+region = Rect2( 0, 128, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 256, 64, 64 )
+region = Rect2( 0, 384, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 1 )
-region = Rect2( 64, 256, 64, 64 )
+region = Rect2( 64, 384, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=20]
 animations = [ {
@@ -108,14 +108,14 @@ animations = [ {
 "name": "Jump",
 "speed": 13.0
 }, {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": false,
-"name": "Land",
-"speed": 13.0
-}, {
-"frames": [ SubResource( 18 ), SubResource( 19 ) ],
+"frames": [ SubResource( 15 ), SubResource( 16 ) ],
 "loop": false,
 "name": "StartFalling",
+"speed": 13.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": false,
+"name": "Land",
 "speed": 13.0
 } ]
 
@@ -146,6 +146,7 @@ func get_input(input_name: String) -> String:
 
 [node name="MrStonks" instance=ExtResource( 4 )]
 script = ExtResource( 3 )
+interactables = PoolStringArray( "InteractiveObject", "EarthBlock", "XionCrate" )
 player_id = 2
 
 [node name="AnimatedSprite" parent="." index="0"]

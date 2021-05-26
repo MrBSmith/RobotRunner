@@ -74,6 +74,10 @@ __meta__ = {
 
 [node name="SFX_Generator" type="Node2D" parent="."]
 script = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 sfx_dict = {
 "great_hit": "res://Scenes/SFX/Feedbacks/GreatHit/GreatHit.tscn",
 "normal_explosion": "res://Scenes/SFX/NormalExplosion/NormalExplosion.tscn",
@@ -86,6 +90,7 @@ sfx_dict = {
 z_index = 2
 z_as_relative = false
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
@@ -201,6 +206,7 @@ __meta__ = {
 
 [node name="InteractivesObjects" type="Node2D" parent="."]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
@@ -212,11 +218,13 @@ __meta__ = {
 
 [node name="S" type="Node2D" parent="InteractivesObjects/IceBlocks"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="M" type="Node2D" parent="InteractivesObjects/IceBlocks"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
@@ -228,11 +236,13 @@ __meta__ = {
 
 [node name="S" type="Node2D" parent="InteractivesObjects/EarthBlocks"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="M" type="Node2D" parent="InteractivesObjects/EarthBlocks"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
@@ -281,16 +291,19 @@ __meta__ = {
 
 [node name="XionCrates" type="Node2D" parent="InteractivesObjects/Collactables"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="Gears" type="Node2D" parent="InteractivesObjects/Collactables"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="GoldenGears" type="Node2D" parent="InteractivesObjects/Collactables"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
@@ -302,28 +315,37 @@ __meta__ = {
 
 [node name="5 Tiles" type="Node2D" parent="InteractivesObjects/Platform"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="3 Tiles" type="Node2D" parent="InteractivesObjects/Platform"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="2 Tiles" type="Node2D" parent="InteractivesObjects/Platform"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="Robot" type="Node2D" parent="InteractivesObjects"]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="SafetyLock" type="Node2D" parent="InteractivesObjects"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Events" type="Node2D" parent="."]
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
