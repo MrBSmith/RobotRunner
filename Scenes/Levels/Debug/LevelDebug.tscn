@@ -13,13 +13,14 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/BlueTeleporter.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/BD_Group.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonDoorGroup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/BlueButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/BlueDoor.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/SafetyLock/MrColdSafetyLock.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/SafetyLock/MrStonksSafetyLock.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonLineDoor/ButtonLineDoor.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/PushButton/PushButton.tscn" type="PackedScene" id=20]
+
 
 [node name="LevelDebug" instance=ExtResource( 4 )]
 

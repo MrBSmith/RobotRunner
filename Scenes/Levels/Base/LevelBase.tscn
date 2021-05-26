@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonDoorGroup.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Camera/Camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/GUI/GUI.gd" type="Script" id=3]
 [ext_resource path="res://Global/Background/Background.png" type="Texture" id=4]
@@ -16,6 +16,7 @@
 [ext_resource path="res://BabaGodotLib/Transitions/FadeTransition.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/GUI/HUD/HUD.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/Levels/Base/LevelBase.gd" type="Script" id=24]
+
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource( 24 )

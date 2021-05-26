@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Levels/Base/LevelBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Global/Background/BackgroundLight.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/Blocks/IceBlock/S/IceBlockBase.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonDoorGroup.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/GreenDoor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/GreenButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/XionCrate/XionCrate.tscn" type="PackedScene" id=9]
@@ -21,7 +21,7 @@
 [ext_resource path="res://Scenes/XionCloud/Path/CloudPath.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/XionCloud/XionCloud.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/InteractiveObjects/Platform/BreakablePlatform/2Tiles/2TilesBreakablePlateform.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/BD_Group.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonDoorGroup.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/InteractiveObjects/Platform/BreakablePlatform/3Tiles/3TilesBreakablePlateform.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/InteractiveObjects/Collactables/Materials/Gear/Gear.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=25]
@@ -29,6 +29,7 @@
 [ext_resource path="res://Scenes/Events/CameraEvents/CameraEvent.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=29]
+
 
 [sub_resource type="Curve2D" id=1]
 _data = {
