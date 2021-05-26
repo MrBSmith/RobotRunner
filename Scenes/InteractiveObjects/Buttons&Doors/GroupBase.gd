@@ -17,7 +17,7 @@ func _ready():
 		var _err = scene_tree.connect("node_added", self, "_on_tree_node_added")
 		_err = scene_tree.connect("node_removed", self, "_on_tree_node_removed")
 		_err = connect("door_added", self, "_on_door_added")
-		_err = connect("door_removed", self, "_on_door_added")
+		_err = connect("door_removed", self, "_on_door_removed")
 		_err = connect("button_added", self, "_on_button_added")
 		_err = connect("button_removed", self, "_on_button_removed")
 	else:
@@ -92,27 +92,36 @@ func _on_tree_node_removed(node: Node) -> void:
 
 func _on_door_added(door: Door) -> void:
 	var buttons_array = fetch_buttons()
-	print("Door added")
+	print("%s added" % door.name)
 	
 	for button in buttons_array:
 		var line = button_line_door_scene.instance()
 		button.call_deferred("add_child", line)
+		line.set_door_node_path(String(door.get_path()))
 		line.call_deferred("set_owner", owner)
 		print("Connected %s to %s" % [button.name, door.name])
 
 
-func _on_door_removed(_door: Door) -> void:
-	pass
+func _on_door_removed(door: Door) -> void:
+	var buttons_array = fetch_buttons()
+	print("%s removed" % door.name)
+	
+	for button in buttons_array:
+		for child in button.get_children():
+			if child is ButtonLineDoor && child.get_door_node_path() == String(door.get_path()):
+				print("Disconnect %s form %s" % [button.name, door.name])
+				child.queue_free()
 
 
 func _on_button_added(button: DoorButton) -> void:
 	var doors_array = fetch_doors()
-	print("Button added")
+	print("%s added" % button.name)
 	
 	for door in doors_array:
 		var line = button_line_door_scene.instance()
 		button.call_deferred("add_child", line)
 		line.call_deferred("set_owner", owner)
+		line.set_door_node_path(String(door.get_path()))
 		print("Connected %s to %s" % [button.name, door.name])
 
 

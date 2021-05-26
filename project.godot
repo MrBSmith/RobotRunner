@@ -159,6 +159,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd"
 }, {
+"base": "Line2D",
+"class": "ButtonLineDoor",
+"language": "GDScript",
+"path": "res://Scenes/InteractiveObjects/Buttons&Doors/ButtonLineDoor/ButtonLineDoor.gd"
+}, {
 "base": "CameraState",
 "class": "CameraDebugState",
 "language": "GDScript",
@@ -1100,6 +1105,7 @@ _global_script_class_icons={
 "BreakableObjectBase": "",
 "BreakablePlatfrom": "",
 "ButtonDoorGroup": "",
+"ButtonLineDoor": "",
 "CameraDebugState": "",
 "CameraEventBase": "",
 "CameraFollowState": "",

@@ -1,20 +1,26 @@
+tool
 extends Line2D
+class_name ButtonLineDoor
 
 onready var initial_color = get_default_color()
 
 var active : bool = false setget set_active
+export var door_node_path : String = "" setget set_door_node_path, get_door_node_path
 
 signal active_changed(new_value)
 
 #### ACCESSORS ####
 
-func is_class(value: String): return value == "" or .is_class(value)
-func get_class() -> String: return ""
+func is_class(value: String): return value == "ButtonLineDoor" or .is_class(value)
+func get_class() -> String: return "ButtonLineDoor"
 
 func set_active(value: bool): 
 	if active != value:
 		active = value
 		emit_signal("active_changed", active)
+
+func set_door_node_path(value : String): door_node_path = value
+func get_door_node_path() -> String: return door_node_path
 
 #### BUILT-IN ####
 
