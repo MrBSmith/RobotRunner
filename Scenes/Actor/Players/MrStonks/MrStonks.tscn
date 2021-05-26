@@ -146,6 +146,7 @@ func get_input(input_name: String) -> String:
 
 [node name="MrStonks" instance=ExtResource( 4 )]
 script = ExtResource( 3 )
+interactables = PoolStringArray( "InteractiveObject", "EarthBlock" )
 player_id = 2
 
 [node name="AnimatedSprite" parent="." index="0"]

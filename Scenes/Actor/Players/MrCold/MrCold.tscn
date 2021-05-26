@@ -11,6 +11,7 @@ extents = Vector2( 15.5305, 20 )
 
 [node name="MrCold" instance=ExtResource( 2 )]
 script = ExtResource( 5 )
+interactables = PoolStringArray( "InteractiveObject", "IceBlock" )
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 4 )
