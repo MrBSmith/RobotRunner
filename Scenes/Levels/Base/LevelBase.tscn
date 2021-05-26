@@ -72,7 +72,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DebrisGenerator" type="Node2D" parent="."]
+[node name="SFX_Generator" type="Node2D" parent="."]
 script = ExtResource( 12 )
 sfx_dict = {
 "great_hit": "res://Scenes/SFX/Feedbacks/GreatHit/GreatHit.tscn",
