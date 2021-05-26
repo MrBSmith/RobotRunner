@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/StartingPoints/StartingPointP1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Levels/Base/LevelBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/GreenButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/PushButton/PushButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/InteractiveObjects/Collactables/Materials/Gear/Gear.tscn" type="PackedScene" id=6]
 
 [node name="Level1" instance=ExtResource( 3 )]
@@ -30,10 +30,13 @@ tile_data = PoolIntArray( 131174, 6, 0, 131175, 6, 1, 131176, 6, 1, 131177, 6, 1
 [node name="HiddenWalls" parent="Map" index="2"]
 tile_data = PoolIntArray( 327710, 22, 0, 327711, 22, 1, 327712, 22, 1, 327713, 22, 1, 327714, 22, 1, 327715, 22, 1, 327716, 22, 1, 327717, 22, 1, 327718, 22, 1, 393246, 22, 65536, 393247, 1073741846, 65537, 393248, 1073741846, 65537, 393249, 1073741846, 65537, 393250, 1073741846, 65537, 393251, 1073741846, 65537, 393252, 1073741846, 65537, 393253, 1073741846, 65537, 393254, 1073741846, 65537, 458782, 22, 65536, 458783, 1073741846, 65537, 458784, 1073741846, 65537, 458785, 1073741846, 65537, 458786, 1073741846, 65537, 458787, 1073741846, 65537, 458788, 1073741846, 65537, 458789, 1073741846, 65537, 458790, 1073741846, 65537, 458791, 22, 65538, 524318, 22, 65536, 524319, 1073741846, 65537, 524320, 1073741846, 65537, 524321, 1073741846, 65537, 524322, 1073741846, 65537, 524323, 1073741846, 65537, 524324, 1073741846, 65537, 524325, 1073741846, 65537, 524326, 1073741846, 65537, 524327, 22, 65538, 589854, 22, 65536, 589855, 1073741846, 65537, 589856, 1073741846, 65537, 589857, 1073741846, 65537, 589858, 1073741846, 65537, 589859, 1073741846, 65537, 589860, 1073741846, 65537, 589861, 1073741846, 65537, 589862, 1073741846, 65537, 589863, 22, 65538, 655390, 22, 65536, 655391, 1073741846, 65537, 655392, 1073741846, 65537, 655393, 1073741846, 65537, 655394, 1073741846, 65537, 655395, 1073741846, 65537, 655396, 1073741846, 65537, 655397, 1073741846, 65537, 655398, 1073741846, 65537, 655399, 22, 65538, 720926, 22, 65539, 720927, 1073741846, 65537, 720928, 1073741846, 65537, 720929, 1073741846, 65537, 720930, 1073741846, 65537, 720931, 1073741846, 65537, 720932, 1073741846, 65537, 720933, 1073741846, 65537, 720934, 1073741846, 65537, 720935, 22, 65538, 786470, 22, 131073, 786471, 22, 131074 )
 
-[node name="GreenButton" parent="InteractivesObjects/GreatDoorGroup" index="0" instance=ExtResource( 5 )]
-position = Vector2( 2816, 328 )
+[node name="PushButton" parent="InteractivesObjects/GreatDoorGroup" index="0" instance=ExtResource( 5 )]
+position = Vector2( 2760, 330.76 )
 
-[node name="GreatDoor" parent="InteractivesObjects/GreatDoorGroup" index="1" instance=ExtResource( 4 )]
+[node name="PushButton2" parent="InteractivesObjects/GreatDoorGroup" index="1" instance=ExtResource( 5 )]
+position = Vector2( 2872, 330.76 )
+
+[node name="GreatDoor" parent="InteractivesObjects/GreatDoorGroup" index="2" instance=ExtResource( 4 )]
 position = Vector2( 3096, 216 )
 
 [node name="Gear" parent="InteractivesObjects/Collactables/Gears" index="0" instance=ExtResource( 6 )]
