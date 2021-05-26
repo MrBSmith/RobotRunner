@@ -25,9 +25,9 @@ func get_door_node_path() -> String: return door_node_path
 #### BUILT-IN ####
 
 func _ready() -> void:
-	var _err = connect("active_changed", self, "_on_active_changed")
-	
-	_on_active_changed(active)
+	if !Engine.editor_hint:
+		var _err = connect("active_changed", self, "_on_active_changed")
+		_on_active_changed(active)
 
 #### VIRTUALS ####
 
