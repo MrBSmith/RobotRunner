@@ -2,7 +2,7 @@ extends Node2D
 class_name SafetyLock
 
 onready var area_node = $Area2D
-onready var exit_area = $ExitArea
+onready var exit_area_trigger = $ExitAreaTrigger
 onready var in_door = $InDoor
 onready var out_door = $OutDoor
 onready var screen_sprite = $Screen
@@ -31,13 +31,13 @@ func _ready() -> void:
 	play_default_screen_animation()
 	
 	if !one_way:
-		exit_area.queue_free()
+		exit_area_trigger.queue_free()
 	else:
-		exit_area.waited_class = wanted_class
-		exit_area.connect("area_triggered", self, "_on_exit_area_triggered")
+		exit_area_trigger.wanted_class = wanted_class
+		exit_area_trigger.connect("triggered", self, "_on_exit_area_triggered")
 		var out_door_pos = out_door.get_position()
 		
-		exit_area.position.x *= sign(out_door_pos.x)
+		exit_area_trigger.position.x *= sign(out_door_pos.x)
 
 
 #### VIRTUALS ####
@@ -112,9 +112,8 @@ func _on_screen_timer_timeout():
 	play_default_screen_animation()
 
 
-func _on_exit_area_triggered(_body: Node2D):
+func _on_exit_area_triggered():
 	if has_been_triggered:
 		in_door.open(false)
 		out_door.open(false)
-	else:
-		exit_area.set_triggered(false)
+		exit_area_trigger.set_enabled(false)

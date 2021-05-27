@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/SafetyLock/Sprites/TankScreen.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/SafetyLock/Sprites/HammerScreen.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/SafetyLock/Sprites/Laser.png" type="Texture" id=8]
-[ext_resource path="res://Scenes/Events/BaseScene/TriggerAreaBase.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Triggers/AreaTrigger/AreaTrigger.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 19.8679, 23.9155 )
@@ -111,17 +111,12 @@ extents = Vector2( 10, 36 )
 script = ExtResource( 2 )
 
 [node name="InDoor" parent="." instance=ExtResource( 1 )]
+visible = false
 position = Vector2( -52, 0 )
 opened = true
-need_delay = false
-open_delay = 0.0
-flip_h = false
 
 [node name="OutDoor" parent="." instance=ExtResource( 1 )]
 position = Vector2( 52, 0 )
-opened = false
-need_delay = false
-open_delay = 0.0
 flip_h = true
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -144,6 +139,7 @@ frames = SubResource( 10 )
 position = Vector2( 0, 40 )
 frames = SubResource( 13 )
 animation = "Laser"
+frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -152,9 +148,14 @@ anims/LaserMovement = SubResource( 14 )
 [node name="ScreenTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="ExitArea" type="Area2D" parent="."]
+[node name="ExitAreaTrigger" type="Node2D" parent="."]
 position = Vector2( 100, 0 )
 script = ExtResource( 9 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea"]
+[node name="Area2D" type="Area2D" parent="ExitAreaTrigger"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitAreaTrigger/Area2D"]
 shape = SubResource( 15 )
