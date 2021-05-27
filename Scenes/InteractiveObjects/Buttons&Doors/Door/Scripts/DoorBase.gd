@@ -13,6 +13,8 @@ var is_ready : bool = false
 
 var timer_door
 
+signal opened_changed(open)
+
 #### ACCESSORS ####
 
 func is_class(value: String): return value == "Door" or .is_class(value)
@@ -23,8 +25,11 @@ func set_opened(value: bool):
 		yield(self, "ready")
 		if value == true:
 			open(true, true)
-
+	
+	var value_changed : bool = value != opened
 	opened = value
+	if value_changed:
+		emit_signal("opened_changed", opened)
 
 func is_opened() -> bool: return opened
 
