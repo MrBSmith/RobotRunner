@@ -23,10 +23,11 @@
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/Events/CameraEvents/CameraEvent.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/Events/LevelEvent/LevelEvent.tscn" type="PackedScene" id=24]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/BD_Group.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonDoorGroup.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/BlueButton.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/XionLiquid/XionLiquid.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.tscn" type="PackedScene" id=28]
+
 
 [node name="Level2B" instance=ExtResource( 4 )]
 

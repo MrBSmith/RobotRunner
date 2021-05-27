@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Levels/Base/LevelBase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/StartingPoints/StartingPointP1.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonDoorGroup.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/Blocks/IceBlock/M/MIceBlock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/RedButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/Blocks/EarthBlock/M/MEarthBlock.tscn" type="PackedScene" id=8]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/GreenTeleporter.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/Water/Water.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/RedTeleporter.tscn" type="PackedScene" id=20]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true

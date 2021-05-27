@@ -7,10 +7,11 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/RedDoor.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/PinkTeleporter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/BlueButton.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/GroupBase.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonDoorGroup.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/BlueTeleporter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/RedButton.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.tscn" type="PackedScene" id=19]
+
 
 [node name="Level3B" instance=ExtResource( 4 )]
 

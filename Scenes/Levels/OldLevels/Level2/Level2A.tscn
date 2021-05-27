@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Levels/Base/LevelBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/StartingPoints/StartingPointP2.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/XionCrate/XionCrate.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/BD_Group.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonDoorGroup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/ChildrenScenes/RedButton.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/RedDoor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/GreenTeleporter.tscn" type="PackedScene" id=8]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/PinkTeleporter.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=28]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true

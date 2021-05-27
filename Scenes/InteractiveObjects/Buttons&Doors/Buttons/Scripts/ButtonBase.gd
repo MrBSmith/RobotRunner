@@ -1,3 +1,4 @@
+tool
 extends StaticBody2D
 class_name DoorButton
 
@@ -7,7 +8,7 @@ signal untriggered
 onready var animation_node = get_node("Animation")
 onready var area2D_node = get_node("Area2D")
 onready var collision_shape_node = get_node("CollisionShape2D")
-
+onready var button_line_door = get_node_or_null("ButtonLineDoor")
 
 var collision_shape_initial_pos : Vector2
 var is_ready : bool = false
@@ -37,6 +38,8 @@ func _ready():
 	var _err = area2D_node.connect("body_entered", self, "_on_body_entered")
 	_err = animation_node.connect("frame_changed", self, "_on_frame_changed")
 	_err = animation_node.connect("animation_finished", self, "_on_animation_finished")
+	_err = connect("triggered", self, "_on_button_triggered")
+	_err = connect("untriggered", self, "_on_button_untriggered")
 	
 	collision_shape_initial_pos = collision_shape_node.position
 	is_ready = true
@@ -92,3 +95,12 @@ func _on_frame_changed():
 	var new_pos = collision_shape_initial_pos
 	new_pos.y += (animation_node.get_frame() * 2) + 1
 	collision_shape_node.set_position(new_pos)
+
+
+func _on_button_triggered():
+	if is_instance_valid(button_line_door):
+		button_line_door.set_active(true)
+
+func _on_button_untriggered():
+	if is_instance_valid(button_line_door):
+		button_line_door.set_active(false)
