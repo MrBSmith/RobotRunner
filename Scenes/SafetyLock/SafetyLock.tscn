@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/SafetyLock/Sprites/TankScreen.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/SafetyLock/Sprites/HammerScreen.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/SafetyLock/Sprites/Laser.png" type="Texture" id=8]
-[ext_resource path="res://Scenes/Triggers/AreaTrigger/AreaTrigger.gd" type="Script" id=9]
+[ext_resource path="res://BabaGodotLib/Triggers/AreaTrigger.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 19.8679, 23.9155 )

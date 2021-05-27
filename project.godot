@@ -77,7 +77,7 @@ _global_script_classes=[ {
 "base": "Trigger",
 "class": "AreaTrigger",
 "language": "GDScript",
-"path": "res://Scenes/Triggers/AreaTrigger/AreaTrigger.gd"
+"path": "res://BabaGodotLib/Triggers/AreaTrigger.gd"
 }, {
 "base": "Node",
 "class": "Autotiler",
@@ -367,7 +367,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Event",
 "language": "GDScript",
-"path": "res://Scenes/Events/BaseScene/EventBase.gd"
+"path": "res://BabaGodotLib/Event/Event.gd"
 }, {
 "base": "Node",
 "class": "EventsBase",
@@ -542,7 +542,7 @@ _global_script_classes=[ {
 "base": "Event",
 "class": "LevelEvent",
 "language": "GDScript",
-"path": "res://Scenes/Events/LevelEvent/LevelEvent.gd"
+"path": "res://BabaGodotLib/Event/LevelEvent.gd"
 }, {
 "base": "Node",
 "class": "LevelLoader",
@@ -648,6 +648,11 @@ _global_script_classes=[ {
 "class": "NormalLineData",
 "language": "GDScript",
 "path": "res://BabaGodotLib/UI/LineContainer/DataContainer/NormalLineData.gd"
+}, {
+"base": "Trigger",
+"class": "OnStartTrigger",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Triggers/OnStartTrigger.gd"
 }, {
 "base": "Node",
 "class": "OptionDataContainer",
@@ -877,7 +882,7 @@ _global_script_classes=[ {
 "base": "Trigger",
 "class": "SignalTrigger",
 "language": "GDScript",
-"path": "res://Scenes/Triggers/SignalTrigger.gd"
+"path": "res://BabaGodotLib/Triggers/SignalTrigger.gd"
 }, {
 "base": "Node",
 "class": "SlopePlacer",
@@ -992,7 +997,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Trigger",
 "language": "GDScript",
-"path": "res://AbstractClasses/Trigger/Trigger.gd"
+"path": "res://BabaGodotLib/Triggers/Trigger.gd"
 }, {
 "base": "Liquid",
 "class": "Water",
@@ -1213,6 +1218,7 @@ _global_script_class_icons={
 "MrStonks": "",
 "NPCRobotBase": "",
 "NormalLineData": "",
+"OnStartTrigger": "",
 "OptionDataContainer": "",
 "OptionLineContainer": "",
 "PartTween": "",

@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Events/BaseScene/EventBase.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Events/LevelEvent/LevelEvent.gd" type="Script" id=2]
+[ext_resource path="res://BabaGodotLib/Event/LevelEvent.gd" type="Script" id=2]
+
 
 [node name="LevelEvent" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

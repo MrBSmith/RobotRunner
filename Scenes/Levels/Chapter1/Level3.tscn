@@ -10,7 +10,7 @@
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/XionCrate/XionCrate.tscn" type="PackedScene" id=8]
 [ext_resource path="res://BabaGodotLib/Actor/AI/ActorPath/PathPoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/Hammer/BabyHammer.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Triggers/SignalTrigger.gd" type="Script" id=11]
+[ext_resource path="res://BabaGodotLib/Triggers/SignalTrigger.gd" type="Script" id=11]
 [ext_resource path="res://BabaGodotLib/Actor/AI/ActorPath/PathPointBase.gd" type="Script" id=12]
 [ext_resource path="res://BabaGodotLib/Actor/AI/ActorPath/ActorPath.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/Events/LevelEvent/LevelEvent.tscn" type="PackedScene" id=14]
@@ -20,7 +20,7 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/PushButton/PushButton.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/XionCloud/XionCloud.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/XionCloud/Path/CloudPath.tscn" type="PackedScene" id=22]
-[ext_resource path="res://Scenes/Triggers/AreaTrigger/AreaTrigger.gd" type="Script" id=23]
+[ext_resource path="res://BabaGodotLib/Triggers/AreaTrigger.gd" type="Script" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 76.5436 )
