@@ -19,10 +19,10 @@ signal player_out_of_danger
 #### ACCESSORS ####
 
 func is_class(value: String):
-	return value == "GrowingLava" or .is_class(value)
+	return value == "XionCloud" or .is_class(value)
 
 func get_class() -> String:
-	return "GrowingLava"
+	return "XionCloud"
 
 func get_direction() -> Vector2:
 	if path.empty(): return Vector2.ZERO
@@ -117,7 +117,7 @@ func move_to(destination : Vector2, path_scale: Vector2, delta: float):
 		position = destination
 	else:
 		position += velocity / path_scale
-	
+
 	return destination == position
 
 
