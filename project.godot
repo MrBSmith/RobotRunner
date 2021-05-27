@@ -74,6 +74,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/Absract/StateMachine/AbstractStates/Appear.gd"
 }, {
+"base": "Trigger",
+"class": "AreaTrigger",
+"language": "GDScript",
+"path": "res://Scenes/Triggers/AreaTrigger/AreaTrigger.gd"
+}, {
 "base": "Node",
 "class": "Autotiler",
 "language": "GDScript",
@@ -869,6 +874,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/GUI/TextField.gd"
 }, {
+"base": "Trigger",
+"class": "SignalTrigger",
+"language": "GDScript",
+"path": "res://Scenes/Triggers/SignalTrigger.gd"
+}, {
 "base": "Node",
 "class": "SlopePlacer",
 "language": "GDScript",
@@ -979,6 +989,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/Absract/StateMachine/ToolStateMachine.gd"
 }, {
+"base": "Node",
+"class": "Trigger",
+"language": "GDScript",
+"path": "res://AbstractClasses/Trigger/Trigger.gd"
+}, {
 "base": "Area2D",
 "class": "TriggerArea",
 "language": "GDScript",
@@ -1088,6 +1103,7 @@ _global_script_class_icons={
 "ActorStateBase": "",
 "AnimatedObjectStateBase": "",
 "AppearState": "",
+"AreaTrigger": "",
 "Autotiler": "",
 "BabyBot": "",
 "BabyBotActionState": "",
@@ -1247,6 +1263,7 @@ _global_script_class_icons={
 "SceneFinder": "",
 "ScreenTitleMenu": "",
 "SeedField": "",
+"SignalTrigger": "",
 "SlopePlacer": "",
 "SlotSaverMenu": "",
 "SmallChunckRoom": "",
@@ -1269,6 +1286,7 @@ _global_script_class_icons={
 "TileRenderPart": "",
 "TilemapDebugCursor": "",
 "ToolStatesMachine": "",
+"Trigger": "",
 "TriggerArea": "",
 "Water": "",
 "WorldMap": "",
