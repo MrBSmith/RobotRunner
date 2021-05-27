@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/Levels/Base/LevelBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Door/ChildrenScenes/RedDoor.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint1.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonLineDoor/ButtonLineDoor.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonLineDoor/ButtonLineDoor.gd" type="Script" id=21]
 
 [node name="Level1B" instance=ExtResource( 1 )]
 
@@ -28,7 +30,7 @@ position = Vector2( 48, 264 )
 [node name="StartingPointP2" parent="." index="1" instance=ExtResource( 4 )]
 position = Vector2( 48, 360 )
 
-[node name="DebrisGenerator" parent="." index="4"]
+[node name="SFX_Generator" parent="." index="4"]
 sfx_dict = {
 "great_hit": "res://Scenes/SFX/Feedbacks/GreatHit/GreatHit.tscn",
 "normal_explosion": "res://Scenes/SFX/NormalExplosion/NormalExplosion.tscn",
@@ -200,8 +202,50 @@ position = Vector2( 4319, 312 )
 [node name="RedButton" parent="InteractivesObjects/GreatDoorGroup" index="1" instance=ExtResource( 9 )]
 position = Vector2( 3240, 304.965 )
 
+[node name="ButtonLineDoor3" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/RedButton" index="3" instance=ExtResource( 20 )]
+z_index = 3
+z_as_relative = false
+width = 2.0
+default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
+script = ExtResource( 21 )
+
+[node name="ButtonLineDoor4" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/RedButton" index="4" instance=ExtResource( 20 )]
+z_index = 3
+z_as_relative = false
+width = 2.0
+default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
+script = ExtResource( 21 )
+
+[node name="ButtonLineDoor5" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/RedButton" index="5" instance=ExtResource( 20 )]
+z_index = 3
+z_as_relative = false
+width = 2.0
+default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
+script = ExtResource( 21 )
+
 [node name="RedButton2" parent="InteractivesObjects/GreatDoorGroup" index="2" instance=ExtResource( 9 )]
 position = Vector2( 3240, 400 )
+
+[node name="ButtonLineDoor3" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/RedButton2" index="3" instance=ExtResource( 20 )]
+z_index = 3
+z_as_relative = false
+width = 2.0
+default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
+script = ExtResource( 21 )
+
+[node name="ButtonLineDoor4" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/RedButton2" index="4" instance=ExtResource( 20 )]
+z_index = 3
+z_as_relative = false
+width = 2.0
+default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
+script = ExtResource( 21 )
+
+[node name="ButtonLineDoor5" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/RedButton2" index="5" instance=ExtResource( 20 )]
+z_index = 3
+z_as_relative = false
+width = 2.0
+default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
+script = ExtResource( 21 )
 
 [node name="RedDoor" parent="InteractivesObjects/GreatDoorGroup" index="3" instance=ExtResource( 17 )]
 position = Vector2( 3664, 384 )
