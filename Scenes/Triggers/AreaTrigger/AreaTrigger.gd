@@ -3,6 +3,8 @@ class_name AreaTrigger
 
 export var wanted_class : String = ""
 
+var instance_triggering : Node2D = null
+
 #### ACCESSORS ####
 
 func is_class(value: String): return value == "AreaTrigger" or .is_class(value)
@@ -32,9 +34,11 @@ func _ready() -> void:
 #### SIGNAL RESPONSES ####
 
 func _on_area_body_entered(body: Node2D) -> void:
-	if body.is_class(wanted_class):
+	if body.is_class(wanted_class) && body != owner:
+		instance_triggering = body
 		emit_signal("triggered")
 
 func _on_area_area_entered(area: Area2D) -> void:
-	if area.is_class(wanted_class):
+	if area.is_class(wanted_class) && area != owner:
+		instance_triggering = area
 		emit_signal("triggered")

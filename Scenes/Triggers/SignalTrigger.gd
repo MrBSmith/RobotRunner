@@ -25,7 +25,7 @@ func _ready() -> void:
 	var __ = connect("instance_listened_changed", self, "_on_instance_listened_changed")
 	
 	if instance_listened_path != "":
-		instance_listened = get_tree().get_root().get_node_or_null(instance_listened_path)
+		instance_listened = get_tree().get_current_scene().get_node_or_null(instance_listened_path)
 		if instance_listened == null:
 			push_error("No node where found at the sepcified node path : %s" % instance_listened_path)
 	

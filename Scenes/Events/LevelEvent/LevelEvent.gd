@@ -25,11 +25,15 @@ func method_call():
 	if target_as_group:
 		target_array = get_tree().get_nodes_in_group(target_name)
 	else:
-		target_array.append(get_tree().get_current_scene().find_node(target_name))
+		var current_scene_root = get_tree().get_current_scene()
+		if current_scene_root.name == target_name:
+			target_array.append(current_scene_root)
+		else:
+			target_array.append(current_scene_root.find_node(target_name))
 	
 	# Call the method in every target, and pass every argument in the array
 	for target in target_array:
-		if target.has_method(method_name):
+		if target.has_method(method_name) or GDScript:
 			var call_def_funcref := funcref(target, method_name)
 			call_def_funcref.call_funcv(arguments_array)
 	

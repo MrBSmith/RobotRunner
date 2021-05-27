@@ -989,7 +989,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/Absract/StateMachine/ToolStateMachine.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "Trigger",
 "language": "GDScript",
 "path": "res://AbstractClasses/Trigger/Trigger.gd"

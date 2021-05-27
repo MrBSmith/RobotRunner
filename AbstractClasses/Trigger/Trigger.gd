@@ -1,6 +1,7 @@
-extends Node
+extends Node2D
 class_name Trigger
 
+# warnings-disable
 signal triggered()
 
 #### ACCESSORS ####

@@ -185,3 +185,6 @@ func on_player_out_of_danger():
 
 func _on_gameover_event():
 	fade_transition_node.fade(1.0, FadeTransition.FADE_MODE.FADE_OUT)
+
+func print_trololo(value: String):
+	print(value)
