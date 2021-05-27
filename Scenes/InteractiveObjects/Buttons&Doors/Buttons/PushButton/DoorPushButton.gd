@@ -1,11 +1,14 @@
 extends DoorButton
 class_name DoorPushButton
 
+var stay_triggered : bool = false setget set_stay_triggered
+
 #### ACCESSORS ####
 
 func is_class(value: String): return value == "DoorPushButton" or .is_class(value)
 func get_class() -> String: return "DoorPushButton"
 
+func set_stay_triggered(value: bool) -> void: stay_triggered = value
 
 #### BUILT-IN ####
 
@@ -36,5 +39,5 @@ func is_button_being_pressed(exception_body: Node2D) -> bool:
 
 func _on_body_exited(body: Node2D):
 	if body.is_class("ActorBase"):
-		if !is_button_being_pressed(body):
+		if !is_button_being_pressed(body) && !stay_triggered:
 			trigger(false)

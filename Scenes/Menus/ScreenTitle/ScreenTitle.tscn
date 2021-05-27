@@ -190,7 +190,6 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-default_text = ""
 
 [node name="Quit" parent="VBoxContainer/VBoxContainer" index="4" instance=ExtResource( 13 )]
 margin_top = 192.0
