@@ -21,11 +21,13 @@ func _ready():
 		_err = connect("button_added", self, "_on_button_added")
 		_err = connect("button_removed", self, "_on_button_removed")
 	else:
-		for button in get_children():
-			if button.is_class("DoorButton"):
-				var _err = button.connect("triggered", self, "_on_button_triggered")
-				_err = button.connect("untriggered", self, "_on_button_untriggered")
-
+		for button in fetch_buttons():
+			var _err = button.connect("triggered", self, "_on_button_triggered")
+			_err = button.connect("untriggered", self, "_on_button_untriggered")
+		
+		for door in fetch_doors():
+			if door is GreatDoor:
+				var _err = door.connect("opened_changed", self, "_on_great_door_opened_changed")
 
 #### LOGIC ####
 
@@ -127,3 +129,9 @@ func _on_button_added(button: DoorButton) -> void:
 
 func _on_button_removed(_button: DoorButton) -> void:
 	pass
+
+func _on_great_door_opened_changed(open: bool):
+	if open:
+		for button in fetch_buttons():
+			if button is DoorPushButton:
+				button.set_stay_triggered(true)
