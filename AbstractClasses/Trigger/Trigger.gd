@@ -1,6 +1,8 @@
 extends Node2D
 class_name Trigger
 
+export var enabled : bool = true setget set_enabled, is_enabled
+
 # warnings-disable
 signal triggered()
 
@@ -9,6 +11,8 @@ signal triggered()
 func is_class(value: String): return value == "Trigger" or .is_class(value)
 func get_class() -> String: return "Trigger"
 
+func set_enabled(value: bool): enabled = value
+func is_enabled() -> bool: return enabled
 
 #### BUILT-IN ####
 
@@ -20,7 +24,9 @@ func get_class() -> String: return "Trigger"
 
 #### LOGIC ####
 
-
+func trigger() -> void:
+	if enabled:
+		emit_signal("triggered")
 
 #### INPUTS ####
 

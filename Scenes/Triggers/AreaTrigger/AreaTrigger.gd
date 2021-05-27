@@ -36,10 +36,10 @@ func _ready() -> void:
 func _on_area_body_entered(body: Node2D) -> void:
 	if body.is_class(wanted_class) && body != owner:
 		instance_triggering = body
-		emit_signal("triggered")
+		trigger()
 
 
 func _on_area_area_entered(area: Area2D) -> void:
 	if area.is_class(wanted_class) && area != owner:
 		instance_triggering = area
-		emit_signal("triggered")
+		trigger()

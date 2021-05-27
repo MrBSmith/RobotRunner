@@ -41,7 +41,7 @@ func _ready() -> void:
 func await_instance_signal() -> void:
 	if is_instance_valid(instance_listened) && instance_listened.has_signal(signal_to_listen):
 		yield(instance_listened, signal_to_listen)
-		emit_signal("triggered")
+		trigger()
 
 #### INPUTS ####
 
