@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenes/Levels/Base/LevelBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/StartingPoints/StartingPointP2.tscn" type="PackedScene" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/XionCrate/XionCrate.tscn" type="PackedScene" id=8]
 [ext_resource path="res://BabaGodotLib/Actor/AI/ActorPath/PathPoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/Hammer/BabyHammer.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Events/BaseScene/TriggerAreaBase.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Triggers/SignalTrigger.gd" type="Script" id=11]
 [ext_resource path="res://BabaGodotLib/Actor/AI/ActorPath/PathPointBase.gd" type="Script" id=12]
 [ext_resource path="res://BabaGodotLib/Actor/AI/ActorPath/ActorPath.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/Events/LevelEvent/LevelEvent.tscn" type="PackedScene" id=14]
@@ -20,10 +20,13 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/PushButton/PushButton.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/XionCloud/XionCloud.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonLineDoor/ButtonLineDoor.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonLineDoor/ButtonLineDoor.gd" type="Script" id=21]
+[ext_resource path="res://Scenes/Triggers/AreaTrigger/AreaTrigger.gd" type="Script" id=21]
 [ext_resource path="res://Scenes/XionCloud/Path/CloudPath.tscn" type="PackedScene" id=22]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 76.5436 )
+
+[sub_resource type="Curve2D" id=2]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5377.67, 0 )
 }
@@ -272,39 +275,19 @@ position = Vector2( 7344, 528 )
 [node name="PushButton" parent="InteractivesObjects/GreatDoorGroup" index="1" instance=ExtResource( 18 )]
 position = Vector2( 7024, 642.76 )
 
-[node name="ButtonLineDoor" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/PushButton" index="3" instance=ExtResource( 20 )]
-z_index = 3
-z_as_relative = false
-width = 2.0
-default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
-script = ExtResource( 21 )
+[node name="ButtonLineDoor" parent="InteractivesObjects/GreatDoorGroup/PushButton" index="3" instance=ExtResource( 20 )]
 door_node_path = "/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/Level3/InteractivesObjects/GreatDoorGroup/GreatDoor"
 
-[node name="ButtonLineDoor2" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/PushButton" index="4" instance=ExtResource( 20 )]
-z_index = 3
-z_as_relative = false
-width = 2.0
-default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
-script = ExtResource( 21 )
+[node name="ButtonLineDoor2" parent="InteractivesObjects/GreatDoorGroup/PushButton" index="4" instance=ExtResource( 20 )]
 door_node_path = "/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/Level3/InteractivesObjects/GreatDoorGroup/GreatDoor"
 
 [node name="PushButton2" parent="InteractivesObjects/GreatDoorGroup" index="2" instance=ExtResource( 18 )]
 position = Vector2( 7120, 642.76 )
 
-[node name="ButtonLineDoor" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/PushButton2" index="3" instance=ExtResource( 20 )]
-z_index = 3
-z_as_relative = false
-width = 2.0
-default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
-script = ExtResource( 21 )
+[node name="ButtonLineDoor" parent="InteractivesObjects/GreatDoorGroup/PushButton2" index="3" instance=ExtResource( 20 )]
 door_node_path = "/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/Level3/InteractivesObjects/GreatDoorGroup/GreatDoor"
 
-[node name="ButtonLineDoor2" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/PushButton2" index="4" instance=ExtResource( 20 )]
-z_index = 3
-z_as_relative = false
-width = 2.0
-default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
-script = ExtResource( 21 )
+[node name="ButtonLineDoor2" parent="InteractivesObjects/GreatDoorGroup/PushButton2" index="4" instance=ExtResource( 20 )]
 door_node_path = "/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/Level3/InteractivesObjects/GreatDoorGroup/GreatDoor"
 
 [node name="XionCrate" parent="InteractivesObjects/Collactables/XionCrates" index="0" instance=ExtResource( 8 )]
@@ -369,8 +352,16 @@ position = Vector2( 1238.43, 191.427 )
 target_name = "BabyHammer"
 method_name = "appear"
 
-[node name="TriggerArea" parent="Events/LevelEvent/BabyHammer_BreakXionCrate" index="0" instance=ExtResource( 11 )]
-scale = Vector2( -0.276268, 29.1295 )
+[node name="AreaTrigger" type="Node2D" parent="Events/LevelEvent/BabyHammer_BreakXionCrate" index="0"]
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Area2D" type="Area2D" parent="Events/LevelEvent/BabyHammer_BreakXionCrate/AreaTrigger" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Events/LevelEvent/BabyHammer_BreakXionCrate/AreaTrigger/Area2D" index="0"]
+shape = SubResource( 1 )
 
 [node name="XionCloud_Appear" parent="Events/LevelEvent" index="1" instance=ExtResource( 14 )]
 position = Vector2( 1418.55, 203.676 )
@@ -378,9 +369,10 @@ target_name = "XionCloud"
 method_name = "set_active"
 arguments_array = [ true ]
 
-[node name="TriggerArea" parent="Events/LevelEvent/XionCloud_Appear" index="0" instance=ExtResource( 11 )]
-scale = Vector2( 0.2, 5 )
-waited_class = "NPCRobotBase"
+[node name="SignalTrigger" type="Node2D" parent="Events/LevelEvent/XionCloud_Appear" index="0"]
+script = ExtResource( 11 )
+instance_listened_path = "InteractivesObjects/Collactables/XionCrates/XionCrate"
+signal_to_listen = "destroyed"
 
 [node name="StartingPointP1" parent="." index="9" instance=ExtResource( 3 )]
 position = Vector2( 72, 120 )
@@ -397,4 +389,4 @@ time_before_moving = 3.0
 
 [node name="CloudPath" parent="XionCloud" index="5" instance=ExtResource( 22 )]
 scale = Vector2( 1.19457, 1 )
-curve = SubResource( 1 )
+curve = SubResource( 2 )

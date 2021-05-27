@@ -15,7 +15,7 @@ position = Vector2( 88, 506.811 )
 [node name="StartingPointP2" parent="." index="1" instance=ExtResource( 1 )]
 position = Vector2( 152, 504 )
 
-[node name="DebrisGenerator" parent="." index="4"]
+[node name="SFX_Generator" parent="." index="4"]
 sfx_dict = {
 "great_hit": "res://Scenes/SFX/Feedbacks/GreatHit/GreatHit.tscn",
 "normal_explosion": "res://Scenes/SFX/NormalExplosion/NormalExplosion.tscn",
