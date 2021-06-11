@@ -73,6 +73,7 @@ func update_save_information(slot_id : int):
 func load_save(slot_id : int):
 	GAME.load_slot(slot_id)
 	GAME.goto_world_map()
+	queue_free()
 
 #### VIRTUALS #### 
 
