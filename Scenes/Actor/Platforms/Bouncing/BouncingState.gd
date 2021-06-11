@@ -1,5 +1,6 @@
 extends ActorStateBase
 class_name BouncingState
+
 #### ACCESSORS ####
 
 func is_class(value: String): return value == "BouncingState" or .is_class(value)

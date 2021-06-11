@@ -13,7 +13,7 @@ var travel_forward : bool = true
 
 onready var original_pos = get_global_position()
 
-onready var trigger_area_node = get_node_or_null("TriggerArea")
+onready var area_trigger = get_node_or_null("AreaTrigger")
 onready var area_node : Area2D = get_node_or_null("Area2D")
 
 #### ACCESSORS ####
@@ -29,8 +29,10 @@ func get_class() -> String:
 func _ready():
 	if path_node != null and !path_disabled:
 		path = path_node.get_children()
-	if trigger_area_node != null:
-		var _err = trigger_area_node.connect("area_triggered",self,"_on_area_triggered")
+	
+	if area_trigger != null:
+		var _err = area_trigger.connect("triggered", self, "_on_area_trigger_triggered")
+		
 	if area_node != null:
 		var _err = area_node.connect("body_entered",self,"_on_body_entered")
 		_err = area_node.connect("body_exited",self,"_on_body_exited")
@@ -89,4 +91,7 @@ func _on_body_entered(_body : Node):
 	pass
 
 func _on_body_exited(_body : Node):
+	pass
+
+func _on_area_trigger_triggered():
 	pass

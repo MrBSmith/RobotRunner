@@ -74,6 +74,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/Absract/StateMachine/AbstractStates/Appear.gd"
 }, {
+"base": "Trigger",
+"class": "AreaTrigger",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Triggers/AreaTrigger.gd"
+}, {
 "base": "Node",
 "class": "Autotiler",
 "language": "GDScript",
@@ -362,7 +367,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Event",
 "language": "GDScript",
-"path": "res://Scenes/Events/BaseScene/EventBase.gd"
+"path": "res://BabaGodotLib/Event/Event.gd"
 }, {
 "base": "Node",
 "class": "EventsBase",
@@ -537,7 +542,7 @@ _global_script_classes=[ {
 "base": "Event",
 "class": "LevelEvent",
 "language": "GDScript",
-"path": "res://Scenes/Events/LevelEvent/LevelEvent.gd"
+"path": "res://BabaGodotLib/Event/LevelEvent.gd"
 }, {
 "base": "Node",
 "class": "LevelLoader",
@@ -643,6 +648,11 @@ _global_script_classes=[ {
 "class": "NormalLineData",
 "language": "GDScript",
 "path": "res://BabaGodotLib/UI/LineContainer/DataContainer/NormalLineData.gd"
+}, {
+"base": "Trigger",
+"class": "OnStartTrigger",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Triggers/OnStartTrigger.gd"
 }, {
 "base": "Node",
 "class": "OptionDataContainer",
@@ -869,6 +879,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/GUI/TextField.gd"
 }, {
+"base": "Trigger",
+"class": "SignalTrigger",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Triggers/SignalTrigger.gd"
+}, {
 "base": "Node",
 "class": "SlopePlacer",
 "language": "GDScript",
@@ -979,10 +994,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/Absract/StateMachine/ToolStateMachine.gd"
 }, {
-"base": "Area2D",
-"class": "TriggerArea",
+"base": "Node2D",
+"class": "Trigger",
 "language": "GDScript",
-"path": "res://Scenes/Events/BaseScene/TriggerAreaBase.gd"
+"path": "res://BabaGodotLib/Triggers/Trigger.gd"
 }, {
 "base": "Liquid",
 "class": "Water",
@@ -1088,6 +1103,7 @@ _global_script_class_icons={
 "ActorStateBase": "",
 "AnimatedObjectStateBase": "",
 "AppearState": "",
+"AreaTrigger": "",
 "Autotiler": "",
 "BabyBot": "",
 "BabyBotActionState": "",
@@ -1202,6 +1218,7 @@ _global_script_class_icons={
 "MrStonks": "",
 "NPCRobotBase": "",
 "NormalLineData": "",
+"OnStartTrigger": "",
 "OptionDataContainer": "",
 "OptionLineContainer": "",
 "PartTween": "",
@@ -1247,6 +1264,7 @@ _global_script_class_icons={
 "SceneFinder": "",
 "ScreenTitleMenu": "",
 "SeedField": "",
+"SignalTrigger": "",
 "SlopePlacer": "",
 "SlotSaverMenu": "",
 "SmallChunckRoom": "",
@@ -1269,7 +1287,7 @@ _global_script_class_icons={
 "TileRenderPart": "",
 "TilemapDebugCursor": "",
 "ToolStatesMachine": "",
-"TriggerArea": "",
+"Trigger": "",
 "Water": "",
 "WorldMap": "",
 "WorldMapBackgroundElement": "",

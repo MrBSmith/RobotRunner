@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/XionCloud/XionCloud.tscn" type="PackedScene" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://Scenes/Events/DialogueEvent/LeakEvent.gd" type="Script" id=17]
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/Tank/BabyTank.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/Events/Checkpoint/NewStartingPoint2.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Scenes/Events/BaseScene/TriggerAreaBase.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Scenes/Events/DialogueEvent/DialogueEvent.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/Events/LevelEvent/LevelEvent.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/Actor/Robot/Babybot/Hammer/BabyHammer.tscn" type="PackedScene" id=23]
@@ -39,7 +38,7 @@ position = Vector2( -4296, 456 )
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DebrisGenerator" parent="." index="4"]
+[node name="SFX_Generator" parent="." index="4"]
 sfx_dict = {
 "great_hit": "res://Scenes/SFX/Feedbacks/GreatHit/GreatHit.tscn",
 "normal_explosion": "res://Scenes/SFX/NormalExplosion/NormalExplosion.tscn",
@@ -422,13 +421,9 @@ position = Vector2( -2148, 336 )
 target_name = "BabyHammer2"
 method_name = "appear"
 
-[node name="TriggerArea" parent="Events/LevelEvent/LevelEvent" index="0" instance=ExtResource( 20 )]
-scale = Vector2( 3.05, 5.014 )
-
 [node name="Intro" parent="Events/DialogueEvents" index="0" instance=ExtResource( 21 )]
 position = Vector2( 25.3403, 277 )
 scale = Vector2( 4.755, 4.275 )
-triggers_on_level_start = true
 dialogue_index = 1
 
 [node name="Minions" parent="Events/DialogueEvents" index="1" instance=ExtResource( 21 )]

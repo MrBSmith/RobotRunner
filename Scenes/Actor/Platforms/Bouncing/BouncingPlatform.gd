@@ -16,11 +16,9 @@ onready var platform_collisionshape_node = $CollisionShape2D
 #### BUILT-IN ####
 
 func _ready():
-	if $TriggerArea != null:
-		if "triggering_bodies" in $TriggerArea and !bodies_trigger_array.empty():
-			$TriggerArea.triggering_bodies = bodies_trigger_array
-		if "trigger_cooldown" in $TriggerArea:
-			$TriggerArea.set_trigger_cooldown(bouncing_duration + 0.3)
+#	if "trigger_cooldown" in $TriggerArea:
+#		$TriggerArea.set_trigger_cooldown(bouncing_duration + 0.3)
+	pass
 
 #### VIRTUALS ####
 
@@ -31,17 +29,17 @@ func bounce(body : Node):
 	impulse_object(body)
 	animated_sprite_node.set_flip_h(bouncing_impulse_force.x > 0)
 
-func impulse_object(body : Node): # HIT THE TARGETTED OBJECT WITH AN IMPULSION
+# Hit the targetted object with an impulsion
+func impulse_object(body : Node): 
 	if body.has_method("add_impulse"):
-		body.add_impulse("bounce",bouncing_impulse_force)
+		body.add_impulse("bounce", bouncing_impulse_force)
 
 #### INPUTS ####
 
 #### SIGNAL RESPONSES ####
 
-#Function override
-func _on_area_triggered(body):
-	._on_body_entered(body)
-	yield(get_tree(),"idle_frame")
-	if body.is_class("Player"):
-		bounce(body)
+# Function override
+func _on_area_trigger_triggered():
+	var body = $AreaTrigger.instance_triggering
+	._on_area_trigger_triggered()
+	bounce(body)

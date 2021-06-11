@@ -19,6 +19,8 @@ var players_exited : int = 0
 
 var is_loaded_from_save : bool = false
 
+var is_ready : bool = false
+
 func is_class(value: String) -> bool: return value == "Level" or .is_class(value)
 func get_class() -> String: return "Level"
 
@@ -45,6 +47,8 @@ func _ready():
 	MUSIC.play()
 	
 	EVENTS.emit_signal("update_HUD")
+	
+	is_ready = true
 	EVENTS.emit_signal("level_ready", self)
 
 

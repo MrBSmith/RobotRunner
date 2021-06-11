@@ -18,15 +18,14 @@ func set_active(value : bool):
 	
 	active = value
 	if active:
-		activate_checkpoint(!$TriggerArea/CollisionShape2D.is_disabled())
+		activate_checkpoint(!$AreaTrigger.set_enabled(false))
 
 func is_active() -> bool: return active
 
 #### BUILT-IN ####
 
 func _ready():
-	var _err
-	_err = animated_sprite_node.connect("animation_finished", self, "on_animation_finished")
+	var _err = animated_sprite_node.connect("animation_finished", self, "on_animation_finished")
 	
 	is_ready = true
 
@@ -50,9 +49,6 @@ func activate_checkpoint(instant: bool = false):
 	else:
 		$AnimatedSprite/Light2D.set_energy(1.0)
 		animated_sprite_node.play("Trigger")
-	
-	for area in triggers_area_array:
-		area.get_node("CollisionShape2D").call_deferred("set_disabled", true)
 
 
 #### SIGNAL RESPONSES ####

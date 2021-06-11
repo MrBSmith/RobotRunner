@@ -14,11 +14,8 @@ signal player_exit_level
 
 #### ACCESSORS ####
 
-func is_class(value: String):
-	return value == "GreatDoor" or .is_class(value)
-
-func get_class() -> String:
-	return "GreatDoor"
+func is_class(value: String): return value == "GreatDoor" or .is_class(value)
+func get_class() -> String: return "GreatDoor"
 
 
 #### BUILT-IN ####

@@ -14,6 +14,8 @@ export (float, 0.0, 1.0) var explosion_impulse_modifier = 0.7
 
 export var floor_obj : bool = true
 
+signal destroyed
+
 #### ACCESSORS ####
 
 func is_class(value: String):
@@ -62,6 +64,7 @@ func destroy(actor_destroying : Node = null):
 	
 	awake_nearby_bodies()
 	
+	emit_signal("destroyed")
 	on_destruction(actor_destroying)
 
 
