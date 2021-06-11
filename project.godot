@@ -1537,9 +1537,12 @@ camera_dezoom_debug={
 
 [layer_names]
 
+2d_render/layer_1="Main"
+2d_render/layer_2="Background"
 2d_physics/layer_3="Debris"
 2d_render/layer_5="SeeThroughA"
 2d_render/layer_6="SeeThroughB"
+2d_render/layer_15="Foreground"
 2d_render/layer_20="GUI"
 
 [locale]

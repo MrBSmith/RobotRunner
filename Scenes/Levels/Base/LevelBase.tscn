@@ -27,11 +27,13 @@ __meta__ = {
 layer = 2
 
 [node name="Fog" type="Node2D" parent="Foreground"]
+light_mask = 16384
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Fog" type="Sprite" parent="Foreground/Fog"]
+light_mask = 16384
 material = ExtResource( 11 )
 position = Vector2( 470.01, 277.517 )
 scale = Vector2( 2.09202, 1.27633 )
