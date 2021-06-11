@@ -4,7 +4,6 @@
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/Blocks/EarthBlock/S/SmallRock.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/Blocks/BlockBase.gd" type="Script" id=3]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 12.1 )
 

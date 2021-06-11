@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/StartingPoints/StartingPointP2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Actor/Platforms/Bouncing/BouncingPlatform.tscn" type="PackedScene" id=2]
@@ -8,8 +8,11 @@
 [ext_resource path="res://Scenes/InteractiveObjects/Liquids/Lava/Lava.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/InteractiveObjects/BreakableObjects/XionCrate/XionCrate.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/InteractiveObjects/Collactables/Materials/Gear/Gear.tscn" type="PackedScene" id=8]
+[ext_resource path="res://BabaGodotLib/Actor/AI/ActorPath/ActorPath.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/InteractiveObjects/GreatDoor/GreatDoor.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/InteractiveObjects/Teleports/Types/BlueTeleporter.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Actor/Platforms/MovingPlatforms/Flying/FlyingPlatform.tscn" type="PackedScene" id=13]
+[ext_resource path="res://BabaGodotLib/Actor/AI/ActorPath/PathPointBase.gd" type="Script" id=14]
 [ext_resource path="res://Scenes/SafetyLock/MrColdSafetyLock.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/SafetyLock/MrStonksSafetyLock.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonLineDoor/ButtonLineDoor.tscn" type="PackedScene" id=19]
@@ -143,6 +146,23 @@ position = Vector2( 1336, 920 )
 [node name="BouncingPlatform" parent="InteractivesObjects/Robot" index="0" instance=ExtResource( 2 )]
 position = Vector2( 1370.71, 1192 )
 bouncing_impulse_force = Vector2( 2000, -800 )
+
+[node name="FlyingPlatform" parent="InteractivesObjects/Robot" index="1" instance=ExtResource( 13 )]
+position = Vector2( 785, 115.483 )
+
+[node name="ActorPath" type="Node2D" parent="InteractivesObjects/Robot/FlyingPlatform" index="5"]
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PathPoint" type="Position2D" parent="InteractivesObjects/Robot/FlyingPlatform/ActorPath" index="0"]
+position = Vector2( -161, 28.517 )
+script = ExtResource( 14 )
+
+[node name="PathPoint2" type="Position2D" parent="InteractivesObjects/Robot/FlyingPlatform/ActorPath" index="1"]
+position = Vector2( 79, -41.25 )
+script = ExtResource( 14 )
 
 [node name="MrColdSafetyLock" parent="InteractivesObjects/SafetyLock" index="0" instance=ExtResource( 17 )]
 position = Vector2( 468, 1188 )
