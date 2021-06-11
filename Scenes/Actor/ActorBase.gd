@@ -12,7 +12,7 @@ export var acceleration : float = 30
 export var friction : float = 30
 
 onready var animated_sprite_node = $AnimatedSprite
-onready var path_node = get_node_or_null("Path")
+onready var path_node = get_node_or_null("ActorPath")
 onready var action_hitbox_node = get_node_or_null("ActionHitBox")
 
 export var default_state : String = ""

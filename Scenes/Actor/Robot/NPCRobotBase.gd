@@ -47,6 +47,7 @@ func is_arrived(destination: Vector2) -> bool:
 	var realvel = velocity * get_process_delta_time()
 	return global_position.distance_to(destination) < realvel.length()
 
+
 func is_path_finished(destination: PathPoint) -> bool:
 	if travel_forward:
 		return destination == path[-1]

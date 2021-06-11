@@ -14,6 +14,8 @@ extents = Vector2( 23.9907, 5.39063 )
 
 [node name="FlyingPlatform" instance=ExtResource( 4 )]
 script = ExtResource( 2 )
+ignore_gravity = true
+movement_type = 1
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 5 )
