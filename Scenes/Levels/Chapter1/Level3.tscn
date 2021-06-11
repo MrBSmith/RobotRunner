@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/Levels/Base/LevelBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/StartingPoints/StartingPointP2.tscn" type="PackedScene" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://Scenes/SafetyLock/MrColdSafetyLock.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/Buttons/PushButton/PushButton.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/XionCloud/XionCloud.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonLineDoor/ButtonLineDoor.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Scenes/InteractiveObjects/Buttons&Doors/ButtonLineDoor/ButtonLineDoor.gd" type="Script" id=21]
 [ext_resource path="res://Scenes/XionCloud/Path/CloudPath.tscn" type="PackedScene" id=22]
 [ext_resource path="res://BabaGodotLib/Triggers/AreaTrigger.gd" type="Script" id=23]
 
@@ -274,8 +276,40 @@ position = Vector2( 7344, 528 )
 [node name="PushButton" parent="InteractivesObjects/GreatDoorGroup" index="1" instance=ExtResource( 18 )]
 position = Vector2( 7024, 642.76 )
 
+[node name="ButtonLineDoor" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/PushButton" index="3" instance=ExtResource( 20 )]
+z_index = 3
+z_as_relative = false
+width = 2.0
+default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
+script = ExtResource( 21 )
+door_node_path = "/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/Level3/InteractivesObjects/GreatDoorGroup/GreatDoor"
+
+[node name="ButtonLineDoor2" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/PushButton" index="4" instance=ExtResource( 20 )]
+z_index = 3
+z_as_relative = false
+width = 2.0
+default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
+script = ExtResource( 21 )
+door_node_path = "/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/Level3/InteractivesObjects/GreatDoorGroup/GreatDoor"
+
 [node name="PushButton2" parent="InteractivesObjects/GreatDoorGroup" index="2" instance=ExtResource( 18 )]
 position = Vector2( 7120, 642.76 )
+
+[node name="ButtonLineDoor" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/PushButton2" index="3" instance=ExtResource( 20 )]
+z_index = 3
+z_as_relative = false
+width = 2.0
+default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
+script = ExtResource( 21 )
+door_node_path = "/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/Level3/InteractivesObjects/GreatDoorGroup/GreatDoor"
+
+[node name="ButtonLineDoor2" type="Line2D" parent="InteractivesObjects/GreatDoorGroup/PushButton2" index="4" instance=ExtResource( 20 )]
+z_index = 3
+z_as_relative = false
+width = 2.0
+default_color = Color( 0.984314, 0.00392157, 0.968627, 1 )
+script = ExtResource( 21 )
+door_node_path = "/root/EditorNode/@@580/@@581/@@589/@@591/@@595/@@599/@@600/@@601/@@617/@@618/@@627/@@628/@@6060/@@5899/@@5900/@@5901/@@5902/@@5903/Level3/InteractivesObjects/GreatDoorGroup/GreatDoor"
 
 [node name="XionCrate" parent="InteractivesObjects/Collactables/XionCrates" index="0" instance=ExtResource( 8 )]
 position = Vector2( 1439.84, 191.714 )
@@ -292,13 +326,13 @@ default_state = ""
 interactables = PoolStringArray( "InteractiveObject", "EarthBlock", "XionCrate" )
 action_name_bubble = "action_player2"
 
-[node name="Path" type="Node2D" parent="InteractivesObjects/Robot/BabyHammer" index="6"]
+[node name="ActorPath" type="Node2D" parent="InteractivesObjects/Robot/BabyHammer" index="6"]
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PathPoint" type="Position2D" parent="InteractivesObjects/Robot/BabyHammer/Path" index="0"]
+[node name="PathPoint" type="Position2D" parent="InteractivesObjects/Robot/BabyHammer/ActorPath" index="0"]
 position = Vector2( 46, 0 )
 script = ExtResource( 12 )
 __meta__ = {
@@ -307,16 +341,16 @@ __meta__ = {
 method_name = "tuto_bubble"
 argument_array = [ "Action" ]
 
-[node name="PathPoint2" parent="InteractivesObjects/Robot/BabyHammer/Path" index="1" instance=ExtResource( 9 )]
+[node name="PathPoint2" parent="InteractivesObjects/Robot/BabyHammer/ActorPath" index="1" instance=ExtResource( 9 )]
 position = Vector2( 100, 0 )
 method_name = "set_state"
 argument_array = [ "Action" ]
 
-[node name="PathPoint3" parent="InteractivesObjects/Robot/BabyHammer/Path" index="2" instance=ExtResource( 9 )]
+[node name="PathPoint3" parent="InteractivesObjects/Robot/BabyHammer/ActorPath" index="2" instance=ExtResource( 9 )]
 position = Vector2( 170, 0 )
 method_name = "overheat"
 
-[node name="PathPoint4" parent="InteractivesObjects/Robot/BabyHammer/Path" index="3" instance=ExtResource( 9 )]
+[node name="PathPoint4" parent="InteractivesObjects/Robot/BabyHammer/ActorPath" index="3" instance=ExtResource( 9 )]
 position = Vector2( 275, 0 )
 
 [node name="MrColdSafetyLock" parent="InteractivesObjects/SafetyLock" index="0" instance=ExtResource( 17 )]
