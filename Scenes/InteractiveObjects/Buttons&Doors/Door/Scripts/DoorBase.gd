@@ -57,6 +57,8 @@ func open(open: bool = true, instant : bool = false):
 
 		if !instant:
 			animation_node.play(anim_to_play, play_backwards)
+			if play_backwards:
+				var _err = animation_node.connect("frame_changed", self, "_on_animation_frame_changed")
 		else:
 			if play_backwards:
 				animation_node.set_frame(0)
@@ -75,3 +77,8 @@ func open(open: bool = true, instant : bool = false):
 
 
 #### SIGNAL RESPONSES ####
+
+func _on_animation_frame_changed():
+	if animation_node.get_frame() == 0:
+		animation_node.disconnect("frame_changed", self, "_on_animation_frame_changed")
+		animation_node.emit_signal("animation_finished")

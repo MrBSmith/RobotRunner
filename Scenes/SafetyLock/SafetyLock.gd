@@ -8,6 +8,7 @@ onready var out_door = $OutDoor
 onready var screen_sprite = $Screen
 onready var animation_player = $AnimationPlayer
 onready var screen_timer = $ScreenTimer
+onready var entrance = in_door
 
 export var wanted_class : String = "ActorBase"
 export var one_way : bool = false
@@ -76,7 +77,12 @@ func is_wanted_robot(bodies_array: Array) -> bool:
 #### SIGNAL RESPONSES ####
 
 func _on_body_entered(_body: Node2D) -> void:
-	if !animation_player.is_playing():
+	var door_to_close = in_door if in_door.is_opened() else out_door
+	if !animation_player.is_playing() && door_to_close.is_opened():
+		entrance = door_to_close
+		door_to_close.open(false)
+		yield(door_to_close, "animation_finished")
+		
 		animation_player.play("LaserMovement")
 
 
@@ -86,10 +92,11 @@ func _on_animation_player_animation_finished(_anim_name: String) -> void:
 	
 	if nb_robots > 1 or !is_wanted_robot(bodies):
 		screen_sprite.play("Invalid")
+		entrance.open(false)
 	else:
 		screen_sprite.play("Valid")
-		in_door.open(!in_door.is_opened())
-		out_door.open(!out_door.is_opened())
+		var door_to_open = in_door if entrance == out_door else out_door
+		door_to_open.open(true)
 		has_been_triggered = true
 	
 	if nb_robots == 0:
