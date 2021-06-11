@@ -4,6 +4,7 @@ class_name SafetyLockDoor
 
 export var flip_h : bool = false setget set_flip_h
 
+signal animation_finished()
 
 #### ACCESSORS ####
 
@@ -23,6 +24,10 @@ func set_flip_h(value: bool):
 
 
 #### BUILT-IN ####
+
+func _ready() -> void:
+	var __ = animation_node.connect("animation_finished", self, "_on_animation_finished")
+
 
 
 #### VIRTUALS ####
@@ -48,3 +53,9 @@ func open(open: bool = true, instant : bool = false) -> void:
 
 
 #### SIGNAL RESPONSES ####
+
+func _on_animation_finished() -> void:
+	emit_signal("animation_finished")
+
+
+

@@ -76,7 +76,10 @@ func is_wanted_robot(bodies_array: Array) -> bool:
 #### SIGNAL RESPONSES ####
 
 func _on_body_entered(_body: Node2D) -> void:
-	if !animation_player.is_playing():
+	if !animation_player.is_playing() && in_door.is_opened():
+		in_door.open(false)
+		yield(in_door, "animation_finished")
+		
 		animation_player.play("LaserMovement")
 
 
@@ -86,10 +89,11 @@ func _on_animation_player_animation_finished(_anim_name: String) -> void:
 	
 	if nb_robots > 1 or !is_wanted_robot(bodies):
 		screen_sprite.play("Invalid")
+		in_door.open(true)
+		out_door.open(false)
 	else:
 		screen_sprite.play("Valid")
-		in_door.open(!in_door.is_opened())
-		out_door.open(!out_door.is_opened())
+		out_door.open(true)
 		has_been_triggered = true
 	
 	if nb_robots == 0:
