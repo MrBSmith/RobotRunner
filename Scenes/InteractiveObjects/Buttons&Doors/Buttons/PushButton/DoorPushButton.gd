@@ -41,3 +41,14 @@ func _on_body_exited(body: Node2D):
 	if body.is_class("ActorBase"):
 		if !is_button_being_pressed(body) && !stay_triggered:
 			trigger(false)
+
+# When the animation is finished, emit the signal, and disable the collision shape
+func _on_animation_finished():
+	var current_frame = animation_node.get_frame()
+	var triggered = current_frame != 0
+	set_pushed(triggered)
+	
+	if triggered:
+		emit_signal("triggered")
+	else:
+		emit_signal("untriggered")

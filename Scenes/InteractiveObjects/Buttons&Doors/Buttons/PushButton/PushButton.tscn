@@ -29,7 +29,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 24, 7.37141 )
+extents = Vector2( 23.933, 5.56754 )
 
 [node name="PushButton" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -40,4 +40,8 @@ frames = SubResource( 5 )
 animation = "Trigger"
 
 [node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, -0.520277 )
 shape = SubResource( 6 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 0, -4 )

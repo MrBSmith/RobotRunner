@@ -2,3 +2,5 @@
 *.translation
 */SavedLevel/*
 */saves/*
+saves
+saves/*.cfg
