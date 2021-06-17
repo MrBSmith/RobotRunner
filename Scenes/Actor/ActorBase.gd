@@ -52,7 +52,7 @@ func set_direction(value : Vector2):
 	if !direction.is_equal_approx(value):
 		emit_signal("direction_changed",value)
 	direction = value
-	
+
 
 func get_direction() -> Vector2: return direction
 
@@ -223,7 +223,7 @@ func apply_force_to_colliding_bodies():
 			collision.collider.apply_central_impulse(-collision.normal * push)
 
 
-func jump(dir := Vector2.ZERO):
+func jump(dir := get_direction()):
 	set_direction(dir)
 	if is_on_floor():
 		set_state("Jump")
