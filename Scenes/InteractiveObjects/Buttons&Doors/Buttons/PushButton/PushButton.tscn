@@ -40,4 +40,8 @@ frames = SubResource( 5 )
 animation = "Trigger"
 
 [node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, 1.37004 )
 shape = SubResource( 6 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 0, -2.50496 )
