@@ -29,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/Actor/States/ActorState/BaseStates/ActorFallState.gd"
 }, {
-"base": "ActorStateBase",
+"base": "TRPG_ActorStateBase",
 "class": "ActorHurtState",
 "language": "GDScript",
 "path": "res://BabaGodotLib/Actor/States/ActorState/BaseStates/ActorHurtState.gd"
@@ -73,11 +73,6 @@ _global_script_classes=[ {
 "class": "AppearState",
 "language": "GDScript",
 "path": "res://BabaGodotLib/Absract/StateMachine/AbstractStates/Appear.gd"
-}, {
-"base": "Trigger",
-"class": "AreaTrigger",
-"language": "GDScript",
-"path": "res://BabaGodotLib/Triggers/AreaTrigger.gd"
 }, {
 "base": "Node",
 "class": "Autotiler",
@@ -364,11 +359,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/InteractiveObjects/BreakableObjects/Blocks/EarthBlock/S/EarthBlockBase.gd"
 }, {
-"base": "Node2D",
-"class": "Event",
-"language": "GDScript",
-"path": "res://BabaGodotLib/Event/Event.gd"
-}, {
 "base": "Node",
 "class": "EventsBase",
 "language": "GDScript",
@@ -539,11 +529,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Levels/InfiniteMode/Chuncks/Chunck.gd"
 }, {
-"base": "Event",
-"class": "LevelEvent",
-"language": "GDScript",
-"path": "res://BabaGodotLib/Event/LevelEvent.gd"
-}, {
 "base": "Node",
 "class": "LevelLoader",
 "language": "GDScript",
@@ -648,11 +633,6 @@ _global_script_classes=[ {
 "class": "NormalLineData",
 "language": "GDScript",
 "path": "res://BabaGodotLib/UI/LineContainer/DataContainer/NormalLineData.gd"
-}, {
-"base": "Trigger",
-"class": "OnStartTrigger",
-"language": "GDScript",
-"path": "res://BabaGodotLib/Triggers/OnStartTrigger.gd"
 }, {
 "base": "Node",
 "class": "OptionDataContainer",
@@ -879,11 +859,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/GUI/TextField.gd"
 }, {
-"base": "Trigger",
-"class": "SignalTrigger",
-"language": "GDScript",
-"path": "res://BabaGodotLib/Triggers/SignalTrigger.gd"
-}, {
 "base": "Node",
 "class": "SlopePlacer",
 "language": "GDScript",
@@ -994,11 +969,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/Absract/StateMachine/ToolStateMachine.gd"
 }, {
-"base": "Node2D",
-"class": "Trigger",
-"language": "GDScript",
-"path": "res://BabaGodotLib/Triggers/Trigger.gd"
-}, {
 "base": "Object",
 "class": "Utils",
 "language": "GDScript",
@@ -1108,7 +1078,6 @@ _global_script_class_icons={
 "ActorStateBase": "",
 "AnimatedObjectStateBase": "",
 "AppearState": "",
-"AreaTrigger": "",
 "Autotiler": "",
 "BabyBot": "",
 "BabyBotActionState": "",
@@ -1166,7 +1135,6 @@ _global_script_class_icons={
 "DoorButton": "",
 "DoorPushButton": "",
 "EarthBlock": "",
-"Event": "",
 "EventsBase": "",
 "FadeTransition": "",
 "FlyingPlatform": "",
@@ -1201,7 +1169,6 @@ _global_script_class_icons={
 "Lava": "",
 "Level": "",
 "LevelChunck": "",
-"LevelEvent": "",
 "LevelLoader": "",
 "LevelNode": "",
 "LevelNodeBind": "",
@@ -1223,7 +1190,6 @@ _global_script_class_icons={
 "MrStonks": "",
 "NPCRobotBase": "",
 "NormalLineData": "",
-"OnStartTrigger": "",
 "OptionDataContainer": "",
 "OptionLineContainer": "",
 "PartTween": "",
@@ -1269,7 +1235,6 @@ _global_script_class_icons={
 "SceneFinder": "",
 "ScreenTitleMenu": "",
 "SeedField": "",
-"SignalTrigger": "",
 "SlopePlacer": "",
 "SlotSaverMenu": "",
 "SmallChunckRoom": "",
@@ -1292,7 +1257,6 @@ _global_script_class_icons={
 "TileRenderPart": "",
 "TilemapDebugCursor": "",
 "ToolStatesMachine": "",
-"Trigger": "",
 "Utils": "",
 "Water": "",
 "WorldMap": "",
