@@ -9,6 +9,7 @@ var button_dict : Dictionary = {}
 
 var bind_origin = LevelNode
 var bind_dest_array : Array = []
+var editor_interface : EditorInterface
 
 var bind_mode : bool = false setget set_bind_mode
 
@@ -37,13 +38,15 @@ func set_bind_mode(value: bool):
 
 #### BUILT-IN ####
 
-
-
 func _enter_tree() -> void:
-	pass
+	var __ = get_tree().connect("node_removed", self, "_on_node_removed")
+	
+	editor_interface = get_editor_interface()
+
 
 func _exit_tree() -> void:
 	destroy_every_buttons()
+
 
 func handles(obj: Object) -> bool:
 	if not obj is Node:
@@ -141,6 +144,21 @@ func _unselect_all_level_nodes():
 #### INPUTS ####
 
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		if !event.is_pressed():
+			print("Click released")
+			var selection = editor_interface.get_selection()
+			var selected_nodes = selection.get_selected_nodes()
+			
+			print("Seletected node nb: %d" % selected_nodes.size())
+			
+			for node in selected_nodes:
+				if node is LevelNode:
+					print("position_changed emited from %s" % node.name)
+					node.emit_signal("position_changed")
+
+
 #### SIGNAL RESPONSES ####
 
 func _on_create_bind_button_pressed():
@@ -183,3 +201,8 @@ func _on_random_texture_button_pressed():
 func _on_reroll_bind_gen_button_pressed():
 	if current_node_selected is LevelNodeBind:
 		current_node_selected.reroll_line_gen()
+
+
+func _on_node_removed(node: Node) -> void:
+	if node is LevelNode:
+		node.emit_signal("remove_all_binds_query", node)

@@ -107,7 +107,6 @@ func update_children_binds():
 		generate_variations()
 	
 
-
 func generate_node_sublines():
 	# Loop through both start and end cap
 	for i in range(2):
@@ -192,7 +191,6 @@ func generate_node_sublines():
 			line.call_deferred("set_points", PoolVector2Array(line_points_array))
 
 
-
 func generate_corner_lines():
 	if randi() % 3 == 0: return
 	
@@ -219,7 +217,6 @@ func generate_corner_lines():
 	
 	add_child(line)
 	line.call_deferred("set_points", PoolVector2Array(line_points_array))
-
 
 
 func generate_dead_end_lines():
