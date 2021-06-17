@@ -179,6 +179,7 @@ func _on_random_texture_button_pressed():
 	if current_node_selected is WorldMapBackgroundElement:
 		current_node_selected.randomise_texture()
 
+
 func _on_reroll_bind_gen_button_pressed():
 	if current_node_selected is LevelNodeBind:
 		current_node_selected.reroll_line_gen()

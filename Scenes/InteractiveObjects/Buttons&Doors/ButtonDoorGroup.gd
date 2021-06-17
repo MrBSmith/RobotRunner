@@ -22,7 +22,7 @@ func _ready():
 		_err = connect("button_removed", self, "_on_button_removed")
 	else:
 		for button in fetch_buttons():
-			var _err = button.connect("triggered", self, "_on_button_triggered")
+			var _err = button.connect("triggered", self, "_on_button_triggered", [button], CONNECT_ONESHOT)
 			_err = button.connect("untriggered", self, "_on_button_untriggered")
 		
 		for door in fetch_doors():
@@ -37,6 +37,7 @@ func fetch_buttons() -> Array:
 		if child is DoorButton:
 			buttons_array.append(child)
 	return buttons_array
+
 
 func fetch_doors() -> Array:
 	var doors_array = []
@@ -129,6 +130,7 @@ func _on_button_added(button: DoorButton) -> void:
 
 func _on_button_removed(_button: DoorButton) -> void:
 	pass
+
 
 func _on_great_door_opened_changed(open: bool):
 	if open:
