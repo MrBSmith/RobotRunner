@@ -1,6 +1,6 @@
+tool
 extends Liquid
 class_name Water
-tool
 
 #### WATER ####
 

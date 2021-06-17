@@ -22,6 +22,7 @@ hue_variation = -0.5
 hue_variation_random = 0.51
 
 [node name="IceBlockBase" instance=ExtResource( 1 )]
+show_behind_parent = true
 light_mask = 1024
 angular_damp = 1.0
 script = ExtResource( 3 )
