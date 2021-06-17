@@ -134,29 +134,29 @@ func destroy_button(button_name: String):
 			print(button_name + " button destroyed")
 
 
-func _unselect_all_level_nodes():
+func _unselect_all_level_nodes() -> void:
 	if bind_origin != null:
 		bind_origin.set_editor_select_state(LevelNode.EDITOR_SELECTED.UNSELECTED)
 	
 	for node in bind_dest_array:
 		node.set_editor_select_state(LevelNode.EDITOR_SELECTED.UNSELECTED)
 
-#### INPUTS ####
 
-
-func _input(event: InputEvent) -> void:
+func forward_canvas_gui_input(event: InputEvent) -> bool:
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		if !event.is_pressed():
-			print("Click released")
 			var selection = editor_interface.get_selection()
 			var selected_nodes = selection.get_selected_nodes()
 			
-			print("Seletected node nb: %d" % selected_nodes.size())
-			
 			for node in selected_nodes:
 				if node is LevelNode:
-					print("position_changed emited from %s" % node.name)
 					node.emit_signal("position_changed")
+	
+	return false
+
+
+
+#### INPUTS ####
 
 
 #### SIGNAL RESPONSES ####
