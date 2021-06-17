@@ -43,12 +43,12 @@ _data = {
 
 [sub_resource type="Curve2D" id=5]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 320, 188, 0, 0, 0, 0, 320, 24, 0, 0, 0, 0, 564, 24 )
+"points": PoolVector2Array( 0, 0, 0, 0, 320, 188, 0, 0, 0, 0, 320, 96, 0, 0, 0, 0, 644, 96 )
 }
 
 [sub_resource type="Curve2D" id=6]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 604, 24, 0, 0, 0, 0, 800, 24, 0, 0, 0, 0, 800, 244 )
+"points": PoolVector2Array( 0, 0, 0, 0, 684, 96, 0, 0, 0, 0, 800, 96, 0, 0, 0, 0, 800, 244 )
 }
 
 [sub_resource type="Curve2D" id=7]
@@ -137,7 +137,7 @@ level_name = "L5"
 
 [node name="XL_LevelNode8" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 304, 48 )
+position = Vector2( 88, 192 )
 level_scene_path = "res://Scenes/Levels/OldLevels/Level1/Level1B.tscn"
 level_name = "L5"
 
@@ -160,7 +160,7 @@ level_name = "L4"
 
 [node name="XL_LevelNode6" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 584, 24 )
+position = Vector2( 664, 96 )
 level_name = "L6"
 
 [node name="Binds" type="Node2D" parent="."]
