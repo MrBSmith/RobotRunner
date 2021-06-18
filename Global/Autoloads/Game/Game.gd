@@ -5,7 +5,7 @@ onready var save_data : SaveData = $SaveData
 
 export var debug : bool = false
 
-const SAVE_GAME_DIR : String = "res://saves"
+const SAVE_GAME_DIR : String = "res://saves/"
 const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
 const DEFAULT_SETTINGS_PATH : String = "res://default_settings.cfg"
