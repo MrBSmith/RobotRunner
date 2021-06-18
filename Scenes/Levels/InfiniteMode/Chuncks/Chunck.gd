@@ -73,7 +73,6 @@ func _ready():
 	is_ready = true
 	
 	if debug:
-		GAME.set_screen_fade_visible(false)
 		debug_cursor.set_active(true)
 	
 	initialize_chunck()
