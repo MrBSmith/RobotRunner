@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/WorldMap/XL_WorldMap.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/WorldMap/WorldMapCharacterContainer.gd" type="Script" id=2]
@@ -18,7 +18,6 @@
 [ext_resource path="res://Scenes/WorldMap/Bind/XL_LevelNodeBind.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/WorldMap/WorldMapMovingElement/Character/WorldMapCharacter.tscn" type="PackedScene" id=17]
 [ext_resource path="res://BabaGodotLib/Transitions/FadeTransition.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Scenes/WorldMap/Bind/XL_LevelNodeBind.gd" type="Script" id=19]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -172,80 +171,38 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="XL_LevelNodeBind" type="Path2D" parent="Binds" instance=ExtResource( 16 )]
-self_modulate = Color( 1, 1, 1, 0 )
-light_mask = 0
+[node name="XL_LevelNodeBind" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 2 )
-script = ExtResource( 19 )
-__meta__ = {
-"_edit_lock_": true
-}
 origin_node_path = "Levels/XL_LevelNode"
 destination_node_path = "Levels/XL_LevelNode3"
 
-[node name="XL_LevelNodeBind2" type="Path2D" parent="Binds" instance=ExtResource( 16 )]
-self_modulate = Color( 1, 1, 1, 0 )
-light_mask = 0
+[node name="XL_LevelNodeBind2" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 3 )
-script = ExtResource( 19 )
-__meta__ = {
-"_edit_lock_": true
-}
 origin_node_path = "Levels/XL_LevelNode3"
 destination_node_path = "Levels/XL_LevelNode4"
 
-[node name="XL_LevelNodeBind3" type="Path2D" parent="Binds" instance=ExtResource( 16 )]
-self_modulate = Color( 1, 1, 1, 0 )
-light_mask = 0
+[node name="XL_LevelNodeBind3" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 4 )
-script = ExtResource( 19 )
-__meta__ = {
-"_edit_lock_": true
-}
 origin_node_path = "Levels/XL_LevelNode4"
 destination_node_path = "Levels/XL_LevelNode5"
 
-[node name="XL_LevelNodeBind4" type="Path2D" parent="Binds" instance=ExtResource( 16 )]
-self_modulate = Color( 1, 1, 1, 0 )
-light_mask = 0
+[node name="XL_LevelNodeBind4" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 5 )
-script = ExtResource( 19 )
-__meta__ = {
-"_edit_lock_": true
-}
 origin_node_path = "Levels/XL_LevelNode5"
 destination_node_path = "Levels/XL_LevelNode6"
 
-[node name="XL_LevelNodeBind5" type="Path2D" parent="Binds" instance=ExtResource( 16 )]
-self_modulate = Color( 1, 1, 1, 0 )
-light_mask = 0
+[node name="XL_LevelNodeBind5" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 6 )
-script = ExtResource( 19 )
-__meta__ = {
-"_edit_lock_": true
-}
 origin_node_path = "Levels/XL_LevelNode6"
 destination_node_path = "Levels/XL_LevelNode2"
 
-[node name="XL_LevelNodeBind6" type="Path2D" parent="Binds" instance=ExtResource( 16 )]
-self_modulate = Color( 1, 1, 1, 0 )
-light_mask = 0
+[node name="XL_LevelNodeBind6" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 7 )
-script = ExtResource( 19 )
-__meta__ = {
-"_edit_lock_": true
-}
 origin_node_path = "Levels/XL_LevelNode3"
 destination_node_path = "Levels/XL_LevelNode7"
 
-[node name="XL_LevelNodeBind7" type="Path2D" parent="Binds" instance=ExtResource( 16 )]
-self_modulate = Color( 1, 1, 1, 0 )
-light_mask = 0
+[node name="XL_LevelNodeBind7" parent="Binds" instance=ExtResource( 16 )]
 curve = SubResource( 8 )
-script = ExtResource( 19 )
-__meta__ = {
-"_edit_lock_": true
-}
 origin_node_path = "Levels/XL_LevelNode6"
 destination_node_path = "Levels/XL_LevelNode8"
 
