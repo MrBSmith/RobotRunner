@@ -72,7 +72,6 @@ func enter_current_level():
 	.enter_current_level()
 
 
-
 func generate_pulsing_light(current_level: LevelNode):
 	pulsing_light = pulsing_light_scene.instance()
 	pulsing_light.set_global_position(current_level.get_global_position())
@@ -81,7 +80,6 @@ func generate_pulsing_light(current_level: LevelNode):
 	pulsing_light.set_pulsing(true)
 	
 	add_child(pulsing_light)
-
 
 
 func light_moving_through(start: LevelNode, dest: LevelNode):
@@ -125,7 +123,6 @@ func light_moving_through(start: LevelNode, dest: LevelNode):
 		
 		signal_light.set_global_position(light_pos)
 		signal_light.move_along_path(line_points, false)
-
 
 
 #### INPUTS ####

@@ -38,6 +38,7 @@ func fetch_buttons() -> Array:
 			buttons_array.append(child)
 	return buttons_array
 
+
 func fetch_doors() -> Array:
 	var doors_array = []
 	for child in get_children():
@@ -129,6 +130,7 @@ func _on_button_added(button: DoorButton) -> void:
 
 func _on_button_removed(_button: DoorButton) -> void:
 	pass
+
 
 func _on_great_door_opened_changed(open: bool):
 	if open:

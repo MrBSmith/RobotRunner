@@ -27,10 +27,10 @@ sfx_dict = {
 }
 
 [node name="StartingPointP1" parent="." index="3" instance=ExtResource( 3 )]
-position = Vector2( 2568, 1200 )
+position = Vector2( 348, 217 )
 
 [node name="StartingPointP2" parent="." index="4" instance=ExtResource( 1 )]
-position = Vector2( 2640, 1199 )
+position = Vector2( 420, 216 )
 
 [node name="Back" parent="Map/Background/Paralaxe" index="0"]
 motion_scale = Vector2( 0.5, 0.5 )
@@ -85,14 +85,11 @@ pool_size = Vector2( 200, 80 )
 [node name="GrosLacDeLaveImmense" parent="InteractivesObjects/LavaTiles" index="0" instance=ExtResource( 6 )]
 position = Vector2( 1744, 1232 )
 
-[node name="BlueTeleporter" parent="InteractivesObjects/TeleportGroups" index="0" instance=ExtResource( 11 )]
-position = Vector2( 512, 492 )
-
-[node name="BlueTeleporter2" parent="InteractivesObjects/TeleportGroups" index="1" instance=ExtResource( 11 )]
+[node name="BlueTeleporter2" parent="InteractivesObjects/TeleportGroups" index="0" instance=ExtResource( 11 )]
 position = Vector2( 208, 228 )
 
-[node name="BlueTeleporter3" parent="InteractivesObjects/TeleportGroups" index="2" instance=ExtResource( 11 )]
-position = Vector2( 936, 1211.68 )
+[node name="BlueTeleporter3" parent="InteractivesObjects/TeleportGroups" index="1" instance=ExtResource( 11 )]
+position = Vector2( 576, 228 )
 
 [node name="GreatDoor" parent="InteractivesObjects/GreatDoorGroup" index="0" instance=ExtResource( 10 )]
 position = Vector2( 1032, 136 )
