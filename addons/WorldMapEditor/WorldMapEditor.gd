@@ -12,6 +12,7 @@ var bind_dest_array : Array = []
 var editor_interface : EditorInterface
 
 var bind_mode : bool = false setget set_bind_mode
+var last_level_node_pos = Vector2.INF
 
 var handeled_objects = ["LevelNode", "WorldMapBackgroundElement", "LevelNodeBind"]
 
@@ -125,6 +126,7 @@ func generate_button(button_name: String):
 		if debug_mode:
 			print(button_name + " button added")
 
+
 func destroy_button(button_name: String):
 	var button = button_dict[button_name] if button_dict.has(button_name) else null
 	if button != null:
@@ -144,13 +146,20 @@ func _unselect_all_level_nodes() -> void:
 
 func forward_canvas_gui_input(event: InputEvent) -> bool:
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		var selection = editor_interface.get_selection()
+		var selected_nodes = selection.get_selected_nodes()
+		
 		if !event.is_pressed():
-			var selection = editor_interface.get_selection()
-			var selected_nodes = selection.get_selected_nodes()
-			
 			for node in selected_nodes:
+				var level_node_pos = selected_nodes[0].get_position()
+				if level_node_pos == last_level_node_pos:
+					break
+				
 				if node is LevelNode:
 					node.emit_signal("position_changed")
+		else:
+			if !selected_nodes.empty():
+				last_level_node_pos = selected_nodes[0].get_position()
 	
 	return false
 
