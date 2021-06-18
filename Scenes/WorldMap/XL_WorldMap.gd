@@ -57,7 +57,7 @@ func apply_current_progression(visited_levels: Array, last_level_path: String) -
 
 func enter_current_level():
 	if pulsing_light != null:
-		pulsing_light.queue_free()
+		pulsing_light.call_deferred("queue_free")
 	
 	var cursor_level_node = cursor.get_current_level()
 	var character_current_level = characters_container.get_current_level()
