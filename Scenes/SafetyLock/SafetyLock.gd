@@ -92,7 +92,7 @@ func _on_animation_player_animation_finished(_anim_name: String) -> void:
 	
 	if nb_robots > 1 or !is_wanted_robot(bodies):
 		screen_sprite.play("Invalid")
-		entrance.open(false)
+		entrance.open(true)
 	else:
 		screen_sprite.play("Valid")
 		var door_to_open = in_door if entrance == out_door else out_door

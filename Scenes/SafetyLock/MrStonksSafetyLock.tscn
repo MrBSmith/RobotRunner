@@ -7,7 +7,10 @@
 wanted_class = "MrStonks"
 
 [node name="InDoor" parent="." index="0"]
-visible = false
+opened = true
 
 [node name="Backgound" parent="." index="3"]
 texture = ExtResource( 2 )
+
+[node name="Laser" parent="." index="6"]
+frame = 0

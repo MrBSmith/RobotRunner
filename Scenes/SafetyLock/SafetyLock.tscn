@@ -11,7 +11,7 @@
 [ext_resource path="res://BabaGodotLib/Triggers/AreaTrigger.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 19.8679, 23.9155 )
+extents = Vector2( 35, 23.9155 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 7 )
@@ -116,6 +116,7 @@ position = Vector2( -52, 0 )
 
 [node name="OutDoor" parent="." instance=ExtResource( 1 )]
 position = Vector2( 52, 0 )
+flip_h = true
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 0, 11 )
