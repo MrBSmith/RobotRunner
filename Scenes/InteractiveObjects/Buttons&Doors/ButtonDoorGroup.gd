@@ -22,7 +22,7 @@ func _ready():
 		_err = connect("button_removed", self, "_on_button_removed")
 	else:
 		for button in fetch_buttons():
-			var _err = button.connect("triggered", self, "_on_button_triggered", [button], CONNECT_ONESHOT)
+			var _err = button.connect("triggered", self, "_on_button_triggered")
 			_err = button.connect("untriggered", self, "_on_button_untriggered")
 		
 		for door in fetch_doors():
