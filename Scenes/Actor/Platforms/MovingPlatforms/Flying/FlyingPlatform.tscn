@@ -10,10 +10,13 @@
 extents = Vector2( 4.25, 24 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 23.9907, 5.39063 )
+extents = Vector2( 23.991, 4 )
 
 [node name="FlyingPlatform" instance=ExtResource( 4 )]
+collision/safe_margin = 0.001
 script = ExtResource( 2 )
+max_speed = 150.0
+push = 0
 ignore_gravity = true
 movement_type = 1
 
@@ -42,5 +45,5 @@ __meta__ = {
 [node name="Area2D" type="Area2D" parent="." index="4"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 0, 5.31091 )
+position = Vector2( 0, 12 )
 shape = SubResource( 2 )

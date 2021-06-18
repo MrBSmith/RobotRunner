@@ -22,7 +22,7 @@ export var jump_force : int = -490
 export (int, 0, 1000) var push = 2
 
 const GRAVITY : Vector2 = Vector2(0, 30)
-export var ignore_gravity : bool = false
+export var ignore_gravity : bool = false setget set_ignore_gravity, get_ignore_gravity
 
 var snap_vector = Vector2(0, 10)
 var current_snap = snap_vector
@@ -52,8 +52,6 @@ func set_direction(value : Vector2):
 	if !direction.is_equal_approx(value):
 		emit_signal("direction_changed",value)
 	direction = value
-
-
 func get_direction() -> Vector2: return direction
 
 func set_max_speed(value : float): max_speed = value
@@ -72,6 +70,9 @@ func get_state() -> Object: return $StatesMachine.get_state()
 func get_state_name() -> String: return $StatesMachine.get_state_name()
 
 func get_extents() -> Vector2: return $CollisionShape2D.get_shape().get_extents()
+
+func set_ignore_gravity(value: bool): ignore_gravity = value
+func get_ignore_gravity() -> bool: return ignore_gravity
 
 # Returns the direction of the robot
 func get_face_direction() -> int:
@@ -111,6 +112,7 @@ func get_reel_input(action_name : String) -> String:
 func appear():
 	$StatesMachine.set_state("Rise")
 
+
 func overheat():
 	$AnimationPlayer.play("Overheat", -1, 2.5)
 
@@ -118,6 +120,7 @@ func overheat():
 func destroy():
 	EVENTS.emit_signal("play_SFX", "small_explosion", global_position)
 	queue_free()
+
 
 func actor_speed_handler():
 	var dir = get_direction()
@@ -134,6 +137,7 @@ func actor_speed_handler():
 		current_speed -= acceleration * 3.3
 	
 	current_speed = clamp(current_speed, 0.0, max_speed)
+
 
 func compute_velocity():
 	# Compute velocity
@@ -153,38 +157,47 @@ func compute_velocity():
 	
 	emit_signal("velocity_changed", velocity)
 
+
 func reduce_impulse_force_by_friction(impulse_key : String):
 	if impulse.size() > 0:
 		var impulse_length = impulse[impulse_key].length()
 		var impulse_newlength = clamp(impulse_length-friction, 0, impulse_length)
 		impulse[impulse_key] = impulse[impulse_key].clamped(impulse_newlength)
 
+
 func add_impulse(key: String, impulse_value : Vector2):
 	impulse[key] = impulse_value
+
 
 func remove_impulse(key : String):
 	if impulse.has(key):
 		var _i = impulse.erase(key)
+
 
 func remove_useless_impulse():
 	for key in impulse.keys():
 		if impulse[key] == Vector2.ZERO:
 			var _i = impulse.erase(key)
 
+
 func add_force(key: String, value : Vector2):
-	if !force_exist(key):
+	if !has_force(key):
 		forces[key] = value
+
 
 func remove_force(key: String):
-	if force_exist(key):
+	if has_force(key):
 		var _f = forces.erase(key)
 
+
 func set_force(key: String, value : Vector2):
-	if force_exist(key):
+	if has_force(key):
 		forces[key] = value
 
-func force_exist(key: String):
+
+func has_force(key: String) -> bool:
 	return forces.has(key)
+
 
 func apply_movement(delta):
 	# Apply movement
@@ -193,7 +206,8 @@ func apply_movement(delta):
 	#Do not use 2 move_and_slide at the same time
 	position += applied_force * delta
 	velocity = move_and_slide_with_snap(velocity, current_snap, Vector2.UP, true, 4, deg2rad(46), false)
-	
+
+
 func correct_jump_corner(delta):
 	var state_name = get_state_name()
 	

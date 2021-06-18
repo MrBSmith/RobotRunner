@@ -20,7 +20,6 @@ func set_floating_line(value: float):
 	else:
 		if !is_in_group("MovableBodies"):
 			remove_from_group("MovableBodies")
-
 func get_floating_line() -> float: return floating_line
 
 ### BUILT-IN ###

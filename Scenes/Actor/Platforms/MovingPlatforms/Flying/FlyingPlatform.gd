@@ -13,7 +13,9 @@ func get_class() -> String: return "FlyingPlatform"
 #### VIRTUALS ####
 
 
+
 #### LOGIC ####
+
 
 # function override
 func compute_velocity():
@@ -29,3 +31,4 @@ func compute_velocity():
 
 
 #### SIGNAL RESPONSES ####
+

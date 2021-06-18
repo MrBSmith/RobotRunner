@@ -624,7 +624,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Levels/InfiniteMode/GenData/MetaChunckGenData.gd"
 }, {
-"base": "NPCRobotBase",
+"base": "RobotPlatformBase",
 "class": "MovingPlatform",
 "language": "GDScript",
 "path": "res://Scenes/Actor/Platforms/MovingPlatforms/MovingPlatform.gd"
