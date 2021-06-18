@@ -150,6 +150,8 @@ position = Vector2( 2971, -232 )
 
 [node name="MrColdSafetyLock" parent="InteractivesObjects/SafetyLock" index="0" instance=ExtResource( 2 )]
 position = Vector2( 1368, 276 )
+one_way = true
 
 [node name="MrStonksSafetyLock" parent="InteractivesObjects/SafetyLock" index="1" instance=ExtResource( 10 )]
 position = Vector2( 1368, 468 )
+one_way = true
