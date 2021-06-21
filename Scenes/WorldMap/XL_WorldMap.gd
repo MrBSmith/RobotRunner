@@ -56,6 +56,10 @@ func apply_current_progression(visited_levels: Array, last_level_path: String) -
 
 
 func enter_current_level():
+	# Assure there is no moving light currently moving in the world map
+	if moving_light_container.get_child_count() > 0:
+		return
+	
 	if pulsing_light != null:
 		pulsing_light.call_deferred("queue_free")
 	
