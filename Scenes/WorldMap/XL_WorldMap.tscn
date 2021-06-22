@@ -28,37 +28,37 @@ shader_param/noise = ExtResource( 12 )
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 84, 320, 0, 0, 0, 0, 191.109, 320, 0, 0, 0, 0, 191.109, 428 )
+"points": PoolVector2Array( 0, 0, 0, 0, 64, 340, 0, 0, 0, 0, 64, 382.075, 0, 0, 0, 0, 199.577, 382.075 )
 }
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 211.109, 448, 0, 0, 0, 0, 684, 448 )
+"points": PoolVector2Array( 0, 0, 0, 0, 219.577, 402.075, 0, 0, 0, 0, 219.577, 446.502, 0, 0, 0, 0, 682.502, 446.502 )
 }
 
 [sub_resource type="Curve2D" id=4]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 724, 448, 0, 0, 0, 0, 832, 448, 0, 0, 0, 0, 832, 276 )
+"points": PoolVector2Array( 0, 0, 0, 0, 722.502, 446.502, 0, 0, 0, 0, 832, 446.502, 0, 0, 0, 0, 832, 276 )
 }
 
 [sub_resource type="Curve2D" id=5]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 832, 236, 0, 0, 0, 0, 832, 192, 0, 0, 0, 0, 660, 192 )
+"points": PoolVector2Array( 0, 0, 0, 0, 832, 236, 0, 0, 0, 0, 832, 193.498, 0, 0, 0, 0, 660.749, 193.498 )
 }
 
 [sub_resource type="Curve2D" id=6]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 620, 192, 0, 0, 0, 0, 512, 192, 0, 0, 0, 0, 512, 84 )
+"points": PoolVector2Array( 0, 0, 0, 0, 620.749, 193.498, 0, 0, 0, 0, 512, 193.498, 0, 0, 0, 0, 512, 81.0034 )
 }
 
 [sub_resource type="Curve2D" id=7]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 191.109, 428, 0, 0, 0, 0, 191.109, 320, 0, 0, 0, 0, 364, 320 )
+"points": PoolVector2Array( 0, 0, 0, 0, 219.577, 362.075, 0, 0, 0, 0, 219.577, 318.502, 0, 0, 0, 0, 367.745, 318.502 )
 }
 
 [sub_resource type="Curve2D" id=8]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 620, 192, 0, 0, 0, 0, 512.891, 192, 0, 0, 0, 0, 512.891, 300 )
+"points": PoolVector2Array( 0, 0, 0, 0, 640.749, 213.498, 0, 0, 0, 0, 640.749, 321.498, 0, 0, 0, 0, 532.142, 321.498 )
 }
 
 [sub_resource type="ShaderMaterial" id=9]
@@ -129,33 +129,29 @@ level_scene_path = "res://Scenes/Levels/Chapter1/Level1.tscn"
 level_name = "L1"
 
 [node name="XL_LevelNode2" parent="Levels" instance=ExtResource( 14 )]
-modulate = Color( 0.7, 0.13, 0.13, 1 )
 material = SubResource( 1 )
-position = Vector2( 512, 64 )
+position = Vector2( 512, 61.0034 )
 level_name = "L5"
-accessible = false
 
 [node name="XL_LevelNode7" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 384, 320 )
+position = Vector2( 387.745, 316.255 )
 level_name = "L2.1"
 
 [node name="XL_LevelNode8" parent="Levels" instance=ExtResource( 14 )]
-modulate = Color( 0.7, 0.13, 0.13, 1 )
 material = SubResource( 1 )
-position = Vector2( 512.891, 320 )
+position = Vector2( 512.142, 321.498 )
 level_name = "6.1"
-accessible = false
 
 [node name="XL_LevelNode3" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 191.109, 448 )
+position = Vector2( 219.577, 382.075 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level2.tscn"
 level_name = "L2"
 
 [node name="XL_LevelNode4" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 704, 448 )
+position = Vector2( 702.502, 446.502 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level3.tscn"
 level_name = "L3"
 
@@ -167,11 +163,9 @@ level_name = "L4"
 accessible = false
 
 [node name="XL_LevelNode6" parent="Levels" instance=ExtResource( 14 )]
-modulate = Color( 0.7, 0.13, 0.13, 1 )
 material = SubResource( 1 )
-position = Vector2( 640, 192 )
+position = Vector2( 640.749, 193.498 )
 level_name = "L6"
-accessible = false
 
 [node name="Binds" type="Node2D" parent="."]
 __meta__ = {
