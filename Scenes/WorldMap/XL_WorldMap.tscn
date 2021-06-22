@@ -28,12 +28,12 @@ shader_param/noise = ExtResource( 12 )
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 84, 320, 0, 0, 0, 0, 192, 320, 0, 0, 0, 0, 192, 428 )
+"points": PoolVector2Array( 0, 0, 0, 0, 84, 320, 0, 0, 0, 0, 191.109, 320, 0, 0, 0, 0, 191.109, 428 )
 }
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 212, 448, 0, 0, 0, 0, 684, 448 )
+"points": PoolVector2Array( 0, 0, 0, 0, 211.109, 448, 0, 0, 0, 0, 684, 448 )
 }
 
 [sub_resource type="Curve2D" id=4]
@@ -53,7 +53,7 @@ _data = {
 
 [sub_resource type="Curve2D" id=7]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 192, 428, 0, 0, 0, 0, 192, 320, 0, 0, 0, 0, 364, 320 )
+"points": PoolVector2Array( 0, 0, 0, 0, 191.109, 428, 0, 0, 0, 0, 191.109, 320, 0, 0, 0, 0, 364, 320 )
 }
 
 [sub_resource type="Curve2D" id=8]
@@ -129,9 +129,11 @@ level_scene_path = "res://Scenes/Levels/Chapter1/Level1.tscn"
 level_name = "L1"
 
 [node name="XL_LevelNode2" parent="Levels" instance=ExtResource( 14 )]
+modulate = Color( 0.7, 0.13, 0.13, 1 )
 material = SubResource( 1 )
 position = Vector2( 512, 64 )
 level_name = "L5"
+accessible = false
 
 [node name="XL_LevelNode7" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
@@ -139,16 +141,17 @@ position = Vector2( 384, 320 )
 level_name = "L2.1"
 
 [node name="XL_LevelNode8" parent="Levels" instance=ExtResource( 14 )]
+modulate = Color( 0.7, 0.13, 0.13, 1 )
 material = SubResource( 1 )
 position = Vector2( 512.891, 320 )
 level_name = "6.1"
+accessible = false
 
 [node name="XL_LevelNode3" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 191.109, 448 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level2.tscn"
 level_name = "L2"
-accessible = false
 
 [node name="XL_LevelNode4" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
@@ -157,14 +160,18 @@ level_scene_path = "res://Scenes/Levels/Chapter1/Level3.tscn"
 level_name = "L3"
 
 [node name="XL_LevelNode5" parent="Levels" instance=ExtResource( 14 )]
+modulate = Color( 0.7, 0.13, 0.13, 1 )
 material = SubResource( 1 )
 position = Vector2( 832, 256 )
 level_name = "L4"
+accessible = false
 
 [node name="XL_LevelNode6" parent="Levels" instance=ExtResource( 14 )]
+modulate = Color( 0.7, 0.13, 0.13, 1 )
 material = SubResource( 1 )
 position = Vector2( 640, 192 )
 level_name = "L6"
+accessible = false
 
 [node name="Binds" type="Node2D" parent="."]
 __meta__ = {
