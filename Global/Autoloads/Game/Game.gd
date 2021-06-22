@@ -6,7 +6,7 @@ onready var save_data : SaveData = $SaveData
 export var debug : bool = false
 
 const SAVE_GAME_DIR : String = "res://saves/"
-const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
+const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevels"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
 const DEFAULT_SETTINGS_PATH : String = "res://default_settings.cfg"
 
@@ -231,10 +231,10 @@ func load_default_settings():
 	save_slot = GameLoader.get_cfg_property_value(config_file, "slot_id")
 
 
-func save_level(level: Level = null):
+func save_level(level: Level = null, path : String = SAVED_LEVEL_DIR):
 	if level == null:
 		level = get_tree().get_current_scene()
-	LevelSaver.save_level_properties_as_json(save_data.level_property_to_serialize, SAVED_LEVEL_DIR, level)
+	LevelSaver.save_level_properties_as_json(save_data.level_property_to_serialize, path, level)
 
 
 #### INPUTS ####
@@ -275,6 +275,16 @@ func _input(_event):
 func _on_level_finished_event(level : Level):
 	progression.append_visited_level(level)
 	GameSaver.save_game_in_slot(progression, SAVE_GAME_DIR, save_slot, save_data.settings)
+	
+	# Get the save's path
+	var save_path = GameLoader.find_corresponding_save_file(SAVE_GAME_DIR, save_slot).get_base_dir()
+	var save_level_dir = save_path + "/SavedLevels"
+	
+	# create the SavedLevels sub dir
+	if !DirNavHelper.is_dir_existing(save_level_dir):
+		DirNavHelper.create_dir(save_level_dir)
+	
+	save_level(level, save_level_dir)
 	goto_world_map()
 
 
