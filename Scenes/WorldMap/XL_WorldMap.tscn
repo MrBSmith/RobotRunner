@@ -58,7 +58,7 @@ _data = {
 
 [sub_resource type="Curve2D" id=8]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 620, 192, 0, 0, 0, 0, 512, 192, 0, 0, 0, 0, 512, 300 )
+"points": PoolVector2Array( 0, 0, 0, 0, 620, 192, 0, 0, 0, 0, 512.891, 192, 0, 0, 0, 0, 512.891, 300 )
 }
 
 [sub_resource type="ShaderMaterial" id=9]
@@ -140,14 +140,15 @@ level_name = "L2.1"
 
 [node name="XL_LevelNode8" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 512, 320 )
+position = Vector2( 512.891, 320 )
 level_name = "6.1"
 
 [node name="XL_LevelNode3" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 192, 448 )
+position = Vector2( 191.109, 448 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level2.tscn"
 level_name = "L2"
+accessible = false
 
 [node name="XL_LevelNode4" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
@@ -158,7 +159,6 @@ level_name = "L3"
 [node name="XL_LevelNode5" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
 position = Vector2( 832, 256 )
-level_scene_path = "res://Scenes/Levels/OldLevels/Level1/Level1C.tscn"
 level_name = "L4"
 
 [node name="XL_LevelNode6" parent="Levels" instance=ExtResource( 14 )]
