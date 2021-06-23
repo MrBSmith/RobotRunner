@@ -129,6 +129,10 @@ func light_moving_through(start: LevelNode, dest: LevelNode):
 		signal_light.move_along_path(line_points, false)
 
 
+func is_animation_running() -> bool:
+	return characters_container.is_moving() or moving_light_container.get_child_count() != 0
+
+
 #### INPUTS ####
 
 

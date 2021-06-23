@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/WorldMap/XL_WorldMap.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/WorldMap/WorldMapCharacterContainer.gd" type="Script" id=2]
@@ -15,8 +15,10 @@
 [ext_resource path="res://Scenes/WorldMap/Backgound/BackgroundElement.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/WorldMap/LevelNode/XL_LevelNode.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/WorldMap/WorldMapMovingElement/Cursor/WorldMapCursor.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/WorldMap/Bind/XL_LevelNodeBind.gd" type="Script" id=16]
 [ext_resource path="res://Scenes/WorldMap/WorldMapMovingElement/Character/WorldMapCharacter.tscn" type="PackedScene" id=17]
 [ext_resource path="res://BabaGodotLib/Transitions/FadeTransition.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/WorldMap/Bind/XL_LevelNodeBind.tscn" type="PackedScene" id=19]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -25,7 +27,42 @@ shader = ExtResource( 11 )
 shader_param/amount = 0.0
 shader_param/noise = ExtResource( 12 )
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 64, 340, 0, 0, 0, 0, 64, 384, 0, 0, 0, 0, 196, 384 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 216, 364, 0, 0, 0, 0, 216, 320, 0, 0, 0, 0, 364, 320 )
+}
+
+[sub_resource type="Curve2D" id=6]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 576, 292, 0, 0, 0, 0, 576, 148 )
+}
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 596, 312, 0, 0, 0, 0, 632, 312, 0, 0, 0, 0, 632, 444 )
+}
+
+[sub_resource type="Curve2D" id=10]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 436, 464, 0, 0, 0, 0, 612, 464 )
+}
+
+[sub_resource type="Curve2D" id=11]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 216, 404, 0, 0, 0, 0, 216, 464, 0, 0, 0, 0, 396, 464 )
+}
+
+[sub_resource type="Curve2D" id=12]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 524, 312, 0, 0, 0, 0, 556, 312 )
+}
+
+[sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 8 )
 shader_param/apply = false
 shader_param/displace_amount = 1
@@ -94,41 +131,41 @@ level_name = "L1"
 
 [node name="XL_LevelNode2" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 512, 61.0034 )
+position = Vector2( 576, 312 )
 level_name = "L5"
 
 [node name="XL_LevelNode7" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 387.745, 316.255 )
+position = Vector2( 384, 320 )
 level_name = "L2.1"
 
 [node name="XL_LevelNode8" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 512.142, 321.498 )
+position = Vector2( 504, 312 )
 level_name = "6.1"
 
 [node name="XL_LevelNode3" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 219.577, 382.075 )
+position = Vector2( 216, 384 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level2.tscn"
 level_name = "L2"
 
 [node name="XL_LevelNode4" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 702.502, 446.502 )
+position = Vector2( 416, 464 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level3.tscn"
 level_name = "L3"
 
 [node name="XL_LevelNode5" parent="Levels" instance=ExtResource( 14 )]
 modulate = Color( 0.7, 0.13, 0.13, 1 )
 material = SubResource( 1 )
-position = Vector2( 832, 256 )
+position = Vector2( 632, 464 )
 level_name = "L4"
 accessible = false
 
 [node name="XL_LevelNode6" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 640.749, 193.498 )
+position = Vector2( 576, 128 )
 level_name = "L6"
 
 [node name="Binds" type="Node2D" parent="."]
@@ -136,11 +173,88 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="XL_LevelNodeBind" type="Path2D" parent="Binds" instance=ExtResource( 19 )]
+self_modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
+curve = SubResource( 2 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+origin_node_path = "Levels/XL_LevelNode"
+destination_node_path = "Levels/XL_LevelNode3"
+
+[node name="XL_LevelNodeBind2" type="Path2D" parent="Binds" instance=ExtResource( 19 )]
+self_modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
+curve = SubResource( 3 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+origin_node_path = "Levels/XL_LevelNode3"
+destination_node_path = "Levels/XL_LevelNode7"
+
+[node name="XL_LevelNodeBind5" type="Path2D" parent="Binds" instance=ExtResource( 19 )]
+self_modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
+curve = SubResource( 6 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+origin_node_path = "Levels/XL_LevelNode2"
+destination_node_path = "Levels/XL_LevelNode6"
+
+[node name="XL_LevelNodeBind6" type="Path2D" parent="Binds" instance=ExtResource( 19 )]
+self_modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
+curve = SubResource( 7 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+origin_node_path = "Levels/XL_LevelNode2"
+destination_node_path = "Levels/XL_LevelNode5"
+
+[node name="XL_LevelNodeBind3" type="Path2D" parent="Binds" instance=ExtResource( 19 )]
+self_modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
+curve = SubResource( 10 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+origin_node_path = "Levels/XL_LevelNode4"
+destination_node_path = "Levels/XL_LevelNode5"
+
+[node name="XL_LevelNodeBind4" type="Path2D" parent="Binds" instance=ExtResource( 19 )]
+self_modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
+curve = SubResource( 11 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+origin_node_path = "Levels/XL_LevelNode3"
+destination_node_path = "Levels/XL_LevelNode4"
+
+[node name="XL_LevelNodeBind7" type="Path2D" parent="Binds" instance=ExtResource( 19 )]
+self_modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
+curve = SubResource( 12 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+origin_node_path = "Levels/XL_LevelNode8"
+destination_node_path = "Levels/XL_LevelNode2"
+
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Characters" type="Node2D" parent="."]
 modulate = Color( 0.270588, 0.611765, 0.156863, 1 )
-material = SubResource( 2 )
+material = SubResource( 9 )
 position = Vector2( 64, 320 )
 script = ExtResource( 2 )
 __meta__ = {
