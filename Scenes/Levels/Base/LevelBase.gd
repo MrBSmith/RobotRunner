@@ -34,14 +34,17 @@ func _enter_tree() -> void:
 func _ready():
 	var _err = music_timer.connect("timeout", self, "_on_music_timer_timeout")
 	_err = EVENTS.connect("gameover", self, "_on_gameover_event")
+	
 	if OS.is_debug_build() && !is_loaded_from_save:
 		GAME.progression.set_checkpoint(test_checkpoint)
 	
+	# Instanciate the players
 	set_starting_points()
 	instanciate_players()
 	set_camera_position_on_start()
 	propagate_weakref_players_array()
 	
+	# Fade in
 	fade_transition_node.fade(1.0, FadeTransition.FADE_MODE.FADE_IN)
 	
 	MUSIC.play()

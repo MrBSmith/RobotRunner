@@ -5,8 +5,8 @@ onready var save_data : SaveData = $SaveData
 
 export var debug : bool = false
 
-const SAVE_GAME_DIR : String = "res://saves/"
-const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevel"
+const SAVE_GAME_DIR : String = "res://saves"
+const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevels"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
 const DEFAULT_SETTINGS_PATH : String = "res://default_settings.cfg"
 
@@ -148,9 +148,7 @@ func goto_level(level_index : int, chapter_id: int = progression.get_chapter()):
 	progression.set_checkpoint(-1)
 
 	level = chapters_array[chapter_id].load_level(level_index)
-	var level_name = current_chapter.get_level_name(level_index)
-	LevelSaver.delete_level_temp_saves(SAVED_LEVEL_DIR, level_name)
-
+	
 	var _err = get_tree().change_scene_to(level)
 
 
@@ -210,6 +208,10 @@ func find_level_in_chapter_array(level_name: String) -> String:
 	return ""
 
 
+func get_current_save_path() -> String:
+	return GameLoader.find_corresponding_save_file(SAVE_GAME_DIR, save_slot).get_base_dir()
+
+
 # Check if the current level index is the right one when a new level is ready
 # Usefull when testing a level standalone to keep track of the progression
 func update_current_level_index(level : Level):
@@ -231,10 +233,10 @@ func load_default_settings():
 	save_slot = GameLoader.get_cfg_property_value(config_file, "slot_id")
 
 
-func save_level(level: Level = null):
+func save_level(level: Level = null, path : String = SAVED_LEVEL_DIR):
 	if level == null:
 		level = get_tree().get_current_scene()
-	LevelSaver.save_level_properties_as_json(save_data.level_property_to_serialize, SAVED_LEVEL_DIR, level)
+	LevelSaver.save_level_properties_as_json(save_data.level_property_to_serialize, path, level)
 
 
 #### INPUTS ####
@@ -275,13 +277,30 @@ func _input(_event):
 func _on_level_finished_event(level : Level):
 	progression.append_visited_level(level)
 	GameSaver.save_game_in_slot(progression, SAVE_GAME_DIR, save_slot, save_data.settings)
+	
+	# Get the save's path
+	var save_path = get_current_save_path()
+	var save_level_dir = save_path + "/SavedLevels"
+	
+	# create the SavedLevels sub dir
+	if !DirNavHelper.is_dir_existing(save_level_dir):
+		DirNavHelper.create_dir(save_level_dir)
+	
+	save_level(level, save_level_dir)
 	goto_world_map()
 
 
-# Called when the level is ready, correct
+# Called when the level is ready, load its properties form the json file if needed
 func _on_level_ready_event(level : Level):
 	last_level_name = level.get_name()
 	update_current_level_index(level)
+	
+	# Build the level if a save for it exists in the current save dir
+	var current_save_path = GAME.get_current_save_path()
+	var level_json_path = current_save_path + "/SavedLevels/" + level.name + ".json"
+	
+	if DirNavHelper.is_file_existing(level_json_path):
+		LevelLoader.build_level_from_loaded_properties(level_json_path, level)
 
 
 # When a player reach a checkpoint
