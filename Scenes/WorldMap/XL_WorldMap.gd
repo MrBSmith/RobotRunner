@@ -21,17 +21,16 @@ func get_class() -> String: return "XL_WorldMap"
 func _ready() -> void:
 	var __ = get_tree().connect("node_removed", self, "_on_scene_tree_node_removed")
 	
-	var current_level = cursor.get_current_level()
-	
-	if !Engine.editor_hint && current_level != null:
-		generate_pulsing_light(current_level)
-	
+	if !Engine.editor_hint:
 		var visited_levels = GAME.progression.visited_levels
 		var last_level_id = GAME.progression.get_last_level_id()
 		var last_level_path = GAME.current_chapter.get_level_path(last_level_id)
-	
+		
 		apply_current_progression(visited_levels, last_level_path)
 		fade_transition_node.fade(1.0, FadeTransition.FADE_MODE.FADE_IN)
+	
+	var current_level = cursor.get_current_level()
+	generate_pulsing_light(current_level)
 
 
 #### VIRTUALS ####
