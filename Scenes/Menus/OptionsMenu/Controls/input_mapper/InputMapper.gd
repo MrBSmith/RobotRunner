@@ -68,27 +68,25 @@ var profile_custom = {
 	'display_console': InputMap.get_action_list("display_console")[0].scancode
 }
 
-#Get the selected profile id to change it. Ref to profile var for more information
+#Get the selected profile id to change it. Refer to profile var for more information about IDs
 func change_profile(id):
-	current_profile_id = id #set the current profile to the selected one
-	var profile = get(profiles[id]) #get the profile's input according to the id
+	current_profile_id = id
+	var profile = get(profiles[id])
 	var is_customizable = true if id == 2 else false #Currently, the customizable profile is the 3rd one, so ID(2).
-	#Otherwise, if we chose to add one more profile, the customizable profile would be ID(3), ID(4), etc...
 	
-	emit_signal('profile_changed', profile, is_customizable) #Emit the signal 'profile changed'
+	emit_signal('profile_changed', profile, is_customizable)
 
-	return profile #return the profile to display it / use it later.
+	return profile
 
 
 # This function will remove the current action from the settings and add a new key as an event
 func change_action_key(action_name, key_scancode):
-	erase_action_events(action_name) #remove the action from the settings
+	erase_action_events(action_name)
 
-	var new_event = InputEventKey.new() # Create a new inputevenkey event
-	new_event.set_scancode(key_scancode) # Set the scancode to the variable previously declared
-	new_event.set_scancode(key_scancode) # Set the scancode to the variable previously declared
-	InputMap.action_add_event(action_name, new_event) # Add the action(with the key) to the InputMap of the system so that it can be recognized
-	get_selected_profile()[action_name] = key_scancode # Get the current profile's changed action scancode
+	var new_event = InputEventKey.new()
+	new_event.set_scancode(key_scancode)
+	InputMap.action_add_event(action_name, new_event)
+	get_selected_profile()[action_name] = key_scancode
 
 
 # This function will remove the selected action from the settings (InputMap)

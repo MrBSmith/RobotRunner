@@ -489,7 +489,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/Isometric/IsoMap/IsoMap.gd"
 }, {
-"base": "TileMap",
+"base": "IsoTileMap",
 "class": "IsoMapLayer",
 "language": "GDScript",
 "path": "res://BabaGodotLib/Isometric/IsoMap/IsoMapLayer.gd"
@@ -518,6 +518,11 @@ _global_script_classes=[ {
 "class": "IsoRenderer",
 "language": "GDScript",
 "path": "res://BabaGodotLib/Isometric/IsoRenderer/IsoRenderer.gd"
+}, {
+"base": "Tween",
+"class": "IsoRendererTween",
+"language": "GDScript",
+"path": "res://BabaGodotLib/Isometric/IsoRenderer/RenderPart/PartTween.gd"
 }, {
 "base": "Sprite",
 "class": "IsoSprite",
@@ -669,11 +674,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/UI/LineContainer/OptionLineContainer.gd"
 }, {
-"base": "Tween",
-"class": "PartTween",
-"language": "GDScript",
-"path": "res://BabaGodotLib/Isometric/IsoRenderer/RenderPart/PartTween.gd"
-}, {
 "base": "Position2D",
 "class": "PathPoint",
 "language": "GDScript",
@@ -759,7 +759,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BabaGodotLib/Absract/Raycast/RayCastBase.gd"
 }, {
-"base": "Node2D",
+"base": "Sprite",
 "class": "RenderPart",
 "language": "GDScript",
 "path": "res://BabaGodotLib/Isometric/IsoRenderer/RenderPart/RenderPart.gd"
@@ -1202,6 +1202,7 @@ _global_script_class_icons={
 "IsoRaycast": "",
 "IsoRenderPart": "",
 "IsoRenderer": "",
+"IsoRendererTween": "",
 "IsoSprite": "",
 "IsoTileMap": "",
 "Lava": "",
@@ -1232,7 +1233,6 @@ _global_script_class_icons={
 "OnStartTrigger": "",
 "OptionDataContainer": "",
 "OptionLineContainer": "",
-"PartTween": "",
 "PathPoint": "",
 "PauseMenu": "",
 "Player": "",
