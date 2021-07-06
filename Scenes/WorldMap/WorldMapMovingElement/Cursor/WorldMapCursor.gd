@@ -27,7 +27,7 @@ func _ready() -> void:
 
 #### LOGIC ####
 
-func move_to_level(level_node: LevelNode, interpol: bool = true):
+func move_to_node(node: WorldMapNode, interpol: bool = true):
 	var current_state_name = $StatesMachine.get_state_name()
 	
 	if current_state_name == "Move":
@@ -38,7 +38,7 @@ func move_to_level(level_node: LevelNode, interpol: bool = true):
 		"Idle": yield(self, "idle_animation_finished")
 		"Rotate": yield(self, "rotation_animation_finished")
 	
-	.move_to_level(level_node, true)
+	.move_to_node(node, true)
 
 
 #### INPUTS ####

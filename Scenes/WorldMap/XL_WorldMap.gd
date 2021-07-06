@@ -149,10 +149,10 @@ func generate_pulsing_light(current_level: LevelNode):
 	add_child(pulsing_light)
 
 
-func light_moving_through(start: LevelNode, dest: LevelNode):
+func light_moving_through(start: WorldMapNode, dest: WorldMapNode):
 	var bind = get_bind(start, dest)
 	if bind == null:
-		print_debug("The given start and/or dest LevelNode are neither the origin nor the destination")
+		push_error("The given start and/or dest LevelNode are neither the origin nor the destination")
 		return
 
 	var line_array := Array()
