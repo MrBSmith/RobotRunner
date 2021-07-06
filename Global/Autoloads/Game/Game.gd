@@ -5,11 +5,11 @@ onready var save_data : SaveData = $SaveData
 
 export var debug : bool = false
 
-const SAVE_GAME_DIR : String = "res://saves"
+const SAVE_GAME_DIR : String = "res://Saves"
 const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevels"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
-const DEFAULT_SETTINGS_PATH : String = "res://default_settings.cfg"
-const DEFAULT_INPUT_PATH : String = "res://input_profiles.cfg"
+const DEFAULT_SETTINGS_PATH : String = "res://Config/default_settings.cfg"
+const DEFAULT_INPUT_PATH : String = "res://Config/input_profiles.cfg"
 
 const TILE_SIZE := Vector2(24, 24)
 const JUMP_MAX_DIST := Vector2(6, 2)
