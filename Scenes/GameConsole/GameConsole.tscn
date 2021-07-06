@@ -187,3 +187,12 @@ cmd_name = "SAVE_LEVEL"
 cmd_description = "Save the current level in a .json file"
 target = "GAME"
 target_method = "save_level"
+
+[node name="XION_CLOUD" type="Node" parent="CommandsList"]
+script = ExtResource( 5 )
+cmd_name = "XION_CLOUD"
+args_number = 1
+cmd_description = "Stop or Resume the progression of the Xion Cloud"
+cheats_required = true
+target = "XionCloud"
+target_method = "set_active"
