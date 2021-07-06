@@ -23,6 +23,7 @@ func get_class() -> String: return "WorldMapCharacterContainer"
 
 
 func move_to_level(level_node: LevelNode, _interpol: bool= true):
+	moving = true
 	set_global_position(level_node.get_global_position())
 	
 	for child in get_children():
@@ -34,6 +35,7 @@ func move_to_level(level_node: LevelNode, _interpol: bool= true):
 	tween_node.start()
 	
 	yield(tween_node, "tween_all_completed")
+	moving = false
 	emit_signal("enter_level_animation_finished")
 
 
