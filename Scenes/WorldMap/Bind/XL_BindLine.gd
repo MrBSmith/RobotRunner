@@ -24,8 +24,8 @@ var dead_end : bool = false
 var is_ready : bool = false
 var offset_sign : int = 0
 
-var end_cap_node : LevelNode = null setget set_end_cap_node, get_end_cap_node
-var start_cap_node : LevelNode = null setget set_start_cap_node, get_start_cap_node
+var end_cap_node : WorldMapNode = null setget set_end_cap_node, get_end_cap_node
+var start_cap_node : WorldMapNode = null setget set_start_cap_node, get_start_cap_node
 
 #### ACCESSORS ####
 
@@ -64,11 +64,11 @@ func set_points(points_array: PoolVector2Array):
 func set_depth(value: int): depth = value
 func set_max_depth(value: int): max_depth = value
 
-func set_start_cap_node(value: LevelNode): start_cap_node = value
-func get_start_cap_node() -> LevelNode: return start_cap_node
+func set_start_cap_node(value: WorldMapNode): start_cap_node = value
+func get_start_cap_node() -> WorldMapNode: return start_cap_node
 
-func set_end_cap_node(value: LevelNode): end_cap_node = value
-func get_end_cap_node() -> LevelNode: return end_cap_node
+func set_end_cap_node(value: WorldMapNode): end_cap_node = value
+func get_end_cap_node() -> WorldMapNode: return end_cap_node
 
 
 #### BUILT-IN ####

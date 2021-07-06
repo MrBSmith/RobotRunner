@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BossNode.png-958b1544e6655298275d3e8e2acec76e.stex"
+path="res://.import/Node.png-03e1776a3a969eb0ed492b7e213c7035.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/WorldMap/LevelNode/BossNode.png"
-dest_files=[ "res://.import/BossNode.png-958b1544e6655298275d3e8e2acec76e.stex" ]
+source_file="res://Scenes/WorldMap/WorldMapNode/LevelNode/Node.png"
+dest_files=[ "res://.import/Node.png-03e1776a3a969eb0ed492b7e213c7035.stex" ]
 
 [params]
 
