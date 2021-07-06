@@ -18,4 +18,3 @@ func open():
 func close():
 	hide()
 	set_process_input(false)
-

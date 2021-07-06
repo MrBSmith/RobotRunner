@@ -3,17 +3,19 @@ class_name InputMenu
 
 #Get the ActionList node, which is type VBoxContainer. It will contains all the visual input information
 onready var _action_list = get_node("CanvasLayer/Column/ScrollContainer/ActionList")
-
+onready var inputmapper_node = get_node_or_null("InputMapper")
+onready var profiles_menu_node = get_node_or_null("CanvasLayer/Column/ProfilesMenu")
+onready var key_select_menu = get_node_or_null("CanvasLayer/KeySelectMenu")
 
 func _ready():
-	# profile_changed is emited at line78 of '$InputMapper.gd'
-	var _err = $InputMapper.connect('profile_changed', self, 'rebuild')
+	# profile_changed is emited at line78 of 'inputmapper_node.gd'
+	var _err = inputmapper_node.connect('profile_changed', self, 'rebuild')
 	
 	#Initialize all labels to display the profiles in the dropdown element and inputs
-	$CanvasLayer/Column/ProfilesMenu.initialize($InputMapper)
+	profiles_menu_node.initialize(inputmapper_node)
 
-#This function will be executed when the signal from $InputMapper.gd [Line 78] will be emited.
-func rebuild(input_profile, is_customizable = false):
+#This function will be executed when the signal from inputmapper_node.gd [Line 78] will be emited.
+func rebuild(input_profile : Dictionary, is_customizable = false):
 	_action_list.clear()
 	for input_action in input_profile.keys():
 		var line = _action_list.add_input_line(input_action, \
@@ -24,11 +26,11 @@ func rebuild(input_profile, is_customizable = false):
 				'_on_InputLine_change_button_pressed', [input_action, line])
 			#When change button has  been clicked, send the signal change_button_pressed to self
 
-func _on_InputLine_change_button_pressed(action_name, line):
+func _on_InputLine_change_button_pressed(action_name : String, line : InputLine):
 	set_process_input(false)
-	$CanvasLayer/KeySelectMenu.open()
-	var key_scancode = yield($CanvasLayer/KeySelectMenu, "key_selected")
-	$InputMapper.change_action_key(action_name, key_scancode)
+	key_select_menu.open()
+	var key_scancode = yield(key_select_menu, "key_selected")
+	inputmapper_node.change_action_key(action_name, key_scancode)
 	line.update_key(key_scancode)
 	
 	#Resume the process when the user pressed a key
@@ -36,7 +38,7 @@ func _on_InputLine_change_button_pressed(action_name, line):
 
 #If the player press the ui_cancel button (ref to the project settings, might me ESCAPE)
 #It will queue free the menu and back to the game
-func _input(event):
+func _input(event : InputEvent):
 	if event.is_action_pressed('ui_cancel'):
 		save_changes()
 		queue_free()
@@ -53,6 +55,6 @@ func _on_PlayButton_pressed():
 #	Reason : change_action_key is immediately executed when the player change a key so it is useless to execute the method again
 #	When the player leaves the menu
 func save_changes():
-	if $InputMapper.current_profile_id != $InputMapper.CUSTOM_PROFILE:
-		for action_name in $InputMapper.get_selected_profile().keys():
-			$InputMapper.change_action_key(action_name, $InputMapper.get_selected_profile()[action_name])
+	if inputmapper_node.current_profile_id != inputmapper_node.PROFILES_PRESET.CUSTOM:
+		for action_name in inputmapper_node.get_selected_profile().keys():
+			inputmapper_node.change_action_key(action_name, inputmapper_node.get_selected_profile()[action_name])

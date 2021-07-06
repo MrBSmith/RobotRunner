@@ -449,6 +449,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Menus/ScreenTitle/Scripts/InfiniteModeMenuOption.gd"
 }, {
+"base": "HBoxContainer",
+"class": "InputLine",
+"language": "GDScript",
+"path": "res://Scenes/Menus/OptionsMenu/Controls/input_line/InputLine.gd"
+}, {
 "base": "Node",
 "class": "InputMapper",
 "language": "GDScript",
@@ -1188,6 +1193,7 @@ _global_script_class_icons={
 "IconsLineData": "",
 "InfiniteLevel": "",
 "InfiniteModeMenuOption": "",
+"InputLine": "",
 "InputMapper": "",
 "InputMenu": "",
 "InteractAreaBase": "",

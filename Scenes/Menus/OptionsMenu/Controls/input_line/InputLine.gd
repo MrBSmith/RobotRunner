@@ -1,4 +1,5 @@
 extends HBoxContainer
+class_name InputLine
 
 signal change_button_pressed
 

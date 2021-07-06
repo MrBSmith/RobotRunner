@@ -9,6 +9,7 @@ const SAVE_GAME_DIR : String = "res://saves"
 const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevels"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
 const DEFAULT_SETTINGS_PATH : String = "res://default_settings.cfg"
+const DEFAULT_INPUT_PATH : String = "res://input_profiles.cfg"
 
 const TILE_SIZE := Vector2(24, 24)
 const JUMP_MAX_DIST := Vector2(6, 2)
