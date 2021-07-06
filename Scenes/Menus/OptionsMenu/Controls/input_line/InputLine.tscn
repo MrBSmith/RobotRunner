@@ -41,4 +41,5 @@ size_flags_vertical = 8
 theme = ExtResource( 2 )
 custom_fonts/font = ExtResource( 1 )
 text = "Change"
+
 [connection signal="pressed" from="ChangeButton" to="." method="_on_ChangeButton_pressed"]

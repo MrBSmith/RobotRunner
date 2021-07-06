@@ -10,11 +10,12 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends OptionButton
 
+#### LOGIC ####
+
 # This function will initialize all the inputs with default profile inputs -> AZERTY Configuration.
 func initialize(input_mapper):
-	for profile_index in input_mapper.profiles: #Get all the exisiting profile
-		var profile_name = input_mapper.profiles[profile_index].capitalize() #Get the name of each profile and capitalize it
-		add_item(profile_name, profile_index) #add_item function add the item as a Label Node, displaying the profile
+	for profile_name in input_mapper.profiles:
+		add_item(profile_name.capitalize())
 	var _err = self.connect(\"item_selected\", input_mapper, \"_on_ProfilesMenu_item_selected\")
 "
 
