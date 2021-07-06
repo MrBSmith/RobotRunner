@@ -43,13 +43,13 @@ func _change_profile(id : int) -> void:
 
 
 # This function will remove the current action from the settings and add a new key as an event
-func _change_action_key(action_name : String, key_scancode : int):
+func change_action_key(action_name : String, key_scancode : int):
 	_erase_action_events(action_name)
 
 	var new_event = InputEventKey.new()
 	new_event.set_scancode(key_scancode)
 	InputMap.action_add_event(action_name, new_event)
-	_get_selected_profile()[action_name] = key_scancode
+	get_selected_profile()[action_name] = key_scancode
 
 
 # This function will remove the selected action from the settings (InputMap)
@@ -58,7 +58,7 @@ func _erase_action_events(action_name):
 	for event in input_events:
 		InputMap.action_erase_event(action_name, event)
 
-func _get_selected_profile() -> Dictionary:
+func get_selected_profile() -> Dictionary:
 	return profiles.values()[current_profile_id]
 
 #### INPUT ####
