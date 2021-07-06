@@ -37,6 +37,7 @@ var settings ={
 			"display_console": InputMap.get_action_list("display_console")[0].scancode
 		},
 		"progression":{
+			"chapter": -1,
 			"last_level": -1,
 			"visited_levels": [],
 			"xion": 0,
