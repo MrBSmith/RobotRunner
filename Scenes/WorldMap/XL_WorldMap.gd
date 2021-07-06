@@ -60,6 +60,7 @@ func enter_current_level():
 		return
 	
 	if pulsing_light != null:
+	
 		pulsing_light.call_deferred("queue_free")
 	
 	var cursor_level_node = cursor.get_current_level()
