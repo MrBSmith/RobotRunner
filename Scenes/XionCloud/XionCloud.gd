@@ -76,18 +76,13 @@ func _physics_process(delta):
 
 #### LOGIC ####
 
-# Set the could active or not, 
+# Set the cloud active or not, 
 # if the cloud_active is false, set the cloud to invisible and make it stop
 func set_active(value : bool):
 	cloud_active = value
 	collision_shape_node.call_deferred("set_disabled", !value)
 	set_visible(value)
 	set_physics_process(value)
-
-
-func stop():
-	set_physics_process(false)
-
 
 # Return the number of elements in the array of the given class
 func count_class_in_array(array: Array, cls_name: String) -> int:
