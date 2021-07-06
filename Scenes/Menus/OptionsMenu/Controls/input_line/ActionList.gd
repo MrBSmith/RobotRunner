@@ -2,6 +2,8 @@ extends Control
 
 const InputLine = preload("res://Scenes/Menus/OptionsMenu/Controls/input_line/InputLine.tscn")
 
+#### LOGIC ####
+
 func clear():
 	for child in get_children():
 		child.free()

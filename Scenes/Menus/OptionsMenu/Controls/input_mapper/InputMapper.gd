@@ -1,6 +1,8 @@
 extends Node
-
 class_name InputMapper
+
+func is_class(value: String): return value == "InputMapper" or .is_class(value)
+func get_class() -> String: return "InputMapper"
 
 signal profile_changed(new_profile, is_customizable)
 
@@ -10,6 +12,10 @@ export(PROFILES_PRESET) var default_profile_id
 var profiles : Dictionary
 var current_profile_id : int = default_profile_id
 var custom_profile_id : int = PROFILES_PRESET.CUSTOM
+
+#### ACCESSORS ####
+
+#### BUILT-IN ####
 
 #Init all necessary variables and profiles
 func _init():
@@ -24,8 +30,10 @@ func _init():
 		push_error("Failed to load input profile config file. Error code : " + str(err))
 		return
 
+#### LOGIC ####
+
 #Get the selected profile id to change it. Refer to profile var for more information about IDs
-func change_profile(id : int) -> void:
+func _change_profile(id : int) -> void:
 	current_profile_id = id
 	var profiles_values = profiles.values()
 	var profile = profiles_values[id]
@@ -35,23 +43,27 @@ func change_profile(id : int) -> void:
 
 
 # This function will remove the current action from the settings and add a new key as an event
-func change_action_key(action_name : String, key_scancode : int):
-	erase_action_events(action_name)
+func _change_action_key(action_name : String, key_scancode : int):
+	_erase_action_events(action_name)
 
 	var new_event = InputEventKey.new()
 	new_event.set_scancode(key_scancode)
 	InputMap.action_add_event(action_name, new_event)
-	get_selected_profile()[action_name] = key_scancode
+	_get_selected_profile()[action_name] = key_scancode
 
 
 # This function will remove the selected action from the settings (InputMap)
-func erase_action_events(action_name):
+func _erase_action_events(action_name):
 	var input_events = InputMap.get_action_list(action_name)
 	for event in input_events:
 		InputMap.action_erase_event(action_name, event)
 
-func get_selected_profile() -> Dictionary:
+func _get_selected_profile() -> Dictionary:
 	return profiles.values()[current_profile_id]
 
-func _on_ProfilesMenu_item_selected(ID :int):
-	change_profile(ID)
+#### INPUT ####
+
+#### SIGNALS RESPONSES ####
+
+func _on_ProfilesMenu_item_selected(id :int):
+	_change_profile(id)

@@ -98,7 +98,7 @@ func _physics_process(delta):
 	remove_useless_impulse()
 
 
-#### LOGIC ####	
+#### LOGIC ####
 
 func get_reel_input(action_name : String) -> String:
 	var input_event_array = InputMap.get_action_list(action_name)

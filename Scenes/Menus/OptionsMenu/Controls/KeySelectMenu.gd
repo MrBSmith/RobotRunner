@@ -2,14 +2,12 @@ extends Panel
 
 signal key_selected(scancode)
 
+#### BUILT IN ####
+
 func _ready():
 	set_process_input(false)
 
-func _input(event):
-	if not event.is_pressed():
-		return
-	emit_signal("key_selected", event.scancode)
-	close()
+#### LOGIC ####
 
 func open():
 	show()
@@ -18,3 +16,12 @@ func open():
 func close():
 	hide()
 	set_process_input(false)
+
+#### INPUTS ####
+
+func _input(event):
+	if not event.is_pressed():
+		return
+	emit_signal("key_selected", event.scancode)
+	close()
+	

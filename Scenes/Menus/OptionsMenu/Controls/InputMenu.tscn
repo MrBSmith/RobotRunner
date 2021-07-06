@@ -10,6 +10,8 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends OptionButton
 
+#### LOGIC ####
+
 # This function will initialize all the inputs with default profile inputs -> AZERTY Configuration.
 func initialize(input_mapper):
 	for profile_name in input_mapper.profiles:
