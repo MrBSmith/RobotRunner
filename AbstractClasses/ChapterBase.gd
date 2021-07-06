@@ -1,5 +1,4 @@
 extends Resource
-
 class_name ChapterBase
 
 export var levels_scenes_array : Array

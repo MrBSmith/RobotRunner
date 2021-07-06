@@ -5,6 +5,7 @@ onready var menu_option_base_scene = preload("res://BabaGodotLib/UI/Menu/OptionB
 
 onready var load_save_name_info_label_node= $VBoxContainer/VBoxContainer/LoadSaveName
 onready var load_save_date_info_label_node = $VBoxContainer/VBoxContainer/LoadSaveDate
+onready var load_save_lastlevelvisited_label_node = $VBoxContainer/VBoxContainer/LoadSaveLastVisitedLevel
 onready var load_save_xion_info_label_node = $VBoxContainer/VBoxContainer/LoadSaveXion
 onready var load_save_gear_info_label_node = $VBoxContainer/VBoxContainer/LoadSaveGear
 
@@ -60,15 +61,28 @@ func update_save_information(slot_id : int):
 			$VBoxContainer.visible = true
 
 			var target_cfg_save_time = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "time", slot_id)
+			
+			var save_date_info : String = str(target_cfg_save_time.get("day")) + "/" + str(target_cfg_save_time.get("month")) + \
+			"/" + str(target_cfg_save_time.get("year")) + " " + str(target_cfg_save_time.get("hour")) + "h" + \
+			str(target_cfg_save_time.get("minute")) + ":" + str(target_cfg_save_time.get("second"))
+			
 			if typeof(target_cfg_save_time) == TYPE_DICTIONARY:
 				load_save_name_info_label_node.text = "Name : " + GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, slot_id).split("/")[-1]
-				load_save_date_info_label_node.text = "Time : " + str(target_cfg_save_time.get("day")) + "/" + str(target_cfg_save_time.get("month"))  +  "/" + str(target_cfg_save_time.get("year")) + " " + str(target_cfg_save_time.get("hour")) + "h" + str(target_cfg_save_time.get("minute")) + ":" + str(target_cfg_save_time.get("second"))
+				load_save_date_info_label_node.text = "Time : " + save_date_info
+				
+				load_save_lastlevelvisited_label_node.text = "Last Visited Level : " + _get_lastvisited_level(slot_id)
+				
 				load_save_xion_info_label_node.text = "Xion : " + str(GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "xion", slot_id))
 				load_save_gear_info_label_node.text = "Gear : " + str(GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "gear", slot_id))
 	else:
 		$VBoxContainer.visible = false
 
-
+func _get_lastvisited_level(slot_id :int) -> String:
+	var save_chapter_id : int = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "chapter", slot_id)
+	var save_level_id : int = GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "last_level", slot_id)
+	var level_name : String = GAME.chapters_array[save_chapter_id].get_level_name(save_level_id)
+	
+	return level_name
 
 func load_save(slot_id : int):
 	GAME.load_slot(slot_id)
