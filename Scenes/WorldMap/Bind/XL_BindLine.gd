@@ -118,6 +118,10 @@ func generate_node_sublines():
 		if depth == 0:
 			level_node = owner.origin if i == 0 else owner.destination
 		
+		# Handles interesctions (No sublines in intersections caps)
+		if not level_node is LevelNode:
+			continue 
+		
 		var rng = randi() % 3 if depth == 0 else 1
 		if max_depth > 5 && depth == 0:
 			 rng = 2

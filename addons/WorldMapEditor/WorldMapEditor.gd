@@ -40,8 +40,6 @@ func set_bind_mode(value: bool):
 #### BUILT-IN ####
 
 func _enter_tree() -> void:
-	var __ = get_tree().connect("node_removed", self, "_on_node_removed")
-	
 	editor_interface = get_editor_interface()
 
 
@@ -168,7 +166,9 @@ func forward_canvas_gui_input(event: InputEvent) -> bool:
 #### INPUTS ####
 
 
+
 #### SIGNAL RESPONSES ####
+
 
 func _on_create_bind_button_pressed():
 	if !bind_mode:
@@ -212,6 +212,6 @@ func _on_reroll_bind_gen_button_pressed():
 		current_node_selected.reroll_line_gen()
 
 
-func _on_node_removed(node: Node) -> void:
+func _on_world_map_node_removed(node: Node) -> void:
 	if node is WorldMapNode:
 		node.emit_signal("remove_all_binds_query", node)

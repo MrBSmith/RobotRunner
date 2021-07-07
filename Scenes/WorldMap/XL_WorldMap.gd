@@ -2,7 +2,6 @@ tool
 extends WorldMap
 class_name XL_WorldMap
 
-
 const signal_light_scene = preload("res://Scenes/WorldMap/SignalLight.tscn")
 const pulsing_light_scene = preload("res://BabaGodotLib/Feedback/PulsingLight.tscn")
 
@@ -13,6 +12,8 @@ onready var fade_transition_node = $Transition
 onready var level_node_container = $Levels
 
 var pulsing_light = null
+var scene_transitioning : bool = false
+
 
 #### ACCESSORS ####
 
@@ -23,9 +24,11 @@ func get_class() -> String: return "XL_WorldMap"
 #### BUILT-IN ####
 
 func _ready() -> void:
+	scene_transitioning = false
 	var __ = get_tree().connect("node_removed", self, "_on_scene_tree_node_removed")
-
-	var current_level = cursor.get_current_level()
+	__ = $SceneDestroyedAlerter.connect("scene_destroyed_alert", self, "_on_scene_destroyed_alert")
+	
+	var current_level = cursor.get_current_node()
 
 	if !Engine.editor_hint:
 		if current_level != null:
@@ -43,6 +46,10 @@ func _ready() -> void:
 		generate_pulsing_light(current_level)
 
 
+func _enter_tree() -> void:
+	scene_transitioning = false
+
+
 #### VIRTUALS ####
 
 
@@ -50,16 +57,18 @@ func _ready() -> void:
 #### LOGIC ####
 
 func _connect_level_node_signals() -> void:
-	for level_node in level_node_container.get_children():
-		var __ = level_node.connect("accessible_changed", self, "_on_level_accessible_changed", [level_node])
+	for node in level_node_container.get_children():
+		if not node is LevelNode:
+			continue 
+		var __ = node.connect("accessible_changed", self, "_on_level_accessible_changed", [node])
 
 
 func _feed_astar_points() -> void:
-	for level_node in level_node_container.get_children():
-		var id = level_node.get_index()
-		astar.add_point(id, level_node.get_position())
+	for node in level_node_container.get_children():
+		var id = node.get_index()
+		astar.add_point(id, node.get_position())
 
-		if !level_node.is_accessible():
+		if node is LevelNode && !node.is_accessible():
 			astar.set_point_disabled(id)
 
 	for bind in binds_container.get_children():
@@ -93,8 +102,8 @@ func enter_current_level() -> void:
 	if is_instance_valid(pulsing_light):
 		pulsing_light.call_deferred("queue_free")
 
-	var current_level_node = characters_container.current_level
-	var cursor_level_node = cursor.get_current_level()
+	var current_level_node = characters_container.get_current_node()
+	var cursor_level_node = cursor.get_current_node()
 	var current_level_id = current_level_node.get_index()
 	var cursor_level_id = cursor_level_node.get_index()
 
@@ -125,10 +134,11 @@ func enter_current_level() -> void:
 		var dest_id = path[i + 1]
 		var dest = level_node_container.get_child(dest_id)
 
-		characters_container.move_to_level(dest)
+		characters_container.move_to_node(dest)
 		yield(characters_container, "path_finished")
 
 	characters_container.enter_level(cursor_level_node)
+	
 	yield(characters_container, "enter_level_animation_finished")
 	.enter_current_level()
 
@@ -211,3 +221,12 @@ func _on_scene_tree_node_removed(node: Node):
 		yield(get_tree(), "idle_frame")
 		if moving_light_container.get_child_count() == 0:
 			emit_signal("character_moving_feedback_finished")
+	
+	elif node is WorldMapNode && !scene_transitioning:
+		if print_logs: print("Node %s removed" % node.name)
+		node.emit_signal("remove_all_binds_query", node)
+
+
+func _on_scene_destroyed_alert() -> void:
+	if print_logs: print("scene_destroyed")
+	scene_transitioning = true
