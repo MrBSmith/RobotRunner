@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scenes/WorldMap/XL_WorldMap.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/WorldMap/WorldMapCharacterContainer.gd" type="Script" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://Scenes/WorldMap/WorldMapMovingElement/Character/WorldMapCharacter.tscn" type="PackedScene" id=17]
 [ext_resource path="res://BabaGodotLib/Transitions/FadeTransition.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/WorldMap/SceneRemovedSignaler.gd" type="Script" id=19]
-[ext_resource path="res://Scenes/WorldMap/Bind/XL_LevelNodeBind.gd" type="Script" id=20]
 [ext_resource path="res://Scenes/WorldMap/Bind/XL_LevelNodeBind.tscn" type="PackedScene" id=21]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -31,7 +30,7 @@ shader_param/noise = ExtResource( 12 )
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 64, 268, 0, 0, 0, 0, 64, 256, 0, 0, 0, 0, 236, 256 )
+"points": PoolVector2Array( 0, 0, 0, 0, 84, 256, 0, 0, 0, 0, 236, 256 )
 }
 
 [sub_resource type="Curve2D" id=3]
@@ -59,27 +58,27 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 468, 448, 0, 0, 0, 0, 620, 448 )
 }
 
-[sub_resource type="Curve2D" id=12]
+[sub_resource type="Curve2D" id=8]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 640, 330, 0, 0, 0, 0, 640, 428 )
 }
 
-[sub_resource type="Curve2D" id=13]
+[sub_resource type="Curve2D" id=9]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 630, 320, 0, 0, 0, 0, 532, 320 )
 }
 
-[sub_resource type="Curve2D" id=14]
+[sub_resource type="Curve2D" id=10]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 650, 320, 0, 0, 0, 0, 748, 320 )
 }
 
-[sub_resource type="Curve2D" id=15]
+[sub_resource type="Curve2D" id=11]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 788, 320, 0, 0, 0, 0, 876, 320 )
 }
 
-[sub_resource type="ShaderMaterial" id=11]
+[sub_resource type="ShaderMaterial" id=12]
 shader = ExtResource( 8 )
 shader_param/apply = false
 shader_param/displace_amount = 1
@@ -142,7 +141,7 @@ __meta__ = {
 
 [node name="XL_LevelNode" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
-position = Vector2( 64, 248 )
+position = Vector2( 64, 256 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level1.tscn"
 level_name = "L1"
 
@@ -231,47 +230,23 @@ curve = SubResource( 7 )
 origin_node_path = "Levels/XL_LevelNode5"
 destination_node_path = "Levels/XL_LevelNode2"
 
-[node name="XL_LevelNodeBind6" type="Path2D" parent="Binds" instance=ExtResource( 21 )]
-self_modulate = Color( 1, 1, 1, 0 )
-light_mask = 0
-curve = SubResource( 12 )
-script = ExtResource( 20 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="XL_LevelNodeBind6" parent="Binds" instance=ExtResource( 21 )]
+curve = SubResource( 8 )
 origin_node_path = "Levels/WorldMap_Intersection"
 destination_node_path = "Levels/XL_LevelNode2"
 
-[node name="XL_LevelNodeBind8" type="Path2D" parent="Binds" instance=ExtResource( 21 )]
-self_modulate = Color( 1, 1, 1, 0 )
-light_mask = 0
-curve = SubResource( 13 )
-script = ExtResource( 20 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="XL_LevelNodeBind8" parent="Binds" instance=ExtResource( 21 )]
+curve = SubResource( 9 )
 origin_node_path = "Levels/WorldMap_Intersection"
 destination_node_path = "Levels/XL_LevelNode6"
 
-[node name="XL_LevelNodeBind9" type="Path2D" parent="Binds" instance=ExtResource( 21 )]
-self_modulate = Color( 1, 1, 1, 0 )
-light_mask = 0
-curve = SubResource( 14 )
-script = ExtResource( 20 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="XL_LevelNodeBind9" parent="Binds" instance=ExtResource( 21 )]
+curve = SubResource( 10 )
 origin_node_path = "Levels/WorldMap_Intersection"
 destination_node_path = "Levels/XL_LevelNode9"
 
-[node name="XL_LevelNodeBind10" type="Path2D" parent="Binds" instance=ExtResource( 21 )]
-self_modulate = Color( 1, 1, 1, 0 )
-light_mask = 0
-curve = SubResource( 15 )
-script = ExtResource( 20 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="XL_LevelNodeBind10" parent="Binds" instance=ExtResource( 21 )]
+curve = SubResource( 11 )
 origin_node_path = "Levels/XL_LevelNode9"
 destination_node_path = "Levels/XL_LevelNode10"
 
@@ -279,8 +254,8 @@ destination_node_path = "Levels/XL_LevelNode10"
 
 [node name="Characters" type="Node2D" parent="."]
 modulate = Color( 0.270588, 0.611765, 0.156863, 1 )
-material = SubResource( 11 )
-position = Vector2( 64, 248 )
+material = SubResource( 12 )
+position = Vector2( 64, 256 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -303,7 +278,7 @@ region_rect = Rect2( 0, 0, 64, 64 )
 [node name="GlitchEffect" parent="Characters" instance=ExtResource( 9 )]
 
 [node name="WorldMapCursor" parent="." instance=ExtResource( 15 )]
-position = Vector2( 64, 248 )
+position = Vector2( 64, 256 )
 speed = 300.0
 
 [node name="MovingLightContainer" type="Node2D" parent="."]
