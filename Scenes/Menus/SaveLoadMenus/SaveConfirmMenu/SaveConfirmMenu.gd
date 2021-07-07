@@ -91,7 +91,7 @@ func submit_and_overwrite_save():
 
 	GameSaver.save_game(GAME.progression, GAME.SAVE_GAME_DIR + "/" + save_name, save_name, GAME.save_slot, GAME.save_data.settings)
 	
-	var save_slot_path : String = GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, GAME.save_slot) + "/"
+	var save_slot_path : String = GameLoader.find_save_slot(GAME.SAVE_GAME_DIR, GAME.save_slot)
 	DirNavHelper.transfer_dir_content(GAME.SAVED_LEVEL_DIR, save_slot_path)
 	
 	overwrite_slot(GAME.save_slot)
