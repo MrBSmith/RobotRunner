@@ -100,7 +100,7 @@ func apply_loaded_properties(properties_dict : Dictionary):
 # Store the data in the array passed as argument
 func get_every_persistant_object(node: Node, array_to_fill: Array):
 	for child in node.get_children():
-		if child.is_class("Collectable") or child.is_class("BreakableObjectBase"):
+		if child.is_class("Collectable") or child.is_class("XionCrate"):
 			if not child in array_to_fill:
 				array_to_fill.append(child)
 		elif child.get_child_count() > 0:

@@ -3,13 +3,10 @@ class_name SaveData
 
 const level_property_to_serialize = {
 	"Collectable" : [],
-	"BreakableObjectBase" : [],
-	"Door" : ["opened"],
-	"DoorButton": ["pushed"],
-	"Checkpoint": ["active"]
+	"XionCrate" : []
 }
 
-var settings ={
+var settings = {
 		"system":{
 			"slot_id": 1,
 			"save_name": "none",
