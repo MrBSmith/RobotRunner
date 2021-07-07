@@ -144,12 +144,10 @@ position = Vector2( 504, 312 )
 level_name = "6.1"
 
 [node name="XL_LevelNode3" parent="Levels" instance=ExtResource( 14 )]
-modulate = Color( 0.7, 0.13, 0.13, 1 )
 material = SubResource( 1 )
 position = Vector2( 216, 384 )
 level_scene_path = "res://Scenes/Levels/Chapter1/Level2.tscn"
 level_name = "L2"
-accessible = false
 
 [node name="XL_LevelNode4" parent="Levels" instance=ExtResource( 14 )]
 material = SubResource( 1 )
