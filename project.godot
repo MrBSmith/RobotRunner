@@ -577,12 +577,12 @@ _global_script_classes=[ {
 "base": "StateBase",
 "class": "LevelNode_HiddenState",
 "language": "GDScript",
-"path": "res://Scenes/WorldMap/LevelNode/State/Hidden.gd"
+"path": "res://Scenes/WorldMap/WorldMapNode/LevelNode/State/Hidden.gd"
 }, {
 "base": "StateBase",
 "class": "LevelNode_VisibleState",
 "language": "GDScript",
-"path": "res://Scenes/WorldMap/LevelNode/State/Visible.gd"
+"path": "res://Scenes/WorldMap/WorldMapNode/LevelNode/State/Visible.gd"
 }, {
 "base": "Node",
 "class": "LevelSaver",
@@ -873,6 +873,11 @@ _global_script_classes=[ {
 "class": "SaveNameField",
 "language": "GDScript",
 "path": "res://Scenes/Menus/SaveLoadMenus/SaveConfirmMenu/SaveNameField.gd"
+}, {
+"base": "Node",
+"class": "SceneDestroyedAlerter",
+"language": "GDScript",
+"path": "res://Scenes/WorldMap/SceneRemovedSignaler.gd"
 }, {
 "base": "Node",
 "class": "SceneFinder",
@@ -1288,6 +1293,7 @@ _global_script_class_icons={
 "SaveData": "",
 "SaveLoadButtonBase": "",
 "SaveNameField": "",
+"SceneDestroyedAlerter": "",
 "SceneFinder": "",
 "ScreenTitleMenu": "",
 "SeedField": "",
