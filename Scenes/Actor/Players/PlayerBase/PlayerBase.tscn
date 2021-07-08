@@ -7,7 +7,7 @@
 [ext_resource path="res://Scenes/Actor/SeeThroughWalls.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Actor/Players/PlayerBase/States/PlayerIdleState.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Actor/Players/PlayerBase/Scripts/PlayerBase.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/Actor/Sounds/JumpSound.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Scenes/Actor/Players/MrStonks/Sounds/HammerSwing.wav" type="AudioStream" id=8]
 [ext_resource path="res://Scenes/Actor/Players/PlayerBase/States/PlayerJumpState.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/Actor/ActorBase.tscn" type="PackedScene" id=10]
 [ext_resource path="res://BabaGodotLib/Fonts/BoldCapsPixel64.tres" type="DynamicFont" id=12]
@@ -178,8 +178,8 @@ script = ExtResource( 9 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="StatesMachine/Jump" index="0"]
 stream = ExtResource( 8 )
-volume_db = -12.0
-pitch_scale = 1.37
+volume_db = -24.72
+pitch_scale = 1.13
 bus = "Sounds"
 
 [node name="Fall" type="Node" parent="StatesMachine" index="3"]

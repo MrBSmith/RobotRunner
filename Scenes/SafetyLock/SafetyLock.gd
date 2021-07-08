@@ -1,6 +1,9 @@
 extends Node2D
 class_name SafetyLock
 
+
+onready var wrong_sound = $WrongSound
+onready var valid_sound = $ValidSound
 onready var area_node = $Area2D
 onready var exit_area_trigger = $ExitAreaTrigger
 onready var in_door = $InDoor
@@ -15,6 +18,9 @@ export var one_way : bool = false
 
 var has_been_triggered = false
 
+#warning-ignore:unused_signal
+signal laser_animation_finished
+
 #### ACCESSORS ####
 
 func is_class(value: String): return value == "SafetyLock" or .is_class(value)
@@ -27,7 +33,7 @@ func _ready() -> void:
 	var __ = area_node.connect("body_entered", self, "_on_body_entered")
 	__ = area_node.connect("body_exited", self, "_on_body_exited")
 	__ = screen_timer.connect("timeout", self, "_on_screen_timer_timeout")
-	__ = animation_player.connect("animation_finished", self, "_on_animation_player_animation_finished")
+	__ = connect("laser_animation_finished", self, "_on_laser_animation_finished")
 	
 	play_default_screen_animation()
 	
@@ -70,6 +76,21 @@ func is_wanted_robot(bodies_array: Array) -> bool:
 	return false
 
 
+func valid() -> void:
+	screen_sprite.play("Valid")
+	valid_sound.play()
+	var door_to_open = in_door if entrance == out_door else out_door
+	door_to_open.open(true)
+	has_been_triggered = true
+
+
+func invalid() -> void:
+	screen_sprite.play("Invalid")
+	entrance.open(true)
+	wrong_sound.play()
+
+
+
 #### INPUTS ####
 
 
@@ -86,18 +107,14 @@ func _on_body_entered(_body: Node2D) -> void:
 		animation_player.play("LaserMovement")
 
 
-func _on_animation_player_animation_finished(_anim_name: String) -> void:
+func _on_laser_animation_finished() -> void:
 	var bodies = area_node.get_overlapping_bodies()
 	var nb_robots = count_robots(bodies)
 	
 	if nb_robots > 1 or !is_wanted_robot(bodies):
-		screen_sprite.play("Invalid")
-		entrance.open(true)
+		invalid()
 	else:
-		screen_sprite.play("Valid")
-		var door_to_open = in_door if entrance == out_door else out_door
-		door_to_open.open(true)
-		has_been_triggered = true
+		valid()
 	
 	if nb_robots == 0:
 		screen_timer.start()

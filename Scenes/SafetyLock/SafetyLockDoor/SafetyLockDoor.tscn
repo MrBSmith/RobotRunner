@@ -146,3 +146,6 @@ animation = "StartOpening"
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2( 4, 0 )
 shape = SubResource( 31 )
+
+[node name="AudioStreamPlayer" parent="." index="2"]
+volume_db = -19.118

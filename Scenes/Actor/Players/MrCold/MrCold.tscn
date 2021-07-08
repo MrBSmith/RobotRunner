@@ -23,7 +23,7 @@ shape = SubResource( 1 )
 one_way_collision = false
 
 [node name="AudioStreamPlayer" parent="StatesMachine/Jump" index="0"]
-pitch_scale = 1.71
+pitch_scale = 1.08
 
 [node name="AudioStreamPlayer" parent="StatesMachine/Action" index="0"]
 stream = ExtResource( 1 )
