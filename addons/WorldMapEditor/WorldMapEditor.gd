@@ -48,11 +48,11 @@ func _exit_tree() -> void:
 
 
 func handles(obj: Object) -> bool:
-	if not obj is Node:
-		return false
-	
 	if !is_object_handled(obj):
 		destroy_every_buttons()
+	
+	if obj == null or not obj is Node:
+		return false
 	
 	yield(get_tree(), "idle_frame")
 	
@@ -100,6 +100,7 @@ func destroy_every_buttons():
 
 
 func is_object_handled(obj: Object) -> bool:
+	if obj == null: return false
 	for obj_class in handeled_objects:
 		if obj.is_class(obj_class):
 			return true
@@ -146,6 +147,9 @@ func forward_canvas_gui_input(event: InputEvent) -> bool:
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		var selection = editor_interface.get_selection()
 		var selected_nodes = selection.get_selected_nodes()
+		
+		if selected_nodes.empty():
+			destroy_every_buttons()
 		
 		if !event.is_pressed():
 			for node in selected_nodes:
