@@ -85,8 +85,8 @@ func create_config_directory_and_sub_files():
 		DirNavHelper.create_dir(CONFIG_DIRECTORY_PATH)
 	
 		#save properties in cfg will create the file if it does not exist so we do not need to check it here
-		DirNavHelper.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
-		DirNavHelper.save_properties_in_cfg(DEFAULT_INPUT_PATH, save_data.default_input_profiles)
+		GameSaver.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
+		GameSaver.save_properties_in_cfg(DEFAULT_INPUT_PATH, save_data.default_input_profiles)
 
 # 1. Create the SavedLevel directory at Scenes/Levels/SavedLevels for temp levels
 # - If the folder SavedLevel already exist, empty it
@@ -247,7 +247,7 @@ func load_slot(slot_id: int):
 	save_slot = GameLoader.get_save_property_value(SAVE_GAME_DIR, "slot_id", slot_id)
 	
 	# Set the selected slot as the default slot for the next time the game is runned
-	DirNavHelper.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
+	GameSaver.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
 
 
 func load_default_settings():
