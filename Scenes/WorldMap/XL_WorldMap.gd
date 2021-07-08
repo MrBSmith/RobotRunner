@@ -110,17 +110,17 @@ func enter_current_level() -> void:
 	var path = []
 
 	if are_level_nodes_bounded(current_level_node, cursor_level_node):
-		path = [current_level_id, current_level_id]
+		path = [current_level_id, cursor_level_id]
 	else:
 		path = astar.get_id_path(current_level_id, cursor_level_id)
-
+	
 	# Check if the selected level node is accessible
 	if path.empty():
 		_wrong_destination(cursor_level_node)
 		return
 	
 	# Light feedback
-	if current_level_node != current_level_node:
+	if current_level_node != cursor_level_node:
 		for i in range(path.size() - 1):
 			var origin_id = path[i]
 			var dest_id = path[i + 1]
