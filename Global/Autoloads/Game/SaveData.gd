@@ -41,3 +41,57 @@ var settings = {
 			"gear": 0
 		}
 	}
+
+var default_input_profiles = {
+	"azerty":{
+		"jump_player1": KEY_Z,
+		"move_left_player1": KEY_Q,
+		"move_right_player1": KEY_D,
+		"teleport_player1": KEY_S,
+		"action_player1": KEY_E,
+			
+		"jump_player2": KEY_UP,
+		"move_left_player2": KEY_LEFT,
+		"move_right_player2": KEY_RIGHT,
+		"teleport_player2": KEY_DOWN,
+		"action_player2": KEY_SHIFT,
+			
+		"game_restart": KEY_F1,
+		"HUD_switch_state": KEY_F2,
+		"display_console": KEY_F3
+	},
+	"qwerty":{
+		"jump_player1": KEY_W,
+		"move_left_player1": KEY_A,
+		"move_right_player1": KEY_D,
+		"teleport_player1": KEY_S,
+		"action_player1": KEY_E,
+			
+		"jump_player2": KEY_UP,
+		"move_left_player2": KEY_LEFT,
+		"move_right_player2": KEY_RIGHT,
+		"teleport_player2": KEY_DOWN,
+		"action_player2": KEY_SHIFT,
+			
+		"game_restart": KEY_F1,
+		"HUD_switch_state": KEY_F2,
+		"display_console": KEY_F3
+	},
+	"custom":{
+		"jump_player1": KEY_Z,
+		"move_left_player1": KEY_Q,
+		"move_right_player1": KEY_D,
+		"teleport_player1": KEY_S,
+		"action_player1": KEY_E,
+			
+		"jump_player2": KEY_UP,
+		"move_left_player2": KEY_LEFT,
+		"move_right_player2": KEY_RIGHT,
+		"teleport_player2": KEY_DOWN,
+		"action_player2": KEY_SHIFT,
+			
+		"game_restart": KEY_F1,
+		"HUD_switch_state": KEY_F2,
+		"display_console": KEY_F3
+	}
+}

@@ -8,8 +8,9 @@ export var debug : bool = false
 const SAVE_GAME_DIR : String = "res://Saves"
 const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevels"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
-const DEFAULT_SETTINGS_PATH : String = "res://Config/default_settings.cfg"
-const DEFAULT_INPUT_PATH : String = "res://Config/input_profiles.cfg"
+const CONFIG_DIRECTORY_PATH : String = "res://Config"
+const DEFAULT_SETTINGS_PATH : String = CONFIG_DIRECTORY_PATH + "/default_settings.cfg"
+const DEFAULT_INPUT_PATH : String = CONFIG_DIRECTORY_PATH + "/input_profiles.cfg"
 
 const TILE_SIZE := Vector2(24, 24)
 const JUMP_MAX_DIST := Vector2(6, 2)
@@ -61,10 +62,36 @@ func _ready():
 	_err = EVENTS.connect("new_game", self, "_on_new_game_event")
 	_err = EVENTS.connect("checkpoint_reached", self, "_on_checkpoint_reached_event")
 	
-	# Create the default settings
-	if !DirNavHelper.is_file_existing(DEFAULT_SETTINGS_PATH):
-		GameSaver.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
+	# Will create and handle every required game directories and file such as
+	# SavedLevels, save directory, Config directory etc...
+	create_and_handle_game_directories()
+	load_default_settings()
 	
+	# Generate the chapters
+	ChapterGenerator.create_chapters(ChapterGenerator.chapter_dir_path, chapters_array)
+	new_chapter() # Set the current chapter to be the first one
+
+#### GENERATE AND HANDLE ALL REQUIERED GAME DIRECTORIES ####
+
+func create_and_handle_game_directories():
+	create_config_directory_and_sub_files()
+	create_saves_directories()
+
+# Create the CONFIG directory if it does not exist then default_settings and default_input_profiles
+# configurations files if they do not exist. they are both filled with data from save_data dictionaries
+func create_config_directory_and_sub_files():
+	#Create CONFIG directory in res://
+	if !DirNavHelper.is_file_existing(CONFIG_DIRECTORY_PATH):
+		DirNavHelper.create_dir(CONFIG_DIRECTORY_PATH)
+	
+		#save properties in cfg will create the file if it does not exist so we do not need to check it here
+		DirNavHelper.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
+		DirNavHelper.save_properties_in_cfg(DEFAULT_INPUT_PATH, save_data.default_input_profiles)
+
+# 1. Create the SavedLevel directory at Scenes/Levels/SavedLevels for temp levels
+# - If the folder SavedLevel already exist, empty it
+# 2. Create the saves directory if it does not exist
+func create_saves_directories():
 	if !DirNavHelper.is_dir_existing(SAVED_LEVEL_DIR):
 		DirNavHelper.create_dir(SAVED_LEVEL_DIR)
 	else:
@@ -72,12 +99,6 @@ func _ready():
 	
 	if !DirNavHelper.is_dir_existing(SAVE_GAME_DIR):
 		DirNavHelper.create_dir(SAVE_GAME_DIR)
-	
-	load_default_settings()
-	
-	# Generate the chapters
-	ChapterGenerator.create_chapters(ChapterGenerator.chapter_dir_path, chapters_array)
-	new_chapter() # Set the current chapter to be the first one
 
 #### START GAME ####
 
@@ -226,7 +247,7 @@ func load_slot(slot_id: int):
 	save_slot = GameLoader.get_save_property_value(SAVE_GAME_DIR, "slot_id", slot_id)
 	
 	# Set the selected slot as the default slot for the next time the game is runned
-	GameSaver.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
+	DirNavHelper.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
 
 
 func load_default_settings():
