@@ -5,11 +5,10 @@ class_name XL_WorldMap
 const signal_light_scene = preload("res://Scenes/WorldMap/SignalLight.tscn")
 const pulsing_light_scene = preload("res://BabaGodotLib/Feedback/PulsingLight.tscn")
 
-onready var astar = WorldMapAStar.new()
+onready var astar = AStar2D.new()
 
 onready var moving_light_container = $MovingLightContainer
 onready var fade_transition_node = $Transition
-onready var level_node_container = $Levels
 
 var pulsing_light = null
 var scene_transitioning : bool = false
@@ -68,7 +67,7 @@ func _feed_astar_points() -> void:
 		var id = node.get_index()
 		astar.add_point(id, node.get_position())
 
-		if node is LevelNode && !node.is_accessible():
+		if node is LevelNode && (!node.is_accessible() or !node.is_visited()):
 			astar.set_point_disabled(id)
 
 	for bind in binds_container.get_children():
@@ -107,27 +106,23 @@ func enter_current_level() -> void:
 	var current_level_id = current_level_node.get_index()
 	var cursor_level_id = cursor_level_node.get_index()
 
-	var path = []
-
-	if are_level_nodes_bounded(current_level_node, cursor_level_node):
-		path = [current_level_id, current_level_id]
-	else:
-		path = astar.get_id_path(current_level_id, cursor_level_id)
-
+	var path = find_id_path(current_level_id, cursor_level_id)
+	
 	# Check if the selected level node is accessible
 	if path.empty():
 		_wrong_destination(cursor_level_node)
 		return
-
+	
 	# Light feedback
-	for i in range(path.size() - 1):
-		var origin_id = path[i]
-		var dest_id = path[i + 1]
-		var origin = level_node_container.get_child(origin_id)
-		var dest = level_node_container.get_child(dest_id)
+	if current_level_node != cursor_level_node:
+		for i in range(path.size() - 1):
+			var origin_id = path[i]
+			var dest_id = path[i + 1]
+			var origin = level_node_container.get_child(origin_id)
+			var dest = level_node_container.get_child(dest_id)
 
-		light_moving_through(origin, dest)
-		yield(self, "character_moving_feedback_finished")
+			light_moving_through(origin, dest)
+			yield(self, "character_moving_feedback_finished")
 
 	# Charcter moving feedback
 	for i in range(path.size() - 1):
@@ -141,6 +136,28 @@ func enter_current_level() -> void:
 	
 	yield(characters_container, "enter_level_animation_finished")
 	.enter_current_level()
+
+
+func find_id_path(from_id: int, to_id: int) -> PoolIntArray:
+	var dest = level_node_container.get_child(to_id)
+	if dest == null or !dest.is_accessible():
+		return PoolIntArray()
+	
+	if are_level_nodes_bounded_id(from_id, to_id):
+		return PoolIntArray([from_id, to_id])
+	else:
+		var from_state = astar.is_point_disabled(from_id)
+		var to_state = astar.is_point_disabled(to_id)
+		
+		astar.set_point_disabled(to_id, false)
+		astar.set_point_disabled(from_id, false)
+		
+		var path = astar.get_id_path(from_id, to_id)
+		
+		astar.set_point_disabled(to_id, from_state)
+		astar.set_point_disabled(from_id, to_state)
+		
+		return path
 
 
 func _wrong_destination(level_node: LevelNode) -> void:
@@ -213,7 +230,8 @@ func is_animation_running() -> bool:
 #### SIGNAL RESPONSES ####
 
 func _on_level_accessible_changed(level_node: LevelNode) -> void:
-	astar.set_point_disabled(level_node.get_index(), !level_node.is_accessible())
+	var accessible = !level_node.is_accessible() or !level_node.is_visited()
+	astar.set_point_disabled(level_node.get_index(), accessible)
 
 
 func _on_scene_tree_node_removed(node: Node):
