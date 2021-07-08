@@ -59,6 +59,13 @@ func append_visited_level(level: Level) -> void:
 	if not level_scene_path in visited_levels:
 		visited_levels.append(level_scene_path)
 
+func reload_save_ressources(save_id : int):
+	if GameLoader.find_corresponding_save_file(GAME.SAVE_GAME_DIR, save_id) != "":
+		set_gear(GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "gear", save_id))
+		set_xion(GameLoader.get_save_property_value(GAME.SAVE_GAME_DIR, "xion", save_id))
+	else:
+		set_gear(0)
+		set_xion(0)
 
 #### SIGNAL RESPONSES ####
 

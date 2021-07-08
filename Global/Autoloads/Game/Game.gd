@@ -118,6 +118,7 @@ func goto_last_level():
 	level_scene = load(level_to_load_path)
 	
 	var __ = get_tree().change_scene_to(level_scene)
+	progression.reload_save_ressources(save_slot)
 
 	if loaded_from_save:
 		yield(EVENTS, "level_entered_tree")
