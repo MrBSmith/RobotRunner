@@ -118,16 +118,17 @@ func enter_current_level() -> void:
 	if path.empty():
 		_wrong_destination(cursor_level_node)
 		return
-
+	
 	# Light feedback
-	for i in range(path.size() - 1):
-		var origin_id = path[i]
-		var dest_id = path[i + 1]
-		var origin = level_node_container.get_child(origin_id)
-		var dest = level_node_container.get_child(dest_id)
+	if current_level_node != current_level_node:
+		for i in range(path.size() - 1):
+			var origin_id = path[i]
+			var dest_id = path[i + 1]
+			var origin = level_node_container.get_child(origin_id)
+			var dest = level_node_container.get_child(dest_id)
 
-		light_moving_through(origin, dest)
-		yield(self, "character_moving_feedback_finished")
+			light_moving_through(origin, dest)
+			yield(self, "character_moving_feedback_finished")
 
 	# Charcter moving feedback
 	for i in range(path.size() - 1):
