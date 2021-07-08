@@ -118,6 +118,8 @@ func goto_last_level():
 	level_scene = load(level_to_load_path)
 	
 	var __ = get_tree().change_scene_to(level_scene)
+	
+	#Temp solution
 	progression.reload_save_ressources(save_slot)
 
 	if loaded_from_save:
