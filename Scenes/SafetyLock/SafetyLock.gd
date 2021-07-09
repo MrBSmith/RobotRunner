@@ -15,6 +15,7 @@ onready var entrance = in_door
 
 export var wanted_class : String = "ActorBase"
 export var one_way : bool = false
+export var locked : bool = false
 
 var has_been_triggered = false
 
@@ -37,6 +38,7 @@ func _ready() -> void:
 	
 	play_default_screen_animation()
 	
+	entrance.open(true)
 	if !one_way:
 		exit_area_trigger.queue_free()
 	else:
@@ -45,6 +47,10 @@ func _ready() -> void:
 		var out_door_pos = out_door.get_position()
 		
 		exit_area_trigger.position.x *= sign(out_door_pos.x)
+	
+	if locked:
+		in_door.open(false)
+		out_door.open(false)
 
 
 #### VIRTUALS ####

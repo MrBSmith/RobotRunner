@@ -44,20 +44,20 @@ func fetch_doors() -> Array:
 	for child in get_children():
 		if child is Door:
 			doors_array.append(child)
+		if child is SafetyLock:
+			doors_array.append(child.entrance)
 	return doors_array
 
 
 func open_all_doors(open: bool = true) -> void:
-	for child in get_children():
-		if child.is_class("Door"):
-			child.open(open)
+	for door in fetch_doors():
+		door.open(open)
 
 
 func are_all_button_triggered() -> bool:
-	for child in get_children():
-		if child.is_class("DoorButton"):
-			if !child.is_pushed():
-				return false
+	for button in fetch_buttons():
+		if !button.is_pushed():
+			return false
 	return true
 
 

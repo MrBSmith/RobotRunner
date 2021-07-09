@@ -32,19 +32,19 @@ atlas = ExtResource( 7 )
 region = Rect2( 54, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 4 )
 region = Rect2( 54, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 5 )
 region = Rect2( 54, 0, 54, 19 )
 
 [sub_resource type="SpriteFrames" id=10]
@@ -66,12 +66,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 6 ), SubResource( 7 ) ],
 "loop": true,
-"name": "Valid",
+"name": "Invalid",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
-"name": "Invalid",
+"name": "Valid",
 "speed": 10.0
 } ]
 
@@ -165,7 +165,6 @@ position = Vector2( -52, 0 )
 
 [node name="OutDoor" parent="." instance=ExtResource( 1 )]
 position = Vector2( 52, 0 )
-flip_h = true
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 0, 11 )
