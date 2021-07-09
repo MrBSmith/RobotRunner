@@ -42,7 +42,7 @@ func fetch_buttons() -> Array:
 func fetch_doors() -> Array:
 	var doors_array = []
 	for child in get_children():
-		if child is Door:
+		if child is Door or SafetyLock:
 			doors_array.append(child)
 	return doors_array
 
@@ -51,6 +51,8 @@ func open_all_doors(open: bool = true) -> void:
 	for child in get_children():
 		if child.is_class("Door"):
 			child.open(open)
+		if child.is_class("SafetyLock"):
+			child.entrance.open(true)
 
 
 func are_all_button_triggered() -> bool:

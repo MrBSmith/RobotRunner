@@ -47,7 +47,6 @@ func open(open: bool = true, instant : bool = false) -> void:
 		yield(animation_node, "animation_finished")
 		set_visible(!open)
 
-
 #### INPUTS ####
 
 

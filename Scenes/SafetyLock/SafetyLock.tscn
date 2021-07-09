@@ -14,35 +14,35 @@
 extents = Vector2( 35, 23.9155 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 6 )
 region = Rect2( 54, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 6 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 6 )
+atlas = ExtResource( 7 )
 region = Rect2( 54, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 4 )
 region = Rect2( 54, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 54, 19 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 4 )
+atlas = ExtResource( 5 )
 region = Rect2( 54, 0, 54, 19 )
 
 [sub_resource type="SpriteFrames" id=10]
@@ -54,22 +54,22 @@ animations = [ {
 }, {
 "frames": [ SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
-"name": "MrStonks",
+"name": "MrCold",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
-"name": "MrCold",
+"name": "MrStonks",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 6 ), SubResource( 7 ) ],
 "loop": true,
-"name": "Valid",
+"name": "Invalid",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
-"name": "Invalid",
+"name": "Valid",
 "speed": 10.0
 } ]
 
@@ -116,7 +116,6 @@ position = Vector2( -52, 0 )
 
 [node name="OutDoor" parent="." instance=ExtResource( 1 )]
 position = Vector2( 52, 0 )
-flip_h = true
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 0, 11 )
@@ -138,6 +137,7 @@ frames = SubResource( 10 )
 position = Vector2( 0, 40 )
 frames = SubResource( 13 )
 animation = "Laser"
+frame = 1
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

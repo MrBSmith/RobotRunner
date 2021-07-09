@@ -6,11 +6,8 @@
 [node name="SafetyLock" instance=ExtResource( 1 )]
 wanted_class = "MrStonks"
 
-[node name="InDoor" parent="." index="0"]
-opened = true
+[node name="OutDoor" parent="." index="1"]
+flip_h = true
 
 [node name="Backgound" parent="." index="3"]
 texture = ExtResource( 2 )
-
-[node name="Laser" parent="." index="6"]
-frame = 0
