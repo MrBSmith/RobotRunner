@@ -10,7 +10,7 @@ const SAVED_LEVEL_DIR : String = "res://Scenes/Levels/SavedLevels"
 const SAVEDFILE_DEFAULT_NAME : String = "save"
 const CONFIG_DIRECTORY_PATH : String = "res://Config"
 const DEFAULT_SETTINGS_PATH : String = CONFIG_DIRECTORY_PATH + "/default_settings.cfg"
-const DEFAULT_INPUT_PATH : String = CONFIG_DIRECTORY_PATH + "/input_profiles.cfg"
+const DEFAULT_INPUT_PATH : String = "res://input_profiles.cfg"
 
 const TILE_SIZE := Vector2(24, 24)
 const JUMP_MAX_DIST := Vector2(6, 2)
@@ -76,9 +76,12 @@ func _ready():
 func create_and_handle_game_directories():
 	create_config_directory_and_sub_files()
 	create_saves_directories()
+	
+	if !DirNavHelper.is_file_existing(DEFAULT_INPUT_PATH):
+		push_error("input_profiles.cfg could not be found. profiles could not be loaded into the game")
 
-# Create the CONFIG directory if it does not exist then default_settings and default_input_profiles
-# configurations files if they do not exist. they are both filled with data from save_data dictionaries
+# Create the CONFIG directory if it does not exist then default_settings
+# configurations files if they do not exist. they are filled with data from save_data dictionaries
 func create_config_directory_and_sub_files():
 	#Create CONFIG directory in res://
 	if !DirNavHelper.is_file_existing(CONFIG_DIRECTORY_PATH):
@@ -86,7 +89,6 @@ func create_config_directory_and_sub_files():
 	
 		#save properties in cfg will create the file if it does not exist so we do not need to check it here
 		GameSaver.save_properties_in_cfg(DEFAULT_SETTINGS_PATH, save_data.settings)
-		GameSaver.save_properties_in_cfg(DEFAULT_INPUT_PATH, save_data.default_input_profiles)
 
 # 1. Create the SavedLevel directory at Scenes/Levels/SavedLevels for temp levels
 # - If the folder SavedLevel already exist, empty it
