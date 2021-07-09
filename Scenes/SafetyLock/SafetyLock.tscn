@@ -125,6 +125,8 @@ position = Vector2( 0, 11 )
 shape = SubResource( 1 )
 
 [node name="Backgound" type="Sprite" parent="."]
+z_index = -1
+z_as_relative = false
 
 [node name="ScreenBackground" type="Sprite" parent="."]
 position = Vector2( 1, -26 )
