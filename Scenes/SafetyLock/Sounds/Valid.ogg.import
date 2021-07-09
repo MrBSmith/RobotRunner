@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Valid.ogg-48cdbf18ea1db581c114131e2ed602c3.oggstr"
+
+[deps]
+
+source_file="res://Scenes/SafetyLock/Sounds/Valid.ogg"
+dest_files=[ "res://.import/Valid.ogg-48cdbf18ea1db581c114131e2ed602c3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

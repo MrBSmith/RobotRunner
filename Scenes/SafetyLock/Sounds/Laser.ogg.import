@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Laser.ogg-6f30b11ecbe64c6bf16e7fb1edb2f0f7.oggstr"
+
+[deps]
+
+source_file="res://Scenes/SafetyLock/Sounds/Laser.ogg"
+dest_files=[ "res://.import/Laser.ogg-6f30b11ecbe64c6bf16e7fb1edb2f0f7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
